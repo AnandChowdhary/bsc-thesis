@@ -1,8 +1,8 @@
 \documentclass{article}
 
-\title{Reflection on Email-based Intelligent Virtual Assistants for Creative Technology BSc}
+\title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
 \date{2020-06-06}
-\author{Anand Chowdhary (s1930702)}
+\author{Anand Chowdhary, Creative Technology BSc, University of Twente}
 
 \begin{document}
   \pagenumbering{gobble}
@@ -15,9 +15,11 @@
 
 Last year, over 100 billion emails were sent every day (Email Statistics Report, 2015-2019). A very common use case of sending emails in a work environment is to set up appointments for in-person or virtual meetings. However, several email exchanges are required in order to find a suitable time and place where all parties are available, and this back-and-forth calendar conflict resolution wastes 17 minutes per meeting on average (Mortensen, 2017). This can add up to a significant waste of time (over 100 hours per year), which can be otherwise used for productive work.
 
-For some professionals, scheduling these meetings manually can feel like a "frustrating distraction from the things that matter" (J. Cranshaw et al., 2017) so much so that they hire assistants to help with the task. However, not everyone can afford full-time assistants and will therefore turn to software solutions. Intelligent virtual assistants over email built using machine learning can help by automating these scheduling messages. An AI assistant can access a user’s calendar and can find empty meeting slots based on the location of the user location and their scheduling preferences, and then send and respond to emails on their behalf.
+For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter" (J. Cranshaw et al., 2017) so much so that they hire assistants to help with the task. However, not everyone can afford full-time assistants and will therefore turn to software solutions. Intelligent virtual assistants over email built using machine learning can help by automating these scheduling messages. An AI assistant can access a user’s calendar and can find empty meeting slots based on the location of the user location and their scheduling preferences, and then send and respond to emails on their behalf.
 
-In this graduation project, I aim to design and develop an AI-powered intelligent virtual assistant that automates the email scheduling process. Professionals will be able to use the web interface of the assistant service to solve the "time waste" problem when it comes to appointment scheduling. In the future, the capabilities of the assistant can be extended to essentially everything a human assistant can do, from sending outbound marketing emails and following up with coworkers on tasks, to automating other parts of the professional’s life. Of course, the product also has several ethical implications and possible social disruptions, such as job loss for secretaries by encouraging automation and ensuring data and privacy protection, apart from answering the main ethical conundrum — whether end users who receive emails from the service are informed that the email is written by an AI assistant, not a real human.
+In this graduation project, I aim to design and develop an AI-powered intelligent virtual assistant that automates the email scheduling process. Professionals will be able to use the web interface of the assistant service to solve the ``time waste" problem when it comes to appointment scheduling. In the future, the capabilities of the assistant can be extended to essentially everything a human assistant can do, from sending outbound marketing emails and following up with coworkers on tasks, to automating other parts of the professional’s life.
+
+Of course, the product also has several ethical implications and possible social disruptions, such as job loss for secretaries by encouraging automation and ensuring data and privacy protection, apart from answering the main ethical conundrum — whether end users who receive emails from the service are informed that the email is written by an AI assistant, not a real human.
 
 
 \subsection{About EIVA}
@@ -34,16 +36,45 @@ OK byte
 
 \subsection{Product}
 
+\subsubsection{Authorship: ``Sent by an AI"}
+
+There are also several ethical questions that arise about whether recipients should know that an email was sent to them by a virtual agent, not a person.
+
+\paragraph{Automated Journalism}
+
+
+If you read major American newspapers such as Forbes or the Los Angeles Times, chances are you’ve already read a story entirely written by an AI-powered software system. This process is known as automated journalism, and highlights an important question about authorship: \emph{Who is the author of an article written by a virtual agent?} A 2005 study found that research participants attribute story credit to the programmers who developed the AI or the news organization publishing the story (Montal, Reich, 2005). 
+
+However, this is not the full picture. Since machine learning models require large amounts of training data that the agent ``learns" from (and, in some cases depending on the implementation, the output is largely inspired by the training data), the human authors of said data are also worthy contenders for the credit.
+
+\paragraph{Clarity of Authorship}
+
+Google's \emph{reCATCHA}, a popular challenge-response test for websites based on CAPTCHA (completely automated public Turing test to tell computers and humans apart), is used by millions of websites. Unbeknownst to most users, one of the two words entered by users was used to transcribe old books in the public domain (O'Malley, 2018). Once all books in Google's collection were accurately transcribed by the public, the focus was shifted to transcribing text in photos from Google Street View in 2012. By 2014, almost all challenges were used to train Google's AI for use cases such as better Google Image Search results, more accurate Google Maps navigation, and object detection in Google Photos (Daly, 2017).
+
+Although Section 3(d) of \emph{reCAPTCHA}'s Terms of Service ensure that users allow ``sending that data to Google for analysis", a similar argument to automated journal can be presented: Should end users, i.e., the public, receive partial credit for the thousands of human hours that have been spent on training Google's API? Furthermore, should people be compensated? From a legal standpoint, Google has their tracks covered, but this does showcase the ethical dilemma of virtual agents generating content and what happens when there is no clear authorship.
+
+\paragraph{Authorship and Credibility}
+
+Why is authorship important?
+
+It may be hard to answer the authorship question, but people are almost certain that the quality of articles generated by an AI do not match that of a trained journalist. In a 2020 paper published by Spain-based University of Castilla–La Mancha, a large sample size of participants (N=465) of media personnel, professors, students, and journalists concluded that was that the ``quality of automated news presents some important shortcomings" (Shiina, et. al., 2020). They did, however, highlight the ``need to bet on a solid training of journalists that integrates the use of emerging technologies".
+
+More interestingly, there is no visible indicator for readers to verify whether an article was written by a robot or human, which raises issues of transparency (Dörr, Hollnbuchner, 2017). Similarly, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human.
+
 OK byte
 
-\subsubsection{Job loss due to automation}
+\subsubsection{Job Loss}
 
 Just like in other applications of automation software, loss of employment for assistants is an important social disruption that this product unfortunately encourages. In the interest of saving both time and money, companies may choose to deploy AI-powered assistants on an organization-wide level and terminate the employment of all their secretaries.
 
-\subsubsection{``Sent by an AI"}
+In that same 2020 paper from Spain, the group of journalists and academics debated whether or not technology will not have a negative impact on the journalistic labor market, but agreed that journalists should be trained to use modern technologies.
 
-If you read major American newspapers such as Forbes or the Los Angeles Times, chances are you’ve already read a story entirely written by an AI-powered software system. This process is known as automated journalism, and highlights an important question about authorship. A study found that participants attribute story credit to the programmers who developed the AI or the news organization publishing the story (Montal, Reich, 2005).
+\subsubsection{Gender Roles}
 
-More interestingly, there is no visible indicator for readers to verify whether an article was written by a robot or human, which raises issues of transparency (Dörr, Hollnbuchner, 2017). Similarly, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human.
+Ok byte
+
+\subsection{Research}
+
+OK byte
 
 \end{document}
