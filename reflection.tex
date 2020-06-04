@@ -1,5 +1,7 @@
 \documentclass{article}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{csquotes}
 \graphicspath{{./assets/}}
 
 \title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
@@ -53,17 +55,17 @@ As another example, \emph{Summly}, a London-based startup founded in 2011 was ac
 
 \paragraph{Crowdsourced Authorship}
 
-Google's \emph{reCATCHA}, a popular challenge-response test for websites based on CAPTCHA (completely automated public Turing test to tell computers and humans apart), is used by millions of websites. Unbeknownst to most users, one of the two words entered by users was used to transcribe old books in the public domain (O'Malley, 2018). Once all books in Google's collection were accurately transcribed by the public, the focus was shifted to transcribing text in photos from Google Street View in 2012. By 2014, almost all challenges were used to train Google's AI for use cases such as better Google Image Search results, more accurate Google Maps navigation, and object detection in Google Photos (Daly, 2017).
+Google's \emph{reCATCHA} is a popular challenge-response test for websites based on CAPTCHA (completely automated public Turing test to tell computers and humans apart), and is used by millions of websites because it's a simple and effective way to prevent spam or DDoS attacks (Poongodi, et. al., 2019). Unbeknownst to most users, one of the two words entered by users was used to transcribe old books in the public domain (O'Malley, 2018). Once all books in Google's collection were accurately transcribed by the public, the focus was shifted to transcribing text in photos from Google Street View in 2012. By 2014, almost all challenges were used to train Google's AI for use cases such as better Google Image Search results, more accurate Google Maps navigation, and object detection in Google Photos (Daly, 2017).
 
-Although Section 3(d) of \emph{reCAPTCHA}'s Terms of Service ensure that users allow ``sending that data to Google for analysis", a similar argument to automated journal can be presented: Should end users, i.e., the public, receive partial credit for the thousands of human hours that have been spent on training Google's API? Furthermore, should people be compensated? From a legal standpoint, Google has their tracks covered, but this does showcase the ethical dilemma of virtual agents generating content and what happens when there is no clear authorship.
+Although Section 3(d) of \emph{reCAPTCHA}'s Terms of Service ensure that users allow ``sending that data to Google for analysis", a similar argument to automated journal can be presented: Should end users, i.e., the public, receive partial credit for the thousands of human hours that have been spent on training Google's AI? Furthermore, should people be compensated? From a legal standpoint, Google has their tracks covered, but this does showcase the ethical dilemma of virtual agents generating content and what happens when there is no clear authorship.
 
 \paragraph{Authorship and Credibility}
 
-The website \emph{ThisPersonDoesNotExist.com} shows you a headshot of an AI-generated person using a generative adversarial network (GAN). To my eyes, this is completely indistinguishable from the profile picture of an actual person. That particular GAN, called StyleGAN, was written by Nvidia and published in arXiv (Karras et. al., 2018). Although this is a proof of concept, it opens the door to applications like realistic 3D modeling. On the flip side, AI-generated content can be harmful too. ``While that is exciting, others may fear for the more sinister uses for the technology such as contributing to DeepFakes, computer-generated images superimposed on existing pictures or videos, that can be used to push fake news" (Miley, 2019).
+The website \emph{ThisPersonDoesNotExist.com} shows you a headshot of an AI-generated person using a generative adversarial network (GAN). To my eyes, this is completely indistinguishable from the profile picture of an actual person. That particular GAN, called StyleGAN, was written by Nvidia and published in \emph{arXiv} (Karras et. al., 2018). Although this is a proof of concept, it opens the door to applications like realistic 3D modeling. On the flip side, AI-generated content can be harmful too. ``While that is exciting, others may fear for the more sinister uses for the technology such as contributing to DeepFakes, computer-generated images superimposed on existing pictures or videos, that can be used to push fake news" (Miley, 2019).
 
 So, why is authorship important? In one word, credibility. If you know the name of the author of an article in a major newspaper or magazine, you can find out more information about them, perhaps by visiting their social media handles. If you have any questions about their work, or found a mistake in their article, you can contact them directly. In the case of an article written by an unnamed virtual agent, the only option is to find the contact information of the publication.
 
-It may be hard to answer the authorship question, but people are almost certain that the quality of articles generated by an AI do not match that of a trained journalist. In a 2020 paper published by Spain-based University of Castilla–La Mancha, a large sample size of participants (N=465) of media personnel, professors, students, and journalists concluded that was that the ``quality of automated news presents some important shortcomings" (Shiina, et. al., 2020). They did, however, highlight the ``need to bet on a solid training of journalists that integrates the use of emerging technologies".
+It may be hard to answer the authorship question, but people are almost certain that the quality of articles generated by an AI do not match that of a trained journalist. In a 2020 paper published by Spain-based \emph{University of Castilla–La Mancha}, a large sample size of participants (N=465) of media personnel, professors, students, and journalists concluded that was that the ``quality of automated news presents some important shortcomings" (Shiina, et. al., 2020). They did, however, highlight the ``need to bet on a solid training of journalists that integrates the use of emerging technologies".
 
 \paragraph{Authorship Clarity}
 
@@ -82,9 +84,31 @@ This is why the ethical toolkit (see Section 3) recommends complete customizabil
 
 \subsubsection{Job Loss}
 
-Just like in other applications of automation software, loss of employment for assistants is an important social disruption that this product unfortunately encourages. In the interest of saving both time and money, companies may choose to deploy AI-powered assistants on an organization-wide level and terminate the employment of all their secretaries.
+Just like in other applications of automation software, loss of employment for assistants is an important social disruption that this product unfortunately encourages. In the interest of saving both time and money, companies may choose to deploy AI-powered assistants on an organization-wide level and terminate the employment of all their secretaries in the future.
 
-In that same 2020 paper from Spain, the group of journalists and academics debated whether or not technology will not have a negative impact on the journalistic labor market, but agreed that journalists should be trained to use modern technologies.
+In a survey of administrative assistants, all but one reported that most of their work was scheduling-related (Erickson et. al, 2008). Though in the current state, EIVA only focuses on appointment scheduling, this is expected to change in the future as more features are added. Slowly, software agents like EIVA will be able to do more and more of the day-to-day job of an assistant, and will prove to be both faster and more inexpensive.
+
+EIVA cannot currently perform more actions like writing emails from scratch (it uses fixed templates), and even if automated agents do, creative work is much harder to automate, though definitely not impossible. This might suspect that other professions, like the journalists discussed in the previous section, are safe. In that same 2020 paper from Spain, the group of journalists and academics inconclusively debated whether or not technology will not have a negative impact on the journalistic labor market, but agreed that journalists should be trained to use modern technologies such as this.
+
+\paragraph{Mass Unemployment}
+
+Taking a more big picture perspective, ``widespread job loss" is considered an effect of smart software bots such as EIVA entering the workforce. According to \emph{McKinsey}, ``depending upon various adoption scenarios, automation will displace between 400 and 800 million jobs by 2030, requiring as many as 375 million people to switch job categories entirely" (McClelland, 2020).
+
+From a purely ethics perspective, it may be argued that we should do everything we can to prevent mass unemployment, since it leads to several effects on the physical and mental health of people. A study from the US National Library of Medicine concluded that `symptoms of somatization, depression, and anxiety were significantly greater in the unemployed than employed`" (Linn, 1985). However, I firmly believe that this is not an optional evolutionary step that can be delayed; it's a fundamental shift that market forces will determine, regardless of whether it unemploys large sections of the population.
+
+\emph{CGP Grey}'s short film \emph{Humans Need Not Apply} goes a step further and defines the analogy between humans and horses as follows: just like ``mechanical muscles" such as automobiles replaced horses, ``mechanical minds" like software bots (much like EIVA) will replace humans. He argues that just like horses may have argued that previous technological advancements only made their job easier (like horse wagons), humans currently argue that AI in the workplace will help humans transition to more creative work. However, this argument does not work because a ``poetry-driven economy" cannot sustain; creative work has a popularity effect, which is only only a small percent of the population can sustain with such jobs. The question policymakers have to answer is: \emph{What are we going to do when we have significant portions of the population unemployed, through no fault of their own?} Perhaps we have to look at answers such as promoting tourism, investing in retraining, exploring financial solutions such as Universal Basic Income, and so on.
+
+\paragraph{Human Assistants}
+
+For the purposes of this thesis project, there is a strong conclusion that as EIVAs become smarter and market adoption increases, there definitely will be a cause-effect relation of human assistant unemployment. I'd further say that someone who has used an EIVA (and perhaps paid around \$10 per month for it) will not ever want to go back to a human assistant that is slower, makes more mistakes, and costs over 100x more.
+
+Personally, I built a prototype version of EIVA (then called \emph{Ara}) and used it for several months to confirm appointments. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my listing in the Dutch business newspaper \emph{Het Financieele Dagblad}'s annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with \emph{UToday}, \emph{University of Twente}'s independent publication, Jelle Posthuma stated the following in the beginning of the article:
+
+\begin{displayquote}
+It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
+\end{displayquote}
+
+Since I have already used a preliminary version of EIVA and it's clear how much useful it is, and how much impact it has on recipients, I am certain that I would not want to go back to a human assistant for scheduling. Though this is validation for the product, it is also a small proof for the power of automated agents doing human jobs. Therefore, the ethical implications of job loss due to AI is a large considering when building such tools. Though currently in its infancy, the software bot industry is very harmful to the status quo, especially in terms of general population employment.
 
 \subsubsection{Gender Roles}
 
@@ -96,9 +120,73 @@ OK byte
 
 \section{Ethical Toolkit}
 
-OK byte
+The Toolkit is also very useful during the product development phase, as showcased in the Code stages (frontend and backend experience) of the following integration flowchart.
 
-\subsection{Sensible Defaults}
+\subsection{Ethical Risk Sweeping}
+
+The first tool, ethical ``risk-sweeping", focuses on seeking to understand the moral risks that can be created or exacerbated by the choices in building and deploying this thesis project. Learning from history, there have been countless times when failure to identify such risks has resulted in real harm.
+
+In this case, there can be ethical risks that arise, such as:
+
+\begin{enumerate}
+ \item One
+ \item Two
+ \item Three
+\end{enumerate}
+
+\subsection{Ethical Pre- and Post-mortems}
+
+Like the first step focuses on individual risks, the second step is about avoiding systemic ethical failures. This is very important because, as discussed above, historical precedent suggests that cascade effect is common; multiple failures together add up to catastrophic ethical problems, although any one of them individually would not be significant cause for concern.
+
+
+
+\subsection{Expanding the Ethical Circle}
+
+.
+
+\subsection{Case-based Analysis}
+
+.
+
+\subsection{Ethical Benefits of Creative Work}
+
+.
+
+\subsection{Think About the Terrible People}
+
+Although positive thinking can be a powerful tool to explore the ideal scenarios for a product, ``sometimes what can be a virtue becomes a vice", and in reality, there will always be those who try and use technology for exploitation or unfair personal gain.
+
+\subsubsection{Explorations}
+
+\emph{Who will want to abuse, steal, misinterpret, hack, destroy, or weaponize what we built?} Since the EIVA has access to personal information such as calendar URLs and meeting locations (addresses, email IDs, IM usernames, etc.) of the user, people may be incentivized to sell this information.
+
+\emph{Who will use it with alarming stupidity/irrationality?} People who are not very technically literate and sign up for the service may confuse the intention, and make their personal information available to the public, for example by adding their home address as a location the assistant can recommend for incoming meeting requests.
+
+\emph{What rewards/incentives/openings has our design inadvertently created for those people?}
+
+\emph{How can we \emph{remove} those rewards/incentives?} Implementing strict security protocols can help make sure unauthorized people don't gain access to personal information. The following section discusses some of the measures taking in building and testing the application presented in this paper.
+
+\subsubsection{Implementations}
+
+In terms of building the webapp and backend APIs, steps have been taken to ensure  highest standards of security. For example, all communication between the frontend app and backend are encrypted with 256-bit TLS/SSL. All requests made using the insecure HTTP protocol are automatically redirects to the secure HTTPS standard. Furthermore, all collected logs for data analytics are encrypted with the industry-standard AES-256, the same security used by banks to protect your information.
+
+Other common methods of exploitation, such as port scanning, are prevented by only opening up the required ports. In this case, only ports 80/443 (for web traffic), 22 (for SSH), and 19999 (for NetData) are open. All other ports are closed to any incoming traffic by default. Steps are also taken to prevent DDoS attacks like installing Cloudflare's DDoS Protection that shows mandatory CAPTCHA challenges to bad apples.
+
+For API protection, strict rate limiting has been implemented. Web APIs use rate limits to ``prevent unauthorized users to compute service levels with an high confidence while still allowing the creation of useful value-added services" (Firmani, et. al., 2019). A rate limit of 1,000 requests per minute for authenticated requests, and 60 requests per minute for unauthenticated requests is enforced.
+
+For authorization, the industry-standard access/refresh token methodology is used, with an access token and refresh token expiry duration of 15 minutes and 30 days respectively. This means that if someone gets access to a user's access token (which is interchangeable with the session ID in legacy systems), that token will automatically be invalidated after 15 minutes. Furthermore, even if they get access to the refresh token, users have the option to remotely logout and disable sessions from the web app interface.
+
+To store sensitive information such as passwords, a one-way, undecryptable cryptographically secure hash function is used, \emph{bcrypt}. This means that even if someone gains access to the database through a breach in security, passwords are not stored in plain text and therefore useless to them.
+
+Overall, since users may have personal information available to the virtual assistant, many industry-standard security compliance steps have been taken in the development and testing of the product.
+
+\subsection{Ethical Feedback and Iterative}
+
+.
+
+\subsubsection{Sensible Defaults}
+
+.
 
 \listoffigures
 
