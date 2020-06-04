@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
-\date{2020-06-06}
+\date{Reflection, June 2020}
 \author{Anand Chowdhary, Creative Technology BSc, University of Twente}
 
 \begin{document}
@@ -15,9 +15,9 @@
 
 Last year, over 100 billion emails were sent every day (Email Statistics Report, 2015-2019). A very common use case of sending emails in a work environment is to set up appointments for in-person or virtual meetings. However, several email exchanges are required in order to find a suitable time and place where all parties are available, and this back-and-forth calendar conflict resolution wastes 17 minutes per meeting on average (Mortensen, 2017). This can add up to a significant waste of time (over 100 hours per year), which can be otherwise used for productive work.
 
-For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter" (J. Cranshaw et al., 2017) so much so that they hire assistants to help with the task. However, not everyone can afford full-time assistants and will therefore turn to software solutions. Intelligent virtual assistants over email built using machine learning can help by automating these scheduling messages. An AI assistant can access a user’s calendar and can find empty meeting slots based on the location of the user location and their scheduling preferences, and then send and respond to emails on their behalf.
+For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter" (J. Cranshaw et al., 2017) so much so that they hire assistants to help with the task. However, not everyone can afford full-time assistants and will therefore turn to software solutions. Intelligent virtual assistants over email built using machine learning can help by automating these scheduling messages. An AI assistant can access a user's calendar and can find empty meeting slots based on the location of the user location and their scheduling preferences, and then send and respond to emails on their behalf.
 
-In this graduation project, I aim to design and develop an AI-powered intelligent virtual assistant that automates the email scheduling process. Professionals will be able to use the web interface of the assistant service to solve the ``time waste" problem when it comes to appointment scheduling. In the future, the capabilities of the assistant can be extended to essentially everything a human assistant can do, from sending outbound marketing emails and following up with coworkers on tasks, to automating other parts of the professional’s life.
+In this graduation project, I aim to design and develop an AI-powered intelligent virtual assistant that automates the email scheduling process. Professionals will be able to use the web interface of the assistant service to solve the ``time waste" problem when it comes to appointment scheduling. In the future, the capabilities of the assistant can be extended to essentially everything a human assistant can do, from sending outbound marketing emails and following up with coworkers on tasks, to automating other parts of the professional's life.
 
 Of course, the product also has several ethical implications and possible social disruptions, such as job loss for secretaries by encouraging automation and ensuring data and privacy protection, apart from answering the main ethical conundrum — whether end users who receive emails from the service are informed that the email is written by an AI assistant, not a real human.
 
@@ -38,16 +38,18 @@ OK byte
 
 \subsubsection{Authorship: ``Sent by an AI"}
 
-There are also several ethical questions that arise about whether recipients should know that an email was sent to them by a virtual agent, not a person.
+There are also several ethical questions that arise about whether recipients should know that an email was sent to them by a virtual agent, not a person. This section discusses the importance of authorship in ethical interaction design, and how the product in this thesis tackles those challenges.
 
 \paragraph{Automated Journalism}
 
 
-If you read major American newspapers such as Forbes or the Los Angeles Times, chances are you’ve already read a story entirely written by an AI-powered software system. This process is known as automated journalism, and highlights an important question about authorship: \emph{Who is the author of an article written by a virtual agent?} A 2005 study found that research participants attribute story credit to the programmers who developed the AI or the news organization publishing the story (Montal, Reich, 2005). 
+If you read major American newspapers such as \emph{Forbes} or the \emph{Los Angeles Times}, chances are you've already read a story entirely written by an AI-powered software system. This process is known as automated journalism, and highlights an important question about authorship: \emph{Who is the author of an article written by a virtual agent?} A 2005 study found that research participants attribute story credit to the programmers who developed the AI or the news organization publishing the story (Montal, Reich, 2005). 
 
 However, this is not the full picture. Since machine learning models require large amounts of training data that the agent ``learns" from (and, in some cases depending on the implementation, the output is largely inspired by the training data), the human authors of said data are also worthy contenders for the credit.
 
-\paragraph{Clarity of Authorship}
+As another example, \emph{Summly}, a London-based startup founded in 2011 was acquired by \emph{Yahoo!} for \$30 million in 2013. At the name suggests, \emph{Summly} specialized in summarizing news sources using AI-powered software. Using ``thousands of sources", users could read algorithmically-generated summaries of news stories using their app. If a human was summarizing a news story, say from 20 paragraphs to 2 paragraphs, we wouldn't give them credit over the new story. In this case, the AI is essentially just a summarizing tool, except that it uses multiple, sometimes hundreds, of difference sources for each story. I would argue that the published summary should still be credited to the hundreds of authors of the data the AI used to generated summaries.
+
+\paragraph{Crowdsourced Authorship}
 
 Google's \emph{reCATCHA}, a popular challenge-response test for websites based on CAPTCHA (completely automated public Turing test to tell computers and humans apart), is used by millions of websites. Unbeknownst to most users, one of the two words entered by users was used to transcribe old books in the public domain (O'Malley, 2018). Once all books in Google's collection were accurately transcribed by the public, the focus was shifted to transcribing text in photos from Google Street View in 2012. By 2014, almost all challenges were used to train Google's AI for use cases such as better Google Image Search results, more accurate Google Maps navigation, and object detection in Google Photos (Daly, 2017).
 
@@ -55,11 +57,19 @@ Although Section 3(d) of \emph{reCAPTCHA}'s Terms of Service ensure that users a
 
 \paragraph{Authorship and Credibility}
 
-Why is authorship important?
+The website \emph{ThisPersonDoesNotExist.com} shows you a headshot of an AI-generated person using a generative adversarial network (GAN). To my eyes, this is completely indistinguishable from the profile picture of an actual person. That particular GAN, called StyleGAN, was written by Nvidia and published in arXiv (Karras et. al., 2018). Although this is a proof of concept, it opens the door to applications like realistic 3D modeling. On the flip side, AI-generated content can be harmful too. ``While that is exciting, others may fear for the more sinister uses for the technology such as contributing to DeepFakes, computer-generated images superimposed on existing pictures or videos, that can be used to push fake news" (Miley, 2019).
+
+So, why is authorship important? In one word, credibility. If you know the name of the author of an article in a major newspaper or magazine, you can find out more information about them, perhaps by visiting their social media handles. If you have any questions about their work, or found a mistake in their article, you can contact them directly. In the case of an article written by an unnamed virtual agent, the only option is to find the contact information of the publication.
 
 It may be hard to answer the authorship question, but people are almost certain that the quality of articles generated by an AI do not match that of a trained journalist. In a 2020 paper published by Spain-based University of Castilla–La Mancha, a large sample size of participants (N=465) of media personnel, professors, students, and journalists concluded that was that the ``quality of automated news presents some important shortcomings" (Shiina, et. al., 2020). They did, however, highlight the ``need to bet on a solid training of journalists that integrates the use of emerging technologies".
 
-More interestingly, there is no visible indicator for readers to verify whether an article was written by a robot or human, which raises issues of transparency (Dörr, Hollnbuchner, 2017). Similarly, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human.
+\paragraph{Authorship Clarity}
+
+In news articles written by virtual agents, there is ``no visible indicator for readers to verify whether an article was written by a robot or human", which raises issues of transparency (Dörr, Hollnbuchner, 2017). Both \emph{Summly} and related software claim the created work as their own, or strongly imply it by not citing individual source authors.
+
+In the case of EIVA, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human. In my personal opinion, I am completely fine with deceiving recipients on such a trivial authorship question, but I understand that this sets a powerful and potentially harmful precedent for AI authorship.
+
+This is why the ethical toolkit (see Section 3) recommends complete customizability and ownership from the user. Using the EIVA website, consumers can set preferences about whether they want their assistant to inform end users about the fact that they are virtual agents, not human assistants. By default, this is preselected for all users (\emph{``sensible defaults"}), and is a simple checkbox user interface with the message ``Inform recipients that EIVA is a virtual assistant". This clarity highlights the commitment to personalization that such a product should bring.
 
 OK byte
 
@@ -74,6 +84,10 @@ In that same 2020 paper from Spain, the group of journalists and academics debat
 Ok byte
 
 \subsection{Research}
+
+OK byte
+
+\section{Ethical Toolkit}
 
 OK byte
 
