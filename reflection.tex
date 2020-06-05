@@ -292,7 +292,17 @@ For gathering feedback from stakeholders, several measures are taken. For exampl
 
 \subsubsection{Continuous Integration (CI)}
 
+From a technical perspective, unit tests, end-to-end test, and a CI process has been set up to ensure that no bad code gets deployed to users. Whenever a new commit is pushed to the central repository, the code is only deployed to the production app when there is a successful build (DevLabs, 2019). When there is an error in the build (for example, if a test fails), the developers get a notification for mitigation.
+
+Furthermore, error tracking has been enabled using Sentry. Using Sentry, developers can get notifications, including specific lines of code, when an error is throws, and users can be prompted for feedback (Anser, 2017). Therefore, even if there is an error in the webapp while a user is using it, the Sentry feedback loop ensures that swift code-fixing action is taken.
+
 \subsubsection{Sensible Defaults}
+
+Using the feedback from users, especially for customizable options related to individual privacy, the less secure (more open) options should always be opt-in, not opt-out. Based on the results of the initial survey with users and feedback from stakeholders, combined with the empathic design approach of trying to understand user interest by stepping into their shoes, ensures that we set sensible default.
+
+It has been estimated that 95\% of all users stick to the default settings in an application, and don't bother to change them (Catalanotto, 2019). This is an important responsibility on the hands of designers and engineers to ensure that the default options are most secure. In EIVA, options such as email tracking, directly connecting a calendar, etc., are all optional and opt-in, so the default state is always most secure.
+
+For other features like setting the default email language, error emails, etc., are also based on results of the survey and therefore directly a result of the feedback loop. Instead of selecting opinionated defaults, this empathetic approach helps keep users safe most of the time, while adding to the product's utility.
 
 \subsubsection{Feedback Loop}
 
