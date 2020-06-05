@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{csquotes}
+\usepackage{multicol}
+\usepackage{hyperref}
 \graphicspath{{./assets/}}
 
 \title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
@@ -34,7 +36,7 @@ Structuring a document is easy!
 
 Structuring a document is easy!
 
-\section{Ethical Implications}
+\section{Ethical Risk Sweeping}
 
 OK byte
 
@@ -96,11 +98,11 @@ Taking a more big picture perspective, ``widespread job loss" is considered an e
 
 From a purely ethics perspective, it may be argued that we should do everything we can to prevent mass unemployment, since it leads to several effects on the physical and mental health of people. A study from the US National Library of Medicine concluded that `symptoms of somatization, depression, and anxiety were significantly greater in the unemployed than employed`" (Linn, 1985). However, I firmly believe that this is not an optional evolutionary step that can be delayed; it's a fundamental shift that market forces will determine, regardless of whether it unemploys large sections of the population.
 
-\emph{CGP Grey}'s short film \emph{Humans Need Not Apply} goes a step further and defines the analogy between humans and horses as follows: just like ``mechanical muscles" such as automobiles replaced horses, ``mechanical minds" like software bots (much like EIVA) will replace humans. He argues that just like horses may have argued that previous technological advancements only made their job easier (like horse wagons), humans currently argue that AI in the workplace will help humans transition to more creative work. However, this argument does not work because a ``poetry-driven economy" cannot sustain; creative work has a popularity effect, which is only only a small percent of the population can sustain with such jobs. The question policymakers have to answer is: \emph{What are we going to do when we have significant portions of the population unemployed, through no fault of their own?} Perhaps we have to look at answers such as promoting tourism, investing in retraining, exploring financial solutions such as Universal Basic Income, and so on.
+\emph{CGP Grey}'s short film \emph{Humans Need Not Apply} goes a step further and defines the analogy between humans and horses as follows: just like ``mechanical muscles" such as automobiles replaced horses, ``mechanical minds" like software bots (much like EIVA) will replace humans. He formulates that just like horses may have argued that previous technological advancements only made their job easier (like horse wagons), humans currently argue that AI in the workplace will help humans transition to more creative work. However, this argument does not work because a ``poetry-driven economy" cannot sustain; creative work has a popularity effect, which is why only a small percent of the population can sustain with such jobs. The question policymakers have to answer is: \emph{What are we going to do when we have significant portions of the population unemployed, through no fault of their own?} Perhaps we have to look at answers such as promoting tourism, investing in retraining, exploring financial solutions such as Universal Basic Income, and so on.
 
 \paragraph{Human Assistants}
 
-For the purposes of this thesis project, there is a strong conclusion that as EIVAs become smarter and market adoption increases, there definitely will be a cause-effect relation of human assistant unemployment. I'd further say that someone who has used an EIVA (and perhaps paid around \$10 per month for it) will not ever want to go back to a human assistant that is slower, makes more mistakes, and costs over 100x more.
+For the purposes of this thesis project, there is a strong conclusion that as EIVAs become smarter and market adoption increases, there definitely will be a cause-effect relationship with human assistant unemployment. I'd further say that someone who has used an EIVA (and perhaps paid around \$10 per month for it) will not ever want to go back to a human assistant that is slower, makes more mistakes, and costs over 100x more.
 
 Personally, I built a prototype version of EIVA (then called \emph{Ara}) and used it for several months to confirm appointments. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my listing in the Dutch business newspaper \emph{Het Financieele Dagblad}'s annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with \emph{UToday}, \emph{University of Twente}'s independent publication, Jelle Posthuma stated the following in the beginning of the article:
 
@@ -108,7 +110,7 @@ Personally, I built a prototype version of EIVA (then called \emph{Ara}) and use
 It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
 \end{displayquote}
 
-Since I have already used a preliminary version of EIVA and it's clear how much useful it is, and how much impact it has on recipients, I am certain that I would not want to go back to a human assistant for scheduling. Though this is validation for the product, it is also a small proof for the power of automated agents doing human jobs. Therefore, the ethical implications of job loss due to AI is a large considering when building such tools. Though currently in its infancy, the software bot industry is very harmful to the status quo, especially in terms of general population employment.
+Since I have already used a preliminary version of EIVA and it's clear how much useful it is, and how much impact it has on recipients, I am certain that I would not want to go back to a human assistant for scheduling. Though this is validation for the product, it is also a small proof for the power of automated agents doing human jobs. Therefore, the ethical implications of job loss due to AI is a large consideration when building such tools. Though currently in its infancy, the software bot industry is very harmful to the status quo, especially in terms of general population employment.
 
 \subsubsection{Gender Roles}
 
@@ -178,7 +180,7 @@ Although positive thinking can be a powerful tool to explore the ideal scenarios
 
 \subsubsection{Implementations}
 
-In terms of building the webapp and backend APIs, steps have been taken to ensure  highest standards of security. For example, all communication between the frontend app and backend are encrypted with 256-bit TLS/SSL. All requests made using the insecure HTTP protocol are automatically redirects to the secure HTTPS standard. Furthermore, all collected logs for data analytics are encrypted with the industry-standard AES-256, the same security used by banks to protect your information.
+In terms of building the webapp and backend APIs, steps have been taken to ensure  highest standards of security. For example, all communication between the frontend app and backend are encrypted with 256-bit TLS/SSL. All requests made using the insecure HTTP protocol are automatically redirected to the secure HTTPS standard. Furthermore, all collected logs for data analytics are encrypted with the industry-standard AES-256, the same security used by banks to protect your information.
 
 Other common methods of exploitation, such as port scanning, are prevented by only opening up the required ports. In this case, only ports 80/443 (for web traffic), 22 (for SSH), and 19999 (for NetData) are open. All other ports are closed to any incoming traffic by default. Steps are also taken to prevent DDoS attacks like installing Cloudflare's DDoS Protection that shows mandatory CAPTCHA challenges to bad apples.
 
@@ -200,6 +202,17 @@ For gathering feedback from stakeholders, several measures are taken. For exampl
 
 .
 
+\begin{multicols}{2}
+
+\bibliographystyle{unsrt}
+\bibliography{citations}
+	
+\end{multicols}
+
 \listoffigures
+
+\paragraph{License}
+
+This work is licensed under a \emph{Creative Commons} Attribution 4.0 International License (CC BY 4.0), © 2020 Anand Chowdhary. The full text of the license and the work is available at \url{https://github.com/AnandChowdhary/thesis}.
 
 \end{document}
