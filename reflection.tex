@@ -1,10 +1,14 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{csquotes}
+\usepackage{array,multirow,graphicx}
+\usepackage{float}
 \usepackage{multicol}
 \usepackage[hidelinks]{hyperref}
 \graphicspath{{./assets/}}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 \title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
 \date{Reflection, June 2020}
@@ -27,18 +31,11 @@ In this graduation project, I aim to design and develop an AI-powered intelligen
 
 Of course, the product also has several ethical implications and possible social disruptions, such as job loss for secretaries by encouraging automation and ensuring data and privacy protection, apart from answering the main ethical conundrum — whether end users who receive emails from the service are informed that the email is written by an AI assistant, not a real human.
 
-
-\subsection{About EIVA}
-
-Structuring a document is easy!
-
-\subsection{Research Methodology}
-
-Structuring a document is easy!
-
 \section{Ethical Toolkit}
 
-The Toolkit is also very useful during the product development phase, as showcased in the Code stages (frontend and backend experience) of the following integration flowchart. The Toolkit is not only useful for ethical analysis, but laying the toolkit on top of the product development cycle shows my workflow, inspired by the work done at Markkula Center of Applied Ethics, Santa Clara University. 
+The Ethical Toolkit published by Santa Clara University's Markkula Center of Applied Ethics is used as a framework for ethical analysis in this section. Although an opinionated implementation, the core principles underlying this framework are essentially universal. For example, the ACTWith Model is an information processing model of moral cognition as cognitive agency and its 2-by-2 matrix of open and closed can offer a similar framework that highlights the same important focus areas (White, 2010). The core idea is to gain empathy towards stackholders and foster a positive feedback loop.
+
+The Toolkit is also very useful during the product development phase, as showcased in the Design and Development stages of the following integration flowchart. The Toolkit is not only useful for ethical analysis, but laying the toolkit on top of the product development cycle shows my workflow which aims to combine the product development lifecycle with this Toolkit.
 
 \begin{figure}[h]
  \centering
@@ -136,7 +133,9 @@ Since I have already used a preliminary version of EIVA and it's clear how much 
 
 Like the first step focuses on individual risks, the second step is about avoiding systemic ethical failures. This is very important because, as discussed above, historical precedent suggests that cascade effect is common; multiple failures together add up to catastrophic ethical problems, although any one of them individually would not be significant cause for concern.
 
+The idea behind a pre-mortem is to exercise moral imagination to analyze potential ethical disasters without waiting for them to occur.
 
+The first question to be answered in \emph{How could EIVA fail for ethical reasons?} To answer this, we must take a closer look at some of the underlying principles, like protection of personal data. The issue of privacy is further discussed in the following sections.
 
 \subsection{Expanding the Ethical Circle}
 
@@ -146,7 +145,9 @@ According to Vallor, Shannon, Green, and Raicu, ``To mitigate these common error
 
 \subsubsection{Identifying Key Stakeholders}
 
-Although it's important to consider the inputs of each stakeholder, it can be useful to prioritize stakeholders based on how much interest then have in the product, and how much power they have over the designers and engineering building the product. The Power-Interest Grid (Figure 3) can be a useful tool to prioritize your tasks based on four categories (Mind Tools, 2019):
+The basic stakeholders are the users who will interact with EIVA -- the consumers of the assistant service, and the recipients of emails sent by the assistant. However, both these highly interested people have largely different powers; one controls the behavior of the assistant and the other merely interacts with it.
+
+Therefore, although it's important to consider the inputs of each stakeholder, it can be useful to prioritize stakeholders based on how much interest then have in the product, and how much power they have over the designers and engineering building the product. The Power-Interest Grid (Figure 3) can be a useful tool to prioritize your tasks based on four categories (Mind Tools, 2019):
 
 \begin{enumerate}
  \item \textbf{High power, highly interested people} (Manage Closely): we must fully engage these people, and make the greatest efforts to satisfy them:
@@ -161,11 +162,12 @@ Although it's important to consider the inputs of each stakeholder, it can be us
  \item \textbf{Low power, highly interested people} (Keep Informed): adequately inform these people, and talk to them to ensure that no major issues are arising. People in this category can often be very helpful with the detail of your project
   \begin{enumerate}
     \item Users who are recipients in emails sent by EIVA; they don't have the power to control or customize the assistant, but are directly communicating with it
+    \item Human personal assistants whose employment may feel threatened
     \item People who have signed up to start using the EIVA service on launch
   \end{enumerate}
  \item \textbf{Low power, less interested people} (Monitor): again, monitor these people, but don’t bore them with excessive communication
   \begin{enumerate}
-    \item ...
+    \item People who have participated in the research and are unsure whether they would want to use the service in the future
   \end{enumerate}
 \end{enumerate}
 
@@ -175,6 +177,28 @@ Although it's important to consider the inputs of each stakeholder, it can be us
  \caption{Power-Interest Grid (Mendelow, 1981)}
  \label{fig:checkbox}
 \end{figure}
+
+These groups of stakeholders can also be divided based on the factor they are interested in and impacted by. The table below highlights these key stakeholder groups and their impact interest areas:
+
+\begin{center}
+ \begin{tabular}{ |c|c|c|c|c| } 
+  \hline
+  & \multicolumn{4}{|c|}{\textbf{Impact Interest Areas}} \\
+  \hline
+  \textbf{Stakeholder Group} & \rotatebox[origin=c]{90}{\textbf{ Job Loss }} & \rotatebox[origin=c]{90}{\textbf{ EIVA Sales }} & \rotatebox[origin=c]{90}{\textbf{ EIVA Features }} & \rotatebox[origin=c]{90}{\textbf{ EIVA Reliability }} \\
+  \hline
+  Consumers using EIVA & & & \checkmark & \checkmark \\
+  \hline
+  Users interacting with EIVA & & & & \checkmark \\
+  \hline
+  External client & & \checkmark & \checkmark & \checkmark \\
+  \hline
+  Human assistants & \checkmark & & \checkmark & \\
+  \hline
+  Companies & \checkmark & & & \checkmark \\
+  \hline
+ \end{tabular}
+\end{center}
 
 \subsection{Case-based Analysis}
 
@@ -222,7 +246,15 @@ Unisex names like \emph{Alex} and \emph{Jesse} can be used by end users; the ide
 
 \subsection{Ethical Benefits of Creative Work}
 
-.
+The previous sections have been focused on discovering ethical errors and trying to mediate them, but ethical design is not limited to identifying risks, it's about leading to a positive outcome. In the case of EIVA, saving time in itself is a major help for most people; if you have several meeting every week, you can save almost 100 hours a year by switching to EIVA.
+
+Therefore, a workflow must be established to formalize the process of understanding the ethical benefits of this product. The first question to answer is \emph{Why are we doing this, and for what good ends?} In this case, work-life balance is an important factor, and that saved time---although just 15 minutes per meeting---adds up to being more productive at work, and having saved time that can be better used at home or the gym. This is kept in mind during the prototyping and development phase, to make sure people have all the options to customize and personalize the assistant based on their preferences and to maximize time saved.
+
+The next, and perhaps most important, question is \emph{Will our customers truly be better off with an EIVA than without it? Are we trying to generate inauthentic needs or manufactured desires, simply to justify a new thing to sell?} The answer to the second question is clear: people spend a lot of valuable time in scheduling appointments. As discussed in Section 2.1.2, in a survey of administrative assistants, all but one reported that most of their work was scheduling-related (Erickson et al, 2008). This strongly suggests that a non-trivial amount of human hours are spent on scheduling, and customers would definitely be better off saving that time. Ideally, an EIVA will not replace the human assistant, but help them do their job better and faster.
+
+Other important questions to keep in mind are \emph{Has the ethical benefit of this technology remained at the center of our work and thinking?} and \emph{What are we willing to sacrifice to do this right?} and these require a continuous evaluation of the ethical values embedded in the product. Though the ethical benefit has been motivated by the financial benefit of saving billable time, and therefore money, and perhaps selling EIVA as a service that does justice to the unit economics of time saved, this does not mean that the ethical benefit is lost.
+
+Furthermore, as discussed in the following section, a significant amount of thought has been given to taking security precautions such as implementing bank-grade measures to keep sensitive information safe. Values such as these have been a core part of the product, as witnessed by initial testers. Although there have only been 6 people who have tested EIVA so far (the research is still in an early testing stage), the average response to question \emph{How would you rate the privacy features available in the app?} has been 4.85 out of 5 (Chowdhary, 2020). This is arguably a higher degree of privacy and security that you would get if you manage appointments using a human assistant.
 
 \subsection{Think About the Terrible People}
 
@@ -256,17 +288,15 @@ Overall, since users may have personal information available to the virtual assi
 
 Technological ethics is an ongoing process, and does not stop when the product is launched or in the hands of consumers. Furthermore, as more and more intelligent systems like EIVA continue to shape society, the ethical impact is always going to be a moving target.
 
-- set yourself up for feedback
-- identify where it's coming from
-- come back to step 1 with new feedback
-
-For gathering feedback from stakeholders, several measures are taken. For example, users can log in to the webapp and access the feedback form by clicking on the `Help' icon on the bottom-right corner of each page.
+For gathering feedback from stakeholders, several measures are taken. For example, users can log in to the webapp and access the feedback form by clicking on the `Help' icon on the bottom-right corner of each page. This ensures that the system is set up for encouraging feedback and to identify where the feedback is coming from.
 
 \subsubsection{Continuous Integration (CI)}
 
 \subsubsection{Sensible Defaults}
 
-.
+\subsubsection{Feedback Loop}
+
+The core principle in this Toolkit, the same as in the ACTWith Model, is the positive feedback loop that ensures new information takes us back to the drawing board. The particular implementation of this model was explored earlier (see Figure 1), and this feedback loop has been tightly integration in the product development process.
 
 \begin{multicols}{2}
 
