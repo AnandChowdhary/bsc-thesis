@@ -3,7 +3,7 @@
 \usepackage{graphicx}
 \usepackage{csquotes}
 \usepackage{multicol}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \graphicspath{{./assets/}}
 
 \title{An Ethical Exploration of Email-based Intelligent Virtual Assistants for CreaTe}
@@ -36,11 +36,24 @@ Structuring a document is easy!
 
 Structuring a document is easy!
 
-\section{Ethical Risk Sweeping}
+\section{Ethical Toolkit}
 
-OK byte
+The Toolkit is also very useful during the product development phase, as showcased in the Code stages (frontend and backend experience) of the following integration flowchart.
 
-\subsection{Product}
+\subsection{Ethical Risk Sweeping}
+
+The first tool, ethical ``risk-sweeping", focuses on seeking to understand the moral risks that can be created or exacerbated by the choices in building and deploying this thesis project. Learning from history, there have been countless times when failure to identify such risks has resulted in real harm.
+
+In this case, there can be ethical risks that arise, such as:
+
+\begin{enumerate}
+ \item Authorship: Should recipients be made aware that the email is sent by an automated agent, not a human assistant?
+ \item Job Loss: Using digital agents that can perform a human assistant's job more accurately, faster, and more inexpensively will lead to job loss
+ \item Gender Bias: Assistant names like Alexa and Siri reenforce and spread gender bias and imply that only women should do such roles
+ \item Technical Risks: Since personal information, including addresses and phone numbers, may be stored by users, data protection must be taken very seriously, and bank-grade security measures must be implemented
+\end{enumerate}
+
+These themes are discussed in detail in the following sections.
 
 \subsubsection{Authorship: ``Sent by an AI"}
 
@@ -102,7 +115,7 @@ From a purely ethics perspective, it may be argued that we should do everything 
 
 \paragraph{Human Assistants}
 
-For the purposes of this thesis project, there is a strong conclusion that as EIVAs become smarter and market adoption increases, there definitely will be a cause-effect relationship with human assistant unemployment. I'd further say that someone who has used an EIVA (and perhaps paid around \$10 per month for it) will not ever want to go back to a human assistant that is slower, makes more mistakes, and costs over 100x more.
+For the purposes of this thesis project, there is a strong conclusion that as EIVAs become smarter and market adoption increases, there definitely will be a cause-effect relationship with human assistant unemployment. I'd further say that someone who has used an EVA (and perhaps paid around \$10 per month for it) will not ever want to go back to a human assistant that is slower, makes more mistakes, and costs over 100x more.
 
 Personally, I built a prototype version of EIVA (then called \emph{Ara}) and used it for several months to confirm appointments. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my listing in the Dutch business newspaper \emph{Het Financieele Dagblad}'s annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with \emph{UToday}, \emph{University of Twente}'s independent publication, Jelle Posthuma stated the following in the beginning of the article:
 
@@ -111,30 +124,6 @@ It was easy to schedule an interview with the first-year student of Creative Tec
 \end{displayquote}
 
 Since I have already used a preliminary version of EIVA and it's clear how much useful it is, and how much impact it has on recipients, I am certain that I would not want to go back to a human assistant for scheduling. Though this is validation for the product, it is also a small proof for the power of automated agents doing human jobs. Therefore, the ethical implications of job loss due to AI is a large consideration when building such tools. Though currently in its infancy, the software bot industry is very harmful to the status quo, especially in terms of general population employment.
-
-\subsubsection{Gender Roles}
-
-Ok byte
-
-\subsection{Research}
-
-OK byte
-
-\section{Ethical Toolkit}
-
-The Toolkit is also very useful during the product development phase, as showcased in the Code stages (frontend and backend experience) of the following integration flowchart.
-
-\subsection{Ethical Risk Sweeping}
-
-The first tool, ethical ``risk-sweeping", focuses on seeking to understand the moral risks that can be created or exacerbated by the choices in building and deploying this thesis project. Learning from history, there have been countless times when failure to identify such risks has resulted in real harm.
-
-In this case, there can be ethical risks that arise, such as:
-
-\begin{enumerate}
- \item One
- \item Two
- \item Three
-\end{enumerate}
 
 \subsection{Ethical Pre- and Post-mortems}
 
@@ -150,7 +139,7 @@ Like the first step focuses on individual risks, the second step is about avoidi
 
 EIVA is perhaps best-described as a combination of several creative and powerful solutions for scheduling from the past -- sending emails, calendar invitations, and AI assistants. As such, it also inherits the ethical risk and lessons from these products.
 
-\subsubsection{Virtual Assistants}
+\subsubsection{Privacy}
 
 The privacy precedent that most virtual assistants have set is not highly positive. Personal assistants in the form of smart speakers like Amazon Echo (running Alexa) and Google Home (running Assistant) have ``begun to significantly alter people’s everyday experiences with technology" (Pridmore, Mols, 2020). These virtual assistants can continually improve with increased usage using deep learning (Këpuska, Bohouta, 2018). Although this makes the assistants more useful over time, they also ``amplify the overall debate about privacy issues" (Zeng et al., 2017).
 
@@ -162,16 +151,18 @@ For EIVA, the learning is simple: make sure no personal information is recorded 
 
 \subsubsection{Gender Bias}
 
-There is often visible gender bias when it comes to personal assistants or secretaries. (Executive Leadership Support, 2018) According to CNN, the rise of the secretary began with the increased paperwork during the the Industrial Revolution, ``the job became popular in the 1950s, when 1.7 million women were ‘stenographers, typists or secretaries" (Quirk, 2013). This sexist ``tradition" has become so widespread that there have been a large number of cases of executives requesting female blonde assistants. ``There is definitely a problem when an employer expects their new hire to look a certain way or assumes that everyone working in support is female. `No, I definitely wouldn’t consider a male PA' -- that comment is ubiquitous" (Williams, 2016).
+There is often visible gender bias when it comes to personal assistants or secretaries. (Executive Leadership Support, 2018) According to \emph{CNN}, the rise of the secretary began with the increased paperwork during the the Industrial Revolution, ``the job became popular in the 1950s, when 1.7 million women were ‘stenographers, typists or secretaries" (Quirk, 2013). This sexist ``tradition" has become so widespread that there have been a large number of cases of executives requesting female blonde assistants. ``There is definitely a problem when an employer expects their new hire to look a certain way or assumes that everyone working in support is female. `No, I definitely wouldn’t consider a male PA' -- that comment is ubiquitous" (Williams, 2016).
 
-Historically, these were executive assistants, but modern technologies have translated them to virtual assistants as well. The first United Nations' examination of gendering of AI technology found that ``gender imbalances in the digital sector can be ‘hard-coded’ into technology products" (UNESCO, 2019). In that report, the following problems are highlighted:
+Historically, these were executive assistants, but modern technologies have translated them to virtual assistants as well. When asked about why Cortana is female, a \emph{Microsoft} spokesperson said Cortana can technically be genderless, but the company did immerse itself in gender research when choosing a voice and weighed the benefits of a male and female voice (PCMag, 2018), ``for our objectives — building a helpful, supportive, trustworthy assistant — a female voice was the stronger choice".
+
+Apple's Siri and Google Assistant offer the option of changing the voice to male, but Alexa and Cortana don't have male counterparts. The first United Nations' examination of gendering of AI technology found that ``gender imbalances in the digital sector can be `hard-coded' into technology products" (UNESCO, 2019). In that report, the following problems are highlighted:
 
 \begin{itemize}
   \item Digital assistants reflect, reinforce and spread gender bias
   \item They model acceptance and tolerance of sexual harassment and verbal abuse
   \item They send explicit and implicit messages about how women and girls should respond to requests and express themselves
-  \item make women the ‘face’ of glitches and errors that result from the limitations of hardware and software designed predominately by men
-  \item force synthetic ‘female’ voices and personality to defer questions and commands to higher (and often male) authorities
+  \item They make women the ‘face’ of glitches and errors that result from the limitations of hardware and software designed predominately by men
+  \item They force synthetic ‘female’ voices and personality to defer questions and commands to higher (and often male) authorities
 \end{itemize}
 
 The outdated argument that ``this has always been the way things are" was the same when defending unacceptable historic precedents like slavery. It is unfortunate that this sexist default has slipped into digital assistants as well, but it is not very hard to explore how this can be fixed. The UN report makes 15 recommendations, including ``[ending] the practice of making digital assistants female by default."
