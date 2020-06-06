@@ -17,15 +17,45 @@
 \date{\today}
 
 \begin{document}
+
 \pagenumbering{gobble}
+
 \maketitle
+
 \newpage
+
+\pagenumbering{roman}
+
+\section*{Abstract}
+
+...
+
+\newpage
+
+\section*{Acknowledgements}
+
+First and foremost, I would like to thank Dr. Alma Schaafstal, Program Director of Creative Technology, for her continued support, guidance, and mentorship during the past three years.
+
+I would like to thank Dr. Job Zwiers, my thesis supervisor, without whom this project wouldn't be possible, and Dr. Champika Manel Epa Ranasinghe, the critical observer for this project, for her valuable feedback.
+
+I would also like to thank the client, Speakup B.V., for their generous support of this project. I am particularly grateful to Florian Overkamp, who has been with me every step of the way --- from helping foster the original idea in 2017, to funding multiple projects over the years, and finally helping shape this graduation project and service.
+
+Finally, I would like to thank the Creative Technology faculty --- Dr. Name --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Thomas Mensink, Gilles Meijer, Rick Sulman --- for helping shape my entrepreneurial spirit.
+
+\newpage
+
 \tableofcontents
+
 \newpage
+
 \listoffigures
+
 \enspace
+
 \listoftables
+
 \newpage
+
 \pagenumbering{arabic}
   
 
@@ -184,6 +214,20 @@ However, in the first cycle itself, the assistant's default email was changed fr
 
 \subsubsection{Cycle 2}
 
+Privacy features, privacy onboarding
+
+\subsubsection{Cycle 3}
+
+NLP in multiple languages rather than translation \thesubsubsection
+
+\subsubsection{Cycle 4}
+
+Slack, email from Florian
+
+\subsubsection{Cycle 5}
+
+External feedback from Rohit, Maurits, Alex
+
 \subsection{Open Source Development}
 
 Although the preceding project Ara was licensed under the open source permissive MIT license, EIVA's source code is made available under the Server Side Public License. This license makes sure that any further implementations or paid services built around EIVA also have their source code made public, and helps the future business use case of EIVA.
@@ -204,7 +248,15 @@ It is also highly configurable, with support for settings such as timezone prefe
 
 Both projects are written in TypeScript and available on the Git hosting service GitHub and JavaScript package registry NPM.
 
-\subsection{Unit and End-to-end Tests}
+\subsection{Software Tests}
+
+\subsubsection{Unit Tests}
+
+dates.spec.ts
+
+\subsubsection{Continuous Integration}
+
+\paragraph{End-to-end Tests} ...
 
 \subsection{Deployment}
 
