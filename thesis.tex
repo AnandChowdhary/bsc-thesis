@@ -6,6 +6,7 @@
 \usepackage{csquotes}
 \usepackage{tipa}
 \usepackage{array,multirow,graphicx}
+\usepackage{enumitem}
 \usepackage{float}
 \usepackage{multicol}
 \usepackage[hidelinks]{hyperref}
@@ -63,16 +64,18 @@ Finally, I would like to thank the Creative Technology faculty --- Dr. Name --- 
 
 Setting up appointments by email is a non-trivial waste of time. Last year, 110 billion consumer emails were sent per day, with a very common use case being setting up appointments \cite{noauthor_email_2019}. Several email exchanges are required in order to find a suitable time and place where all parties are available, and almost 1 in 5 users struggle with finding sufficient available time slots \cite{blaszkiewicz_research_2018}. This back-and-forth calendar conflict resolution wastes on average 17 minutes per meeting \cite{dennis_4_2017}. Moreover, over 3 in 5 meetings end up getting rescheduled for a different time or place \cite{dennis_how_2018}, which wastes additional time in confirmations. This adds up to about 9 hours wasted every month per person.
 
-For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter," so much so that they hire assistants to help with the task \cite{cranshaw_calendarhelp_2017}. However, not everyone can afford full-time assistants and will therefore turn to software solutions. Email-based intelligent virtual assistants (EIVA \textipa{/i:vA/}) built using machine learning can help by automating these scheduling messages. An EIVA can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf.
+For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter," so much so that they hire assistants to help with the task \cite{cranshaw_calendarhelp_2017}. However, not everyone can afford full-time assistants and will therefore turn to software solutions.
 
-The goal of this paper is to \textbf{design, develop, and evaluate} an EIVA, and in turn give insight into the following subquestions:
+Email-based intelligent virtual assistants (EIVA \textipa{/i:vA/}) can help by automating these scheduling messages. An EIVA can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf, and the user can directly interact with the EIVA over email.
+
+The goal of this paper is to:
 
 \begin{enumerate}
-	\item How do professionals currently schedule appointments over email, with or without scheduling software? If they don't use scheduling software, why is that the case?
-	\item What are the tasks required in scheduling a meeting in an automated software?
+	\item Build a functional virtual assistant with email integration, along with a companion web application to manage meetings and preferences; and
+	\item Conduct a user evaluation on both the usability of the assistant over email and the user interface of the web application.
 \end{enumerate}
 
-Lastly, a significant part of this paper will focus on the methodology and results of a user experience research on the web interface of the assistant service, conducted over several weeks. The EIVA software and APIs will be developed using Node.js and TypeScript, and the progressive web application will be developed using a modern Vue.js + Nuxt.js technology stack, with a focus on customizability, privacy, and security.
+Finally, as the external client is a communications technology company, the product should be built with best practices in mind, including using a modern stack of front-end and back-end programming languages and frameworks, with a focus on customizability, privacy, and security. Sensible defaults will be implemented based on user research and client feedback, and an ethical analysis will be conducted to answer questions of gender bias and AI-driven job loss.
 
 \newpage
 
@@ -100,7 +103,7 @@ Apart from calendaring tools, some users opt for scheduling tools that have addi
 
 Although digital calendars have been the standard office tool for professionals, they are currently unable to bridge the communication gap between the end user and the invitees. Current scheduling products also lack a holistic solution to calendaring due to a wide variation in people's meeting needs. Thus, end users have to rely upon emailing to communicate meeting details effectively, wasting otherwise productive man-hours.
 
-\subsubsection{Currently available assistant-based scheduling tools}
+\subsubsection{Virtual assistant-based scheduling tools}
 
 The previous section highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants (EIVA) and therefore lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of an EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
 
@@ -124,11 +127,9 @@ During the coming summer, I worked closely with Speakup on materializing Ara. Fo
 
 For a few months, I used Ara myself and tested the assistant's email confirmation feature. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my name in the Dutch business newspaper Het Financieele Dagblad's annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with UToday, University of Twente's independent publication, Jelle Posthuma stated the following in the beginning of the article:
 
-It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You'll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you're working hard: you even have a personal assistant…" A big grin appears on the young student's face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
-
-The article was also published by Posthuma in Dutch:
-
-De afspraak voor een interview met de eerstejaars Creative Technology was snel gemaakt. Zijn `personal assistant' Ara stuurde een vriendelijke mail terug. `Aanstaande woensdag ben je welkom.' Chowdhary is mede-eigenaar van het bedrijf Oswald Labs, dat producten ontwikkelt voor mensen met een handicap. Zijn kantoor is in Roombeek. `Anand, je timmert aardig aan de weg: een personal assistant…' Op het gezicht van de jonge student verschijnt een grote grijns. `Ja, ik heb haar zelf gebouwd. Ara is een computer. Haar artificial intelligence herkent mails en plant mijn afspraken in.'
+\begin{displayquote}
+It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
+\end{displayquote}
 
 Although Ara didn't have any AI at this point, it was a successful proof-of-concept. The following summer, I worked again with Speakup, but primarily on building on top of an open-source SaaS framework that I had built over a few months (Staart API and Staart UI). This is the underlying framework that EIVA is built on top of. The budget also allowed me to spend some more time on exploring what a service-orientated implementation of Ara could look like.
 
@@ -269,7 +270,93 @@ Each line does this respectively… in the future, load balancers, etc.
 
 \subsection{User Experience Research}
 
-This section will discuss the methodology of the UX research
+After building and deploying a functional virtual agent and its companion web application, a user experience research is conducted with participants with diverse backgrounds. The user experience research is completely virtual and divided in three parts:
+
+\begin{enumerate}
+	\item Introductory Survey
+	\item Assistant Usage
+	\item User Experience Evaluation
+\end{enumerate}
+
+The questions are specifically written in a first-person form, as the assistant also interacts, and additional information has been included when asking for potentially personal details. Options in multiple choice questions are randomized to eliminate order bias.
+
+\subsubsection{Introductory Survey}
+
+After reading the Information Brochure (Appendix 1.1) signing the Consent Form (Appendix 1.2), participants answer 16 questions about their prior experience with scheduling appointments, email usage, and personal assistants. This information helps with understanding how users currently set appointments, and with setting the default values for settings (Section 6.2).
+
+Appendix 1.3 lists all the options for each question. The Introductory Survey is divided into two parts; the first part is focuses on scheduling preferences and email usage:
+
+\begin{enumerate}
+	\item Which type of profession best describes you? This helps us relate scheduling experience with types of work.
+	\item Say you had to schedule an appointment with a colleague (if you're a professional) or a professor (if you're a student). How would you do it?
+	\item How frequently do you check your email, on average, on working days?
+	\item What languages do you send emails in? Enter as many as you like.
+	\item Do you have email notifications enabled on your phone?
+	\item What service do you use for your primary email account?
+	\item What do you use email for? Select as many as you like.
+	\item What calendar service do you use, if any? Select as many as you like.
+\end{enumerate}
+
+The second part asks participants about using personal assistants for scheduling:
+
+\begin{enumerate}[resume]
+	\item If you had a personal assistant, would you ask them to schedule your appointments for you?
+	\item Imagine that you had an AI-powered, virtual personal assistant who could set up appointments for you by finding available times in your calendar and sending emails on your behalf. Would you use this service?
+	\item Say that you ask your virtual assistant to schedule an appointment with someone. For the recipient, this email would be indistinguishable from an email sent by a human assistant. Should the virtual assistant inform the recipient that it is not a human, but an AI-powered virtual assistant?
+	\item Should recipients be able to unsubscribe from your assistant's emails, i.e., "opt out" of talking to an AI, and choose to only communicate with you instead?
+	\item Would you like to know whether or not someone has seen an email sent by the assistant?
+	\item If you have enabled email tracking, should end users know that a read receipt has been shared, i.e., a notice at the end of the email, "The sender has been notified that you've opened this email"?
+	\item Apart from scheduling appointments, what else would you like your virtual assistant to do, over email?
+\end{enumerate}
+
+\subsubsection{Assistant Usage}
+
+After finishing the Introductory Survey, participants start using the assistant service with the help of virtual guides consisting of several screenshots, an onboarding wizard, and an introductory tour.
+
+The participants open the web application on \url{https://myeiva.com} and create an account. After creating their account, the verify their email and log into their accounts. They then complete the onboarding flow, setting up basic information such as their name, timezone, gender, security preferences, and name of their assistant.
+
+Then, they follow an introductory tour which helps them customize their assistant's settings, add additional meeting locations, etc., before sending an email to their assistants. After sending an email to schedule an appointments, participants go back to the survey for the UX evaluation.
+
+\subsubsection{User Experience Evaluation}
+
+In the last part, participants answer questions about the experience of both the assistant and the web application in the form of another survey:
+
+\begin{enumerate}
+	\item What comes to mind when you think about EIVA (how would you describe it to a friend)?
+	\item On a scale from 1 to 5, review the following about the web app. 1 is the worst and 5 is the best:
+	\begin{enumerate}
+		\item Overall experience of the web app (not the assistant)
+		\item Design of the web app
+		\item Functionality of the web app
+		\item Ease of use of the web app
+		\item Privacy features available in the web app
+		\item Overall experience of the onboarding flow
+		\item Overall experience of the introductory tour
+	\end{enumerate}
+	\item On a scale from 1 to 5, review the following about the assistant. 1 is the worst and 5 is the best:
+	\begin{enumerate}
+		\item Overall experience of the assistant over email
+		\item Customizability of the assistant
+		\item Flexibility in understanding natural language
+		\item How human-like does the assistant sound over email? 1 is not human-like at all and 5 is indistinguishable from a human.
+		\item How much do you trust the assistant to not make mistakes? 1 is the least trust and 5 is the most.
+		\item How accurate, practical, and logical were the time recommendations made by the assistant?
+	\end{enumerate}
+	\item How many emails did you sent with the assistant in CC?
+	\item Did the assistant understand your email(s) correctly?
+	\item Did the assistant respond to your email in a reasonable amount of time?
+	\item Did the assistant recommend the correct location for the appointment?
+	\item Did the assistant meet your expectations in terms of scheduling an appointment?
+	\item Which of these features of the web app did you use?
+	\item If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't know?
+	\item If we launch EIVA as a service where users can get their own assistants, will you use it?
+	\item Based on the amount of time EIVA saves when setting appointments, how much would you be willing to pay for such a service?
+	\item Did you find anything frustrating that you wish was easier or different?
+	\item Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?
+	\item What do you like the most about EIVA?
+	\item What do you like the least about EIVA?
+	\item Do you have any additional feedback, suggestions, or comments?
+\end{enumerate}
 
 \newpage
 
@@ -302,15 +389,35 @@ Therefore, a strong business case can be built around launching EIVA as a servic
 
 \newpage
 
-\section*{Appendix 1: Open Source Licenses}
+\section*{Appendix 1: Code Repositories}
+
+All code written for this project is open-source, available on GitHub:
+
+\begin{enumerate}
+	\item Backend APIs: \url{https://github.com/o15y/eiva}
+	\item Frontend web application: \url{https://github.com/o15y/myeiva.com}
+	\item Companion open-source packages:
+	\begin{enumerate}
+		\item Calendar Slots: \url{https://github.com/AnandChowdhary/calendar-slots}
+		\item Calendar Link: \url{https://github.com/AnandChowdhary/calendar-link}
+		\item Staart API: \url{https://github.com/staart/api}
+		\item Staart UI: \url{https://github.com/staart/ui}
+	\end{enumerate}
+\end{enumerate}
 
 \newpage
 
-\section*{Appendix 2: Prisma Database Schema}
+\section*{Appendix 2: Open Source Licenses}
+
+\newpage
+
+\section*{Appendix 3: Prisma Database Schema}
 
 \newpage
 
 \bibliography{citations}
 \bibliographystyle{ieeetr}
+
+\paragraph{License} This work is licensed under a Creative Commons Attribution 4.0 International License (CC by 4.0). The source code of this research paper is available on \url{https://github.com/AnandChowdhary/thesis}.
 
 \end{document}
