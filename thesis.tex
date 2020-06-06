@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern,textcomp}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{tipa}
@@ -191,7 +193,7 @@ To make sure that all guests have the most recent parameters, confirmations and 
 
 \subsection{Product Development}
 
-A simplified version of the Software Development Cycle and the New Product Development Cycle were adopted for this project, with the following steps:
+A simplified version of the Software Development Life Cycle and the New Product Development Process were adopted for this project, with the following steps:
 
 \begin{enumerate}
 	\item Idea
@@ -202,6 +204,22 @@ A simplified version of the Software Development Cycle and the New Product Devel
 \end{enumerate}
 
 The first step (Idea) builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step (Research), the technical literature research present in ``State of the Art" is studied to architect the module's technology. In the third step (Development), the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step (External testing), a test is conducted with the client or research participants. In the last step (Analysis), the feedback from the test is evaluated for the next cycle.
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[height=.75\linewidth]{software-cycle.png}
+  \captionof{figure}{The Software Development Cycle}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[height=.75\linewidth]{product-cycle.png}
+  \captionof{figure}{The New Product Development Process}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
 
 \subsubsection{Cycle 1}
 
