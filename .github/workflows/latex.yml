@@ -9,7 +9,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: reflection.tex
+          root_file: thesis.tex
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -27,11 +27,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./reflection.pdf
-          asset_name: reflection.pdf
+          asset_path: ./thesis.pdf
+          asset_name: thesis.pdf
           asset_content_type: application/pdf
       - name: Setup website
-        run: mkdir public && echo '<!doctype html><html><head><title>Email-based Intelligent Virtual Assistants (EIVA) by Anand Chowdhary</title><meta http-equiv="refresh" content="0;url=reflection.pdf"></head><body style="margin:0"><iframe style="display:block;border:none;height:100vh;width:100vw" src="reflection.pdf"></iframe></body></html>' > public/index.html && cp reflection.pdf public/reflection.pdf
+        run: mkdir public && echo '<!doctype html><html><head><title>Email-based Intelligent Virtual Assistants (EIVA) by Anand Chowdhary</title><meta http-equiv="refresh" content="0;url=thesis.pdf"></head><body style="margin:0"><iframe style="display:block;border:none;height:100vh;width:100vw" src="thesis.pdf"></iframe></body></html>' > public/index.html && cp thesis.pdf public/thesis.pdf
       - name: Deploy to GitHub Pages
         uses: maxheld83/ghpages@v0.2.1
         env:
