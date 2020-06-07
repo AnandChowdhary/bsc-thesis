@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern,textcomp}
+\usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -288,13 +289,44 @@ Info about deployment, server, etc. There is a script ``update.sh" with the foll
 
 Each line does this respectively… in the future, load balancers, etc.
 
-\subsubsection{Uptime Monitoring}
+\subsubsection{Server Monitoring}
+
+\paragraph{Uptime Monitoring}
 
 Although measures have been taken to make sure EIVA services don't go down, such as installing Cloudflare' Always Online which serves a static version of a webpage if it is not available from the origin server [], there is sometimes nothing one can do to prevent a website from going down. ``Traffic spikes, malware attacks, data center problems, etc." can cause server downtime [].
 
-To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed []. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs and sends an email and Slack notification in case any URL is available.
+To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed []. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
 
 Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable for a period of 2 minutes and 57 seconds on June 7 because of a Netlify deploying error, which was immediately fixed because of the real-time notifications.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Minutes},
+    ylabel={Response Time [ms]},
+    legend pos=north west,
+    ymajorgrids=true,
+    grid style=dashed,
+    xticklabels={0,00:00,05:00,10:00,15:00,20:00}
+]
+
+\addplot[
+    color=blue,
+    mark=square,
+    ]
+    coordinates {
+	    (0, 221)(1, 228)(2, 238)(3, 255)(4, 216)(5, 223)(6, 242)(7, 253)(8, 227)(9, 233)(10, 223)(11, 222)(12, 228)(13, 205)(14, 212)(15, 207)(16, 204)(17, 240)(18, 208)(19, 229)(20, 205)(21, 225)(22, 249)(23, 258)(24, 238)(25, 237)(26, 221)(27, 230)(28, 223)(29, 266)(30, 225)(31, 214)(32, 190)(33, 134)(34, 225)(35, 223)(36, 243)(37, 224)(38, 231)(39, 227)(40, 222)(41, 238)(42, 257)(43, 228)(44, 242)(45, 241)
+    };
+    
+\end{axis}
+\end{tikzpicture}
+\caption{24-Hour Response Time of the EIVA website}
+\end{figure}
+
+\paragraph{Server Monitoring}
+
+\emph{Netdata} is used.
 
 \subsubsection{Catching Errors}
 
