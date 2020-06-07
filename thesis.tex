@@ -43,7 +43,9 @@ I would like to thank Dr. Job Zwiers, my thesis supervisor, without whom this pr
 
 I would also like to thank the client, Speakup B.V., for their generous support of this project. I am particularly grateful to Florian Overkamp, who has been with me every step of the way --- from helping foster the original idea in 2017, to funding multiple projects over the years, and finally helping shape this graduation project and service.
 
-Finally, I would like to thank the Creative Technology faculty --- Dr. Name --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Thomas Mensink, Gilles Meijer, Rick Sulman --- for helping shape my entrepreneurial spirit.
+Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, who has been working hard for so many years. I wouldn't be able to sustain building a startup while graduating CreaTe without him.
+
+Finally, I would like to thank the Creative Technology faculty and staff --- Dr. Dennis Reidsma, Dr. Katarzyna Zalewska, Dr. Erik Faber, Dr. Khiet Truong, Chris Vermaas, Richard Bults, and Alfred de Vries --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Peter Langela, Emiel Pegge, Thomas Mensink, Gilles Meijer, Rick Sulman, and Amy de Lange --- for helping shape my entrepreneurial spirit.
 
 \newpage
 
@@ -285,6 +287,24 @@ Info about deployment, server, etc. There is a script ``update.sh" with the foll
 
 
 Each line does this respectively… in the future, load balancers, etc.
+
+\subsubsection{Uptime Monitoring}
+
+Although measures have been taken to make sure EIVA services don't go down, such as installing Cloudflare' Always Online which serves a static version of a webpage if it is not available from the origin server [], there is sometimes nothing one can do to prevent a website from going down. ``Traffic spikes, malware attacks, data center problems, etc." can cause server downtime [].
+
+To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed []. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs and sends an email and Slack notification in case any URL is available.
+
+Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable for a period of 2 minutes and 57 seconds on June 7 because of a Netlify deploying error, which was immediately fixed because of the real-time notifications.
+
+\subsubsection{Catching Errors}
+
+To catch errors in production, \emph{Sentry} is deployed in both the frontend and backend applications. Sentry is an open source error tracking system [Sentry.io] that automatically reports errors as soon as they occur. ``In addition to sending developers alerts, Sentry also gives them context for potential root cause analysis to help them identify the source of the error" [Techcrunch].
+
+Although the backend project collects server logs, they are frequently intentional debugging information. Logging provides a trail of events, but Sentry only focuses on exceptions, i.e., catching application crashes or HTTP request errors. Furthermore, Sentry helps list a trail of usage events like mouse clicks and network requests to discover the context of an error [Sentry.io Logging].
+
+Licensed under Apache 2, Sentry is open source but offers a hosted service with a generous free plan, which is used for this project. The @sentry/browser package is used to track errors originating in client-side web applications running in browsers, and @sentry/node is the Node.js package.
+
+Over the course of testing weeks, 3 errors were tracked on the frontend project, but no errors were found in the backend project.
 
 \subsection{User Experience Research}
 
