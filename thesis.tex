@@ -16,6 +16,7 @@
 \graphicspath{{./assets/}}
 
 \setlength{\columnsep}{1cm}
+\pgfplotsset{compat=1.8}
 \setcounter{tocdepth}{2}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
@@ -510,7 +511,7 @@ A diverse group of users participated in the survey, both working professionals 
 
 In Table 2, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. The results show a preference for emails, as noted in State of the Art (Section 2). Apart from email, chat services are popular with users too, whereas physically reaching out is the least often used.
 
-\subsubsection{Email Usage}
+\subsubsection{Email and Calendar Usage}
 
 To identity whether email is the idea use case, participants were asked about their frequency of checking their email (Table 4) and sending emails (Table 3).
 
@@ -548,13 +549,15 @@ Most participants (80\%) check their email multiple times per day, whereas only 
 
 Since EIVA supports both English and Dutch, participants were asked their preferred languages for email communication. All participants selected English, 3 in 10 participants also chose Dutch, and 1 participant also selected Polish.
 
+For better integration with large email providers, participants were also asked about their primary email service provider. Half of all participants use Google's Gmail or G Suite, 2 in 10 use a Microsoft service (like Hotmail or Live), and 1 in 10 use each of Yahoo!, custom hosted SMTP, or others.
+
 Furthermore, they were asked whether they have email notifications enabled on their smartphones, to which all participants responded in the affirmative.
 
 \begin{table}[!htb]
     \begin{minipage}{.5\linewidth}
    	 \caption{Email Languages}
       \centering
-        \begin{tabular}{ll}
+        \begin{tabular}{lr}
 	        \hline
             \textbf{Language} & \textbf{Percentage} \\
             \hline
@@ -567,15 +570,104 @@ Furthermore, they were asked whether they have email notifications enabled on th
     \hspace{.1cm}
     \begin{minipage}{.5\linewidth}
       \centering
-	    \caption{Email Notifications}
-        \begin{tabular}{ll}
+	    \caption{Email Service Providers}
+        \begin{tabular}{lr}
 	        \hline
-            \textbf{State} & \textbf{Percentage} \\
+            \textbf{Service} & \textbf{Percentage} \\
             \hline
-            Enabled & 100\% \\
+            Google & 50\% \\
+            Microsoft & 20\% \\
+            Yahoo! & 10\% \\
+            SMTP & 10\% \\
+            Other & 10\% \\
             \hline
         \end{tabular}
     \end{minipage} 
+\end{table}
+
+Apart from scheduling, there are also several other reasons to use email. Participants were asked \emph{What do you use email for?}, and all participants selected work-related communication. 7 in 10 also chose scheduling appointments, while 3 in 10 use email to connect with friends and family. 2 out of 10 participants use email for outbound marketing, whereas 1 in 10 also use it for customer support.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Reasons for Sending Emails}
+      \centering
+        \begin{tabular}{lr}
+	        \hline
+            \textbf{Reason} & \textbf{Percentage} \\
+            \hline
+            Other work-related communication & 100\% \\
+            Scheduling appointments & 70\% \\
+            Connecting with friends and family & 30\% \\
+            Sending marketing emails or newsletters & 20\% \\
+            Contacting customer support & 10\% \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
+\end{table}
+
+Although EIVA connects with any calendar application that follows the iCalendar standard, which all major services do, it also directly integrates with Google Calendar. This was chosen with the hypothesis that it's the most popular calendar service, which was proved to be true based on the participants' responses. Half of all participants selected Google Calendar as their primary calendar service, 4 out of 10 participants use Microsoft Outlook, and another 20\% each use Apple Calendar or no calendar. Lastly, 1 in 10 respondents use a custom, self-hosted calendar.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Primary Calendar Services}
+      \centering
+        \begin{tabular}{lr}
+	        \hline
+            \textbf{Reason} & \textbf{Percentage} \\
+            \hline
+            Google Calendar & 50\% \\
+            Microsoft Outlook & 40\% \\
+            Apple Calendar & 20\% \\
+            \emph{I don't use a calendar app} & 20\% \\
+            Self-hosted calendar & 10\% \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
+\end{table}
+
+\subsubsection{Personal Assistant for Scheduling}
+
+In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 9.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Responses to Polar Question}
+      \centering
+        \begin{tabular}{p{10cm}p{2cm}}
+	        \hline
+            \textbf{Question} & \textbf{Percentage of `Yes'} \\
+            \hline
+            If you had a personal assistant, would you ask them to schedule your appointments for you? & 90\% \\
+            Would you use the EIVA service? & 80\% \\
+            Should EIVA inform recipients that it is not human? & 60\% \\
+            Should recipients be able to unsubscribe from EIVA emails? & 60\% \\
+            Would you like to know whether someone has seen an email sent by EIVA? & 40\% \\
+            If you have enabled email tracking, should recipients know that a read receipt has been shared? & 70\% \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
+\end{table}
+
+Currently, EIVA only sets appointments but the big picture goal of EIVA is to automate several other workflows, like automatically responding to emails or sending outbound marketing emails. Participants were also asked what other features they would like to see.
+
+Table 10 summarizes the most-requested additional features that participants want EIVA to have. 9 out of 10 respondents requested reminders, 7 out 10 selected automatic frequent email responses, and 6 out of 10 selected email follow-ups to team members. 2 out of 10 participants requested sending marketing emails, and 1 out of 10 self-requested emails with their schedule for the day.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Most Requested Additional Features}
+      \centering
+        \begin{tabular}{lr}
+	        \hline
+            \textbf{Feature} & \textbf{Percentage} \\
+            \hline
+            Reminders & 90\% \\
+            Auto-respond to frequent emails & 70\% \\
+            Send email follow-ups & 60\% \\
+            Send marketing emails & 20\% \\
+            Daily schedule summary email & 10\% \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
 \end{table}
 
 \subsection{Assistant Usage}
