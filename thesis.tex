@@ -14,11 +14,33 @@
 \usepackage{multicol}
 \usepackage[hidelinks]{hyperref}
 \graphicspath{{./assets/}}
+\usetikzlibrary{shapes.geometric, calc}
 
 \setlength{\columnsep}{1cm}
 \pgfplotsset{compat=1.8}
 \setcounter{tocdepth}{2}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+% https://tex.stackexchange.com/a/11395/217439
+\newcommand\score[2]{%
+  \pgfmathsetmacro\pgfxa{#1 + 1}%
+  \tikzstyle{scorestars}=[star, star points=5, star point ratio=2.25, draw, inner sep=0.15em, anchor=outer point 3]%
+  \begin{tikzpicture}[baseline]
+    \foreach \i in {1, ..., #2} {
+      \pgfmathparse{\i<=#1 ? "yellow" : "gray"}
+      \edef\starcolor{\pgfmathresult}
+      \draw (\i*1em, 0) node[name=star\i, scorestars, fill=\starcolor]  {};
+    }
+    \pgfmathparse{#1>int(#1) ? int(#1+1) : 0}
+    \let\partstar=\pgfmathresult
+    \ifnum\partstar>0
+      \pgfmathsetmacro\starpart{#1-(int(#1)}
+      \path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$) rectangle 
+      ($(star\partstar.outer point 2 |- star\partstar.outer point 1)!\starpart!(star\partstar.outer point 1 -| star\partstar.outer point 5)$);
+      \fill (\partstar*1em, 0) node[scorestars, fill=yellow]  {};
+    \fi
+  \end{tikzpicture}%
+}
 
 \title{Email-based Intelligent Virtual Assistants (EIVA)}
 \author{Anand Chowdhary}
@@ -675,6 +697,60 @@ Table 10 summarizes the most-requested additional features that participants wan
 ElasticSearch logs
 
 \subsection{User Experience Evaluation}
+
+The first question, \emph{What comes to mind when you think about EIVA; how would you describe it to a friend?}, allows users to share their first impressions after using the service. Some of the responses were:
+
+\begin{enumerate}
+	\item ``A smart interface to my calendar"
+	\item ``A way to avoid having to talk to people to schedule your appointments with them"
+	\item ``Make my appointment very easy, Easy to see all meetings in one screen! Awesome Product!"
+	\item ``Interesting personal automation, severely limited at the moment"
+\end{enumerate}
+
+\subsubsection{Webapp Experience}
+
+Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.9.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Webapp Experience Ratings}
+      \centering
+        \begin{tabular}{llcc}
+            \hline
+            \textbf{Parameter} & \textbf{Average} & \textbf{Median} & \textbf{Mode} \\
+            \hline
+            Overall experience & \score{4.3}{5} 4.3 & 4 & 4 \\
+            Design & \score{4.5}{5} 4.5 & 4 & 5 \\
+            Functionality & \score{4.3}{5} 4.3 & 4 & 4 \\
+            Ease of use & \score{4.2}{5} 4.2 & 4 & 4 \& 5 \\
+            Private features & \score{4.9}{5} 4.9 & 5 & 5 \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
+\end{table}
+
+\subsubsection{Assistant Experience}
+
+Similarly, users were asked to rate the assistant on different parameters, from 0 to 5.
+
+\begin{table}[!htb]
+    \begin{minipage}{1\linewidth}
+   	 \caption{Assistant Experience Ratings}
+      \centering
+        \begin{tabular}{llcc}
+            \hline
+            \textbf{Parameter} & \textbf{Average} & \textbf{Median} & \textbf{Mode} \\
+            \hline
+            Overall experience & \score{4.6}{5} 4.6 & 5 & 5 \\
+            Customizability & \score{4.4}{5} 4.4 & 4 & 5 \\
+            Natural language understanding flexibility & \score{4.4}{5} 4.4 & 4 & 5 \\
+            Sounding human-like over email & \score{4.3}{5} 4.3 & 4 & 4 \\
+            Trust & \score{3.7}{5} 3.7 & 4 & 4 \\
+            Time recommendations & \score{2.7}{5} 2.7 & 3 & 3 \\
+            \hline
+        \end{tabular}
+    \end{minipage}%
+\end{table}
 
 \newpage
 
