@@ -54,6 +54,7 @@
 
 \newpage
 
+\newcounter{savepage}
 \pagenumbering{roman}
 
 \section*{Abstract}
@@ -88,6 +89,8 @@ Finally, I would like to thank the Creative Technology faculty and staff --- Dr.
 
 \newpage
 
+\cleardoublepage
+\setcounter{savepage}{\arabic{page}}
 \pagenumbering{arabic}
   
 
@@ -913,6 +916,10 @@ Therefore, a strong business case can be built around launching EIVA as a servic
 \end{enumerate}
 
 \newpage
+
+\cleardoublepage
+\pagenumbering{roman}
+\setcounter{page}{\thesavepage}
 
 \section*{Appendix 1: Code Repositories}
 
