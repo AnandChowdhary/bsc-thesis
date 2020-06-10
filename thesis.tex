@@ -143,7 +143,9 @@ The previous section highlights that although there is a multitude of scheduling
 
 Microsoft's Cortana, though primarily a speech-based assistant targeted towards consumers, has calendaring and scheduling features as well. Cortana has built-in Office 365 capabilities, Microsoft's enterprise solution that includes integrated email accounts with calendars. Apart from being available on mobile devices, Cortana is also built into Windows 10, which has over 400 million users. Similarly, Amazon's Alexa and Apple's Siri also have scheduling features.
 
-The leader in the AI-powered scheduling assistant industry is x.ai, a New York-based startup founded in 2014 that has raised over \$40 million in venture capital. Using the service, customers can select between Amy and Andrew, a female and male virtual assistant respectively. A major competitor to x.ai is Clara by Clara Labs, a similar virtual assistant for scheduling over email. Clara can also send email reminders to confirm attendance and find available conference rooms in an office.
+...Info about AI chatbots for scheduling \cite{noauthor_ai_nodate}.
+
+The leader in the AI-powered scheduling assistant industry is x.ai, a New York-based startup founded in 2014 that has raised over \$40 million in venture capital \cite{noauthor_x.ais_2018}. Using the service, customers can select between Amy and Andrew, a female and male virtual assistant respectively. A major competitor to x.ai is Clara by Clara Labs, a similar virtual assistant for scheduling over email \cite{noauthor_clara_nodate}. Clara can also send email reminders to confirm attendance and find available conference rooms in an office.
 
 In the Netherlands, a popular service called Datumprikker allows users to send meeting invitations, allowing guests to select their preferred times. Calendly, an Atlanta-based startup, currently leads this category, although their product is focused on one-on-one meetings as opposed to Datumprikker's preference for multiple guests.
 
@@ -151,7 +153,13 @@ There are also highly specialized solutions available. For example, in the trave
 
 \subsection{Web development stack}
 
-Why Vue.js, TypeScript, Node.js, etc.
+\subsubsection{Backend}
+
+TypeScript is used \cite{hutchison_understanding_2014}. TypeScript has types \cite{huisman_inference_2017}.
+
+Vue.js is used \cite{deng_development_2020}.
+
+Node.js is used \cite{kaimer_return_2018}.
 
 \subsection{Author's previous work}
 
@@ -242,14 +250,14 @@ The first step (Idea) builds on top of the ideation phase with methodological ex
 \begin{minipage}{.4\textwidth}
   \centering
   \includegraphics[height=.75\linewidth]{software-cycle.png}
-  \captionof{figure}{The Software Development Cycle}
+  \captionof{figure}{The Software Development Cycle \cite{vlasova_7_nodate}}
   \label{fig:test1}
 \end{minipage}%
 \hspace{.5cm}
 \begin{minipage}{.4\textwidth}
   \centering
   \includegraphics[height=.75\linewidth]{product-cycle.png}
-  \captionof{figure}{The New Product Development Process}
+  \captionof{figure}{The New Product Development Process \cite{akrani_stages_nodate}}
   \label{fig:test2}
 \end{minipage}
 \end{figure}
@@ -308,13 +316,19 @@ Both projects are written in TypeScript and available on the Git hosting service
 
 \subsubsection{Unit Tests}
 
+Unit tests are used \cite{tosun_effectiveness_2018}.
+
 dates.spec.ts
 
 \subsubsection{Continuous Integration}
 
+CI is used \cite{li_extensive_2020}.
+
 \paragraph{End-to-end Tests} ...
 
 \subsection{Deployment}
+
+AWS is used \cite{shokeen_deploying_2019}. AWS is secure \cite{narula_cloud_2015}. Oswald Labs Accelerator credits \cite{noauthor_oswald_nodate}.
 
 Info about deployment, server, etc. There is a script ``update.sh" with the following lines.
 
@@ -327,9 +341,9 @@ Each line does this respectively… in the future, load balancers, etc.
 
 \paragraph{Uptime Monitoring}
 
-Although measures have been taken to make sure EIVA services don't go down, such as installing Cloudflare' Always Online which serves a static version of a webpage if it is not available from the origin server [], there is sometimes nothing one can do to prevent a website from going down. ``Traffic spikes, malware attacks, data center problems, etc." can cause server downtime [].
+Although measures have been taken to make sure EIVA services don't go down, such as installing Cloudflare' Always Online which serves a static version of a webpage if it is not available from the origin server \cite{noauthor_keep_nodate}, there is sometimes nothing one can do to prevent a website from going down. ``Traffic spikes, malware attacks, data center problems, etc." can cause server downtime \cite{noauthor_what_2018}.
 
-To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed []. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
+To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed \cite{noauthor_about_nodate}. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
 
 Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due of a Netlify deploying error because of renamed respositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.9\% overall uptime.
 
@@ -360,11 +374,11 @@ Over the course of testing weeks, no downtime was recorded for the backend, but 
 
 \paragraph{Resource Monitoring}
 
-\emph{Netdata} is used.
+\emph{Netdata} is used \cite{noauthor_netdata_nodate}. NetData is open source \cite{noauthor_netdata/netdata_2020}.
 
 \paragraph{Event Tracking}
 
-\emph{ElasticSearch} is used. Open Distro for ElasticSearch is used for increased security, including data encryption at rest and Kibana authentication.
+\emph{ElasticSearch} is used \cite{noauthor_elastic_nodate}. ElasticSearch is open source \cite{noauthor_elastic/elasticsearch_2020}. Open Distro for ElasticSearch is used for increased security, including data encryption at rest and Kibana authentication \cite{noauthor_open_nodate}.
 
 As an example, the average number of events tracked per day in the first week of June 2020 was 1,062.4 (Figure 4).
 
@@ -394,9 +408,9 @@ As an example, the average number of events tracked per day in the first week of
 
 \subsubsection{Catching Errors}
 
-To catch errors in production, \emph{Sentry} is deployed in both the frontend and backend applications. Sentry is an open source error tracking system [Sentry.io] that automatically reports errors as soon as they occur. ``In addition to sending developers alerts, Sentry also gives them context for potential root cause analysis to help them identify the source of the error" [Techcrunch].
+To catch errors in production, \emph{Sentry} is deployed in both the frontend and backend applications. Sentry is an open source error tracking system \cite{noauthor_sentry_nodate} that automatically reports errors as soon as they occur. ``In addition to sending developers alerts, Sentry also gives them context for potential root cause analysis to help them identify the source of the error" \cite{noauthor_sentry_nodate-1}.
 
-Although the backend project collects server logs, they are frequently intentional debugging information. Logging provides a trail of events, but Sentry only focuses on exceptions, i.e., catching application crashes or HTTP request errors. Furthermore, Sentry helps list a trail of usage events like mouse clicks and network requests to discover the context of an error [Sentry.io Logging].
+Although the backend project collects server logs, they are frequently intentional debugging information. Logging provides a trail of events, but Sentry only focuses on exceptions, i.e., catching application crashes or HTTP request errors. Furthermore, Sentry helps list a trail of usage events like mouse clicks and network requests to discover the context of an error \cite{noauthor_sentry_nodate-2}.
 
 Licensed under Apache 2, Sentry is open source but offers a hosted service with a generous free plan, which is used for this project. The @sentry/browser package is used to track errors originating in client-side web applications running in browsers, and @sentry/node is used for the Node.js package.
 
