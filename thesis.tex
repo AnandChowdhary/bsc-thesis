@@ -977,6 +977,71 @@ This project is standing on the shoulder of giants; it wouldn't be possible with
 
 \section*{Appendix 3: Prisma Database Schema}
 
+\subsection*{Enumerated types}
+
+Enumerated types (ENUMs) are a data type consisting of a set of named values. In the Prisma database schema, the following custom-defied ENUMs are used.
+
+\begin{multicols}{2}
+\begin{verbatim}
+enum Gender {
+  MALE
+  FEMALE
+  NONBINARY
+  \textbf{UNKNOWN}
+}
+
+enum NotificationEmails {
+  ACCOUNT
+  UPDATES
+  PROMOTIONS
+}
+
+enum PrefersColorScheme {
+  NO_PREFERENCE
+  LIGHT
+  DARK
+}
+
+enum PrefersReducedMotion {
+  NO_PREFERENCE
+  REDUCE
+}
+
+enum UserRole {
+  SUDO
+  USER
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  RESELLER
+  MEMBER
+}
+
+enum MeetingType {
+  IN_PERSON
+  PHONE_CALL
+  VIDEO_CALL
+}
+
+enum EmailStatus {
+  PENDING
+  SUCCESS
+  ERROR
+}
+
+enum EmailType {
+  INCOMING
+  OUTGOING
+}
+\end{verbatim}
+\end{multicols}
+
+\subsubsection*{Entire Schema}
+
+The full schema was omitted from this appendix because it is 357 lines. It is available in the `prisma' directory part of the backend source code, on \url{https://github.com/o15y/eiva/blob/master/prisma/schema.prisma}.
+
 \newpage
 
 \bibliography{citations}
