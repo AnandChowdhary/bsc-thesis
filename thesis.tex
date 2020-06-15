@@ -26,23 +26,23 @@
 
 % https://tex.stackexchange.com/a/11395/217439
 \newcommand\score[2]{%
-  \pgfmathsetmacro\pgfxa{#1 + 1}%
-  \tikzstyle{scorestars}=[star, star points=5, star point ratio=2.25, draw, inner sep=0.15em, anchor=outer point 3]%
-  \begin{tikzpicture}[baseline]
-    \foreach \i in {1, ..., #2} {
-      \pgfmathparse{\i<=#1 ? "yellow" : "gray"}
-      \edef\starcolor{\pgfmathresult}
-      \draw (\i*1em, 0) node[name=star\i, scorestars, fill=\starcolor]  {};
-    }
-    \pgfmathparse{#1>int(#1) ? int(#1+1) : 0}
-    \let\partstar=\pgfmathresult
-    \ifnum\partstar>0
-      \pgfmathsetmacro\starpart{#1-(int(#1)}
-      \path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$) rectangle 
-      ($(star\partstar.outer point 2 |- star\partstar.outer point 1)!\starpart!(star\partstar.outer point 1 -| star\partstar.outer point 5)$);
-      \fill (\partstar*1em, 0) node[scorestars, fill=yellow]  {};
-    \fi
-  \end{tikzpicture}%
+\pgfmathsetmacro\pgfxa{#1 + 1}%
+\tikzstyle{scorestars}=[star, star points=5, star point ratio=2.25, draw, inner sep=0.15em, anchor=outer point 3]%
+\begin{tikzpicture}[baseline]
+\foreach \i in {1, ..., #2} {
+\pgfmathparse{\i<=#1 ? "yellow" : "gray"}
+\edef\starcolor{\pgfmathresult}
+\draw (\i*1em, 0) node[name=star\i, scorestars, fill=\starcolor]{};
+}
+\pgfmathparse{#1>int(#1) ? int(#1+1) : 0}
+\let\partstar=\pgfmathresult
+\ifnum\partstar>0
+\pgfmathsetmacro\starpart{#1-(int(#1)}
+\path [clip] ($(star\partstar.outer point 3)!(star\partstar.outer point 2)!(star\partstar.outer point 4)$) rectangle 
+($(star\partstar.outer point 2 |- star\partstar.outer point 1)!\starpart!(star\partstar.outer point 1 -| star\partstar.outer point 5)$);
+\fill (\partstar*1em, 0) node[scorestars, fill=yellow]{};
+\fi
+\end{tikzpicture}%
 }
 
 \title{Email-based Intelligent Virtual Assistants (EIVA)}
@@ -95,7 +95,7 @@ Finally, I would like to thank the Creative Technology faculty and staff --- Dr.
 \cleardoublepage
 \setcounter{savepage}{\arabic{page}}
 \pagenumbering{arabic}
-  
+
 
 \section{Introduction}
 
@@ -173,7 +173,7 @@ During the coming summer, I worked closely with Speakup on materializing Ara. Fo
 For a few months, I used Ara myself and tested the assistant's email confirmation feature. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my name in the Dutch business newspaper Het Financieele Dagblad's annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with UToday, University of Twente's independent publication, Jelle Posthuma stated the following in the beginning of the article:
 
 \begin{displayquote}
-It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
+	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
 \end{displayquote}
 
 Although Ara didn't have any AI at this point, it was a successful proof-of-concept. The following summer, I worked again with Speakup, but primarily on building on top of an open-source SaaS framework that I had built over a few months (Staart API and Staart UI). This is the underlying framework that EIVA is built on top of. The budget also allowed me to spend some more time on exploring what a service-orientated implementation of Ara could look like.
@@ -195,6 +195,21 @@ This section will talk about the methods and techniques of modern webapps, using
 \section{Ideation}
 
 This section will show the ideation stage of development, including many cycles of prototypes and mockups for the app UI, the system architecture, etc.
+
+\subsection{Architecture}
+
+An exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted.
+
+\begin{wrapfigure}{l}{0.5\textwidth}\centering
+	\includegraphics[scale=0.1]{drawing-all-process.jpg}
+	\caption{Email process ideation}
+\end{wrapfigure}
+
+In Figure 1, the each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email. The process assumes that incoming emails are accepted using mail exchanger (MX) records pointed to Amazon Web Services (AWS)'s Simple Email Service (SES) [rfc2181]. This was decided based on literature research (Section 2.2).
+
+Then, the incoming email is saved in an S3 bucket and a Lambda serverless function is invoked that triggers the API. The diagram also showcases the connection of the API with other services like a database, Redis, Stripe, and ElasticSearch.
+
+The API then finds the owner of the team the email was addressed to and whether or not the owner themselves sent the email. After classification, one of several processes are queued.
 
 \newpage
 
@@ -239,9 +254,10 @@ To make sure that all guests have the most recent parameters, confirmations and 
 \subsection{Appointment Scheduling}
 
 \begin{wrapfigure}{l}{0.5\textwidth}\centering
-    \includegraphics[scale=0.4]{schedule-process.png}
-    \caption{Appointment setup process}
+	\includegraphics[scale=0.4]{schedule-process.png}
+	\caption{Appointment setup process}
 \end{wrapfigure}
+
 \subsection{Product Development}
 
 A simplified version of the Software Development Life Cycle and the New Product Development Process were adopted for this project, with the following steps:
@@ -257,20 +273,20 @@ A simplified version of the Software Development Life Cycle and the New Product 
 The first step (Idea) builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step (Research), the technical literature research present in ``State of the Art" is studied to architect the module's technology. In the third step (Development), the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step (External testing), a test is conducted with the client or research participants. In the last step (Analysis), the feedback from the test is evaluated for the next cycle.
 
 \begin{figure}
-\centering
-\begin{minipage}{.4\textwidth}
-  \centering
-  \includegraphics[height=.75\linewidth]{software-cycle.png}
-  \captionof{figure}{The Software Development Cycle \cite{vlasova_7_nodate}}
-  \label{fig:test1}
-\end{minipage}%
-\hspace{.5cm}
-\begin{minipage}{.4\textwidth}
-  \centering
-  \includegraphics[height=.75\linewidth]{product-cycle.png}
-  \captionof{figure}{The New Product Development Process \cite{akrani_stages_nodate}}
-  \label{fig:test2}
-\end{minipage}
+	\centering
+	\begin{minipage}{.4\textwidth}
+		\centering
+		\includegraphics[height=.75\linewidth]{software-cycle.png}
+		\captionof{figure}{The Software Development Cycle \cite{vlasova_7_nodate}}
+		\label{fig:test1}
+	\end{minipage}%
+	\hspace{.5cm}
+	\begin{minipage}{.4\textwidth}
+		\centering
+		\includegraphics[height=.75\linewidth]{product-cycle.png}
+		\captionof{figure}{The New Product Development Process \cite{akrani_stages_nodate}}
+		\label{fig:test2}
+	\end{minipage}
 \end{figure}
 
 \subsubsection{Cycle 1}
@@ -359,28 +375,28 @@ To monitor the uptime of the services and get real-time notifications in case of
 Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due of a Netlify deploying error because of renamed respositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.9\% overall uptime.
 
 \begin{figure}
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Time of Day},
-    ylabel={Response Time [ms]},
-    legend pos=north west,
-    ymajorgrids=true,
-    grid style=dashed,
-    xticklabels={0,00:00,05:00,10:00,15:00,20:00}
-]
-
-\addplot[
-    color=blue,
-    mark=square,
-    ]
-    coordinates {
-	    (0, 221)(1, 228)(2, 238)(3, 255)(4, 216)(5, 223)(6, 242)(7, 253)(8, 227)(9, 233)(10, 223)(11, 222)(12, 228)(13, 205)(14, 212)(15, 207)(16, 204)(17, 240)(18, 208)(19, 229)(20, 205)(21, 225)(22, 249)(23, 258)(24, 238)(25, 237)(26, 221)(27, 230)(28, 223)(29, 266)(30, 225)(31, 214)(32, 190)(33, 134)(34, 225)(35, 223)(36, 243)(37, 224)(38, 231)(39, 227)(40, 222)(41, 238)(42, 257)(43, 228)(44, 242)(45, 241)
-    };
-    
-\end{axis}
-\end{tikzpicture}
-\caption{24-Hour Response Time of the EIVA website}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				xlabel={Time of Day},
+				ylabel={Response Time [ms]},
+				legend pos=north west,
+				ymajorgrids=true,
+				grid style=dashed,
+				xticklabels={0,00:00,05:00,10:00,15:00,20:00}
+			]
+			
+			\addplot[
+				color=blue,
+				mark=square,
+			]
+			coordinates {
+				(0, 221)(1, 228)(2, 238)(3, 255)(4, 216)(5, 223)(6, 242)(7, 253)(8, 227)(9, 233)(10, 223)(11, 222)(12, 228)(13, 205)(14, 212)(15, 207)(16, 204)(17, 240)(18, 208)(19, 229)(20, 205)(21, 225)(22, 249)(23, 258)(24, 238)(25, 237)(26, 221)(27, 230)(28, 223)(29, 266)(30, 225)(31, 214)(32, 190)(33, 134)(34, 225)(35, 223)(36, 243)(37, 224)(38, 231)(39, 227)(40, 222)(41, 238)(42, 257)(43, 228)(44, 242)(45, 241)
+			};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption{24-Hour Response Time of the EIVA website}
 \end{figure}
 
 \paragraph{Resource Monitoring}
@@ -391,30 +407,54 @@ Over the course of testing weeks, no downtime was recorded for the backend, but 
 
 \emph{ElasticSearch} is used \cite{noauthor_elastic_nodate}. ElasticSearch is open source \cite{noauthor_elastic/elasticsearch_2020}. Open Distro for ElasticSearch is used for increased security, including data encryption at rest and Kibana authentication \cite{noauthor_open_nodate}.
 
-As an example, the average number of events tracked per day in the first week of June 2020 was 1,062.4 (Figure 4).
+As an example, Figure 6 shows that number of event tracked (pageviews and clicks) during the first ten days of June 2020. The average number of events tracked per day was 1,062.4.
 
 \begin{figure}
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Day in June 2020},
-    ylabel={Count},
-    legend pos=north west,
-    ymajorgrids=true,
-    grid style=dashed,
-]
-
-\addplot[
-    color=blue,
-    mark=square,
-    ]
-    coordinates {
-	    (1,733)(2,877)(3,1219)(4,372)(5,1547)(6,1640)(7,1049)
-    };
-    
-\end{axis}
-\end{tikzpicture}
-\caption{Number of events tracked in June 1–7 2020}
+	\centering
+	\begin{minipage}{.47\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[
+					width=5.75cm,
+					xlabel={Day in June 2020},
+					ylabel={Count},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+				]
+				\addplot[
+					color=blue,
+					mark=square,
+				]
+				coordinates {
+					(1,835)(2,877)(3,1219)(4,372)(5,1547)(6,1640)(7,1049)(8,1514)(9,1036)(10,683)
+				};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Number of API requests}
+	\end{minipage}%
+	\hspace{.5cm}
+	\begin{minipage}{.47\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[
+					width=5.75cm,
+					xlabel={Day in June 2020},
+					ylabel={Count},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+				]
+				\addplot[
+					color=blue,
+					mark=square,
+				]
+				coordinates {
+					(1,5)(2,0)(3,6)(4,0)(5,11)(6,5)(7,1)(8,4)(9,7)(10,2)
+				};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Number of emails processed}
+	\end{minipage}
 \end{figure}
 
 \subsubsection{Catching Errors}
@@ -483,24 +523,24 @@ In the last part, participants answer questions about the experience of both the
 \begin{enumerate}
 	\item What comes to mind when you think about EIVA (how would you describe it to a friend)?
 	\item On a scale from 1 to 5, review the following about the web app. 1 is the worst and 5 is the best:
-	\begin{enumerate}
-		\item Overall experience of the web app (not the assistant)
-		\item Design of the web app
-		\item Functionality of the web app
-		\item Ease of use of the web app
-		\item Privacy features available in the web app
-		\item Overall experience of the onboarding flow
-		\item Overall experience of the introductory tour
-	\end{enumerate}
+	      \begin{enumerate}
+	      	\item Overall experience of the web app (not the assistant)
+	      	\item Design of the web app
+	      	\item Functionality of the web app
+	      	\item Ease of use of the web app
+	      	\item Privacy features available in the web app
+	      	\item Overall experience of the onboarding flow
+	      	\item Overall experience of the introductory tour
+	      \end{enumerate}
 	\item On a scale from 1 to 5, review the following about the assistant. 1 is the worst and 5 is the best:
-	\begin{enumerate}
-		\item Overall experience of the assistant over email
-		\item Customizability of the assistant
-		\item Flexibility in understanding natural language
-		\item How human-like does the assistant sound over email? 1 is not human-like at all and 5 is indistinguishable from a human.
-		\item How much do you trust the assistant to not make mistakes? 1 is the least trust and 5 is the most.
-		\item How accurate, practical, and logical were the time recommendations made by the assistant?
-	\end{enumerate}
+	      \begin{enumerate}
+	      	\item Overall experience of the assistant over email
+	      	\item Customizability of the assistant
+	      	\item Flexibility in understanding natural language
+	      	\item How human-like does the assistant sound over email? 1 is not human-like at all and 5 is indistinguishable from a human.
+	      	\item How much do you trust the assistant to not make mistakes? 1 is the least trust and 5 is the most.
+	      	\item How accurate, practical, and logical were the time recommendations made by the assistant?
+	      \end{enumerate}
 	\item How many emails did you sent with the assistant in CC?
 	\item Did the assistant understand your email(s) correctly?
 	\item Did the assistant respond to your email in a reasonable amount of time?
@@ -528,35 +568,35 @@ This section will discuss the results of UX research, what features people like,
 A diverse group of users participated in the survey, both working professionals and students. 4 out of 10 respondents were employed full-time by a company or organization, another 4 were students, and 2 out of 10 were freelancers or self-employed individuals (Table 1).
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Professions of Participants}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Profession} & \textbf{Percentage} \\
-            \hline
-            Employed & 40\% \\
-            Student & 40\% \\
-            Self-employed & 20\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{Preferred Modes of Scheduling}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Mode} & \textbf{Percentage} \\
-            \hline
-            Send an email & 70\% \\
-            Work chat message & 40\% \\
-            Consumer chat & 40\% \\
-            Phone call & 30\% \\
-            Go to office or desk & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Professions of Participants}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Profession} & \textbf{Percentage} \\
+			\hline
+			Employed            & 40\%                \\
+			Student             & 40\%                \\
+			Self-employed       & 20\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Preferred Modes of Scheduling}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Mode}        & \textbf{Percentage} \\
+			\hline
+			Send an email        & 70\%                \\
+			Work chat message    & 40\%                \\
+			Consumer chat        & 40\%                \\
+			Phone call           & 30\%                \\
+			Go to office or desk & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 In Table 2, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. The results show a preference for emails, as noted in State of the Art (Section 2). Apart from email, chat services are popular with users too, whereas physically reaching out is the least often used.
@@ -568,33 +608,33 @@ To identity whether email is the ideal use case, participants were asked about t
 Most participants (80\%) check their email multiple times per day, whereas only 1 in 10 users check their email at least once per day or week. 5 out of 10 participants send one or more emails every day, where 4 in 10 and 1 in 10 participants send new emails every day or week respectively.
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Frequency of Emails Sent}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Number of Emails} & \textbf{Percentage} \\
-            \hline
-            One or more per day & 50\% \\
-            One every few days & 40\% \\
-            One every few weeks & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{Frequency of Checking Email}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Number of Times} & \textbf{Percentage} \\
-            \hline
-            Multiple times per day & 80\% \\
-            At least once per day & 10\% \\
-            At least once per week & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Frequency of Emails Sent}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Number of Emails} & \textbf{Percentage} \\
+			\hline
+			One or more per day       & 50\%                \\
+			One every few days        & 40\%                \\
+			One every few weeks       & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Frequency of Checking Email}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Number of Times} & \textbf{Percentage} \\
+			\hline
+			Multiple times per day   & 80\%                \\
+			At least once per day    & 10\%                \\
+			At least once per week   & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 Since EIVA supports both English and Dutch, participants were asked their preferred languages for email communication. All participants selected English, 3 in 10 participants also chose Dutch, and 1 participant also selected Polish.
@@ -604,75 +644,75 @@ For better integration with large email providers, participants were also asked 
 Furthermore, they were asked whether they have email notifications enabled on their smartphones, to which all participants responded in the affirmative.
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Email Languages}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Language} & \textbf{Percentage} \\
-            \hline
-            English & 100\% \\
-            Dutch & 30\% \\
-            Polish & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{Email Service Providers}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Service} & \textbf{Percentage} \\
-            \hline
-            Google & 50\% \\
-            Microsoft & 20\% \\
-            Yahoo! & 10\% \\
-            SMTP & 10\% \\
-            Other & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Email Languages}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Language} & \textbf{Percentage} \\
+			\hline
+			English           & 100\%               \\
+			Dutch             & 30\%                \\
+			Polish            & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Email Service Providers}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Service} & \textbf{Percentage} \\
+			\hline
+			Google           & 50\%                \\
+			Microsoft        & 20\%                \\
+			Yahoo!           & 10\%                \\
+			SMTP             & 10\%                \\
+			Other            & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 Apart from scheduling, there are also several other reasons to use email. Participants were asked \emph{What do you use email for?}, and all participants selected work-related communication. 7 in 10 also chose scheduling appointments, while 3 in 10 use email to connect with friends and family. 2 out of 10 participants use email for outbound marketing, whereas 1 in 10 also use it for customer support.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Reasons for Sending Emails}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Reason} & \textbf{Percentage} \\
-            \hline
-            Other work-related communication & 100\% \\
-            Scheduling appointments & 70\% \\
-            Connecting with friends and family & 30\% \\
-            Sending marketing emails or newsletters & 20\% \\
-            Contacting customer support & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Reasons for Sending Emails}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Reason}                         & \textbf{Percentage} \\
+			\hline
+			Other work-related communication        & 100\%               \\
+			Scheduling appointments                 & 70\%                \\
+			Connecting with friends and family      & 30\%                \\
+			Sending marketing emails or newsletters & 20\%                \\
+			Contacting customer support             & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 Although EIVA connects with any calendar application that follows the iCalendar standard, which all major services do, it also directly integrates with Google Calendar. This was chosen with the hypothesis that it's the most popular calendar service, which was proved to be true based on the participants' responses. Half of all participants selected Google Calendar as their primary calendar service, 4 out of 10 participants use Microsoft Outlook, and another 20\% each use Apple Calendar or no calendar. Lastly, 1 in 10 respondents use a custom, self-hosted calendar.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Primary Calendar Services}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Reason} & \textbf{Percentage} \\
-            \hline
-            Google Calendar & 50\% \\
-            Microsoft Outlook & 40\% \\
-            Apple Calendar & 20\% \\
-            \emph{I don't use a calendar app} & 20\% \\
-            Self-hosted calendar & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Primary Calendar Services}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Reason}                   & \textbf{Percentage} \\
+			\hline
+			Google Calendar                   & 50\%                \\
+			Microsoft Outlook                 & 40\%                \\
+			Apple Calendar                    & 20\%                \\
+			\emph{I don't use a calendar app} & 20\%                \\
+			Self-hosted calendar              & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 \subsubsection{Personal Assistant for Scheduling}
@@ -680,22 +720,22 @@ Although EIVA connects with any calendar application that follows the iCalendar 
 In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 9.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Responses to Polar Question}
-      \centering
-        \begin{tabular}{p{10cm}p{2cm}}
-	        \hline
-            \textbf{Question} & \textbf{Percentage of `Yes'} \\
-            \hline
-            If you had a personal assistant, would you ask them to schedule your appointments for you? & 90\% \\
-            Would you use the EIVA service? & 80\% \\
-            Should EIVA inform recipients that it is not human? & 60\% \\
-            Should recipients be able to unsubscribe from EIVA emails? & 60\% \\
-            Would you like to know whether someone has seen an email sent by EIVA? & 40\% \\
-            If you have enabled email tracking, should recipients know that a read receipt has been shared? & 70\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Responses to Polar Question}
+		\centering
+		\begin{tabular}{p{10cm}p{2cm}}
+			\hline
+			\textbf{Question}                                                                               & \textbf{Percentage of `Yes'} \\
+			\hline
+			If you had a personal assistant, would you ask them to schedule your appointments for you?      & 90\%                         \\
+			Would you use the EIVA service?                                                                 & 80\%                         \\
+			Should EIVA inform recipients that it is not human?                                             & 60\%                         \\
+			Should recipients be able to unsubscribe from EIVA emails?                                      & 60\%                         \\
+			Would you like to know whether someone has seen an email sent by EIVA?                          & 40\%                         \\
+			If you have enabled email tracking, should recipients know that a read receipt has been shared? & 70\%                         \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 Currently, EIVA only sets appointments but the big picture goal of EIVA is to automate several other workflows, like automatically responding to emails or sending outbound marketing emails. Participants were also asked what other features they would like to see.
@@ -703,21 +743,21 @@ Currently, EIVA only sets appointments but the big picture goal of EIVA is to au
 Table 10 summarizes the most-requested additional features that participants want EIVA to have. 9 out of 10 respondents requested reminders, 7 out 10 selected automatic frequent email responses, and 6 out of 10 selected email follow-ups to team members. 2 out of 10 participants requested sending marketing emails, and 1 out of 10 self-requested emails with their schedule for the day.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Most Requested Additional Features}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Feature} & \textbf{Percentage} \\
-            \hline
-            Reminders & 90\% \\
-            Auto-respond to frequent emails & 70\% \\
-            Send email follow-ups & 60\% \\
-            Send marketing emails & 20\% \\
-            Daily schedule summary email & 10\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Most Requested Additional Features}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Feature}                & \textbf{Percentage} \\
+			\hline
+			Reminders                       & 90\%                \\
+			Auto-respond to frequent emails & 70\%                \\
+			Send email follow-ups           & 60\%                \\
+			Send marketing emails           & 20\%                \\
+			Daily schedule summary email    & 10\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 \subsection{Assistant Usage}
@@ -740,21 +780,21 @@ The first question, \emph{What comes to mind when you think about EIVA; how woul
 Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.9.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Webapp Experience Ratings}
-      \centering
-        \begin{tabular}{llcc}
-            \hline
-            \textbf{Parameter} & \textbf{Average} & \textbf{Median} & \textbf{Mode} \\
-            \hline
-            Overall experience & \score{4.3}{5} 4.3 & 4 & 4 \\
-            Design & \score{4.5}{5} 4.5 & 4 & 5 \\
-            Functionality & \score{4.3}{5} 4.3 & 4 & 4 \\
-            Ease of use & \score{4.2}{5} 4.2 & 4 & 4 \& 5 \\
-            Privacy features & \score{4.9}{5} 4.9 & 5 & 5 \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Webapp Experience Ratings}
+		\centering
+		\begin{tabular}{llcc}
+			\hline
+			\textbf{Parameter} & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
+			\hline
+			Overall experience & \score{4.3}{5} 4.3 & 4               & 4             \\
+			Design             & \score{4.5}{5} 4.5 & 4               & 5             \\
+			Functionality      & \score{4.3}{5} 4.3 & 4               & 4             \\
+			Ease of use        & \score{4.2}{5} 4.2 & 4               & 4 \& 5        \\
+			Privacy features   & \score{4.9}{5} 4.9 & 5               & 5             \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 \subsubsection{Assistant Experience}
@@ -762,22 +802,22 @@ Users were asked to rate the web app on different parameters, from 0 to 5. All p
 Similarly, users were asked to rate the assistant on different parameters, from 0 to 5.
 
 \begin{table}[!htb]
-    \begin{minipage}{1\linewidth}
-   	 \caption{Assistant Experience Ratings}
-      \centering
-        \begin{tabular}{llcc}
-            \hline
-            \textbf{Parameter} & \textbf{Average} & \textbf{Median} & \textbf{Mode} \\
-            \hline
-            Overall experience & \score{4.6}{5} 4.6 & 5 & 5 \\
-            Customizability & \score{4.4}{5} 4.4 & 4 & 5 \\
-            Natural language understanding flexibility & \score{4.4}{5} 4.4 & 4 & 5 \\
-            Sounding human-like over email & \score{4.3}{5} 4.3 & 4 & 4 \\
-            Trust & \score{3.7}{5} 3.7 & 4 & 4 \\
-            Time recommendations & \score{2.7}{5} 2.7 & 3 & 3 \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
+	\begin{minipage}{1\linewidth}
+		\caption{Assistant Experience Ratings}
+		\centering
+		\begin{tabular}{llcc}
+			\hline
+			\textbf{Parameter}                         & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
+			\hline
+			Overall experience                         & \score{4.6}{5} 4.6 & 5               & 5             \\
+			Customizability                            & \score{4.4}{5} 4.4 & 4               & 5             \\
+			Natural language understanding flexibility & \score{4.4}{5} 4.4 & 4               & 5             \\
+			Sounding human-like over email             & \score{4.3}{5} 4.3 & 4               & 4             \\
+			Trust                                      & \score{3.7}{5} 3.7 & 4               & 4             \\
+			Time recommendations                       & \score{2.7}{5} 2.7 & 3               & 3             \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
 \end{table}
 
 To participate in the research, users were required to send at least one email to the EIVA for scheduling an appointment. They were free to send multiple emails, and were asked about the number of emails they sent. 4 out of 10 participants sent only one email, while 6 out of 10 sent between 2 and 5 emails.
@@ -785,33 +825,33 @@ To participate in the research, users were required to send at least one email t
 To find out whether the assistant understood the overall meaning of their email in natural language, participants were asked \emph{Did the assistant understand your email(s) correctly?}. 7 out of 10 participants responded in the affirmative, while 3 out of 10 responded with `Partially'. No participants responded in the negative, suggesting that the EIVA did a well-enough job understanding incoming emails.
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Number of Emails Sent}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Number} & \textbf{Percentage} \\
-            \hline
-            1 & 40\% \\
-            Between 2 and 5 & 60\% \\
-            More than 5 & 0\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{Correctly Understood}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Response} & \textbf{Percentage} \\
-            \hline
-            Yes & 70\% \\
-            Partially & 30\% \\
-            No & 0\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Number of Emails Sent}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Number} & \textbf{Percentage} \\
+			\hline
+			1               & 40\%                \\
+			Between 2 and 5 & 60\%                \\
+			More than 5     & 0\%                 \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Correctly Understood}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Response} & \textbf{Percentage} \\
+			\hline
+			Yes               & 70\%                \\
+			Partially         & 30\%                \\
+			No                & 0\%                 \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 Apart from understanding the meaning of an email, participants were asked whether the EIVA recommended the correct location for the meeting. The location recommendation was correct for 7 out of 10 participants.
@@ -819,31 +859,31 @@ Apart from understanding the meaning of an email, participants were asked whethe
 They were also directly asked whether the EIVA met their expectation in terms of scheduling an appointment. All participants responded positively.
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Location Recommendation}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Accurate} & \textbf{Percentage} \\
-            \hline
-            Correct & 70\% \\
-            Incorrect & 30\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{EIVA Met Expectations}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Response} & \textbf{Percentage} \\
-            \hline
-            Yes & 100\% \\
-            No & 0\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Location Recommendation}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Accurate} & \textbf{Percentage} \\
+			\hline
+			Correct           & 70\%                \\
+			Incorrect         & 30\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{EIVA Met Expectations}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Response} & \textbf{Percentage} \\
+			\hline
+			Yes               & 100\%               \\
+			No                & 0\%                 \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 \subsubsection{Business Case}
@@ -853,32 +893,32 @@ Since the big picture goal of the client is to launch EIVA as a paid service, pa
 Participants were also asked how much they would be willing to pay every month for such as service. 4 out of 10 participants said that the service should be free, 3 out of 10 would each pay €5 or less, or €10 or less, per month. No participants wanted to pay €20 per month.
 
 \begin{table}[!htb]
-    \begin{minipage}{.5\linewidth}
-   	 \caption{Would Use EIVA}
-      \centering
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Accurate} & \textbf{Percentage} \\
-            \hline
-            Yes & 80\% \\
-            No & 20\% \\
-            \hline
-        \end{tabular}
-    \end{minipage}%
-    \hspace{.1cm}
-    \begin{minipage}{.5\linewidth}
-      \centering
-	    \caption{Monthly Subscription Fees}
-        \begin{tabular}{lr}
-	        \hline
-            \textbf{Response} & \textbf{Percentage} \\
-            \hline
-            €0 & 40\% \\
-            €5 or less & 30\% \\
-            €10 or less & 30\% \\
-            \hline
-        \end{tabular}
-    \end{minipage} 
+	\begin{minipage}{.5\linewidth}
+		\caption{Would Use EIVA}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Accurate} & \textbf{Percentage} \\
+			\hline
+			Yes               & 80\%                \\
+			No                & 20\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Monthly Subscription Fees}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Response} & \textbf{Percentage} \\
+			\hline
+			€0              & 40\%                \\
+			€5 or less      & 30\%                \\
+			€10 or less     & 30\%                \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
 \end{table}
 
 \subsubsection{Final Impressions}
@@ -887,34 +927,34 @@ Respondents could optionally add additional information in the form of long-form
 
 \begin{enumerate}
 	\item Did you find anything frustrating that you wish was easier or different?
-		\begin{enumerate}
-			\item Support BCC instead of CC in emails
-			\item The onboarding tour is too long
-		\end{enumerate}
+	      \begin{enumerate}
+	      	\item Support BCC instead of CC in emails
+	      	\item The onboarding tour is too long
+	      \end{enumerate}
 	\item Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?
-		\begin{enumerate}
-			\item Cancel or reschedule via online interface
-			\item Send an email at a set time every day about my day's schedule
-		\end{enumerate}
+	      \begin{enumerate}
+	      	\item Cancel or reschedule via online interface
+	      	\item Send an email at a set time every day about my day's schedule
+	      \end{enumerate}
 	\item What do you like the most about EIVA?
-		\begin{enumerate}
-			\item Simplicity and ease of use
-			\item Saving back and forth emailing during scheduling
-			\item Fast, secure, and nice user interface
-			\item Virtual tutor at every point to choose the next right option
-			\item Natural language understanding
-			\item Human-like conversational emails
-		\end{enumerate}
+	      \begin{enumerate}
+	      	\item Simplicity and ease of use
+	      	\item Saving back and forth emailing during scheduling
+	      	\item Fast, secure, and nice user interface
+	      	\item Virtual tutor at every point to choose the next right option
+	      	\item Natural language understanding
+	      	\item Human-like conversational emails
+	      \end{enumerate}
 	\item What do you like the least about EIVA?
-		\begin{enumerate}
-			\item Pretending to be human
-			\item Lengthy and slightly technical onboarding process
-		\end{enumerate}
+	      \begin{enumerate}
+	      	\item Pretending to be human
+	      	\item Lengthy and slightly technical onboarding process
+	      \end{enumerate}
 	\item Do you have any additional feedback, suggestions, or comments?
-		\begin{enumerate}
-			\item I am thrilled with my first experience in using an assistant
-			\item Add support for hardware authentication
-		\end{enumerate}
+	      \begin{enumerate}
+	      	\item I am thrilled with my first experience in using an assistant
+	      	\item Add support for hardware authentication
+	      \end{enumerate}
 \end{enumerate}
 
 \newpage
@@ -954,12 +994,12 @@ All code written for this project is open-source, available on GitHub:
 	\item Backend APIs: \url{https://github.com/o15y/eiva}
 	\item Frontend web application: \url{https://github.com/o15y/myeiva.com}
 	\item Companion open-source packages:
-	\begin{enumerate}
-		\item Calendar Slots: \url{https://github.com/AnandChowdhary/calendar-slots}
-		\item Calendar Link: \url{https://github.com/AnandChowdhary/calendar-link}
-		\item Staart API: \url{https://github.com/staart/api}
-		\item Staart UI: \url{https://github.com/staart/ui}
-	\end{enumerate}
+	      \begin{enumerate}
+	      	\item Calendar Slots: \url{https://github.com/AnandChowdhary/calendar-slots}
+	      	\item Calendar Link: \url{https://github.com/AnandChowdhary/calendar-link}
+	      	\item Staart API: \url{https://github.com/staart/api}
+	      	\item Staart UI: \url{https://github.com/staart/ui}
+	      \end{enumerate}
 \end{enumerate}
 
 \newpage
@@ -991,60 +1031,60 @@ This project is standing on the shoulder of giants; it wouldn't be possible with
 Enumerated types (ENUMs) are a data type consisting of a set of named values. In the Prisma database schema, the following custom-defied ENUMs are used.
 
 \begin{multicols}{2}
-\begin{verbatim}
+	\begin{verbatim}
 enum Gender {
-  MALE
-  FEMALE
-  NONBINARY
-  \textbf{UNKNOWN}
+MALE
+FEMALE
+NONBINARY
+\textbf{UNKNOWN}
 }
 
 enum NotificationEmails {
-  ACCOUNT
-  UPDATES
-  PROMOTIONS
+ACCOUNT
+UPDATES
+PROMOTIONS
 }
 
 enum PrefersColorScheme {
-  NO_PREFERENCE
-  LIGHT
-  DARK
+NO_PREFERENCE
+LIGHT
+DARK
 }
 
 enum PrefersReducedMotion {
-  NO_PREFERENCE
-  REDUCE
+NO_PREFERENCE
+REDUCE
 }
 
 enum UserRole {
-  SUDO
-  USER
+SUDO
+USER
 }
 
 enum MembershipRole {
-  OWNER
-  ADMIN
-  RESELLER
-  MEMBER
+OWNER
+ADMIN
+RESELLER
+MEMBER
 }
 
 enum MeetingType {
-  IN_PERSON
-  PHONE_CALL
-  VIDEO_CALL
+IN_PERSON
+PHONE_CALL
+VIDEO_CALL
 }
 
 enum EmailStatus {
-  PENDING
-  SUCCESS
-  ERROR
+PENDING
+SUCCESS
+ERROR
 }
 
 enum EmailType {
-  INCOMING
-  OUTGOING
+INCOMING
+OUTGOING
 }
-\end{verbatim}
+	\end{verbatim}
 \end{multicols}
 
 \subsubsection*{Entire Schema}
