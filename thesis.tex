@@ -563,6 +563,8 @@ In the last part, participants answer questions about the experience of both the
 
 This section will discuss the results of UX research, what features people like, their privacy preferences, ease of use, analytics from the app, etc.
 
+10 users from 6 countries and territories participated in this research: Bonaire, India, Iran, the Netherlands, Poland, and the United States. However, Table 11 in Section 7.2 highlights that users from several other countries also visited the app, but didn't participate in the research.
+
 \subsection{Introductory Survey}
 
 A diverse group of users participated in the survey, both working professionals and students. 4 out of 10 respondents were employed full-time by a company or organization, another 4 were students, and 2 out of 10 were freelancers or self-employed individuals (Table 1).
@@ -762,7 +764,88 @@ Table 10 summarizes the most-requested additional features that participants wan
 
 \subsection{Assistant Usage}
 
-ElasticSearch logs
+Although participants were allowed to use the webapp in May 2020 and June 2020, for data consistency, only data stored in ElasticSearch between June 1 and June 10 is analyzed. This ten-day period was that of heaviest participation, and therefore can serve as an approximate for the entire research period. In this period, a total of 1,536 pageviews and 10,772 API logs were collected.
+
+\subsubsection{Web Traffic Analysis}
+
+\paragraph{Location}
+
+Users from around the world used the web application. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. For user privacy, only the country is stored, not their city or state. Figure 8 and Table 11 highlight the most-popular countries, the United States, the Netherlands, India, Poland, and \emph{Unknown}. Figure 9 shows a closeup of Europe, with popular countries such as Poland and Germany, apart from the Netherlands.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{location-world.png}
+  \caption{Usage by Country (Worldwide)}
+\end{figure}
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{Usage by Country}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Country} & \textbf{Pageviews} \\
+			\hline
+			The Netherlands  & 584                \\
+			India            & 514                \\
+			Poland           & 237                \\
+			Kenya            & 106                \\
+			United States    & 83                 \\
+			Finland          & 4                  \\
+			Indonesia        & 4                  \\
+			Germany          & 2                  \\
+			France           & 2                  \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\centering
+		\includegraphics[width=1\linewidth]{location-europe.png}
+		\captionof{figure}{Usage by Country (Europe)}
+		\label{fig:test2}
+	\end{minipage} 
+\end{table}
+
+\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. For higher accuracy, this data is computed on the client side during pageview tracking. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
+
+Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [X], it placed behind both Mozilla Firefox and Apple Safari in usage by participants in this research. After Chrome followed the mobile version of Safari and the headless version of Chrome.
+
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{Usage by Operating System}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Operating System} & \textbf{Percentage} \\
+			\hline
+			macOS                     & 49.93\%             \\
+			Other Linux               & 26.53\%             \\
+			Windows                   & 17.47\%             \\
+			Android                   & 2.22\%              \\
+			iOS                       & 1.96\%              \\
+			Ubuntu                    & 1.89\%              \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\caption{Usage by Web Browser}
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Browser}  & \textbf{Percentage} \\
+			\hline
+			Firefox           & 47.59\%                \\
+			Safari            & 30.25\%                \\
+			Chrome            & 19.17\%                \\
+			Safari (mobile)   & 1.50\%                 \\
+			Chrome (headless) & 1.17\%                 \\
+			Chromium          & 0.26\%                 \\
+			\hline
+		\end{tabular}
+	\end{minipage} 
+\end{table}
 
 \subsection{User Experience Evaluation}
 
