@@ -1139,7 +1139,80 @@ Therefore, a strong business case can be built around launching EIVA as a servic
 \pagenumbering{roman}
 \setcounter{page}{\thesavepage}
 
-\section*{Appendix 1: Code Repositories}
+\section*{Appendix 1: Information Brochure}
+
+If you want to get in touch with the researchers, client, or supervisor, you can find their details below. If you have any queries, complaints, or comments about this research, you can contact the Secretary of the Ethics Committee.
+
+\paragraph{Research Leader}
+Anand Chowdhary\newline
+Address: Roerstaart 28, 7543AC Enschede, the Netherlands\newline
+Phone: +31 0 644691056\newline
+Email: a.chowdhary@student.utwente.nl
+
+\paragraph{Research Client}
+Speakup B.V.\newline
+Address: Institutenweg 6, 7521PK Enschede, the Netherlands\newline
+Phone: +31 0 887732587\newline
+Email: info@speakup.nl
+
+\paragraph{Research Supervisor}
+dr. Job Zwiers\newline
+Address: Zilverling 1060, 7522NH Enschede, the Netherlands\newline
+Phone: +31 0 534893816\newline
+Email: j.zwiers@utwente.nl
+
+\paragraph{Secretary of the Ethics Committee}
+drs. Petri de Willigen\newline
+Address: Zilverling 1051, 7522NH Enschede, the Netherlands\newline
+Phone: +31 0 534892085\newline
+Email: ethics-comm-ewi@utwente.nl
+
+\paragraph{Purpose}
+
+Scheduling appointments manually can waste a lot of time, and our goal is to provide you with a virtual assistant that can automate the process of scheduling based on your preferences and availability. This research will help us understand the accuracy of the assistant, the end user experience, and whether or not end users will use it when we launch it as a service.
+
+\paragraph{Research Procedure}
+
+After you have signed the Consent Form and answered some questions, you can register for the virtual assistant service on the website. An onboarding interface will help you set up your account, connect your calendar, and set up your scheduling preferences (such as working days, meeting locations, and preferred times). After using the virtual assistant to schedule at least one meeting, you can continue to fill this survey about your experience. Apart from your survey response, computed data such as how long it takes the assistant to set up your appointment and analytics about your usage of the web application will also be collected and aggregated. Once the research is over, you can choose to receive a copy of the results.
+
+\paragraph{10 Minutes}
+
+It will takes around 10 minutes to complete this survey, including interacting with your virtual assistant. It is recommended to use a laptop, tablet, or desktop computer. If none of these are available to you, you can also use a smartphone. After you have submitted this form, you can continue to use the virtual assistant service, if you choose to, but only the usage within the research period will be measured.
+
+\paragraph{Remuneration}
+
+This research is voluntary and there is no monetary compensation for participation. However, after this research has ended, this virtual assistant service will launch as a paid subscription service for professionals. As a research participant, you will receive €100 in service credits or equivalent, and a coupon code will be emailed to you at the end of this research.
+
+\paragraph{Anonymous}
+
+Anonymity will be guaranteed to all participants, and your individual data will not be disclosed to third parties without your explicit permission. Furthermore, the data obtained from this research is not published in any way that would make it possible to link the results or other findings with a particular subject. Only aggregated or anonymized data will be published.
+
+\paragraph{Voluntary}
+
+Participation remains at all times voluntary and you may refuse to participate in this research at any time, without giving any reason. You can also refuse that we use your data for the research within 24 hours of completing the survey. There is no specific category of persons who are advised not to participate in the research due to an increased level of risk or discomfort.
+
+\paragraph{COVID-19 Note}
+
+This research is completely online and based on your usage of a web application, sending emails, and answering a survey. At no point will participants be asked to interact with a physical installation or answer questions in person. It is recommended that you participate from the comfort of your home. There is no possibility of accidental discoveries in this research.
+
+\newpage
+
+\section*{Appendix 2: Consent Form}
+
+This section ensures that we have your permission to conduct this research. Please note that participation remains at all times voluntary and you may refuse to participate in this research at any time, without giving any reason.
+
+\begin{enumerate}
+	\item Before we sign you up for this research, we need to make sure that you can give us permission. Note that you are not eligible for this research if you are under the age of 18 or otherwise incapable of giving us your informed consent. I am above the age of 18 and capable of giving informed consent.
+	\item In this research, you will use a virtual assistant web application and communicate with the assistant over email. You will have to answer a series of questions about your experience using the application and communicating with the assistant. By checking ``I agree", you permit us to use the data from your answers for purposes of this research.
+	\item Optional: To find available meeting slots in your agenda, the virtual assistant will require access to your calendar. To allow access, you can add a link to your calendar using the web app. You can also remove access at any time. By checking ``I agree", you permit us to have read-only access to your calendar.
+	\item In order to use the web application, you provide your personal information such as your name and email address. Optionally, you can also add your phone numbers and office addresses to allow the virtual assistant to schedule in-person meetings or phone calls. By checking ``I agree", you permit us to store this information and use it for scheduling appointments.
+	\item Your usage of the web application will be analyzed in the background, such as how long it takes you to complete the onboarding flow and to set up an appointment using the assistant. This data will be only be collected anonymously and published after aggregation. By checking ``I agree", you permit this data collection.
+	\item Under the General Data Protection Regulation, we need your permission to store your information on our servers. You can export a copy of all your data or permanently delete it at any time from the web application. By selecting an option, you permit us to store your information.
+\end{enumerate}
+
+\newpage
+
+\section*{Appendix 3: Code Repositories}
 
 All code written for this project is open-source, available on GitHub:
 
@@ -1157,7 +1230,7 @@ All code written for this project is open-source, available on GitHub:
 
 \newpage
 
-\section*{Appendix 2: Open Source Licenses}
+\section*{Appendix 4: Open Source Licenses}
 
 This project is standing on the shoulder of giants; it wouldn't be possible without the open source projects listed below. Only direct NPM dependencies are listed below (not development dependencies or subdependencies).
 
@@ -1177,7 +1250,7 @@ This project is standing on the shoulder of giants; it wouldn't be possible with
 
 \newpage
 
-\section*{Appendix 3: Prisma Database Schema}
+\section*{Appendix 5: Prisma Database Schema}
 
 \subsection*{Enumerated types}
 
@@ -1186,56 +1259,56 @@ Enumerated types (ENUMs) are a data type consisting of a set of named values. In
 \begin{multicols}{2}
 	\begin{verbatim}
 enum Gender {
-MALE
-FEMALE
-NONBINARY
-\textbf{UNKNOWN}
+  MALE
+  FEMALE
+  NONBINARY
+  UNKNOWN
 }
 
 enum NotificationEmails {
-ACCOUNT
-UPDATES
-PROMOTIONS
+  ACCOUNT
+  UPDATES
+  PROMOTIONS
 }
 
 enum PrefersColorScheme {
-NO_PREFERENCE
-LIGHT
-DARK
+  NO_PREFERENCE
+  LIGHT
+  DARK
 }
 
 enum PrefersReducedMotion {
-NO_PREFERENCE
-REDUCE
+  NO_PREFERENCE
+  REDUCE
 }
 
 enum UserRole {
-SUDO
-USER
+  SUDO
+  USER
 }
 
 enum MembershipRole {
-OWNER
-ADMIN
-RESELLER
-MEMBER
+  OWNER
+  ADMIN
+  RESELLER
+  MEMBER
 }
 
 enum MeetingType {
-IN_PERSON
-PHONE_CALL
-VIDEO_CALL
+  IN_PERSON
+  PHONE_CALL
+  VIDEO_CALL
 }
 
 enum EmailStatus {
-PENDING
-SUCCESS
-ERROR
+  PENDING
+  SUCCESS
+  ERROR
 }
 
 enum EmailType {
-INCOMING
-OUTGOING
+  INCOMING
+  OUTGOING
 }
 	\end{verbatim}
 \end{multicols}
