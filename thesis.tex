@@ -768,9 +768,13 @@ Although participants were allowed to use the webapp in May 2020 and June 2020, 
 
 \subsubsection{Web Traffic Analysis}
 
+For higher accuracy, this data is computed on the client side during pageview tracking.
+
 \paragraph{Location}
 
-Users from around the world used the web application. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. For user privacy, only the country is stored, not their city or state. Figure 8 and Table 11 highlight the most-popular countries, the United States, the Netherlands, India, Poland, and \emph{Unknown}. Figure 9 shows a closeup of Europe, with popular countries such as Poland and Germany, apart from the Netherlands.
+Users from around the world used the web application. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the nine countries --- the Netherlands, India, Poland, Kenya, the United States, Finland, Indonesia, Germany, and France.
+
+Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, with the maximum usage coming from Flevoland, followered in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{location-world.png}
@@ -807,7 +811,35 @@ Users from around the world used the web application. The approximate location o
 	\end{minipage} 
 \end{table}
 
-\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. For higher accuracy, this data is computed on the client side during pageview tracking. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
+\begin{table}[!htb]
+	\begin{minipage}{.5\linewidth}
+		\caption{Usage by Dutch Province}
+		\centering
+		\begin{tabular}{lr}
+			\hline
+			\textbf{Province} & \textbf{Pageviews} \\
+			\hline
+			Flevoland         & 348                \\
+			Overijssel        & 116                \\
+			Gelderland        & 39                 \\
+			Utrecht           & 33                 \\
+			South Holland     & 18                 \\
+			North Holland     & 3                  \\
+			Friesland         & 1                  \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+	\hspace{.1cm}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\centering
+		\includegraphics[width=0.66\linewidth]{location-netherlands.png}
+		\captionof{figure}{Usage by Dutch Province}
+		\label{fig:test2}
+	\end{minipage} 
+\end{table}
+
+\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
 
 Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [X], it placed behind both Mozilla Firefox and Apple Safari in usage by participants in this research. After Chrome followed the mobile version of Safari and the headless version of Chrome.
 
