@@ -766,13 +766,13 @@ Table 10 summarizes the most-requested additional features that participants wan
 
 Although participants were allowed to use the webapp in May 2020 and June 2020, for data consistency, only data stored in ElasticSearch between June 1 and June 10 is analyzed. This ten-day period was that of heaviest participation, and therefore can serve as an approximate for the entire research period. In this period, a total of 1,536 pageviews and 10,772 API logs were collected.
 
-\subsubsection{Web Traffic Analysis}
+\subsubsection{Web App Traffic Analysis}
 
 For higher accuracy, this data is computed on the client side during pageview tracking.
 
 \paragraph{Location}
 
-Users from around the world used the web application. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the nine countries --- the Netherlands, India, Poland, Kenya, the United States, Finland, Indonesia, Germany, and France.
+Users from four continents used the web application -- Europe, Asia, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the nine countries --- the Netherlands, India, Poland, Kenya, the United States, Finland, Indonesia, Germany, and France.
 
 Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, with the maximum usage coming from Flevoland, followered in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
 
@@ -878,6 +878,44 @@ Although Google Chrome is the most popular web browser as reported by Wikimedia 
 		\end{tabular}
 	\end{minipage} 
 \end{table}
+
+\paragraph{Other Analytics}
+
+In terms of the user's browser language, English was the overwhelming majority, detected in over 95\% of all pageviews. This was divided into 65\% US English, 30\% general English, and 2\% British English. Apart from English, 1\% was Dutch and less than 1\% was Polish.
+
+Similarly, over 99\% of all pageviews were done on URLs on the secure HTTPS protocol, with only 4 requests using HTTP. This was due to the secure protocol redirection described in Section 6.2.5.
+
+Most users used the web app a large screen, not a smartphone. In fact, over 30 unique screen resolution combinations were tracked. The most common absolute screen resolution was the high definition 1920x1080 (35\%), followed by 1440x900 at almost a quarter of all pageviews. Interestingly, 2\% of all pageviews still used the outdated 800x600 resolution.
+
+\subsubsection{Heatmaps}
+
+To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
+
+Heatmaps convey the distribution of attention on a page [X]. A total of 3,271 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
+
+\begin{wrapfigure}{l}{0.45\textwidth}\centering
+	\includegraphics[scale=0.5]{heatmap-sidebar.png}
+	\caption{Heatmap for Sidebar}
+\end{wrapfigure}
+
+\paragraph{Navigation}
+
+In Figure 11, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15).
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{heatmap-locations.png}
+  \caption{Heatmap for Locations Page}
+\end{figure}
+
+\paragraph{Webpage}
+
+The Locations page is an ideal example to measure clicks because it has several controls and links. Figure 12, generated with 237 datapoints, shows.
+
+The sidebar navigation on the Locations page has the most frequently clicked item of Settings (19 clicks), which is expected since it is the next link after Locations itself. Users also clicked on the table containing the list of saved locations and the Delete button for each item.
+
+In the Add Locations selector, both Video call and Phone call were selected 6 times, whereas In-person meeting was selected 5 times. The Service dropdown selector was clicked on 24 times. The Add Location button was clicked on 14 times. In this example, the Update default location button in unused because it was added after June 10, 2020.
+
+Overall, it is clear that users interacted with all controls on the webpage --- the sidebar navigation, locations table, buttons, and input fields.
 
 \subsection{User Experience Evaluation}
 
