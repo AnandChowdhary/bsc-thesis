@@ -196,6 +196,88 @@ This section will talk about the methods and techniques of modern webapps, using
 
 This section will show the ideation stage of development, including many cycles of prototypes and mockups for the app UI, the system architecture, etc.
 
+\subsection{Concept Exploration}
+
+...text...
+
+\subsubsection{User Personas}
+
+User personas are powerful tools in user experience (UX) design and help with building empathy for target users. In the Ideation phase, personas are used to better understand:
+
+\begin{enumerate}
+	\item Who is the ideal consumer for EIVA?
+	\item What are current behaviors of those consumers?
+	\item What are their needs and goals?
+	\item What are the pain-points that they currently experience?
+\end{enumerate}
+
+For this research, four kinds of users are explored in different contexts. The Random User Generator service is used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson.
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+	\includegraphics[scale=0.11]{persona-tanya.jpg}
+\end{wrapfigure}
+
+\paragraph{Tanya Gonzalez}
+
+Tanya is a 24-year-old MSc student at a 4TU university in the Netherlands. She was born in a small town in India, but worked hard and graduated first-class with a bachelor's degree in engineering. She currently works as a student assistant part-time.
+
+Her user environment is the classroom or library, where she spends most of her time. She rents an average-rent apartment with 2 other Indian students also studying at the university. She enjoys trying authentic local cuisine, learning new languages, and reading Harry Potter books.
+
+She has several professors that she wants to schedule appointments with for classes and her assistantship. Her end goal is to have a simple way to view her professors' calendars and find available time slots for meetings. Currently, this takes several email exchanges with each person and wastes a lot of time.
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+	\includegraphics[scale=0.11]{persona-julia.jpg}
+\end{wrapfigure}
+
+\paragraph{Julia Morris}
+
+Julia is a 33-year-old freelance makeup artist based in Sydney, Australia. Although studied liberal-arts in college, she earned a diploma in fashion after getting married a few years ago. She is in a low-to-median income bracket and earns around AU\$45,000.
+
+She uses a point of sale (PoS) system in her makeup studio and also uses an iPad when showing her portfolio to prospective clients. Her dream is to one day release her own brand of cosmetics and is currently saving to buy her own car.
+
+To keep track of appointments, she uses the default calendar application installed on her iPad and uses WhatsApp to communicate with clients. Her end goal is to allow her clients to automatically add bookings to her calendar based on her availability, and also take care of reminders and other communication.
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+	\includegraphics[scale=0.11]{persona-joy.jpg}
+\end{wrapfigure}
+
+\paragraph{Joy Fields}
+
+Joy is a 47-year-old C-level business executive at a multinational corporation in the financial space. She was the first African-American woman in her company to be a CXO. She lives in Chicago, United States, with her teenage daughter and husband of 20 years. She is in a very high income bracket and earns over US\$350,000.
+
+At work, she mostly uses a MacBook Pro, but also has email and presentation setup on her iPhone because she extensively travels as part of her job. She cares about gender equality, climate change, and data privacy. She also serves on the board of a nonprofit helping young women start their own businesses.
+
+Since she directly oversees a team of managers, most of her time is spent on answering emails and in meetings. She uses her company-provided exchange server calendar and email account, and has a full-time assistant. However, she feels that her assistant's time is best used on more productive tasks and tried using automated calendaring tools, but did not like any so far.
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+	\includegraphics[scale=0.11]{persona-lee.jpg}
+\end{wrapfigure}
+
+\paragraph{Lee Henderson}
+
+Lee recently celebrated his 50th birthday by founding his first startup. Serving in both Afghanistan and Iraq, Lee is a US Air Force veteran. Though unconventional, he decided to retire from his officer position to start a company in the aviation technology space, where he worked his entire career. 
+
+He raised a seed round from a Silicon Valley angel investor and has began to work full-time with his recently-graduated son. Therefore, he has frequent meetings with new business partners and investors. He currently does not have any additional income apart from his army pension, but he plans on changing that soon after landing his first client.
+
+His strength is in radio and navigation hardware technology, but still prefers to schedule appointments using pen and paper, a habit he has had since his days in the military. He is not very keen on moving to a digital system, but considers himself open-minded and likes trying new products.
+
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{Comparison of User Personas}
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\textbf{User} & \textbf{Income} & \textbf{Requirement}         \\
+			\hline
+			Tanya         & Low             & Appointments with professors \\
+			Julia         & Medium          & Clents' time slots.          \\
+			Joy           & High            & Calls with team              \\
+			Lee           & Medium          & Meetings with partners       \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
 \subsection{Assistant Architecture}
 
 An exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted.
@@ -220,15 +302,23 @@ In a separate exploration, a rule-based approach was chosen rather than specific
 
 In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{and} its \emph{subject} \emph{contains} the text (input), \emph{and} its \emph{body length} \emph{is greater than or equal to} (length), \emph{and} the \emph{day} \emph{is not} one of the days \emph{Sat, Sun}, automatically reply with \emph{template} \emph{Vacation responder} and also email \emph{me} with the (text). Complicated rules such as these can be generated by the proposed UI, allowing users to automate several different types of repetitive email tasks.
 
+\subsection{Web App UI}
+
+...text...
+
 \begin{figure}
   \includegraphics[width=\textwidth]{drawing-ui.jpg}
   \caption{Prototype user interface webpages}
 \end{figure}
 
+...text...
+
 \begin{figure}
   \includegraphics[width=\textwidth]{mockup-1.png}
   \caption{Comparison of low- and high-fidelity mockups}
 \end{figure}
+
+...text...
 
 \newpage
 
