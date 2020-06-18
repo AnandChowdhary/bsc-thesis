@@ -45,8 +45,12 @@
 \end{tikzpicture}%
 }
 
-\title{Email-based Intelligent Virtual Assistants (EIVA)}
-\author{Anand Chowdhary}
+\font\titlefont=cmr12 at 22pt
+\font\coverfont=cmr12 at 14pt
+\font\coverfontsmall=cmr12 at 12pt
+\title{{\titlefont Email-based Intelligent Virtual Assistants (EIVA)}}
+
+\author{\coverfont{Anand Chowdhary}}
 \date{\today}
 
 \begin{document}
@@ -54,6 +58,16 @@
 \pagenumbering{gobble}
 
 \maketitle
+\begin{figure}
+	\centering \coverfont
+	\coverfontsmall{Supervised by}\\
+	\vspace{3mm}
+	\coverfont{Dr. Job Zwiers}\\
+	\vspace{30mm}
+	Creative Technology BSc\\
+	\vspace{3mm}
+	University of Twente, Enschede, the Netherlands
+\end{figure}
 
 \newpage
 
@@ -211,7 +225,9 @@ User personas are powerful tools in user experience (UX) design and help with bu
 	\item What are the pain-points that they currently experience?
 \end{enumerate}
 
-For this research, four kinds of users are explored in different contexts. The Random User Generator service is used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson.
+For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers.
+
+The \emph{Random User Generator} service is used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson, and the \emph{This Person Does Not Exist website} is used for AI-generated profile photos.
 
 \begin{wrapfigure}{l}{0.3\textwidth}
 	\includegraphics[scale=0.11]{persona-tanya.jpg}
@@ -270,13 +286,15 @@ His strength is in radio and navigation hardware technology, but still prefers t
 			\textbf{User} & \textbf{Income} & \textbf{Requirement}         \\
 			\hline
 			Tanya         & Low             & Appointments with professors \\
-			Julia         & Medium          & Clents' time slots.          \\
+			Julia         & Medium          & Managing time slots          \\
 			Joy           & High            & Calls with team              \\
 			Lee           & Medium          & Meetings with partners       \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
 \end{table}
+
+Though the use cases for each persona are different, they all fall under the umbrella of ``I want a better, more automated way of scheduling appointments." For Tanya, it is to interact with professors; for Julia, with clients; for Joy, with her team; and for Lee, with his business partners. With an automated virtual agent that can schedule appointments without input from users, a significant part of all of their problems may be solved.
 
 \subsection{Assistant Architecture}
 
@@ -308,7 +326,31 @@ In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{
 
 \begin{figure}
   \includegraphics[width=\textwidth]{drawing-ui.jpg}
-  \caption{Prototype user interface webpages}
+  \caption{Webpage Wireframes on Paper}
+\end{figure}
+
+...text...
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{ideation-wall.jpg}
+  \caption{Mobile Wireframes Exploration}
+\end{figure}
+
+...text...
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{drawing-phone-1.jpg}
+		\includegraphics[width=1\linewidth]{drawing-phone-2.jpg}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{drawing-phone-3.jpg}
+		\includegraphics[width=1\linewidth]{drawing-phone-4.jpg}
+	\end{minipage}
+	\caption{Mobile Wireframes on Paper}
 \end{figure}
 
 ...text...
