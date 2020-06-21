@@ -110,7 +110,7 @@ I would like to thank Dr. Job Zwiers, my thesis supervisor, without whom this pr
 
 I would also like to thank the client, Speakup B.V., for their generous support of this project. I am particularly grateful to Florian Overkamp, who has been with me every step of the way --- from helping foster the original idea in 2017, to funding multiple projects over the years, and finally helping shape this graduation project and service.
 
-Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, who has been working hard for so many years. I wouldn't be able to sustain building a startup while graduating CreaTe without him.
+Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, who has been working hard for so many years. I wouldn't be able to sustain building a startup while graduating CreaTe without him. Oswald Labs also sponsored the cloud credits required for this project.
 
 Finally, I would like to thank the Creative Technology faculty and staff --- Dr. Dennis Reidsma, Dr. Katarzyna Zalewska, Dr. Erik Faber, Dr. Khiet Truong, Chris Vermaas, Richard Bults, and Alfred de Vries --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Peter Langela, Emiel Pegge, Thomas Mensink, Gilles Meijer, Rick Sulman, and Amy de Lange --- for helping shape my entrepreneurial spirit.
 
@@ -672,7 +672,24 @@ For ``magic links" for email verification, password reset, or appointment confir
 
 Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore must safer than general-purpose hash functions []. It also has built-in salting to prevent rainbow table attacks [].
 
-When logging in, the industry-standard access/refresh token combination is used.
+For authentication, the industry-standard access/refresh token combination is used. When logging in, both tokens are generated and stored on the client (Section 6.2.3), with the access token expiring after 15 minutes and the refresh token after 30 days. The expired access token can be exchanged for a new one using the refresh token.
+
+Both tokens are JWTs and contain all required information; the access token includes details about the user (such as their name and role) whereas the refresh token only includes the user ID. Furthermore, the web app also allows users to see a list of their logged in sessions and invalidate refresh tokens, which are then blacklisted in Redis (Section 6.1.7).
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.47\textwidth}
+		\centering
+		\includegraphics[width=5.75cm]{access-token.png}
+		\captionof{figure}{Access Token Process []}
+	\end{minipage}%
+	\hspace{.5cm}
+	\begin{minipage}{.47\textwidth}
+		\centering
+		\includegraphics[width=5.75cm]{refresh-token.png}
+		\captionof{figure}{Refresh Token Process []}
+	\end{minipage}
+\end{figure}
 
 Since many professionals prefer using multiple emails (perhaps a personal and a work email) and the assistant should recognize all their emails, a user account can be associated with multiple emails. This also means that users are free to log in with any of their verified emails.
 
@@ -840,6 +857,7 @@ GitHub Actions is used as the API for CI, and is free for public repositories. A
 	\item Checkout the repository (using actions/checkout@v2)
 	\item Setup Node.js v14.3 (using actions/setup-node@v1)
 	\item Install dependencies with npm
+	\item Run all unit tests
 	\item Compile the TypeScript project
 \end{enumerate}
 
@@ -894,7 +912,7 @@ When there is an error in the build such as if a unit test fails or there is a T
 	\end{minipage}%
 \end{figure}
 
-\subsubsection{Initializing Tests}
+\subsubsection{Initialization Tests}
 
 ...text...init-tests
 
@@ -1355,7 +1373,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 
 \paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
 
-Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [X], it placed behind both Mozilla Firefox and Apple Safari in usage by participants in this research. After Chrome followed the mobile version of Safari and the headless version of Chrome.
+Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [], it placed behind both Mozilla Firefox and Apple Safari in usage by participants in this research. After Chrome followed the mobile version of Safari and the headless version of Chrome.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1459,7 +1477,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 
 To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
 
-Heatmaps convey the distribution of attention on a page [X]. A total of 3,271 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
+Heatmaps convey the distribution of attention on a page []. A total of 3,271 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
 
 \begin{wrapfigure}{l}{0.45\textwidth}\centering
 	\includegraphics[scale=0.5]{heatmap-sidebar.png}
@@ -1534,7 +1552,7 @@ Similarly, users were asked to rate the assistant on different parameters, from 
 			Customizability                            & \score{4.4}{5} 4.4 & 4               & 5             \\
 			Natural language understanding flexibility & \score{4.4}{5} 4.4 & 4               & 5             \\
 			Sounding human-like over email             & \score{4.3}{5} 4.3 & 4               & 4             \\
-			Trust                                      & \score{3.7}{5} 3.7 & 4               & 4             \\
+			Trust in the assistant                     & \score{3.7}{5} 3.7 & 4               & 4             \\
 			Time recommendations                       & \score{2.7}{5} 2.7 & 3               & 3             \\
 			\hline
 		\end{tabular}
@@ -1694,7 +1712,7 @@ Respondents could optionally add additional information in the form of long-form
 
 \subsection{Technical Updates}
 
-...text...Prisma JSON type...
+...text...Prisma JSON type...bloom filter for JWT invalidation...
 
 \subsection{Business Case}
 
@@ -1798,7 +1816,56 @@ This section ensures that we have your permission to conduct this research. Plea
 
 \newpage
 
-\section*{Appendix 3: Code Repositories}
+\section*{Appendix 3: Raw Responses}
+
+All raw responses from the survey are available in CSV format on the GitHub project: \url{https://github.com/AnandChowdhary/thesis} in \texttt{responses.csv}.
+
+The following table shows all collected responses for rating questions (1 to 5). Rows 1 to 25 refer to response number and columns Q1 to Q12 refer to question number. The first 7 questions are about the web app experience, and the remaining 5 questions are about the assistant experience (Section 7.3). In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, and $Mo$ is the mode.
+
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{All Raw Responses to Rating Questions}
+		\centering
+		\begin{tabular}{|*{13}{p{0.5cm}|}}
+			\hline
+			& \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Q6} & \textbf{Q7} & \textbf{Q8} & \textbf{Q9} & \textbf{Q10} & \textbf{Q11} & \textbf{Q12} \\
+			\hline
+			\textbf{1} & 3 & 2 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 \\
+			\textbf{2} & 5 & 5 & 5 & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 \\
+			\textbf{3} & 4 & 4 & 4 & 3 & 5 & 5 & 3 & 4 & 3 & 3 & 4 & 3 \\
+			\textbf{4} & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 4 & 3 \\
+			\textbf{5} & 4 & 5 & 4 & 3 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 3 \\
+			\textbf{6} & 4 & 4 & 4 & 4 & 5 & 4 & 1 & 4 & 4 & 2 & 3 & 4 \\
+			\textbf{7} & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{8} & 5 & 5 & 5 & 4 & 5 & 4 & 3 & 5 & 5 & 5 & 5 & 4 \\
+			\textbf{9} & 4 & 5 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 3 \\
+			\textbf{10} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 4 & 4 & 3 & 5 \\
+			\textbf{11} & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 3 & 5 & 5 & 3 & 2 \\
+			\textbf{12} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{13} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{14} & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 3 & 4 & 4 & 3 \\
+			\textbf{15} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 5 & 5 & 3 & 4 \\
+			\textbf{16} & 3 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{17} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{18} & 4 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 3 & 3 & 3 & 2 \\
+			\textbf{19} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{20} & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{21} & 3 & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{22} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{23} & 4 & 5 & 4 & 4 & 4 & 5 & 4 & 5 & 4 & 5 & 4 & 4 \\
+			\textbf{24} & 3 & 4 & 3 & 3 & 3 & 3 & 3 & 1 & 2 & 2 & 2 & 2 \\
+			\textbf{25} & 4 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 4 & 4 & 3 \\
+			$\bar{x}$ & \textbf{4.3} & \textbf{4.6} & \textbf{4.4} & \textbf{4.3} & \textbf{4.7} & \textbf{4.5} & \textbf{4.1} & \textbf{4.4} & \textbf{4.3} & \textbf{4.3} & \textbf{4.1} & \textbf{3.8} \\
+			$\tilde{x}$ & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 5 & 5 & 5 & 4 & 4 \\
+			$Mo$ & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 4 \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
+\newpage
+
+\section*{Appendix 4: Code Repositories}
 
 All code written for this project is open-source, available on GitHub:
 
