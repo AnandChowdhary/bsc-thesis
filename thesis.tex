@@ -6,6 +6,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usepackage{dirtree}
 \usepackage{csquotes}
 \usepackage{wrapfig}
 \usepackage{tipa}
@@ -508,14 +509,118 @@ However, though the name of the service is EIVA, as discussed in the previous se
 
 \section{Realization}
 
-\subsection{Appointment Scheduling}
+EIVA consists of a frontend web app that users directly interact with, and a backend API that powers it.
+
+\subsection{Backend APIs}
+
+\subsubsection{Structure}
+
+...file structure...Staart API...async json...controller injection...TS to JS...
+
+\paragraph{Staart API}
+
+EIVA's backend project is based on Staart API, an open-source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
+
+\paragraph{File Structure}
+
+The file structure of the backend project consists of a \texttt{src} directory with the code, \texttt{static} directory to serve static files (a \texttt{favicon.ico} shortcut icon and \texttt{robots.txt} to avoid search engine indexing), a \texttt{prisma} directory with the database configuration and migrations, and the following configuration files:
+
+\begin{itemize}
+	\item \texttt{captain-definition} for Caprover configuration for deployment
+	\item \texttt{Dockerfile} with commands to assemble a Docker image
+	\item \texttt{package-lock.json} is the npm-generated lockfile
+	\item \texttt{package.json} with dependencies and repository info
+	\item \texttt{tsconfig.json} with the TypeScript configuration
+\end{itemize}
+
+The \texttt{src} directory consists of several subdirectories, the configuration file (Section 6.1.3), initialization tests (Section 6.5.3), and the server file that sets up the app. The server file setups the root controller and adds middleware like the rate limiter and error handler.
+
+\subsubsection{TypeScript}
+
+...text...@types...compile example...
+
+\subsubsection{Configuration Management}
+
+...text...config.ts...dotenv...
+
+\subsubsection{Scheduling Process}
 
 \begin{wrapfigure}{l}{0.5\textwidth}\centering
 	\includegraphics[scale=0.4]{schedule-process.png}
 	\caption{Appointment setup process}
 \end{wrapfigure}
 
-\subsection{Product Development}
+...afterwards people click on link to confirm time etc....
+
+\subsubsection{Natural Language Processing}
+
+...text...training data...tokenizing...chrono/parse...
+
+\subsubsection{Transactional Emails}
+
+...text...markdown templates...SES...JWT...
+
+\subsubsection{Authentication}
+
+...hashing...multiple emails...
+
+\paragraph{API Keys and Access Tokens}
+
+...text...
+
+\paragraph{Rate Limits}
+
+...text...
+
+\subsubsection{Databases}
+
+...text...Prisma...
+
+\paragraph{Redis}
+
+...text...KV...caching...
+
+\subsubsection{Third-party APIs}
+
+...text...
+
+\paragraph{Clearbit}
+
+...text...
+
+\paragraph{Google Cloud}
+
+...text...
+
+\subsubsection{API Endpoints}
+
+...text...
+
+\paragraph{Public API}
+
+...text...
+
+\subsubsection{Scheduled Jobs}
+
+...text...crons...
+
+\subsection{Frontend Web App}
+
+...text...
+
+\subsubsection{Vue.js and Nuxt.js}
+
+...text...
+
+\subsubsection{Fetch Requests}
+
+...text...authentication...refresh token...
+
+\subsubsection{State Management}
+
+...text...
+
+\subsection{Product Development Cycle}
 
 A simplified version of the Software Development Life Cycle and the New Product Development Process were adopted for this project, with the following steps:
 
@@ -606,20 +711,124 @@ dates.spec.ts
 
 \subsubsection{Continuous Integration}
 
-CI is used \cite{li_extensive_2020}.
+A Continuous Integration (CI) process consisting of unit tests and a build test has been set up to ensure that no bad code gets deployed to users \cite{li_extensive_2020}. Whenever a new commit is pushed to the central repository on GitHub, the code is only deployed to the production app when there is a successful build \cite{noauthor_what_2019}.
 
-\paragraph{End-to-end Tests} ...
+GitHub Actions is used as the API for CI, and is free for public repositories. A workflow consisting of 5 steps is triggered on every push, using Ubuntu  18.04 LTS, a popular Linux distribution:
+
+\begin{enumerate}
+	\item Checkout the repository (using actions/checkout@v2)
+	\item Setup Node.js v14.3 (using actions/setup-node@v1)
+	\item Install dependencies with npm
+	\item Compile the TypeScript project
+\end{enumerate}
+
+When there is an error in the build such as if a unit test fails or there is a TypeScript compilation error, the pipeline fails and developers get a notification for error mitigation. On average this CI process takes 2 minutes to complete, and Figure 11 shows the duration of each workflow run.
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.47\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[
+					width=5.75cm,
+					xlabel={Workflow Run Number},
+					ylabel={Duration [s]},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+				]
+				\addplot[
+					color=blue,
+					mark=square,
+				]
+				coordinates {
+					(3, 97)(6, 120)(9, 121)(12, 135)(15, 156)(18, 111)(21, 86)(24, 96)(27, 94)(30, 92)(33, 91)(36, 96)(39, 92)(42, 95)(45, 102)(48, 101)(51, 94)(54, 93)(57, 92)(60, 113)(63, 108)(66, 128)(69, 139)(72, 147)(75, 122)(78, 131)(81, 145)(84, 79)(87, 69)(90, 71)(93, 84)(96, 71)
+				};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Running Time of Continuous Integration Workflows}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.47\textwidth}
+		\begin{tikzpicture}
+			\begin{axis}[
+					width=5.75cm,
+					xlabel={Time of Day},
+					ylabel={Response Time [ms]},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					xticklabels={0,00:00,05:00,10:00,15:00,20:00}
+				]
+				\addplot[
+					color=blue,
+					mark=square,
+				]
+				coordinates {
+					(0, 221)(1, 228)(2, 238)(3, 255)(4, 216)(5, 223)(6, 242)(7, 253)(8, 227)(9, 233)(10, 223)(11, 222)(12, 228)(13, 205)(14, 212)(15, 207)(16, 204)(17, 240)(18, 208)(19, 229)(20, 205)(21, 225)(22, 249)(23, 258)(24, 238)(25, 237)(26, 221)(27, 230)(28, 223)(29, 266)(30, 225)(31, 214)(32, 190)(33, 134)(34, 225)(35, 223)(36, 243)(37, 224)(38, 231)(39, 227)(40, 222)(41, 238)(42, 257)(43, 228)(44, 242)(45, 241)
+				};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{24-Hour Response Time of the EIVA website}
+	\end{minipage}%
+\end{figure}
+
+\subsubsection{Initializing Tests}
+
+...text...init-tests
 
 \subsection{Deployment}
 
-AWS is used \cite{shokeen_deploying_2019}. AWS is secure \cite{narula_cloud_2015}. Oswald Labs Accelerator credits \cite{noauthor_oswald_nodate}.
+AWS is used \cite{shokeen_deploying_2019}. AWS is secure \cite{narula_cloud_2015}.
+
+For minimal latency and data storage compliance, the Frankfurt AWS Infrastructure Region was selected. Therefore, no data ever leaves the European Union.
+
+\subsubsection{Infrastructure}
+
+The total infrastructure cost between May and July 2020 was approximately US\$320. However, much of this was subsidized in the form of AWS credits, generously provided by Oswald Labs, the researcher's company \cite{noauthor_oswald_nodate}.
+
+\paragraph{Domain}
+
+The myeiva.com domain was purchased through Hover and costed US\$12.99.
+
+\paragraph{Server}
+
+A dedicated server is used for deploying the EIVA service. This uses AWS Lightsail which provides an easy-to-use interface for AWS EC2, with the following instance details. The total cost of this server was US\$40:
+
+\begin{itemize}
+	\item Region: Frankfurt (eu-central-1)
+	\item RAM: 4 GB
+	\item Processor: 2 vCPUs
+	\item Storage: 80 GB SSD
+	\item Public IP address: 18.195.203.61
+	\item Pricing: US\$20 per month
+	\item Billing period: May 21, 2020--July 21, 2020
+\end{itemize}
+
+\paragraph{ElasticSearch}
+
+A dedicated ElasticSearch instance is used to store server logs and track usage events, with the following instance details. The total cost of this instance was US\$272:
+
+\begin{itemize}
+	\item Elasticsearch version: 7.4
+	\item Instance type: r5.large.elasticsearch
+	\item Number of nodes: 1
+	\item Data nodes storage type: EBS
+	\item EBS volume type: General Purpose (SSD)
+	\item EBS volume size: 10 GiB
+	\item Pricing: US\$0.186 per hour
+	\item Billing period: May 21, 2020--July 21, 2020
+\end{itemize}
+
+\subsubsection{Backend APIs}
 
 Info about deployment, server, etc. There is a script ``update.sh" with the following lines.
 
-...
-
-
 Each line does this respectively… in the future, load balancers, etc.
+
+\subsubsection{Frontend Web App}
+
+...Netlify...CloudFlare
 
 \subsubsection{Server Monitoring}
 
@@ -629,32 +838,7 @@ Although measures have been taken to make sure EIVA services don't go down, such
 
 To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed \cite{noauthor_about_nodate}. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
 
-Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due of a Netlify deploying error because of renamed respositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.9\% overall uptime.
-
-\begin{figure}
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-				xlabel={Time of Day},
-				ylabel={Response Time [ms]},
-				legend pos=north west,
-				ymajorgrids=true,
-				grid style=dashed,
-				xticklabels={0,00:00,05:00,10:00,15:00,20:00}
-			]
-			
-			\addplot[
-				color=blue,
-				mark=square,
-			]
-			coordinates {
-				(0, 221)(1, 228)(2, 238)(3, 255)(4, 216)(5, 223)(6, 242)(7, 253)(8, 227)(9, 233)(10, 223)(11, 222)(12, 228)(13, 205)(14, 212)(15, 207)(16, 204)(17, 240)(18, 208)(19, 229)(20, 205)(21, 225)(22, 249)(23, 258)(24, 238)(25, 237)(26, 221)(27, 230)(28, 223)(29, 266)(30, 225)(31, 214)(32, 190)(33, 134)(34, 225)(35, 223)(36, 243)(37, 224)(38, 231)(39, 227)(40, 222)(41, 238)(42, 257)(43, 228)(44, 242)(45, 241)
-			};
-			
-		\end{axis}
-	\end{tikzpicture}
-	\caption{24-Hour Response Time of the EIVA website}
-\end{figure}
+Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due of a Netlify deploying error because of renamed repositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.98\% overall uptime.
 
 \paragraph{Resource Monitoring}
 
@@ -666,7 +850,7 @@ Over the course of testing weeks, no downtime was recorded for the backend, but 
 
 As an example, Figure 6 shows that number of event tracked (pageviews and clicks) during the first ten days of June 2020. The average number of events tracked per day was 1,062.4.
 
-\subsubsection{Catching Errors}
+\paragraph{Error Tracking}
 
 To catch errors in production, \emph{Sentry} is deployed in both the frontend and backend applications. Sentry is an open source error tracking system \cite{noauthor_sentry_nodate} that automatically reports errors as soon as they occur. ``In addition to sending developers alerts, Sentry also gives them context for potential root cause analysis to help them identify the source of the error" \cite{noauthor_sentry_nodate-1}.
 
@@ -1383,6 +1567,14 @@ Respondents could optionally add additional information in the form of long-form
 
 \section{Future Work}
 
+\subsection{Features}
+
+...text...
+
+\subsection{Technical Updates}
+
+...text...Prisma JSON type...
+
 \subsection{Business Case}
 
 In the literature research for this paper, it is highlighted that professionals currently either schedule appointments themselves or hire assistants to help with the task. However, regardless of whether the professional or their assistant schedules appointments, the time wasted is not insignificant. According to the European Commission, the average Dutch small or medium-sized enterprise (SME) employs 3.2 people \cite{noauthor_2019_2019}. If each employee attends 7 meetings per week (which is the average for professionals), 26 otherwise productive hours are wasted every month in scheduling meetings \cite{kincaid_electronic_1985}. This costs the company over €450 in lost time, based on the average wage of €17.6 per hour \cite{noauthor_salary_nodate} This adds up to almost €2.25 billion per year for the SME industry as a whole, and the numbers are even higher for larger enterprises. University of Twente, for example, employs 3,150 professionals, adding up to over €400,000 in lost time per year.
@@ -1398,9 +1590,7 @@ Therefore, a strong business case can be built around launching EIVA as a servic
 
 \subsection{Impact Assessment}
 
-When deploying this service to the market, there can be several ethical and societal challenges that need to be explored, such as AI-driven job loss.
-
-\subsubsection{Job Loss}
+When deploying this service to the market, there can be several ethical and societal challenges that need to be explored, such as AI-driven job loss. Therefore, an impact assessment must be conducted before launch.
 
 Just like in other applications of automation software, loss of employment for assistants is an important social disruption that this product unfortunately encourages. In the interest of saving both time and money, companies may choose to deploy AI-powered assistants on an organization-wide level and terminate the employment of all their secretaries in the future.
 
