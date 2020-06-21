@@ -535,34 +535,146 @@ The file structure of the backend project consists of a \texttt{src} directory w
 
 The \texttt{src} directory consists of several subdirectories, the configuration file (Section 6.1.3), initialization tests (Section 6.5.3), and the server file that sets up the app. The server file setups the root controller and adds middleware like the rate limiter and error handler.
 
+Inside \texttt{src} are \texttt{\_staart}, the directory containing internal Staart API helper functions; \texttt{@types} with custom TypeScript types for untyped dependencies (Section 6.1.2); \texttt{eiva} with the helpers and utilities of EIVA; \texttt{controllers} with the API controllers (Section 6.1.10); \texttt{crons} with scheduled jobs (Section 6.1.11); and \texttt{templates} with markdown templates for transactional emails (Section 6.1.6).
+
 \subsubsection{TypeScript}
 
-...text...@types...compile example...
+As discussed in Section 2.2, TypeScript was chosen as the primary development language because of its strong types that help with error mitigation. Since a majority of packages published on npm do not contain types, a common practice is to create a declaration file []. The \texttt{src/@types} directory is used to adapt 5 dependencies for usage with TypeScript.
+
+The TypeScript compilation process is also part of the build step in Continuous Integration (CI), so code is only shipped to production if there are no errors in the build (Section 6.5.2).
+
+Furthermore, TypeScript features like interfaces and decorators are extensively used in the codebase. For example, the \texttt{@Controller} decorator is used to describe the route of a controller, which is then injected in the Express application.
+
+\begin{verbatim}
+import { Controller, Post } from "@staart/server";
+@Controller("example")
+export class ExampleController {
+  @Post()
+  function postExample() {
+    return { success: true };
+  }
+}
+\end{verbatim}
+
+The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.10) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understand the source code much clearer.
 
 \subsubsection{Configuration Management}
 
-...text...config.ts...dotenv...
+Using ES Modules, the ECMAScript standard for working with modules, data and structure types can be imported and exported []. The \texttt{src/config.ts} file acts as the central configuration manager and sets default values for keys not available in the environment.
 
-\subsubsection{Scheduling Process}
+The Twelve-Factor App methodology recommends storing configuration in the environment, separate from the code, and \texttt{dotenv} is used to read environment variables from a \texttt{.env} file []. This library makes values available in \texttt{process.env}, Node.js's object to access environment variables.
 
-\begin{wrapfigure}{l}{0.5\textwidth}\centering
-	\includegraphics[scale=0.4]{schedule-process.png}
-	\caption{Appointment setup process}
-\end{wrapfigure}
+For example, the \texttt{PORT} constant defines the port the app should listen on, and defaults to port 80:
 
-...afterwards people click on link to confirm time etc....
+\begin{verbatim}
+import { config } from "dotenv";
+config();
+export const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
+\end{verbatim}
+
+Then, when initializing the app, this value is imported:
+
+\begin{verbatim}
+import { PORT } from "./constants";
+import { Server } from "@staart/server";
+export class Staart extends Server {
+  public start(port: number = PORT): void {
+    this.app.listen(port, () => success(`Listening on ${port}`));
+  }
+}
+\end{verbatim}
+
+This central management makes it very easy to update defaults (like port 80), and the \texttt{.env} file contains environment-specific values, like port 7000 for development and 443 for production. A \texttt{.env.example} file is available in the repository for reproduction. A total of 68 exported members configure various parts of the application, from database connection URLs to secret keys for signing JSON Web Tokens (Section 6.1.7).
 
 \subsubsection{Natural Language Processing}
 
 ...text...training data...tokenizing...chrono/parse...
 
+There are three Natural Language Processing (NLP) systems implemented in EIVA's backend --- language detection and variable extraction, intent classification, and date parsing. These systems work together during the scheduling process (Section 6.1.11) and use various libraries.
+
+\paragraph{Language Detection and Variable Extraction}
+
+To identify the language of an incoming email, Google Cloud's Natural Language API is used. This provides both the language and list of entities found, such us names of people and places. Using this API is free of cost for up to 5,000 requests every month, which is more than enough for this project, since this API is only used to identify the language to ensure the response of the email is also in the correct language.
+
+\paragraph{Intent Classification}
+
+A Naive Bayes classifier is used to identify the intent of an incoming email from one of four categories --- setting up a new appointment, rescheduling an existing appointment, canceling an appointment, or sending a summary of the appointments for the day.
+
+Naive Bayes classifiers are "probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness [].
+
+The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. Training data consisting of common phrases to perform the aforementioned actions is used, for example:
+
+\begin{verbatim}
+import { BayesClassifier } from "natural";
+const classifier = new BayesClassifier();
+
+classifier.addDocument(
+  [
+    "set up an appointment",
+    "schedule a call",
+    "meet me for dinner",
+  ],
+  "setupNewAppointment"
+);
+classifier.addDocument(
+  [
+    "i can't make it",
+    "reschedule this call",
+    "find another time",
+  ],
+  "rescheduleAppointment"
+);
+
+classifier.train();
+\end{verbatim}
+
+In the above example, when the classifier receives a new string, such as ``I don't think I'll be able to make it to this time", it will return a higher probability for \texttt{rescheduleAppointment} than \texttt{setupNewAppointment}, as the following example shows:
+
+\begin{verbatim}
+classifier.getClassifications(
+  "i don't think I'll be able to make it to this time"
+);
+\end{verbatim}
+
+Here, the value of rescheduling is 0.333... and that of setting up a new appointment is 0.1666..., which shows that the naive Bayes classifier works at a decent accuracy, even with an extremely small training dataset. In EIVA, the training dataset is larger and there are four categories of classifications.
+
+\paragraph{Date Parsing}
+
+Lastly, Chrono, a date parsing library, is used to understand natural language dates and times. Chrono can understand specific days like ``today" and ``tomorrow", relative dates and times like ``this Friday at 13:00" and ``two weeks from now", and absolute values like "Aug 17, 2020".
+
+In the Netherlands, a convention is to write times in 24-hour format with a period as the hour-minute separator (e.g., 14.30 instead of 2:30 pm) []. Since Chrono is not optimized for understanding this format, a regular expression (regex)-based replacement from period to colon is done on the entire text string before parsing. Other special cases, such as no separator, are also handled.
+
 \subsubsection{Transactional Emails}
 
-...text...markdown templates...SES...JWT...
+EIVA does not send any promotional emails, only transactional emails for authentication-related cases like email verification and password reset links, and communication to the guests or host from the assistant [].
+
+Email templates are defined in Markdown, and rendered with variables using Mustache. Markdown is a lightweight markup language with plain-text-formatting syntax created by John Gruber with Aaron Swartz, and was selected because of its ease of conversion to both HTML and plain text []. Since there are also several variables that need to be replaced in the template, Mustache, a web template system is used alongside Markdown.
+
+The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown. For example, an email verification email template may contain:
+
+\begin{verbatim}
+Hello, {{name}}! Please click on this link to verify your email:
+![{{link}}](Verify my email).
+\end{verbatim}
+
+When an object containing data is provided (say, the name `Florian' and an example link), the following HTML is generated:
+
+\begin{verbatim}
+<p>Hello, Florian! Please click on this link to verify your email:
+<a href="https://example.com">Verify my email</a>.</p>
+\end{verbatim}
+
+Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP []. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
+
+For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JTWs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.7). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
 
 \subsubsection{Authentication}
 
-...hashing...multiple emails...
+Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore must safer than general-purpose hash functions []. It also has built-in salting to prevent rainbow table attacks [].
+
+When logging in, the industry-standard access/refresh token combination is used.
+
+Since many professionals prefer using multiple emails (perhaps a personal and a work email) and the assistant should recognize all their emails, a user account can be associated with multiple emails. This also means that users are free to log in with any of their verified emails.
 
 \paragraph{API Keys and Access Tokens}
 
@@ -603,6 +715,15 @@ The \texttt{src} directory consists of several subdirectories, the configuration
 \subsubsection{Scheduled Jobs}
 
 ...text...crons...
+
+\subsubsection{Scheduling Process}
+
+\begin{wrapfigure}{l}{0.5\textwidth}\centering
+	\includegraphics[scale=0.4]{schedule-process.png}
+	\caption{Appointment setup process}
+\end{wrapfigure}
+
+...afterwards people click on link to confirm time etc....
 
 \subsection{Frontend Web App}
 
@@ -699,7 +820,7 @@ It is also highly configurable, with support for settings such as timezone prefe
 
 ...
 
-Both projects are written in TypeScript and available on the Git hosting service GitHub and JavaScript package registry NPM.
+Both projects are written in TypeScript and available on the Git hosting service GitHub and JavaScript package registry npm.
 
 \subsection{Software Tests}
 
@@ -1697,7 +1818,7 @@ All code written for this project is open-source, available on GitHub:
 
 \section*{Appendix 4: Open Source Licenses}
 
-This project is standing on the shoulder of giants; it wouldn't be possible without the open source projects listed below. Only direct NPM dependencies are listed below (not development dependencies or subdependencies).
+This project is standing on the shoulder of giants; it wouldn't be possible without the open source projects listed below. Only direct npm dependencies are listed below (not development dependencies or subdependencies).
 
 \subsection*{Backend}
 
