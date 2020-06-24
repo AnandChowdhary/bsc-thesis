@@ -524,7 +524,7 @@ Inside \texttt{src} are \texttt{\_staart}, the directory containing internal Sta
 
 \subsubsection{TypeScript}
 
-As discussed in Section 2.2, TypeScript was chosen as the primary development language because of its strong types that help with error mitigation. Since a majority of packages published on npm do not contain types, a common practice is to create a declaration file []. The \texttt{src/@types} directory is used to adapt 5 dependencies for usage with TypeScript.
+As discussed in Section 2.2, TypeScript was chosen as the primary development language because of its strong types that help with error mitigation. Since a majority of packages published on npm do not contain types, a common practice is to create a declaration file \cite{huisman_inference_2017}. The \texttt{src/@types} directory is used to adapt 5 dependencies for usage with TypeScript.
 
 The TypeScript compilation process is also part of the build step in Continuous Integration (CI), so code is only shipped to production if there are no errors in the build (Section 6.5.2).
 
@@ -545,9 +545,9 @@ The above example generates an API endpoint of \texttt{/v1/example} (with versio
 
 \subsubsection{Configuration Management}
 
-Using ES Modules, the ECMAScript standard for working with modules, data and structure types can be imported and exported []. The \texttt{src/config.ts} file acts as the central configuration manager and sets default values for keys not available in the environment.
+Using ES Modules, the ECMAScript standard for working with modules, data and structure types can be imported and exported \cite{noauthor_es_nodate}. The \texttt{src/config.ts} file acts as the central configuration manager and sets default values for keys not available in the environment.
 
-The Twelve-Factor App methodology recommends storing configuration in the environment, separate from the code, and \texttt{dotenv} is used to read environment variables from a \texttt{.env} file []. This library makes values available in \texttt{process.env}, Node.js's object to access environment variables.
+The Twelve-Factor App methodology recommends storing configuration in the environment, separate from the code, and \texttt{dotenv} is used to read environment variables from a \texttt{.env} file \cite{noauthor_twelve-factor_nodate}. This library makes values available in \texttt{process.env}, Node.js's object to access environment variables.
 
 For example, the \texttt{PORT} constant defines the port the app should listen on, and defaults to port 80:
 
@@ -627,15 +627,15 @@ Here, the value of rescheduling is 0.333... and that of setting up a new appoint
 
 Lastly, Chrono, a date parsing library, is used to understand natural language dates and times. Chrono can understand specific days like ``today" and ``tomorrow", relative dates and times like ``this Friday at 13:00" and ``two weeks from now", and absolute values like "Aug 17, 2020".
 
-In the Netherlands, a convention is to write times in 24-hour format with a period as the hour-minute separator (e.g., 14.30 instead of 2:30 pm) []. Since Chrono is not optimized for understanding this format, a regular expression (regex)-based replacement from period to colon is done on the entire text string before parsing. Other special cases, such as no separator, are also handled.
+In the Netherlands, a convention is to write times in 24-hour format with a period as the hour-minute separator (e.g., 14.30 instead of 2:30 pm) \cite{noauthor_8h30_nodate}. Since Chrono is not optimized for understanding this format, a regular expression (regex)-based replacement from period to colon is done on the entire text string before parsing. Other special cases, such as no separator, are also handled.
 
 \subsubsection{Transactional Emails}
 
-EIVA does not send any promotional emails, only transactional emails for authentication-related cases like email verification and password reset links, and communication to the guests or host from the assistant [].
+EIVA does not send any promotional emails, only transactional emails for authentication-related cases like email verification and password reset links, and communication to the guests or host from the assistant \cite{noauthor_everything_2018}.
 
-Email templates are defined in Markdown, and rendered with variables using Mustache. Markdown is a lightweight markup language with plain-text-formatting syntax created by John Gruber with Aaron Swartz, and was selected because of its ease of conversion to both HTML and plain text []. Since there are also several variables that need to be replaced in the template, Mustache, a web template system is used alongside Markdown.
+Email templates are defined in Markdown, and rendered with variables using Mustache. Markdown is a lightweight markup language with plain-text-formatting syntax created by John Gruber with Aaron Swartz, and was selected because of its ease of conversion to both HTML and plain text \cite{noauthor_daring_nodate}. Since there are also several variables that need to be replaced in the template, Mustache, a web template system is used alongside Markdown.
 
-The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown. For example, an email verification email template may contain:
+The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown []. For example, an email verification email template may contain:
 
 \begin{verbatim}
 Hello, {{name}}! Please click on this link to verify your email:
@@ -649,13 +649,13 @@ When an object containing data is provided (say, the name `Florian' and an examp
 <a href="https://example.com">Verify my email</a>.</p>
 \end{verbatim}
 
-Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP []. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
+Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP \cite{noauthor_nodemailer_nodate}. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
 
 For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JTWs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.7). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
 
 \subsubsection{Authentication}
 
-Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore must safer than general-purpose hash functions []. It also has built-in salting to prevent rainbow table attacks [].
+Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore must safer than general-purpose hash functions \cite{provos_future-adaptive_1999}. It also has built-in salting to prevent rainbow table attacks \cite{noauthor_how_2010}.
 
 For authentication, the industry-standard access/refresh token combination is used. When logging in, both tokens are generated and stored on the client (Section 6.2.3), with the access token expiring after 15 minutes and the refresh token after 30 days. The expired access token can be exchanged for a new one using the refresh token.
 
@@ -666,13 +666,13 @@ Both tokens are JWTs and contain all required information; the access token incl
 	\begin{minipage}{.47\textwidth}
 		\centering
 		\includegraphics[width=5.75cm]{access-token.png}
-		\captionof{figure}{Access Token Process []}
+		\captionof{figure}{Access Token Process \cite{noauthor_refresh_nodate-1}}
 	\end{minipage}%
 	\hspace{.5cm}
 	\begin{minipage}{.47\textwidth}
 		\centering
 		\includegraphics[width=5.75cm]{refresh-token.png}
-		\captionof{figure}{Refresh Token Process []}
+		\captionof{figure}{Refresh Token Process \cite{noauthor_refresh_nodate-1}}
 	\end{minipage}
 \end{figure}
 
@@ -1364,7 +1364,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 
 \paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
 
-Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [], it placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-releated' is a sum of pageviews from headless Chrome, Chorome webviews, and Chromium.
+Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-releated' is a sum of pageviews from headless Chrome, Chorome webviews, and Chromium.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1468,7 +1468,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 
 To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
 
-Heatmaps convey the distribution of attention on a page []. A total of 4,940 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
+Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020}. A total of 4,940 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
 
 \begin{wrapfigure}{l}{0.45\textwidth}\centering
 	\includegraphics[scale=0.5]{heatmap-sidebar.png}
