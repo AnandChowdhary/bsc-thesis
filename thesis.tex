@@ -1504,7 +1504,7 @@ The first question, \emph{What comes to mind when you think about EIVA; how woul
 
 \subsubsection{Webapp Experience}
 
-Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.9.
+Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.7.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1514,11 +1514,13 @@ Users were asked to rate the web app on different parameters, from 0 to 5. All p
 			\hline
 			\textbf{Parameter} & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
 			\hline
-			Overall experience & \score{4.3}{5} 4.3 & 4               & 4             \\
-			Design             & \score{4.5}{5} 4.5 & 4               & 5             \\
-			Functionality      & \score{4.3}{5} 4.3 & 4               & 4             \\
-			Ease of use        & \score{4.2}{5} 4.2 & 4               & 4 \& 5        \\
-			Privacy features   & \score{4.9}{5} 4.9 & 5               & 5             \\
+			Overall experience & \score{4.4}{5} 4.4 & 5               & 5             \\
+			Design & \score{4.6}{5} 4.6 & 5               & 5             \\
+			Functionality & \score{4.5}{5} 4.5 & 5               & 5             \\
+			Ease of use & \score{4.4}{5} 4.4 & 4.5               & 5             \\
+			Privacy features & \score{4.7}{5} 4.7 & 5               & 5             \\
+			Onboarding flow & \score{4.5}{5} 4.5 & 5               & 5             \\
+			Introductory tour & \score{4.2}{5} 4.2 & 4               & 5             \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1526,7 +1528,7 @@ Users were asked to rate the web app on different parameters, from 0 to 5. All p
 
 \subsubsection{Assistant Experience}
 
-Similarly, users were asked to rate the assistant on different parameters, from 0 to 5.
+Similarly, users were asked to rate the assistant on different parameters, from 0 to 5. All but two parameters scored an average greater than 4, with the lowest-rated question being \emph{How much do you trust the assistant to not make mistakes?}. Participants rated the overall experience as 4.5 out of 5, and customizability and flexibility as 4.4 each.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1536,20 +1538,20 @@ Similarly, users were asked to rate the assistant on different parameters, from 
 			\hline
 			\textbf{Parameter}                         & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
 			\hline
-			Overall experience                         & \score{4.6}{5} 4.6 & 5               & 5             \\
-			Customizability                            & \score{4.4}{5} 4.4 & 4               & 5             \\
-			Natural language understanding flexibility & \score{4.4}{5} 4.4 & 4               & 5             \\
-			Sounding human-like over email             & \score{4.3}{5} 4.3 & 4               & 4             \\
-			Trust in the assistant                     & \score{3.7}{5} 3.7 & 4               & 4             \\
-			Time recommendations                       & \score{2.7}{5} 2.7 & 3               & 3             \\
+			Overall experience     & \score{4.5}{5} 4.5 & 5    & 5   \\
+			Customizability     & \score{4.4}{5} 4.4 & 5    & 5   \\
+			Flexibility in understanding language     & \score{4.4}{5} 4.4 & 5    & 5   \\
+			Sounding human-like over email    & \score{4.1}{5} 4.1 & 4    & 5   \\
+			Trust to not make mistakes   & \score{3.6}{5} 3.6 & 4    & 4   \\
+			Time recommendation accuracy   & \score{3.9}{5} 3.9 & 4    & 4   \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
 \end{table}
 
-To participate in the research, users were required to send at least one email to the EIVA for scheduling an appointment. They were free to send multiple emails, and were asked about the number of emails they sent. 4 out of 10 participants sent only one email, while 6 out of 10 sent between 2 and 5 emails.
+To participate in the research, users were required to send at least one email to the EIVA for scheduling an appointment. They were free to send multiple emails, and were asked about the number of emails they sent. 10 out of 30 participants sent between 2 and 5 emails, while the other 20 only sent the one.
 
-To find out whether the assistant understood the overall meaning of their email in natural language, participants were asked \emph{Did the assistant understand your email(s) correctly?}. 7 out of 10 participants responded in the affirmative, while 3 out of 10 responded with `Partially'. No participants responded in the negative, suggesting that the EIVA did a well-enough job understanding incoming emails.
+To find out whether the assistant understood the overall meaning of their email in natural language, participants were asked \emph{Did the assistant understand your email(s) correctly?}. 24 out of 30 participants responded in the affirmative and 5 out of 10 responded with `Partially', while only one participant responded in the negative. This suggests that the EIVA did a well-enough job understanding incoming emails most of the time.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1557,11 +1559,11 @@ To find out whether the assistant understood the overall meaning of their email 
 		\centering
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Number} & \textbf{Percentage} \\
+			\textbf{Number} & \textbf{Count} \\
 			\hline
-			1               & 40\%                \\
-			Between 2 and 5 & 60\%                \\
-			More than 5     & 0\%                 \\
+			1               & 20             \\
+			Between 2 and 5 & 10              \\
+			More than 5     & 0              \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1571,19 +1573,21 @@ To find out whether the assistant understood the overall meaning of their email 
 		\caption{Correctly Understood}
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Response} & \textbf{Percentage} \\
+			\textbf{Response} & \textbf{Count} \\
 			\hline
-			Yes               & 70\%                \\
-			Partially         & 30\%                \\
-			No                & 0\%                 \\
+			Yes               & 24             \\
+			Partially         & 5              \\
+			No                & 1              \\
 			\hline
 		\end{tabular}
 	\end{minipage} 
 \end{table}
 
-Apart from understanding the meaning of an email, participants were asked whether the EIVA recommended the correct location for the meeting. The location recommendation was correct for 7 out of 10 participants.
+Apart from understanding the meaning of an email, participants were asked whether the EIVA recommended the correct location for the meeting. The location recommendation was correct for 24 out of 30 participants and incorrect for 5 participants. 1 participant chose to not answer this question.
 
-They were also directly asked whether the EIVA met their expectation in terms of scheduling an appointment. All participants responded positively.
+Because of the API webhook, EIVA responds to emails almost instantly. When asked about whether the assistant responded to emails in a reasonable amount of time, all 30 participants responded with `Yes'.
+
+They were also directly asked whether the EIVA met their expectation in terms of scheduling an appointment. All but one participant responded positively.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1591,10 +1595,10 @@ They were also directly asked whether the EIVA met their expectation in terms of
 		\centering
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Accurate} & \textbf{Percentage} \\
+			\textbf{Accurate} & \textbf{Count} \\
 			\hline
-			Correct           & 70\%                \\
-			Incorrect         & 30\%                \\
+			Correct           & 24             \\
+			Incorrect         & 5              \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1604,20 +1608,24 @@ They were also directly asked whether the EIVA met their expectation in terms of
 		\caption{EIVA Met Expectations}
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Response} & \textbf{Percentage} \\
+			\textbf{Response} & \textbf{Count} \\
 			\hline
-			Yes               & 100\%               \\
-			No                & 0\%                 \\
+			Yes               & 29             \\
+			No                & 1              \\
 			\hline
 		\end{tabular}
 	\end{minipage} 
 \end{table}
 
+To test the hypothesis proposed in Section 4.2.1, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. Table 23 shows that 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participants chose to not answer.
+
 \subsubsection{Business Case}
 
-Since the big picture goal of the client is to launch EIVA as a paid service, participants were asked whether they would use EIVA on launch. 8 out of 10 participants said that they would, whereas 2 out of 10 wouldn't.
+Since the big picture goal of the client is to launch EIVA as a paid service, participants were asked whether they would use EIVA on launch. 25 out of 30 participants said that they would, whereas 5 said that they wouldn't.
 
-Participants were also asked how much they would be willing to pay every month for such as service. 4 out of 10 participants said that the service should be free, 3 out of 10 would each pay €5 or less, or €10 or less, per month. No participants wanted to pay €20 per month.
+Participants were also asked how much they would be willing to pay every month for such as service. 6 out of 30 participants said that the service should be free, 13 out of 30 would be willing to pay up to €5 per month, while 10 out of 30 would pay up to €10 per month. One participant wanted to pay €20 or more per month.
+
+Although it seems like the average amount users would want to pay is up to €6.16 per month, this includes all professional categories of respondents. Calculating individually, the average for students is up to €4.44 per month, for employees of a company or organization, it is up to €6.38 per month; and for self-employed professionals or freelancers, it is as high as €10 per month.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1625,10 +1633,10 @@ Participants were also asked how much they would be willing to pay every month f
 		\centering
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Accurate} & \textbf{Percentage} \\
+			\textbf{Accurate} & \textbf{Count} \\
 			\hline
-			Yes               & 80\%                \\
-			No                & 20\%                \\
+			Yes               & 25             \\
+			No                & 5              \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1638,51 +1646,75 @@ Participants were also asked how much they would be willing to pay every month f
 		\caption{Monthly Subscription Fees}
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Response} & \textbf{Percentage} \\
+			\textbf{Response} & \textbf{Count} \\
 			\hline
-			€0              & 40\%                \\
-			€5 or less      & 30\%                \\
-			€10 or less     & 30\%                \\
+			€0              & 6                \\
+			€5 or less      & 13               \\
+			€10 or less     & 10               \\
+			€20 or less     & 0                \\
+			More than €20   & 1                \\
 			\hline
 		\end{tabular}
-	\end{minipage} 
+	\end{minipage}
 \end{table}
 
 \subsubsection{Final Impressions}
 
-Respondents could optionally add additional information in the form of long-form answers. A selection of answers is listed below.
+Respondents could optionally add additional information in the form of long-form answers. A selection of answers with analysis is listed below, and all answers are available in Appendix 1.
 
-\begin{enumerate}
-	\item Did you find anything frustrating that you wish was easier or different?
-	      \begin{enumerate}
-	      	\item Support BCC instead of CC in emails
-	      	\item The onboarding tour is too long
-	      \end{enumerate}
-	\item Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?
-	      \begin{enumerate}
-	      	\item Cancel or reschedule via online interface
-	      	\item Send an email at a set time every day about my day's schedule
-	      \end{enumerate}
-	\item What do you like the most about EIVA?
-	      \begin{enumerate}
-	      	\item Simplicity and ease of use
-	      	\item Saving back and forth emailing during scheduling
-	      	\item Fast, secure, and nice user interface
-	      	\item Virtual tutor at every point to choose the next right option
-	      	\item Natural language understanding
-	      	\item Human-like conversational emails
-	      \end{enumerate}
-	\item What do you like the least about EIVA?
-	      \begin{enumerate}
-	      	\item Pretending to be human
-	      	\item Lengthy and slightly technical onboarding process
-	      \end{enumerate}
-	\item Do you have any additional feedback, suggestions, or comments?
-	      \begin{enumerate}
-	      	\item I am thrilled with my first experience in using an assistant
-	      	\item Add support for hardware authentication
-	      \end{enumerate}
-\end{enumerate}
+When asked \emph{What do you like the most about EIVA?}, 5 users mentioned the ease of use and 3 users mentioned the fast response time. User also liked the overall concept, security features, and the fact that EIVA doesn't interfere with their normal workflow and users don't have to manually select time slots. They also liked the natural-language conversation and the user interface. Some quotes are ``[EIVA is] easy to handle and helps you to save your time and energy," and ``[EIVA] takes the most painstaking part of the workhours off [your] hands".
+
+On the contrary, responses to the question \emph{What do you like the least about EIVA?} included ``pretending to be human", the ``lengthy and slightly technical" onboarding process, and the mobile interface. One user also said that ``[EIVA] doesn't fully seem to know/understand my reasoning behind picking or proposing certain meeting times, where maintaining focus during my work day plays an important role." This suggests that more fine-grained control over recommended time slots should be allowed in the web app interface.
+
+Tables 24 and 25 analyze responses to questions \emph{Did you find anything frustrating that you wish was easier or different?} and \emph{Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?} respectively.
+
+Lastly, users had the option of adding any additional feedback, suggestions, or comments, which almost half of all respondents chose to add. One user said ``I really EIVA, and I think that we need such kind of smart applications in today's world that do not only save time, but also help us act more efficiently in other work as well." Users also stated that EIVA is ``great and extremely easy to use" and has ``great potential".
+
+\begin{table}[!htb]
+\caption{User Frustrations}
+\centering
+\begin{tabular}{p{4cm}p{7cm}}
+			\hline
+	\textbf{Response} & \textbf{Analysis} \\
+			\hline
+	Dutch grammar can be improved & As a non-native speaker, Google Translate was used for Dutch text in emails \\
+			\hline
+	Onboarding is too long or should be skippable & The current onboarding flow takes users through each setting and page; this was to ensure users know of all available options, but can be understandably frustrating \\
+			\hline
+	Time recommendations should take email into account & EIVA initially recommended there time slots in the following week, but has since improved to understand email content and recommend accordingly \\
+			\hline
+	Onboarding starts again on second log in & The onboarding completion status is stored in local storage, so logging in from another device will ask users to complete the tour again \\
+			\hline
+	Adding calendar connection URL is hard & Users have to know how to generate an iCalendar URL from their calendar client of choice, so documentation should be added to make that process simpler \\
+			\hline
+	Slow activation email & The cron to send emails is scheduled for every minute, so it can take up to 60 seconds to send an email to users \\
+			\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\caption{Feature Recommendations}
+\centering
+\begin{tabular}{p{4cm}p{7cm}}
+			\hline
+	\textbf{Recommendation} & \textbf{Analysis} \\
+			\hline
+	Create a meeting without having to send an email & The web app can include an option to manually schedule meetings \\
+			\hline
+	Support SMS or WhatsApp instead of email & Currently, EIVA only works over email, and more form factors can be added over time \\
+			\hline
+	Send daily schedule summary emails & This was a feature part of Ideation, but was not implemented due to time constraints and should be added \\
+			\hline
+	Invite multiple guests in each appointment & Users can already invite multiple guests, but slot selection UI has to be improved \\
+			\hline
+	Select preferred meeting time slots manually & This can be added by providing a preference UI for each slot \\
+			\hline
+	Increase number of recommended daily slots & A customizable setting can be added with the number of recommendations to send \\
+			\hline
+	Cancel or reschedule meetings from the web app & This was another feature part of Ideation that wasn't implemented and should be added \\
+			\hline
+\end{tabular}
+\end{table}
 
 \newpage
 
