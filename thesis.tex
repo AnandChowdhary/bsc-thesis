@@ -585,7 +585,7 @@ To identify the language of an incoming email, Google Cloud's Natural Language A
 
 A Naive Bayes classifier is used to identify the intent of an incoming email from one of four categories --- setting up a new appointment, rescheduling an existing appointment, canceling an appointment, or sending a summary of the appointments for the day.
 
-Naive Bayes classifiers are "probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness [].
+Naive Bayes classifiers are "probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness \cite{noauthor_lecture_nodate}.
 
 The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. Training data consisting of common phrases to perform the aforementioned actions is used, for example:
 
@@ -635,7 +635,7 @@ EIVA does not send any promotional emails, only transactional emails for authent
 
 Email templates are defined in Markdown, and rendered with variables using Mustache. Markdown is a lightweight markup language with plain-text-formatting syntax created by John Gruber with Aaron Swartz, and was selected because of its ease of conversion to both HTML and plain text \cite{noauthor_daring_nodate}. Since there are also several variables that need to be replaced in the template, Mustache, a web template system is used alongside Markdown.
 
-The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown []. For example, an email verification email template may contain:
+The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown \cite{noauthor_staart/mustache-markdown_nodate}. For example, an email verification email template may contain:
 
 \begin{verbatim}
 Hello, {{name}}! Please click on this link to verify your email:
