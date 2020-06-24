@@ -80,17 +80,6 @@
 \end{center}
 \vspace*{\fill}
 
-%\begin{figure}
-%	\centering \coverfont
-%	\coverfontsmall{Supervised by}\\
-%	\vspace{3mm}
-%	\coverfont{Dr. Job Zwiers}\\
-%	\vspace{30mm}
-%	Creative Technology BSc\\
-%	\vspace{3mm}
-%	University of Twente, Enschede, the Netherlands
-%\end{figure}
-
 \newpage
 
 \newcounter{savepage}
@@ -98,7 +87,13 @@
 
 \section*{Abstract}
 
-...
+Manually setting up appointments by email wastes tens of hours every month for professionals, because several email exchanges are required before receiving confirmation. Since not everyone can afford to hire full-time assistants, Email-based Intelligent Virtual Assistants (EIVA) can help by automating this task.
+
+In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings.
+
+They code is open-source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with focus on data privacy and user personalization.
+
+A user experience evaluation of both the EIVA and its app with 30 participants was conducted that found positive reception, with the average rating of the overall assistant and app experience	 of 4.4 and 4.5 out of 5 respectively. Users from over 10 countries participated.
 
 \newpage
 
@@ -1083,9 +1078,9 @@ In the last part, participants answer questions about the experience of both the
 
 \section{Evaluation}
 
-This section will discuss the results of UX research, what features people like, their privacy preferences, ease of use, analytics from the app, etc.
-
 10 users from 6 countries and territories participated in this research: Bonaire, India, Iran, the Netherlands, Poland, and the United States. However, Table 11 in Section 7.2 highlights that users from several other countries also visited the app, but didn't participate in the research.
+
+When 30 responses were reached (on June 24, 2020), the form stopped collecting new responses.
 
 \subsection{Introductory Survey}
 
@@ -1286,15 +1281,15 @@ Table 10 summarizes the most-requested additional features that participants wan
 
 \subsection{Product Usage}
 
-Although participants were allowed to use the webapp in May 2020 and June 2020, for data consistency, only data stored in ElasticSearch between June 1 and June 10 is analyzed. This ten-day period was that of heaviest participation, and therefore can serve as an approximate for the entire research period. In this period, a total of 1,536 pageviews and 10,772 API logs were collected.
+Data stored in ElasticSearch between June 1 and June 24 is analyzed, in which 30 participants used the product and responded to the questionnaire. In this period, a total of 2,244 pageviews and 19,177 API logs were collected.
 
 \subsubsection{Web App Traffic Analysis}
 
-This section analyzes the pageviews tracked during the ten-day period. As described in Section 6.5.3, a JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as parsing the user agent.
+As described in Section 6.5.3, a JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as parsing the user agent. Data from the 2,244 pageviews is analyzed in this section.
 
 \paragraph{Location}
 
-Users from four continents used the web application -- Europe, Asia, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the nine countries --- the Netherlands, India, Poland, Kenya, the United States, Finland, Indonesia, Germany, and France.
+Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands.
 
 Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, with the maximum usage coming from Flevoland, followered in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
 
@@ -1311,15 +1306,18 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 			\hline
 			\textbf{Country} & \textbf{Pageviews} \\
 			\hline
-			The Netherlands  & 584                \\
-			India            & 514                \\
+			India            & 986                \\
+			The Netherlands  & 666                \\
 			Poland           & 237                \\
-			Kenya            & 106                \\
-			United States    & 83                 \\
+			Kenya            & 118                \\
+			United States    & 109                \\
+			United Kingdom   & 92                 \\
+			Iran             & 18                 \\
+			Indonesia        & 6                  \\
+			Germany          & 4                  \\
 			Finland          & 4                  \\
-			Indonesia        & 4                  \\
-			Germany          & 2                  \\
 			France           & 2                  \\
+			Russia           & 2                  \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1341,8 +1339,8 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 			\hline
 			\textbf{Province} & \textbf{Pageviews} \\
 			\hline
-			Flevoland         & 348                \\
-			Overijssel        & 116                \\
+			Flevoland         & 363                \\
+			Overijssel        & 183                \\
 			Gelderland        & 39                 \\
 			Utrecht           & 33                 \\
 			South Holland     & 18                 \\
@@ -1363,7 +1361,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 
 \paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
 
-Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [], it placed behind both Mozilla Firefox and Apple Safari in usage by participants in this research. After Chrome followed the mobile version of Safari and the headless version of Chrome.
+Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 [], it placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-releated' is a sum of pageviews from headless Chrome, Chorome webviews, and Chromium.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1371,14 +1369,14 @@ Although Google Chrome is the most popular web browser as reported by Wikimedia 
 		\centering
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Operating System} & \textbf{Percentage} \\
+			\textbf{Operating System} & \textbf{Pageviews} \\
 			\hline
-			macOS                     & 49.93\%             \\
-			Other Linux               & 26.53\%             \\
-			Windows                   & 17.47\%             \\
-			Android                   & 2.22\%              \\
-			iOS                       & 1.96\%              \\
-			Ubuntu                    & 1.89\%              \\
+			macOS                     & 992                \\
+			Other Linux               & 529                \\
+			Windows                   & 377                \\
+			Android                   & 217                \\
+			iOS                       & 83                 \\
+			Ubuntu                    & 44                 \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -1388,14 +1386,14 @@ Although Google Chrome is the most popular web browser as reported by Wikimedia 
 		\caption{Usage by Web Browser}
 		\begin{tabular}{lr}
 			\hline
-			\textbf{Browser}  & \textbf{Percentage} \\
+			\textbf{Browser}  & \textbf{Pageviews} \\
 			\hline
-			Firefox           & 47.59\%                \\
-			Safari            & 30.25\%                \\
-			Chrome            & 19.17\%                \\
-			Safari (mobile)   & 1.50\%                 \\
-			Chrome (headless) & 1.17\%                 \\
-			Chromium          & 0.26\%                 \\
+			Firefox           & 772                \\
+			Chrome            & 726                \\
+			Safari            & 637                \\
+			Safari (mobile)   & 59                 \\
+			Chrome-related    & 34                 \\
+			Edge              & 3                  \\
 			\hline
 		\end{tabular}
 	\end{minipage} 
@@ -1403,7 +1401,7 @@ Although Google Chrome is the most popular web browser as reported by Wikimedia 
 
 \paragraph{Other Analytics}
 
-In terms of the user's browser language, English was the overwhelming majority, detected in over 95\% of all pageviews. This was divided into 65\% US English, 30\% general English, and 2\% British English. Apart from English, 1\% was Dutch and less than 1\% was Polish.
+In terms of the user's browser language, English was the overwhelming majority, detected in all but 35 pageviews. This was divided into 1,311 pageviews in US pageviews, 685 in general English, 206 in British English, and 7 in Indian English. Apart from English, 25 were in Dutch, 8 in Polish, and 2 in Russian. This is positive validation to keep the UI in English.
 
 Similarly, over 99\% of all pageviews were done on URLs on the secure HTTPS protocol, with only 4 requests using HTTP. This was due to the secure protocol redirection described in Section 6.2.5.
 
@@ -1411,9 +1409,9 @@ Most users used the web app a large screen, not a smartphone. In fact, over 30 u
 
 \subsubsection{API usage}
 
-Whenever a participant uses the web app, requests to the API are made. An average of 1,077 API requests were made on each day from June 1 to 10. The number of requests on each day is graphed in Figure 9.
+Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 9, totaling to 19,177.
 
-An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.2. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 4.
+An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.2. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
 
 \begin{figure}
 	\centering
@@ -1432,7 +1430,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 					mark=square,
 				]
 				coordinates {
-					(1,835)(2,877)(3,1219)(4,372)(5,1547)(6,1640)(7,1049)(8,1514)(9,1036)(10,683)
+					(1,1712)(3,1591)(5,3187)(7,2563)(9,1808)(11,1406)(13,734)(15,1510)(17,812)(19,853)(21,2227)(23,775)
 				};
 			\end{axis}
 		\end{tikzpicture}
@@ -1454,7 +1452,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 					mark=square,
 				]
 				coordinates {
-					(1,5)(2,0)(3,6)(4,0)(5,11)(6,5)(7,1)(8,4)(9,7)(10,2)
+					(1,18)(3,20)(5,25)(7,5)(9,12)(11,3)(15,6)(19,1)(21,8)
 				};
 				
 			\end{axis}
@@ -1467,7 +1465,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 
 To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
 
-Heatmaps convey the distribution of attention on a page []. A total of 3,271 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
+Heatmaps convey the distribution of attention on a page []. A total of 4,940 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
 
 \begin{wrapfigure}{l}{0.45\textwidth}\centering
 	\includegraphics[scale=0.5]{heatmap-sidebar.png}
@@ -1810,7 +1808,7 @@ This section ensures that we have your permission to conduct this research. Plea
 
 All raw responses from the survey are available in CSV format on the GitHub project: \url{https://github.com/AnandChowdhary/thesis} in \texttt{responses.csv}.
 
-The following table shows all collected responses for rating questions (each value is between 1 and 5). Rows 1 to 25 refer to response number and columns Q1 to Q12 refer to question number. The first 7 questions are about the web app experience, and the remaining 5 questions are about the assistant experience (Section 7.3). In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, and $Mo$ is the mode.
+The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, and $Mo$ is the mode.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1818,37 +1816,39 @@ The following table shows all collected responses for rating questions (each val
 		\centering
 		\begin{tabular}{|*{13}{p{0.5cm}|}}
 			\hline
-			& \textbf{I1} & \textbf{I2} & \textbf{I3} & \textbf{I4} & \textbf{I5} & \textbf{I6} & \textbf{I7} & \textbf{I8} & \textbf{I9} & \textbf{I10} & \textbf{I11} & \textbf{I12} \\
+			& \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} \\
 			\hline
-			\textbf{1} & 3 & 2 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 \\
-			\textbf{2} & 5 & 5 & 5 & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 \\
-			\textbf{3} & 4 & 4 & 4 & 3 & 5 & 5 & 3 & 4 & 3 & 3 & 4 & 3 \\
-			\textbf{4} & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 4 & 3 \\
-			\textbf{5} & 4 & 5 & 4 & 3 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 3 \\
-			\textbf{6} & 4 & 4 & 4 & 4 & 5 & 4 & 1 & 4 & 4 & 2 & 3 & 4 \\
-			\textbf{7} & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 4 & 4 & 4 \\
-			\textbf{8} & 5 & 5 & 5 & 4 & 5 & 4 & 3 & 5 & 5 & 5 & 5 & 4 \\
-			\textbf{9} & 4 & 5 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 3 \\
-			\textbf{10} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 4 & 4 & 3 & 5 \\
-			\textbf{11} & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 3 & 5 & 5 & 3 & 2 \\
-			\textbf{12} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{13} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{14} & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 3 & 4 & 4 & 3 \\
-			\textbf{15} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 5 & 5 & 3 & 4 \\
-			\textbf{16} & 3 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{1} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{2} & 4 & 4 & 4 & 3 & 5 & 5 & 3 & 4 & 3 & 3 & 4 & 3 \\
+			\textbf{3} & 4 & 4 & 4 & 4 & 5 & 4 & 1 & 4 & 4 & 2 & 3 & 4 \\
+			\textbf{4} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 5 & 5 & 3 & 4 \\
+			\textbf{5} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
+			\textbf{6} & 3 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{7} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{8} & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 4 \\
+			\textbf{9} & 4 & 4 & 4 & 3 & 4 & 3 & 4 & 4 & 5 & 4 & 4 & 3 \\
+			\textbf{10} & 3 & 4 & 3 & 3 & 3 & 3 & 3 & 1 & 2 & 2 & 2 & 2 \\
+			\textbf{11} & 5 & 5 & 5 & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 \\
+			\textbf{12} & 4 & 5 & 4 & 3 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 3 \\
+			\textbf{13} & 4 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 3 & 3 & 3 & 2 \\
+			\textbf{14} & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{15} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+			\textbf{16} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
 			\textbf{17} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{18} & 4 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 3 & 3 & 3 & 2 \\
-			\textbf{19} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{20} & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{21} & 3 & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 4 & 4 & 4 \\
-			\textbf{22} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
-			\textbf{23} & 4 & 5 & 4 & 4 & 4 & 5 & 4 & 5 & 4 & 5 & 4 & 4 \\
-			\textbf{24} & 3 & 4 & 3 & 3 & 3 & 3 & 3 & 1 & 2 & 2 & 2 & 2 \\
-			\textbf{25} & 4 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 4 & 4 & 3 \\
-			\textbf{26} & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 4 \\
-			\textbf{27} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
-			\textbf{28} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
-			$\bar{x}$ & \textbf{4.4} & \textbf{4.6} & \textbf{4.5} & \textbf{4.4} & \textbf{4.7} & \textbf{4.6} & \textbf{4.1} & \textbf{4.5} & \textbf{4.4} & \textbf{4.4} & \textbf{4.0} & \textbf{3.6} \\
+			\textbf{18} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 \\
+			\textbf{19} & 5 & 4 & 5 & 5 & 4 & 5 & 5 & 5 & 4 & 5 & 5 & 3 \\
+			\textbf{20} & 4 & 5 & 4 & 4 & 4 & 5 & 4 & 5 & 4 & 5 & 4 & 4 \\
+			\textbf{21} & 4 & 5 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 3 \\
+			\textbf{22} & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 4 & 3 \\
+			\textbf{23} & 3 & 2 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 \\
+			\textbf{24} & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 3 & 4 & 4 & 3 \\
+			\textbf{25} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 4 & 4 & 3 & 5 \\
+			\textbf{26} & 3 & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{27} & 4 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 4 & 4 & 3 \\
+			\textbf{28} & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 4 & 4 & 4 \\
+			\textbf{29} & 5 & 5 & 5 & 4 & 5 & 4 & 3 & 5 & 5 & 5 & 5 & 4 \\
+			\textbf{30} & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 3 & 5 & 5 & 3 & 2 \\
+			$\bar{x}$ & \textbf{4.4} & \textbf{4.6} & \textbf{4.5} & \textbf{4.4} & \textbf{4.7} & \textbf{4.5} & \textbf{4.2} & \textbf{4.5} & \textbf{4.4} & \textbf{4.4} & \textbf{4.1} & \textbf{3.6} \\
 			$\tilde{x}$ & 5 & 5 & 5 & 4.5 & 5 & 5 & 4 & 5 & 5 & 5 & 4 & 4 \\
 			$Mo$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 \\
 			\hline
