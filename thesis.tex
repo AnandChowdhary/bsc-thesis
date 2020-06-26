@@ -132,7 +132,7 @@ Setting up appointments by email is a non-trivial waste of time. Last year, 110 
 
 For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter," so much so that they hire assistants to help with the task \cite{cranshaw_calendar.help:_2017}. However, not everyone can afford full-time assistants and will therefore turn to software solutions.
 
-Email-based intelligent virtual assistants (EIVA \textipa{/i:vA/}) can help by automating these scheduling messages. An EIVA can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf, and the user can directly interact with the EIVA over email.
+An intelligent virtual assistant that can schedule appointments over email can be a faster and more affordable alternative to manually scheduling appointments. In this paper, such an assistant is proposed --- Email-based Intelligent Virtual Assistant (EIVA \textipa{/i:vA/}). An EIVA can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf, and the user can directly interact with the EIVA over email.
 
 The goal of this paper is to:
 
@@ -141,7 +141,7 @@ The goal of this paper is to:
 	\item Conduct a user evaluation on both the usability of the assistant over email and the user interface of the web application.
 \end{enumerate}
 
-Finally, as the external client is a communications technology company, the product should be built with best practices in mind, including using a modern stack of front-end and back-end programming languages and frameworks, with a focus on customizability, privacy, and security. Sensible defaults will be implemented based on user research and client feedback, and an ethical analysis will be conducted to answer questions of gender bias and AI-driven job loss.
+Finally, as the external client is a communications technology company, the product is built with best practices in mind, including using a modern stack of front-end and back-end programming languages and frameworks, with a focus on customizability, privacy, and security.
 
 \newpage
 
@@ -149,7 +149,7 @@ Finally, as the external client is a communications technology company, the prod
 
 \subsection{Scheduling}
 
-\subsubsection{How professionals schedule appointments}
+\subsubsection{Calendars}
 
 In their fundamental forms, calendars are the ``most basic of all human sensemaking devices" \cite{wajcman_digital_2019}. From time immemorial, calendars have been used as tools to establish patterns through which nearly all institutions, societies, and social groups manage orderliness. Notably, the first ``book" printed by Gutenberg in 1452 was a calendar \cite{editors_printing_nodate}, and today, professionals increasingly use digital calendars for the same purpose of time management and accountability. Digital calendars have become ``the standard office tool for coordinating and synchronizing work activities" \cite{wajcman_digital_2019}.
 
@@ -159,7 +159,7 @@ However, company-wide adoption of scheduling software is troublesome. For end us
 
 Professionals who can afford to hire assistants choose to delegate the hassle of scheduling. In a survey of administrative assistants, all but one reported that most of their work was scheduling-related, wasting hundreds of man-hours \cite{erickson_assistance:_2008}.
 
-\subsubsection{Shortfalls of calendaring tools}
+\subsubsection{Shortfalls of Calendaring Tools}
 
 Currently available products force the end user to manually enact the process of scheduling \cite{jennings_agent-based_1995}. For this reason, these tools avoid the need to actively reason about constraints and the user's scheduling preferences, such as which one of the many available meeting times to choose when underconstrained, and how the user would prefer to relax a meeting request when overconstrained \cite{berry_ptime:_2011}. In a work environment, there are further decisions to make, such as which conference room is best for a given type of meeting, or setting up remote meetings using video calling software. All of these decisions are presently passed onto the end user.
 
@@ -169,45 +169,63 @@ Apart from calendaring tools, some users opt for scheduling tools that have addi
 
 Although digital calendars have been the standard office tool for professionals, they are currently unable to bridge the communication gap between the end user and the invitees. Current scheduling products also lack a holistic solution to calendaring due to a wide variation in people's meeting needs. Thus, end users have to rely upon emailing to communicate meeting details effectively, wasting otherwise productive man-hours.
 
-\subsubsection{Virtual assistant-based scheduling tools}
+\subsubsection{Smarter scheduling tools}
 
 The previous section highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants (EIVA) and therefore lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of an EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
 
-Microsoft's Cortana, though primarily a speech-based assistant targeted towards consumers, has calendaring and scheduling features as well. Cortana has built-in Office 365 capabilities, Microsoft's enterprise solution that includes integrated email accounts with calendars. Apart from being available on mobile devices, Cortana is also built into Windows 10, which has over 400 million users. Similarly, Amazon's Alexa and Apple's Siri also have scheduling features.
+\paragraph{Scheduling Interfaces}
 
-...Info about AI chatbots for scheduling \cite{noauthor_ai_nodate}.
+The first ``smart" scheduling tools took the form of applications where users could enter a few possible times into an online calendar and guests would select the slots they preferred. Companies such as MeetOMatic and MeetMax were early pioneers in this field, founded in 1998 and 2003 respectively. In the Netherlands, Datumprikker is the most popular group scheduler, with almost 20 million unique users.
 
-The leader in the AI-powered scheduling assistant industry is x.ai, a New York-based startup founded in 2014 that has raised over \$40 million in venture capital \cite{noauthor_x.ais_2018}. Using the service, customers can select between Amy and Andrew, a female and male virtual assistant respectively. A major competitor to x.ai is Clara by Clara Labs, a similar virtual assistant for scheduling over email \cite{noauthor_clara_nodate}. Clara can also send email reminders to confirm attendance and find available conference rooms in an office.
+For one-on-one meetings, products such as Calendly are used by consumers. Similar to Datumprikker, users can enter their preferred time slots or connect with their calendars, and guests can select their preferred times. Other products in this space are Doodle, TimeTrade, and Mixmax.
 
-In the Netherlands, a popular service called Datumprikker allows users to send meeting invitations, allowing guests to select their preferred times. Calendly, an Atlanta-based startup, currently leads this category, although their product is focused on one-on-one meetings as opposed to Datumprikker's preference for multiple guests.
+However, the same problem of ``app fatigue" applies to these types of schedulers. According to Richardson, there is ``no time in the lives of busy professionals for yet another finicky computer program; what people really needed was a machine that worked just like a human assistant"  \cite{noauthor_ai_nodate}.
+ 
+ \paragraph{Agent-based Schedulers}
+ 
+ Microsoft's Cortana, though primarily a speech-based assistant targeted towards consumers, has calendaring and scheduling features as well. Cortana has built-in Office 365 capabilities, Microsoft's enterprise solution that includes integrated email accounts with calendars. Apart from being available on mobile devices, Cortana is also built into Windows 10, which has over 400 million users. Similarly, Amazon's Alexa and Apple's Siri also have scheduling features. However, these can merely send calendar invitations but cannot automate the email back-and-forth process.
+ 
+ There are currently two major products in the market with support for emails back-and-forth. The leader in the AI-powered scheduling assistant industry is x.ai, a New York-based startup founded in 2014 that has raised over \$40 million in venture capital \cite{noauthor_x.ais_2018}. Using the service, customers can select between Amy and Andrew, a female and male virtual assistant respectively, which send send emails with proposed times and confirm appointments.
+ 
+The main competitor to x.ai is Clara by Clara Labs, a similar virtual assistant for scheduling over email \cite{noauthor_clara_nodate}. Clara can also send email reminders to confirm attendance and find available conference rooms in an office. However, Clara employs a hybrid approach --- when it has a high confidence in its proposed response automatically, but falls back on humans in other cases.
 
-There are also highly specialized solutions available. For example, in the travel space, Mezi uses a chatbot interface to ask the user questions, and can book their flights and hotels automatically and add them to the user's calendar. In the high-tech space, Google's Duplex uses advanced neural text-to-speech and speech recognition to place real phone calls to businesses to schedule appointments.
+There are also highly specialized solutions available. For example, in the travel industry, \emph{Mezi} uses a chatbot interface to ask the user questions, and can book their flights and hotels automatically and add them to the user's calendar. In the high-tech space, \emph{Duplex} from Google uses advanced neural text-to-speech and speech recognition to place real phone calls to businesses to schedule appointments.
 
-\subsection{Web development stack}
+\subsection{Web Development}
+
+For EIVA, a web application and an email interface have to be developed. JavaScript enables interactive web pages and is one of the core technologies of the web []. The vast majority of websites use it for client-side page behavior. Since JavaScript can also be used for server-side execution (using a runtime such as Node.js or Deno), it is the ideal choice for full-stack web development.
+
+However, building large-scale applications with JavaScript is challenging because of loose types that result in otherwise preventable errors. This has led to demand for custom tooling. Today, there are many competing languages that compile to JavaScript, including TypeScript, ClosureScript, CoffeeScript, Elm, PureScript, and others.
+
+According to the annual survey \emph{The State of JavaScript}, out of all the languages that compile to JavaScript, TypeScript is the language of choice for most developers. The number of developers who responded that they have previously used TypeScript and would like to use it again has grown from 20.8\% in 2016 to 58.5\% in 2019. Only 12\% of all respondents in 2019 had not heard on TypeScript or were not interested in learning it [].
+
+TypeScript is developed and maintained by Microsoft and is a strict syntactical superset of JavaScript that adds static typing to the language \cite{hutchison_understanding_2014}. Designed for large applications, TypeScript transcompiles to JavaScript and can be used for both client-side and server-side execution, which makes it a great fit for the development of EIVA \cite{huisman_inference_2017}.
 
 \subsubsection{Backend}
 
-TypeScript is used \cite{hutchison_understanding_2014}. TypeScript has types \cite{huisman_inference_2017}.
+To execute JavaScript on the server, a runtime environment is required. Node.js is the most popular such runtime and has an event-driven architecture capable of asynchronous I/O \cite{kaimer_return_2018}. This makes Node.js optimized for scalability and especially useful for real-time applications.
+
+\subsubsection{Frontend}
 
 Vue.js is used \cite{deng_development_2020}.
 
-Node.js is used \cite{kaimer_return_2018}.
+\subsubsection{Email Interfacing}
 
-\subsection{Author's previous work}
+\subsection{Author's Previous Work}
 
-EIVA is the evolution of a project the author envisioned several years ago along with the client. In October 2017, the client (Speakup BV) organized a hackathon in Enschede, and the author participated with a colleague to build a concept of a disruptive communication technology. During the 24-hour period, we built ``Ara", a scheduling chatbot app which could message people from your team on your behalf to schedule meetings. We won two awards worth €500 each. Although Ara was only a prototype of an app-based assistant, it started a relationship with Florian Overkamp, the founder and chief entrepreneur of Speakup, and we decided to take the idea forward.
+EIVA is the evolution of a project the author and the client envisioned several years ago. In October 2017, the client (Speakup B.V.) organized a hackathon in Enschede, and the author participated with a colleague to build a concept of a disruptive communication technology. During the 24-hour period, \emph{Ara}, a chatbot app was developed that could send scheduling messages to team members also using the app. Two prizes worth €500 each were awarded for this project. Although Ara was only a prototype of an app-based assistant, it started a relationship with Florian Overkamp, the founder and chief entrepreneur of Speakup, and it was decided to take the idea forward in the coming months.
 
-During the coming summer, I worked closely with Speakup on materializing Ara. For a period of two months, I expanded on the idea of scheduling assistants and decided to focus on email as the primary form factor. At the end of the project, I had a functional prototype of an assistant that could send appointment confirmation emails and used ``Wizard of Oz AI" to understand natural language, primarily based on a few ``if" conditions.
+During the summer of 2018, the researcher worked closely with Speakup on materializing Ara. For a period of two months, the idea of scheduling assistants was expended, and it was decided to focus on email as the primary form factor. At the end of the project, a functional prototype of an assistant was developed that could send appointment confirmation emails. This used ``Wizard of Oz AI" to understand natural language, primarily build using `if' statements.
 
-For a few months, I used Ara myself and tested the assistant's email confirmation feature. In fact, in a 2017 interview titled ``UT student among the top 50 young entrepreneurs" about my name in the Dutch business newspaper Het Financieele Dagblad's annual list of the 50 most-innovative entrepreneurs and professionals in the Netherlands with UToday, University of Twente's independent publication, Jelle Posthuma stated the following in the beginning of the article:
+For a few months, Ara was used by the researcher to test the assistant's email confirmation feature. In fact, in a 2017 interview titled `UT student among the top 50 young entrepreneurs' with UToday, University of Twente's independent publication, Jelle Posthuma stated the following:
 
 \begin{displayquote}
-	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments."
+	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments." []
 \end{displayquote}
 
-Although Ara didn't have any AI at this point, it was a successful proof-of-concept. The following summer, I worked again with Speakup, but primarily on building on top of an open-source SaaS framework that I had built over a few months (Staart API and Staart UI). This is the underlying framework that EIVA is built on top of. The budget also allowed me to spend some more time on exploring what a service-orientated implementation of Ara could look like.
+Although Ara didn't have any AI at this point, it was a successful proof-of-concept. During the summer of 2019, the researcher and the client worked together on building on top of an open-source framework built for Software-as-a-Service (SaaS) companies built by the researcher (Staart API and Staart UI) []. This is the underlying framework that EIVA is built on top of.
 
-During this Graduation Project, I decided to continue working with Speakup, and EIVA is a direct successor to Ara. However, the thesis presented the opportunity to take a research-driven approach, and no earlier code was reused, resulting in a new product built from the ground up with more sophisticated languages and frameworks.
+Finally, during this Graduation Project, the researcher and the client continued working together, and EIVA is a direct successor to Ara. However, this thesis presented the opportunity to take a research-driven approach, and no earlier code was reused, resulting in a new product built from the ground up with more sophisticated languages and frameworks.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
