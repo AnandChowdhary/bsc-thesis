@@ -209,13 +209,37 @@ Although Ara didn't have any AI at this point, it was a successful proof-of-conc
 
 During this Graduation Project, I decided to continue working with Speakup, and EIVA is a direct successor to Ara. However, the thesis presented the opportunity to take a research-driven approach, and no earlier code was reused, resulting in a new product built from the ground up with more sophisticated languages and frameworks.
 
-Table 1: A comparison of Ara and EIVA
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{Comparison of Ara and EIVA}
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\textbf{Feature} & \textbf{Ara} & \textbf{EIVA}         \\
+			\hline
+			AWS infrastructure & \checkmark & \checkmark \\
+			Node Natural for NLP & $\times$ & \checkmark \\
+			Language & JavaScript & TypeScript \\
+			Node.js Runtime & v9.x & v12.x–v14.x \\
+			Full-stack framework & $\times$ & Staart \\
+			Support for teams & $\times$ & \checkmark \\
+			Developer API & $\times$ & \checkmark \\
+			Data protection & $\times$ & \checkmark \\
+			Open-source license & MIT & SSPL \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
+\newpage
+
+\section{Methods and Techniques}
+
+...text...
 
 \newpage
 
 \section{Ideation}
-
-This section will show the ideation stage of development, including many cycles of prototypes and mockups for the app UI, the system architecture, etc.
 
 \subsection{Concept Exploration}
 
@@ -585,7 +609,7 @@ To identify the language of an incoming email, Google Cloud's Natural Language A
 
 A Naive Bayes classifier is used to identify the intent of an incoming email from one of four categories --- setting up a new appointment, rescheduling an existing appointment, canceling an appointment, or sending a summary of the appointments for the day.
 
-Naive Bayes classifiers are "probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness \cite{noauthor_lecture_nodate}.
+Naive Bayes classifiers are probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness \cite{noauthor_lecture_nodate}.
 
 The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. Training data consisting of common phrases to perform the aforementioned actions is used, for example:
 
@@ -655,7 +679,7 @@ For ``magic links" for email verification, password reset, or appointment confir
 
 \subsubsection{Authentication}
 
-Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore must safer than general-purpose hash functions \cite{provos_future-adaptive_1999}. It also has built-in salting to prevent rainbow table attacks \cite{noauthor_how_2010}.
+Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore much safer than general-purpose hash functions \cite{provos_future-adaptive_1999}. It also has built-in salting to prevent rainbow table attacks \cite{noauthor_how_2010}.
 
 For authentication, the industry-standard access/refresh token combination is used. When logging in, both tokens are generated and stored on the client (Section 6.2.3), with the access token expiring after 15 minutes and the refresh token after 30 days. The expired access token can be exchanged for a new one using the refresh token.
 
@@ -1783,13 +1807,13 @@ Phone: +31 0 887732587\newline
 Email: info@speakup.nl
 
 \paragraph{Research Supervisor}
-dr. Job Zwiers\newline
+Dr. Job Zwiers\newline
 Address: Zilverling 1060, 7522NH Enschede, the Netherlands\newline
 Phone: +31 0 534893816\newline
 Email: j.zwiers@utwente.nl
 
 \paragraph{Secretary of the Ethics Committee}
-drs. Petri de Willigen\newline
+Dr. Petri de Willigen\newline
 Address: Zilverling 1051, 7522NH Enschede, the Netherlands\newline
 Phone: +31 0 534892085\newline
 Email: ethics-comm-ewi@utwente.nl
