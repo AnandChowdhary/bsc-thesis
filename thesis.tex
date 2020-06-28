@@ -205,6 +205,21 @@ TypeScript is developed and maintained by Microsoft and is a strict syntactical 
 
 To execute JavaScript on the server, a runtime environment is required. Node.js is the most popular such runtime and has an event-driven architecture capable of asynchronous I/O \cite{kaimer_return_2018}. This makes Node.js optimized for scalability and especially useful for real-time applications.
 
+TypeScript features like interfaces and decorators are extensively used in the codebase. For example, the \texttt{@Controller} decorator is used to describe the route of a controller, which is then injected in the Express application.
+
+\begin{verbatim}
+import { Controller, Post } from "@staart/server";
+@Controller("example")
+export class ExampleController {
+  @Post()
+  function postExample() {
+    return { success: true };
+  }
+}
+\end{verbatim}
+
+The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.10) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understand the source code much clearer.
+
 \subsubsection{Frontend}
 
 Vue.js is used \cite{deng_development_2020}.
@@ -263,7 +278,9 @@ Finally, during this Graduation Project, the researcher and the client continued
 
 \section{Ideation}
 
-\subsection{Concept Exploration}
+The Ideation phase is divided into three parts --- Requirements Capture, Assistant Architecture, and Web App Interface. In the first part, a stakeholder analysis is conducted and user personas are used to better understand the usage context for users. In the second part, an early architectural exploration of the email process is conducted. In the last part, mockups and prototypes of the user interface (UI) of the web app are designed and evaluated.
+
+\subsection{Requirements Capture}
 
 \subsubsection{Stakeholder Analysis}
 
@@ -362,7 +379,7 @@ Lee is a 50 year-old startup founder who previously served in the Air Force. Wit
 			Tanya         & Low             & Email & Appointments with professors \\
 			Julia         & Medium          & WhatsApp & Managing time slots          \\
 			Joy           & High            & Personal Assistant & Calls with team              \\
-			Lee           & Medium          & Paper-and-pen & Meetings with partners       \\
+			Lee           & Medium          & Pen-and-paper & Meetings with partners       \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -372,47 +389,44 @@ Though the use cases for each persona are different, they all fall under the umb
 
 \subsection{Assistant Architecture}
 
-An exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted.
-
 \begin{wrapfigure}{l}{0.5\textwidth}\centering
 	\includegraphics[scale=0.097]{drawing-all-process.jpg}
-	\caption{Email process ideation}
+	\caption{Email Process Ideation}
 \end{wrapfigure}
 
-In Figure 1, the each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email. The process assumes that incoming emails are accepted using mail exchanger (MX) records pointed to Amazon Web Services (AWS)'s Simple Email Service (SES) [rfc2181]. This was decided based on literature research (Section 2.2).
+A pen-and-paper exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted. In Figure X, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
 
-Then, the incoming email is saved in an S3 bucket and a Lambda serverless function is invoked that triggers the API. The diagram also showcases the connection of the API with other services like a database, Redis, Stripe, and ElasticSearch.
+Here, the processof receiving an email, saving the contents, and invoking a serverless function is visualized. The diagram also showcases the connection of the API with other services like a database and payment gateway.
 
 The API then finds the owner of the team the email was addressed to and whether or not the owner themselves sent the email. After classification, one of several processes are queued.
 
 \begin{wrapfigure}{r}{0.5\textwidth}\centering
 	\includegraphics[scale=0.092]{drawing-rules-ui.jpg}
-	\caption{Rule-based process ideation}
+	\caption{Rule-based Process Ideation}
 \end{wrapfigure}
 
-In a separate exploration, a rule-based approach was chosen rather than specific tasks that the assistant can perform. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform action when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
+In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform action when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
 
 In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{and} its \emph{subject} \emph{contains} the text (input), \emph{and} its \emph{body length} \emph{is greater than or equal to} (length), \emph{and} the \emph{day} \emph{is not} one of the days \emph{Sat, Sun}, automatically reply with \emph{template} \emph{Vacation responder} and also email \emph{me} with the (text). Complicated rules such as these can be generated by the proposed UI, allowing users to automate several different types of repetitive email tasks.
 
 \subsection{Web App UI}
 
-...text...
+For setting preferences and managing scheduled appointments, a functional and easy-to-use companion web application must be developed. In Figure 4, early wireframes of the web app are designed, using both desktop and smartphone form factors. After creating an account and verifying their email, users can log in and will be taken to the onboarding interface to set up their assistant. Then, users are taken to the Dashboard page with an overview of their meetings, and can choose to go to the Settings page to configure their preferences.
+
+Figure 4 also shows a two-column layout for desktop pages, with the left sidebar for the primary navigation and a card for the main content. On mobile, a hamburger menu is used with the same design. An accessibility options floating button is also shown on the bottom-right corner of each design. In Figure 5 and 6, more detailed wireframes are drawn using a mobile stencil on paper.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{drawing-ui.jpg}
 	\caption{Webpage Wireframes on Paper}
 \end{figure}
 
-...text...
-
 \begin{figure}
-	\includegraphics[width=\textwidth]{ideation-wall.jpg}
+	\center
+	\includegraphics[width=7cm]{ideation-wall.jpg}
 	\caption{Mobile Wireframes Exploration}
 \end{figure}
-
-...text...
-
-\begin{figure}
+ 
+ \begin{figure}
 	\centering
 	\begin{minipage}{.5\textwidth}
 		\centering
@@ -427,7 +441,27 @@ In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{
 	\caption{Mobile Wireframes on Paper}
 \end{figure}
 
-...text...
+ A basic version of each required interface is shown in Figure 6, with the following interfaces from left to right and top to bottom:
+\begin{enumerate}
+	\item How to Use: Help new users understand how to communicate with their assistant over email
+	\item Scheduling: Set scheduling preferences like active days and working hours
+	\item Login: Sign in to an account using email and password or Google
+	\item Register: Create a new account with name, email, and password
+	\item Extensions: Advanced integrations like custom API keys and authentication for Clearbit or Google Calendar
+	\item Domains: Manage verified domain names for team accounts
+	\item 2FA: Post-login verification for two-factor authentication
+	\item Face ID: Optional login verification using Apple's Face ID
+	\item Edit Location: Map interface to update location details
+	\item Calendar: Overview interface for meetings in the coming month
+	\item Meetings: A list of upcoming meetings with user avatars
+	\item Meetings: An expanded card interface for upcoming meetings
+	\item Calendar: Connections with various calendaring services
+	\item Calendar: List-view for upcoming appointments
+	\item Payments: Invoices and credit card details for SaaS payments
+	\item Locations: List of saves locations with map interface
+\end{enumerate}
+
+Lastly, both low- and high-fidelity mockups of the desktop interface were designed using Figma, a web-based vector graphics editor and prototyping tool []. Figure 7 shows a comparison of a selection of these mockups. The low-fidelity mockups are used for layouting and positioning, while the high-fidelity mockups add detail such as colors, shadows, and detailed UI elements like form controls.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{mockup-1.png}
@@ -440,17 +474,15 @@ In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{
 
 \section{Specification}
 
-This section will discuss the specifics on how the EIVA will be built.
+Based on the literature research in Section 2, this chapter focuses on specifying the key requirements for building EIVA. In the first part, the tasks required while scheduling an appointment are understood; and in the second part, personalization and customization aspects are specified.
 
 \subsection{Tasks required in scheduling by an EIVA}
 
-Since the majority of currently available scheduling tools are not assistant-based, most users prefer to use email for scheduling rather than currently available specialized software. A survey of workers in the field of information management found that over 80\% of the respondents use email for scheduling and organization \cite{ducheneaut_e-mail_2001}.
-
-The process of scheduling online appointments is non-trivial and requires several rounds of communication, coordination, and negotiation.
+Today, most users prefer to use email for scheduling rather than currently available specialized software. A survey of workers in the field of information management found that over 80\% of the respondents use email for scheduling and organization \cite{ducheneaut_e-mail_2001}. However, this wastes a lot of time because the process of scheduling online appointments is non-trivial and requires several rounds of communication, coordination, and negotiation. This section specifies the required actions for scheduling such appointments.
 
 \subsubsection{Understanding natural language over email}
 
-Communication with devices using natural language is commonplace for many people today, especially with the advent of affordable smart voice assistants, such as Alexa, available on Amazon Echo; and Google Assistant, available on Google Home \cite{de_barcelos_silva_intelligent_2020}. Their interface, which translates a human's intention into a device's control commands using speech recognition and natural language interpretation, is known as a Natural Language Interface (NLI). The dialogue-style nature of the interactions between the user and the device and their ability to preserve context across different queries are benefits of using NLIs over other user interfaces \cite{kiseleva_predicting_2016}.
+Communication with devices using natural language is commonplace for many people today, especially with the advent of affordable smart voice assistants, such as Alexa, available on Amazon Echo; and Google Assistant, available on Google Home \cite{de_barcelos_silva_intelligent_2020}. Their interface, which translates a human's intention into a device's control commands using speech recognition and natural language interpretation, is known as a Natural Language Interface (NLI). Some NLIs are extremely useful not only because of the dialogue-style nature of interactions, but also the ability to preserve context across different queries \cite{kiseleva_predicting_2016}. Therefore, the EIVA must remember a user's preferences from previous meetings. 
 
 Personification of the scheduling process using natural language has the additional benefit of increased likeliness of error forgiveness by end users. In a study, over 80\% of the participants who encountered errors in NLIs understanding them said that either their attitude was unaffected or the users themselves ``must have typed in something wrong" \cite{kelley_iterative_1984}. Furthermore, NLIs allow people to use their existing calendaring tools and idiosyncrasies by adopting email as the user interface and natural language conversations as the interaction mode. For example, a message such as ``Please schedule an appointment with Florian for next week" should be enough for the EIVA to take over the remainder of the process.
 
@@ -474,23 +506,13 @@ To make sure that all guests have the most recent parameters, confirmations and 
 
 \subsubsection{Authorship}
 
-One of the first discussed questions with the client is whether or not recipients should clearly know that an email sent by the EIVA is not actually sent my a human assistant. This question of authorship is not just a technical one (with a choice in the user interface), but an ethical one as well. To explore this, the examples of automated jourmalism and crowdsourced authorship are used.
+One of the first discussed questions with the client is whether or not recipients should clearly know that an email sent by EIVA is not actually sent by a human assistant. This question of authorship is not just a technical one, but an ethical one as well. In journalism, for example, there are articles entirely written by AI-powered virtual agents, which raises the question \emph{Who is the author of an article written by a virtual agent?} A 2005 study found that research participants attribute story credit to the programmers who developed the AI or the news organization publishing the story \cite{montal_i_2017}.
 
-\paragraph{Automated Journalism}
-
-If you read major American newspapers such as \emph{Forbes} or the \emph{Los Angeles Times}, chances are you've already read a story entirely written by an AI-powered software system. This process is known as automated journalism, and highlights an important question about authorship: \emph{Who is the author of an article written by a virtual agent?} A 2005 study found that research participants attribute story credit to the programmers who developed the AI or the news organization publishing the story \cite{montal_i_2017}.
-
-However, this is not the full picture. Since machine learning models require large amounts of training data that the agent ``learns" from (and, in some cases depending on the implementation, the output is largely inspired by the training data), the human authors of said data are also worthy contenders for the credit.
-
-As another example, \emph{Summly}, a London-based startup founded in 2011 was acquired by \emph{Yahoo!} for \$30 million in 2013. At the name suggests, \emph{Summly} specialized in summarizing news sources using AI-powered software. Using ``thousands of sources", users could read algorithmically-generated summaries of news stories using their app. If a human was summarizing a news story, say from 20 paragraphs to 2 paragraphs, we wouldn't give them credit over the new story. In this case, the AI is essentially just a summarizing tool, except that it uses multiple, sometimes hundreds, of difference sources for each story. I would argue that the published summary should still be credited to the hundreds of authors of the data the AI used to generated summaries.
-
-The most important reason why authorship is important is credibility. If you know the name of the author of an article in a major newspaper or magazine, you can find out more information about them, perhaps by visiting their social media handles. If you have any questions about their work, or found a mistake in their article, you can contact them directly. In the case of an article written by an unnamed virtual agent, the only option is to find the contact information of the publication. This is also the case with EIVA, where users can name their own assistant and essentially create a human-like entity.
+The key reason why authorship is important is credibility. If you know the name of the author of an article in a major newspaper or magazine, you can find out more information about them, perhaps by visiting their social media handles. If you have any questions about their work, or found a mistake in their article, you can contact them directly. In the case of an article written by an unnamed virtual agent, the only option is to find the contact information of the publication. This is also the case with EIVA, where users can name their own assistant and essentially create a human-like entity, but without the necessary digital history required for authenticity.
 
 \paragraph{Authorship Clarity}
 
-In news articles written by virtual agents, there is ``no visible indicator for readers to verify whether an article was written by a robot or human", which raises issues of transparency \cite{dorr_ethical_2017}. Both \emph{Summly} and related software claim the created work as their own, or strongly imply it by not citing individual source authors.
-
-In the case of EIVA, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human. Some users may be completely fine with deceiving recipients on such a ``trivial" authorship question, while for others this sets a powerful and potentially harmful precedent for AI authorship and will choose to make that information clear.
+In news articles written by virtual agents, there is ``no visible indicator for readers to verify whether an article was written by a robot or human", which raises issues of transparency \cite{dorr_ethical_2017}. In the case of EIVA, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human. Some users may be completely fine with deceiving recipients on such a ``trivial" authorship question, while for others this sets a powerful and potentially harmful precedent for AI authorship and will choose to make that information clear.
 
 Therefore, it is recommended to keep such decisions customizable. Using the EIVA website's settings page, consumers should be able to set preferences about whether they want their assistant to inform end users about the fact that they are virtual agents, not human assistants. By default, this is preselected for all users, and is a simple checkbox user interface with the message ``Inform recipients that your assistant is a virtual assistant". This clarity highlights the commitment to personalization that such a product should bring.
 
@@ -534,48 +556,9 @@ EIVA consists of a frontend web app that users directly interact with, and a bac
 
 \subsubsection{Structure}
 
-...file structure...Staart API...async json...controller injection...TS to JS...
-
 \paragraph{Staart API}
 
 EIVA's backend project is based on Staart API, an open-source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
-
-\paragraph{File Structure}
-
-The file structure of the backend project consists of a \texttt{src} directory with the code, \texttt{static} directory to serve static files (a \texttt{favicon.ico} shortcut icon and \texttt{robots.txt} to avoid search engine indexing), a \texttt{prisma} directory with the database configuration and migrations, and the following configuration files:
-
-\begin{itemize}
-	\item \texttt{captain-definition} for Caprover configuration for deployment
-	\item \texttt{Dockerfile} with commands to assemble a Docker image
-	\item \texttt{package-lock.json} is the npm-generated lockfile
-	\item \texttt{package.json} with dependencies and repository info
-	\item \texttt{tsconfig.json} with the TypeScript configuration
-\end{itemize}
-
-The \texttt{src} directory consists of several subdirectories, the configuration file (Section 6.1.3), initialization tests (Section 6.5.3), and the server file that sets up the app. The server file setups the root controller and adds middleware like the rate limiter and error handler.
-
-Inside \texttt{src} are \texttt{\_staart}, the directory containing internal Staart API helper functions; \texttt{@types} with custom TypeScript types for untyped dependencies (Section 6.1.2); \texttt{eiva} with the helpers and utilities of EIVA; \texttt{controllers} with the API controllers (Section 6.1.10); \texttt{crons} with scheduled jobs (Section 6.1.11); and \texttt{templates} with markdown templates for transactional emails (Section 6.1.6).
-
-\subsubsection{TypeScript}
-
-As discussed in Section 2.2, TypeScript was chosen as the primary development language because of its strong types that help with error mitigation. Since a majority of packages published on npm do not contain types, a common practice is to create a declaration file \cite{huisman_inference_2017}. The \texttt{src/@types} directory is used to adapt 5 dependencies for usage with TypeScript.
-
-The TypeScript compilation process is also part of the build step in Continuous Integration (CI), so code is only shipped to production if there are no errors in the build (Section 6.5.2).
-
-Furthermore, TypeScript features like interfaces and decorators are extensively used in the codebase. For example, the \texttt{@Controller} decorator is used to describe the route of a controller, which is then injected in the Express application.
-
-\begin{verbatim}
-import { Controller, Post } from "@staart/server";
-@Controller("example")
-export class ExampleController {
-  @Post()
-  function postExample() {
-    return { success: true };
-  }
-}
-\end{verbatim}
-
-The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.10) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understand the source code much clearer.
 
 \subsubsection{Configuration Management}
 
