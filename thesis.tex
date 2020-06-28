@@ -554,10 +554,6 @@ EIVA consists of a frontend web app that users directly interact with, and a bac
 
 \subsection{Backend APIs}
 
-\subsubsection{Structure}
-
-\paragraph{Staart API}
-
 EIVA's backend project is based on Staart API, an open-source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
 
 \subsubsection{Configuration Management}
@@ -589,8 +585,6 @@ export class Staart extends Server {
 This central management makes it very easy to update defaults (like port 80), and the \texttt{.env} file contains environment-specific values, like port 7000 for development and 443 for production. A \texttt{.env.example} file is available in the repository for reproduction. A total of 68 exported members configure various parts of the application, from database connection URLs to secret keys for signing JSON Web Tokens (Section 6.1.7).
 
 \subsubsection{Natural Language Processing}
-
-...text...training data...tokenizing...chrono/parse...
 
 There are three Natural Language Processing (NLP) systems implemented in EIVA's backend --- language detection and variable extraction, intent classification, and date parsing. These systems work together during the scheduling process (Section 6.1.11) and use various libraries.
 
@@ -695,21 +689,30 @@ Both tokens are JWTs and contain all required information; the access token incl
 
 Since many professionals prefer using multiple emails (perhaps a personal and a work email) and the assistant should recognize all their emails, a user account can be associated with multiple emails. This also means that users are free to log in with any of their verified emails.
 
-\paragraph{API Keys and Access Tokens}
-
-...text...
-
 \paragraph{Rate Limits}
 
-...text...
+Rate limits are used to control the rate of requests to the API and is also used to prevent DDoS attacks []. An HTTP 429 (Too Many Requests) error is thrown if a client makes too many requests within a given time frame. By default, 60 requests per minute are permitted per IP address.
 
-\subsubsection{Databases}
+For programatic access to the service, users can generate API keys or access token to control their assistant or accounts respectively. The frontend web app also uses such an API key for an increased rate limit of 1,000 requests per minute. An in-memory key-value store is used to track these limits.
 
-...text...Prisma...
+Lastly, brute force and speed limits are also imposed. To prevent brute force attacks on authentication endpoints like login and register, more than 5 requests in a period of 5 minutes results in a delay of 250 milliseconds per request. Similarly, all other endpoints also add a 100 millisecond per request delay after 1,000 requests within ten minutes.
+
+\subsubsection{Database and Storage}
+
+MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open-source software under the GNU General Public License []. For communication with the database, the open-source database toolkit \emph{Prisma} is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository.
+
+Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 10 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{database-basic.png}
+	\caption{Simplified Database Schema with Relations}
+\end{figure}
 
 \paragraph{Redis}
 
-...text...KV...caching...
+Apart from MariaDB, \emph{Redis} is used for storing data that requires minimal query latency. Redis is an in-memory key–value database, and in-memory processing has been called ``the ultimate solution to latency" []. For workflows such as checking if a JWT has been invalidated, a MariaDB database query takes hundreds of milliseconds, whereas Redis only takes tens, and is therefore used for caching and invalidation in EIVA.
+
+\paragraph{S3} Although there are no binary files required for the API, a database is not ideal for storing larger amounts of text data. For storing these items like raw incoming emails (typically a few kilobytes in size), Amazon Web Services (AWS)'s Simple Storage Service (S3) is used. S3 provides object storage along with backup, recovery, and encryption.
 
 \subsubsection{Third-party APIs}
 
