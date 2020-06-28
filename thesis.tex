@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{multicol}
+\usepackage{alltt,xcolor}
 \usepackage[hidelinks]{hyperref}
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{ieeetr}
@@ -24,6 +25,14 @@
 \pgfplotsset{compat=1.8}
 \setcounter{tocdepth}{2}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\definecolor{comment}{RGB}{160, 161, 167}
+\definecolor{keyword}{RGB}{166, 38, 164}
+\definecolor{section}{RGB}{228, 86, 73}
+\definecolor{literal}{RGB}{1, 132, 187}
+\definecolor{string}{RGB}{80, 161, 79}
+\definecolor{class}{RGB}{193, 132, 1}
+\definecolor{variable}{RGB}{152, 104, 1}
+\definecolor{symbol}{RGB}{64, 120, 242}
 
 % https://tex.stackexchange.com/a/11395/217439
 \newcommand\score[2]{%
@@ -91,7 +100,7 @@ Manually setting up appointments by email wastes tens of hours every month for p
 
 In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings.
 
-They code is open-source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with focus on data privacy and user personalization.
+They code is open source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with focus on data privacy and user personalization.
 
 A user experience evaluation of both the EIVA and its app with 30 participants was conducted that found positive reception, with the average rating of the overall assistant and app experience of 4.4 and 4.5 out of 5 respectively. Users from over 10 countries participated.
 
@@ -238,7 +247,7 @@ For a few months, Ara was used by the researcher to test the assistant's email c
 	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments." []
 \end{displayquote}
 
-Although Ara didn't have any AI at this point, it was a successful proof-of-concept. During the summer of 2019, the researcher and the client worked together on building on top of an open-source framework built for Software-as-a-Service (SaaS) companies built by the researcher (Staart API and Staart UI) []. This is the underlying framework that EIVA is built on top of.
+Although Ara didn't have any AI at this point, it was a successful proof-of-concept. During the summer of 2019, the researcher and the client worked together on building on top of an open source framework built for Software-as-a-Service (SaaS) companies built by the researcher (Staart API and Staart UI) []. This is the underlying framework that EIVA is built on top of.
 
 Finally, during this Graduation Project, the researcher and the client continued working together, and EIVA is a direct successor to Ara. However, this thesis presented the opportunity to take a research-driven approach, and no earlier code was reused, resulting in a new product built from the ground up with more sophisticated languages and frameworks.
 
@@ -262,7 +271,7 @@ Finally, during this Graduation Project, the researcher and the client continued
 			Clearbit integration      & $\times$     & \checkmark    \\
 			iCalendar URL support     & $\times$     & \checkmark    \\
 			Two-factor authentication & $\times$     & \checkmark    \\
-			Open-source license       & MIT          & SSPL          \\
+			open source license       & MIT          & SSPL          \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -554,7 +563,7 @@ EIVA consists of a frontend web app that users directly interact with, and a bac
 
 \subsection{Backend APIs}
 
-EIVA's backend project is based on Staart API, an open-source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
+EIVA's backend project is based on Staart API, an open source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
 
 \subsubsection{Configuration Management}
 
@@ -699,7 +708,7 @@ Lastly, brute force and speed limits are also imposed. To prevent brute force at
 
 \subsubsection{Database and Storage}
 
-MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open-source software under the GNU General Public License []. For communication with the database, the open-source database toolkit \emph{Prisma} is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository.
+MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open source software under the GNU General Public License []. For communication with the database, the open source database toolkit \emph{Prisma} is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository.
 
 Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 10 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
 
@@ -711,6 +720,8 @@ Relations are used extensively in the database; for example, the \texttt{users} 
 \paragraph{Redis}
 
 Apart from MariaDB, \emph{Redis} is used for storing data that requires minimal query latency. Redis is an in-memory key–value database, and in-memory processing has been called ``the ultimate solution to latency" []. For workflows such as checking if a JWT has been invalidated, a MariaDB database query takes hundreds of milliseconds, whereas Redis only takes tens, and is therefore used for caching and invalidation in EIVA.
+
+Redis is also used as a message queue using Redis Simple Message Queue (RSMQ) which implements a queue with guaranteed message delivery to one recipient. This is used to queue outbound webhooks and emails, which are sequentially sent every minute using a scheduled job (Section 6.1.7).
 
 \paragraph{ElasticSearch}
 
@@ -881,21 +892,58 @@ External feedback from Rohit, Maurits, Alex
 
 \subsection{Open Source Development}
 
-Although the preceding project Ara was licensed under the open source permissive MIT license, EIVA's source code is made available under the Server Side Public License. This license makes sure that any further implementations or paid services built around EIVA also have their source code made public, and helps the future business use case of EIVA.
+Although the preceding project Ara was licensed under the permissive MIT license, EIVA's source code is made available under the Server Side Public License (SSPL). SSPL makes sure that any further implementations or paid services built around EIVA also have their source code made public, and helps the future business use case of EIVA, since companies will not be able to sell competing services using EIVA's publicly-available source code.
 
-However, several open source projects were built in order to support key EIVA features, which were all licensed under the MIT license. This encourages wide community adoption and contributes back to the open source ecosystem, as MIT is the most popular open source license and allows commercial usage of open source projects.
+However, several open source projects were built in order to support key EIVA features, which were all licensed under the MIT license. This encourages wide community adoption and contributes back to the open source ecosystem. MIT is the most popular open source license and it allows commercial usage of all code.
 
-For example, the open source project ``calendar-link" was built in order to generate event links to popular calendar services like Google Calendar, Microsoft Outlook, and Yahoo! Calendar. This project is now used by many others, receiving over 1,000 downloads every week and contributed to by 5 additional developers. Developers can use the package to programmatically generate that users can click on to add a specific event to their calendar, with an easy-to-use API:
+\paragraph{Calendar Link}
 
-...
+For example, the open source project \texttt{calendar-link} was built in order to generate event links to popular calendar services like Google Calendar, Microsoft Outlook, and Yahoo! Calendar. This project is now used by many others, receiving over 1,000 downloads every week and contributed to by 5 additional developers. Developers can use the package to programmatically generate that users can click on to add a specific event to their calendar, with an easy-to-use API.
 
-Similarly, another project ``calendar-slots" was released to help find available slots in a user's calendar. This package can save development times when recommending appointment slots by listing a user's calendars, fetching all events in a given timeframe, removing slots with conflicts with scheduled events, and recommending a fixed number of slots to the end user:
+\begin{verbatim}
+import { google, outlook, ics } from "calendar-link";
+const event = {
+  title: "My birthday party",
+  start: "2020-12-29 18:00:00 +0100",
+  duration: [3, "hour"]
+};
+google(event); // https://calendar.google.com/calendar/render...
+outlook(event); // https://outlook.live.com/owa/...
+ics(event); // standard ICS file based on https://icalendar.org
+\end{verbatim}
 
-...
+\paragraph{Calendar Slots}
 
-It is also highly configurable, with support for settings such as timezone preference, daily scheduling hours, and custom filter options:
+Similarly, another project \texttt{calendar-slots} was released to help find available slots in a user's calendar. This package can save development times when recommending appointment slots by listing a user's calendars, fetching all events in a given timeframe, removing slots with conflicts with scheduled events, and recommending a fixed number of slots to the end user:
 
-...
+\begin{alltt}
+\textcolor{keyword}{import} \{ findSlots \} \textcolor{keyword}{from} \textcolor{string}{"calendar-slots"};
+\textcolor{keyword}{const} tomorrow = \textcolor{keyword}{new} Date();
+\textcolor{keyword}{const} slots = \textcolor{keyword}{await} \textcolor{variable}{findSlots}(\{
+  \textcolor{symbol}{slotDuration}: \textcolor{literal}{30}, \textcolor{comment}{// Find 30 minute slots}
+  \textcolor{symbol}{slots}: \textcolor{literal}{3}, \textcolor{comment}{// Recommend 3 slots}
+  \textcolor{symbol}{from}: \textcolor{keyword}{new} Date(), \textcolor{comment}{// Starting now}
+  \textcolor{symbol}{to}: tomorrow.\textcolor{variable}{setDate}(today.\textcolor{variable}{getDate}() + \textcolor{literal}{1}), \textcolor{comment}{// Until tomorrow}
+\});
+\end{alltt}
+
+EIVA uses this package under the hood to recommend time slots for appointments. It is also highly configurable, with support for settings such as timezone preference, daily scheduling hours, and custom filter options:
+
+\begin{alltt}
+\textcolor{keyword}{import} moment from \textcolor{string}{"moment"};
+\textcolor{keyword}{const} slots = \textcolor{keyword}{await} \textcolor{variable}{findSlots}(\{
+  \textcolor{symbol}{slotDuration}: \textcolor{literal}{30}, \textcolor{comment}{// Find 30 minute slots}
+  \textcolor{symbol}{slots}: \textcolor{literal}{3}, \textcolor{comment}{// Recommend 3 slots}
+  \textcolor{symbol}{from}: moment(), \textcolor{comment}{// Starting now}
+  \textcolor{symbol}{to}: moment().\textcolor{variable}{add}(\textcolor{literal}{1}, \textcolor{string}{"week"}), \textcolor{comment}{// Until next week}
+  \textcolor{symbol}{days}: [\textcolor{literal}{1}, \textcolor{literal}{2}, \textcolor{literal}{3}, \textcolor{literal}{4}, \textcolor{literal}{5}], \textcolor{comment}{// Only on week days}
+  \textcolor{symbol}{daily}: \{ \textcolor{comment}{// Make sure all these conditions are met}
+    \textcolor{symbol}{timezone}: \textcolor{string}{"Europe/Amsterdam"}, \textcolor{comment}{// Set CET timezone}
+    \textcolor{symbol}{from}: [\textcolor{literal}{9}], \textcolor{comment}{// Start at 09:00 in the morning}
+    \textcolor{symbol}{to}: [\textcolor{literal}{17}, \textcolor{literal}{30}], \textcolor{comment}{// End at 17:30 in the evening}
+  \}
+\});
+\end{alltt}
 
 Both projects are written in TypeScript and available on the Git hosting service GitHub and JavaScript package registry npm.
 
@@ -1964,13 +2012,13 @@ The following table shows all collected responses for rating questions. Columns 
 
 \section*{Appendix 4: Code Repositories}
 
-All code written for this project is open-source, available on GitHub:
+All code written for this project is open source, available on GitHub:
 
 \begin{enumerate}
 	\item Backend APIs: \url{https://github.com/o15y/eiva}
 	\item Frontend web application: \url{https://github.com/o15y/myeiva.com}
 	\item Thesis: \url{https://github.com/AnandChowdhary/bsc-thesis}
-	\item Companion open-source packages:
+	\item Companion open source packages:
 	      \begin{enumerate}
 	      	\item Calendar Slots: \url{https://github.com/AnandChowdhary/calendar-slots}
 	      	\item Calendar Link: \url{https://github.com/AnandChowdhary/calendar-link}
