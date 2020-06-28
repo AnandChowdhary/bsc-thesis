@@ -712,31 +712,86 @@ Relations are used extensively in the database; for example, the \texttt{users} 
 
 Apart from MariaDB, \emph{Redis} is used for storing data that requires minimal query latency. Redis is an in-memory key–value database, and in-memory processing has been called ``the ultimate solution to latency" []. For workflows such as checking if a JWT has been invalidated, a MariaDB database query takes hundreds of milliseconds, whereas Redis only takes tens, and is therefore used for caching and invalidation in EIVA.
 
-\paragraph{S3} Although there are no binary files required for the API, a database is not ideal for storing larger amounts of text data. For storing these items like raw incoming emails (typically a few kilobytes in size), Amazon Web Services (AWS)'s Simple Storage Service (S3) is used. S3 provides object storage along with backup, recovery, and encryption.
+\paragraph{ElasticSearch}
 
-\subsubsection{Third-party APIs}
+ElasticSearch, a Lucene-based search engine, is used for storing server logs and analytics data \cite{noauthor_elastic_nodate}. ElasticSearch is open source and capable of full-text search, which makes it extremely useful to sort through thousands of usage events \cite{noauthor_elastic/elasticsearch_2020}. Amazon Web Services (AWS) offers Open Distro for ElasticSearch with increased security features, including data encryption at rest and Kibana authentication \cite{noauthor_open_nodate}, which is used for this project. In Section 7.2, data stored in this ElasticSearch instance is computed and analyzed.
 
-...text...
+\paragraph{AWS S3}
 
-\paragraph{Clearbit}
-
-...text...
-
-\paragraph{Google Cloud}
-
-...text...
+Although there are no binary files, the API still deals with large text files like raw incoming emails, typically between 1 and 10 kilobytes in size. A database is not ideal for storing such documents, so AWS's Simple Storage Service (S3) is used. S3 provides object storage along with backup, recovery, and encryption, and provides a Node.js API wrapper to easily upload and fetch files.
 
 \subsubsection{API Endpoints}
 
-...text...
+The backend API endpoints are versioned with a \texttt{/v1} prefix and categorized, for example the login endpoint is \texttt{POST /v1/auth/login}.  Since there are tens of total endpoints, it's useful to categorize them for development and management, and each API category is defined in Table 3.
+
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{API Prefixes}
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\textbf{Prefix} & \textbf{Description} \\
+			\hline
+			\texttt{/admin} & Administration and analytics \\
+			\texttt{/api} & Public API \\
+			\texttt{/auth} & Authentication \\
+			\texttt{/organizations} & Teams and assistant settings \\
+			\texttt{/users} & User settings \\
+			\texttt{/webhooks} & Incoming webhooks \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
+Each endpoint category prefix is automatically generated from the \texttt{controllers} directory in Staart API's build process, based on the subdirectory it is located in. For example, the user emails controller file \texttt{controllers/users/\_id/emails.ts} generates the endpoint \texttt{/v1/users/:id/emails} where \texttt{:id} is a user ID.
 
 \paragraph{Public API}
 
-...text...
+The internal process that EIVA uses to schedule appointments (Section 6.1.9) has also been designed in a way to be consumable by other clients. A public API has been developed for each action as listed in Table 4.
+
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{Scheduling API Endpoints}
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\textbf{Method} & \textbf{Endpoint} & \textbf{Description} \\
+			\hline
+			\texttt{POST} & \texttt{/classify} & Classify text using NLP \\
+			\texttt{POST} & \texttt{/parse-email} & Parse a raw email \\
+			\texttt{POST} & \texttt{/smart-tokenize} & Intelligently tokenize text \\
+			\texttt{POST} & \texttt{/parse-email} & Parse a raw email \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
+Developers can use these endpoints in the future to intelligently understand incoming emails and build other applications on top of the EIVA platform.
 
 \subsubsection{Scheduled Jobs}
 
-...text...crons...
+To automate common tasks, specific jobs are scheduled using \texttt{cron}, a Node.js API for the time-based job scheduler of the same name. For example, new data is fetched from message queues every minute to send outbound emails, trigger outbound webhooks, and store logs in ElasticSearch.
+
+\begin{table}[!htb]
+	\begin{minipage}{1\linewidth}
+		\caption{Scheduled Jobs}
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\textbf{Expression} & \textbf{Repetition} & \textbf{Job} \\
+			\hline
+			\texttt{0 0 * * *} & Every day & Delete old server logs \\
+			\texttt{0 * * * *} & Every hour & Delete expired sessions \\
+			\texttt{0 * * * *} & Every hour & Update errored emails \\
+			\texttt{* * * * *} & Every minute & Get new data from message queues \\
+			\hline
+		\end{tabular}
+	\end{minipage}%
+\end{table}
+
+\subsubsection{Third-party APIs}
+
+Other third-party APIs are used for specific utilities, such as \emph{Clearbit} to fetch details about a person from their email address. Clearbit's Enrichment API uses over 250 public and private sources and provides several datapoints, such as name, professional, company, and timezone. This is used to better understand the context of guests in meetings. Other APIs used in EIVA include \emph{Stripe} to accept end-user payments [].
 
 \subsubsection{Scheduling Process}
 
@@ -987,12 +1042,6 @@ Over the course of testing weeks, no downtime was recorded for the backend, but 
 \paragraph{Resource Monitoring}
 
 \emph{Netdata} is used \cite{noauthor_netdata_nodate}. NetData is open source \cite{noauthor_netdata/netdata_2020}.
-
-\paragraph{Event Tracking}
-
-\emph{ElasticSearch} is used \cite{noauthor_elastic_nodate}. ElasticSearch is open source \cite{noauthor_elastic/elasticsearch_2020}. Open Distro for ElasticSearch is used for increased security, including data encryption at rest and Kibana authentication \cite{noauthor_open_nodate}.
-
-As an example, Figure 6 shows that number of event tracked (pageviews and clicks) during the first ten days of June 2020. The average number of events tracked per day was 1,062.4.
 
 \paragraph{Error Tracking}
 
