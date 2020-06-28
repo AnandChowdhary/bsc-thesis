@@ -951,9 +951,11 @@ Both projects are written in TypeScript and available on the Git hosting service
 
 \subsubsection{Unit Tests}
 
-Unit tests are used \cite{tosun_effectiveness_2018}.
+Unit tests, a method to test individual units of code, are used to ensure all components are behaving as intended \cite{tosun_effectiveness_2018}. The goal of unit testing is to isolate each part of the code and ensure that individual parts are correct, before writing comprehensive tests for an entire module.
 
-dates.spec.ts
+For example, the \texttt{dates.spec.ts} file consists of 5 tests for the date parser. Each test provides a strict, written contract that the \texttt{findStartEndTime} function must satisfy. This function takes a string of text and returns the start and end time for scheduling. For example, the input ``set up an appointment for next week" will return the start time of the following Monday 00:00 and end time of Sunday 23:59, whereas the input of ``set up an appointment for tomorrow" will return the start and end time for the following day.
+
+During development, such methods are used extensively to test the natural language processing by supplying many different strings and programmatically testing their outputs. The testing framework \emph{Jest} is used with an npm script for automated testing.
 
 \subsubsection{Continuous Integration}
 
@@ -962,11 +964,11 @@ A Continuous Integration (CI) process consisting of unit tests and a build test 
 GitHub Actions is used as the API for CI, and is free for public repositories. A workflow consisting of 5 steps is triggered on every push, using Ubuntu  18.04 LTS, a popular Linux distribution:
 
 \begin{enumerate}
-	\item Checkout the repository (using actions/checkout@v2)
-	\item Setup Node.js v14.3 (using actions/setup-node@v1)
-	\item Install dependencies with npm
-	\item Run all unit tests
-	\item Compile the TypeScript project
+	\item Checkout the repository (using \texttt{actions/checkout@v2})
+	\item Setup Node.js v14.3 (using \texttt{actions/setup-node@v1})
+	\item Install dependencies (\texttt{npm ci})
+	\item Run all unit tests (\texttt{npm run test})
+	\item Compile the TypeScript project (\texttt{npm run build})
 \end{enumerate}
 
 When there is an error in the build such as if a unit test fails or there is a TypeScript compilation error, the pipeline fails and developers get a notification for error mitigation. On average this CI process takes 2 minutes to complete, and Figure 11 shows the duration of each workflow run.
@@ -1022,7 +1024,13 @@ When there is an error in the build such as if a unit test fails or there is a T
 
 \subsubsection{Initialization Tests}
 
-...text...init-tests
+Lastly, initialization tests are used after deploying the app to ensure that all services are functioning. The \texttt{init-test.ts} file has 6 tests that run as soon as the app is launched. If there is an error with any of these services, it is immediately logged in the console. The output of a successful initialization is shown in Figure 16. After the server is ready, the connection to self-hosted services like Redis and MariaDB are tested; then, a test email is sent to ensure outbound emails are delivered; finally, the connection to third-party services like Stripe and ElasticSearch is tested.
+
+\begin{figure}
+	\center
+	\includegraphics[width=10cm]{init-tests.png}
+	\caption{Successful Initialization Tests}
+\end{figure}
 
 \subsection{Deployment}
 
