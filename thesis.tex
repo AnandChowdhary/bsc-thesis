@@ -203,11 +203,11 @@ There are also highly specialized solutions available. For example, in the trave
 
 \subsection{Web Development}
 
-For EIVA, a web application and an email interface have to be developed. JavaScript enables interactive web pages and is one of the core technologies of the web []. The vast majority of websites use it for client-side page behavior. Since JavaScript can also be used for server-side execution (using a runtime such as Node.js or Deno), it is the ideal choice for full-stack web development.
+For EIVA, a web application and an email interface have to be developed. JavaScript enables interactive web pages and is one of the core technologies of the web \cite{flanagan_javascript:_2020}. The vast majority of websites use it for client-side page behavior. Since JavaScript can also be used for server-side execution (using a runtime such as Node.js or Deno), it is the ideal choice for full-stack web development.
 
 However, building large-scale applications with JavaScript is challenging because of loose types that result in otherwise preventable errors. This has led to demand for custom tooling. Today, there are many competing languages that compile to JavaScript, including TypeScript, ClosureScript, CoffeeScript, Elm, PureScript, and others.
 
-According to the annual survey \emph{The State of JavaScript}, out of all the languages that compile to JavaScript, TypeScript is the language of choice for most developers. The number of developers who responded that they have previously used TypeScript and would like to use it again has grown from 20.8\% in 2016 to 58.5\% in 2019. Only 12\% of all respondents in 2019 had not heard on TypeScript or were not interested in learning it [].
+According to the annual survey \emph{The State of JavaScript}, out of all the languages that compile to JavaScript, TypeScript is the language of choice for most developers. The number of developers who responded that they have previously used TypeScript and would like to use it again has grown from 20.8\% in 2016 to 58.5\% in 2019. Only 12\% of all respondents in 2019 had not heard on TypeScript or were not interested in learning it \cite{noauthor_state_nodate}.
 
 TypeScript is developed and maintained by Microsoft and is a strict syntactical superset of JavaScript that adds static typing to the language \cite{hutchison_understanding_2014}. Designed for large applications, TypeScript transcompiles to JavaScript and can be used for both client-side and server-side execution, which makes it a great fit for the development of EIVA \cite{huisman_inference_2017}.
 
@@ -232,7 +232,7 @@ The above example generates an API endpoint of \texttt{/v1/example} (with versio
 
 \subsubsection{Frontend}
 
-When it comes to choosing a frontend framework for JavaScript web apps, the main options are React, Angular, Ember, Vue.js, and most recently, Svelte []. Although Svelte is a relative newcomer (released in 2016, compared to Vue.js in 2014 and React in 2013), it has been adopted rapidly by the community. However, it is still not production-ready and therefore risky to use when developing the EIVA frontend app []. Furthermore, in the State of JavaScript 2019, only 75\% of all developers were aware of Svelte, where all 100\% were aware of React, Angular, and Vue.js [].
+When it comes to choosing a frontend framework for JavaScript web apps, the main options are React, Angular, Ember, Vue.js, and most recently, Svelte \cite{delcev_modern_2018}. Although Svelte is a relative newcomer (released in 2016, compared to Vue.js in 2014 and React in 2013), it has been adopted rapidly by the community. However, it is still not production-ready and therefore risky to use when developing the EIVA frontend app \cite{noauthor_svelte:_2019}. Furthermore, in the State of JavaScript 2019, only 75\% of all developers were aware of Svelte, where all 100\% were aware of React, Angular, and Vue.js \cite{noauthor_state_nodate}.
 
 In terms of developer interest, Vue.js and React were rated 64\% and 61\% respectively, whereas Angular and Ember were much lower at 23\% and 18\% respectively. However, React is developed by Facebook, while Vue.js is built by a community of open-source developers, and both have near-universal support in the frontend ecosystem. Therefore, Vue.js is selected as frontend framework for EIVA; it offers an easy way to use HTML-based template syntax and single-file components \cite{deng_development_2020}.
 
@@ -247,10 +247,10 @@ During the summer of 2018, the researcher worked closely with Speakup on materia
 For a few months, Ara was used by the researcher to test the assistant's email confirmation feature. In fact, in a 2017 interview titled `UT student among the top 50 young entrepreneurs' with UToday, University of Twente's independent publication, Jelle Posthuma stated the following:
 
 \begin{displayquote}
-	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments." []
+	It was easy to schedule an interview with the first-year student of Creative Technology. His ``personal assistant" Ara sent a friendly email replying: ``You’ll be welcome to come next Wednesday." Chowdhary is a co-owner of the company Oswald Labs, which develops products for people with disabilities. His office is in Roombeek. ``Anand, you’re working hard: you even have a personal assistant…" A big grin appears on the young student’s face. ``Yes, I built her myself. Ara is a computer. Her AI recognizes emails and schedules my appointments." \cite{noauthor_ut_nodate}
 \end{displayquote}
 
-Although Ara didn't have any AI at this point, it was a successful proof-of-concept. During the summer of 2019, the researcher and the client worked together on building on top of an open source framework built for Software-as-a-Service (SaaS) companies built by the researcher (Staart API and Staart UI) []. This is the underlying framework that EIVA is built on top of.
+Although Ara didn't have any AI at this point, it was a successful proof-of-concept. During the summer of 2019, the researcher and the client worked together on building on top of an open source framework built for Software-as-a-Service (SaaS) companies built by the researcher (Staart API and Staart UI) \cite{chowdhary_staart_nodate}. This is the underlying framework that EIVA is built on top of.
 
 Finally, during this Graduation Project, the researcher and the client continued working together, and EIVA is a direct successor to Ara. However, this thesis presented the opportunity to take a research-driven approach, and no earlier code was reused, resulting in a new product built from the ground up with more sophisticated languages and frameworks.
 
@@ -340,7 +340,7 @@ Once basic stakeholders are identified, user personas are used to personify them
 	\item What are the pain-points that they currently experience?
 \end{enumerate}
 
-For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers. The \emph{Random User Generator} service has been used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson []. For profile pictures, the \emph{This Person Does Not Exist} website is used, which is a collection of AI-generated photos [].
+For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers. The \emph{Random User Generator} service has been used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson \cite{noauthor_random_nodate}. For profile pictures, the \emph{This Person Does Not Exist} website is used, which is a collection of AI-generated photos \cite{noauthor_this_nodate}.
 
 \begin{wrapfigure}{l}{0.28\textwidth}
 	\includegraphics[scale=0.1]{persona-tanya.jpg}
@@ -473,7 +473,7 @@ Figure 4 also shows a two-column layout for desktop pages, with the left sidebar
 	\item Locations: List of saves locations with map interface
 \end{enumerate}
 
-Lastly, both low- and high-fidelity mockups of the desktop interface were designed using Figma, a web-based vector graphics editor and prototyping tool []. Figure 7 shows a comparison of a selection of these mockups. The low-fidelity mockups are used for layouting and positioning, while the high-fidelity mockups add detail such as colors, shadows, and detailed UI elements like form controls.
+Lastly, both low- and high-fidelity mockups of the desktop interface were designed using Figma, a web-based vector graphics editor and prototyping tool \cite{noauthor_23-year-olds_nodate}. Figure 7 shows a comparison of a selection of these mockups. The low-fidelity mockups are used for layouting and positioning, while the high-fidelity mockups add detail such as colors, shadows, and detailed UI elements like form controls.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{mockup-1.png}
@@ -703,7 +703,7 @@ Since many professionals prefer using multiple emails (perhaps a personal and a 
 
 \paragraph{Rate Limits}
 
-Rate limits are used to control the rate of requests to the API and is also used to prevent DDoS attacks []. An HTTP 429 (Too Many Requests) error is thrown if a client makes too many requests within a given time frame. By default, 60 requests per minute are permitted per IP address.
+Rate limits are used to control the rate of requests to the API and is also used to prevent DDoS attacks \cite{noauthor_rate_nodate}. An HTTP 429 (Too Many Requests) error is thrown if a client makes too many requests within a given time frame. By default, 60 requests per minute are permitted per IP address.
 
 For programatic access to the service, users can generate API keys or access token to control their assistant or accounts respectively. The frontend web app also uses such an API key for an increased rate limit of 1,000 requests per minute. An in-memory key-value store is used to track these limits.
 
@@ -711,7 +711,7 @@ Lastly, brute force and speed limits are also imposed. To prevent brute force at
 
 \subsubsection{Database and Storage}
 
-MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open source software under the GNU General Public License []. For communication with the database, the open source database toolkit \emph{Prisma} is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository.
+MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open source software under the GNU General Public License \cite{noauthor_mariadb/server_2020}. For communication with the database, the open source database toolkit \emph{Prisma} is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository \cite{noauthor_prisma/prisma_2020}.
 
 Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 10 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
 
@@ -722,7 +722,7 @@ Relations are used extensively in the database; for example, the \texttt{users} 
 
 \paragraph{Redis}
 
-Apart from MariaDB, \emph{Redis} is used for storing data that requires minimal query latency. Redis is an in-memory key–value database, and in-memory processing has been called ``the ultimate solution to latency" []. For workflows such as checking if a JWT has been invalidated, a MariaDB database query takes hundreds of milliseconds, whereas Redis only takes tens, and is therefore used for caching and invalidation in EIVA.
+Apart from MariaDB, \emph{Redis} is used for storing data that requires minimal query latency. Redis is an in-memory key–value database, and in-memory processing has been called ``the ultimate solution to latency" \cite{alami_supply_2018}. For workflows such as checking if a JWT has been invalidated, a MariaDB database query takes hundreds of milliseconds, whereas Redis only takes tens, and is therefore used for caching and invalidation in EIVA.
 
 Redis is also used as a message queue using Redis Simple Message Queue (RSMQ) which implements a queue with guaranteed message delivery to one recipient. This is used to queue outbound webhooks and emails, which are sequentially sent every minute using a scheduled job (Section 6.1.7).
 
@@ -805,7 +805,7 @@ To automate common tasks, specific jobs are scheduled using \texttt{cron}, a Nod
 
 \subsubsection{Third-party APIs}
 
-Other third-party APIs are used for specific utilities, such as \emph{Clearbit} to fetch details about a person from their email address. Clearbit's Enrichment API uses over 250 public and private sources and provides several datapoints, such as name, professional, company, and timezone. This is used to better understand the context of guests in meetings. Other APIs used in EIVA include \emph{Stripe} to accept end-user payments [].
+Other third-party APIs are used for specific utilities, such as \emph{Clearbit} to fetch details about a person from their email address. Clearbit's Enrichment API uses over 250 public and private sources and provides several datapoints, such as name, professional, company, and timezone. This is used to better understand the context of guests in meetings. Other APIs used in EIVA include \emph{Stripe} to accept end-user payments \cite{wittern_web_2018}.
 
 \subsubsection{Scheduling Process}
 
@@ -842,11 +842,11 @@ After receiving the list of time recommendations from the assistants, guests can
 
 The frontend web app is built with web development best practices, ease of use, and accessibility in mind.
 
-For example, the EIVA homepage receives a 100\% score in the Accessibility audit part of Webkit Developer Tools. Using Lighthouse, an automated performance auditing tool, its score is 61/100 for performance, 93/100 for accessibility, 100/100 for best practices, and 92/100 for SEO. Oswald Labs' web accessibility plugin is also implemented on every page, which helps people with dyslexia read more easily, amongst other features [].
+For example, the EIVA homepage receives a 100\% score in the Accessibility audit part of Webkit Developer Tools. Using Lighthouse, an automated performance auditing tool, its score is 61/100 for performance, 93/100 for accessibility, 100/100 for best practices, and 92/100 for SEO. Oswald Labs' web accessibility plugin is also implemented on every page, which helps people with dyslexia read more easily, amongst other features \cite{gupta_improving_2019}.
 
 \subsubsection{Vue.js and Nuxt.js}
 
-As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developper experience to prototype blazing fast modern web application" [].
+As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developper experience to prototype blazing fast modern web application" \cite{alexchopin_announcing_nodate}.
 
 Custom middleware and plugins were created and added to Nuxt.js for features like click tracking (Section 7.2.3), unauthenticated redirects, and persisted state (Section 6.2.3).
 
