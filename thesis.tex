@@ -69,7 +69,7 @@
 \begin{center}
 	\titlefont{Email-based Intelligent Virtual}\\
 	\vspace{3mm}
-	\titlefont{Assistants for Scheduling}\\
+	\titlefont{Assistant for Scheduling}\\
 	\vspace{30mm}
 	\coverfontsmall{Submitted by}\\
 	\vspace{3mm}
@@ -806,12 +806,28 @@ Other third-party APIs are used for specific utilities, such as \emph{Clearbit} 
 
 \subsubsection{Scheduling Process}
 
+To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.4). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which is turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{ses-process.png}
+	\caption{Email Received to Webhook Process}
+\end{figure}
+
+When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 12 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant email, setting up the database record, and tokenizing and classifying the email contents.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{webhook-process.png}
+	\caption{Webhook to Classification Process}
+\end{figure}
+
 \begin{wrapfigure}{l}{0.5\textwidth}\centering
 	\includegraphics[scale=0.4]{schedule-process.png}
 	\caption{Appointment setup process}
 \end{wrapfigure}
 
-...afterwards people click on link to confirm time etc....
+After the email is classified as requesting a new appointment, the process described in Figure 13 is triggered to schedule a new appointment for the user and their guests. First, the entire email text is modified for consistent date formats; then, a Google API is used to detect the language of the email (Dutch or English); then, all the guests are detected, and Clearbit is used to find additional information about them, if enabled. Then, dates and times are found using Chrono (Section 6.1.2), and 3 time slots are recommended along with the location and an email is sent.
+
+After receiving the list of time recommendations from the assistants, guests can click on their preferred option for confirmation (Section 6.2.4), and an email with a calendar invitation is sent to both the host and the guests.
 
 \subsection{Frontend Web App}
 
@@ -826,6 +842,10 @@ Other third-party APIs are used for specific utilities, such as \emph{Clearbit} 
 ...text...authentication...refresh token...
 
 \subsubsection{State Management}
+
+...text...
+
+\subsubsection{User Interface}
 
 ...text...
 
