@@ -286,7 +286,29 @@ Finally, during this Graduation Project, the researcher and the client continued
 
 \section{Methods and Techniques}
 
-...text...
+After building the assistant service and companion web app, a user experience evaluation is conducted. In this standard Human Media Interaction (HMI) research, both quantitative data and qualitative data is recorded.
+
+\paragraph{Sampling}
+
+For participant selection, Voluntary Response Sampling was used with participants in the close network of the researcher and client. A link to an online survey consisting of the (i) Introductory Survey, (ii) screenshots of how the create an account and use the assistant service, and (iii) User Experience Evaluation was sent in the internal communication systems of Speakup B.V. and Oswald Labs, and was also posted on social media. Since the link was posted to social media, it is hard to calculate a response rate since potentially thousands of users could have seen it.
+
+\paragraph{Question Design}
+
+In the Introductory Survey, questions were designed as multiple-choice questions that are quick to answer. The questions were divided into three categories: general information about the participants such as their profession, their email usage, and assistant and scheduling-related. In the User Experience Evaluation, a combination of long text answers, rating scales, and multiple-choice questions was presented.
+
+\paragraph{Surveying Method}
+
+A link to an online form was shared with participants; there were no in-person meetings, and there was no way to interact with the researcher while participating in the research. However, users could share their feedback with the researcher using both the form and the website. \emph{Google Forms} was used to create the form consisting of all three parts, prefixed with the Information Brochure and Consent Form.
+
+\paragraph{Participant Observation}
+
+Participants were ``observed" when they used the web app using automated tracking systems. For example, all pageviews, API requests, and clicks were anonymously logged with users' consent, which helped understand how users used the app. The results are visualized in Section 7.2.
+
+\paragraph{Methods of Analysis}
+
+First, the data gathered was prepared for analysis. After closing participation, data received in Google Forms is duplicated in a spreadsheet for analysis. Similarly, Kibana, an open source data visualization dashboard for Elasticsearch, is used to analyze logs for pageviews, API requests, and clicks. For qualitative answers such as long text responses, content analysis was conducted by finding common keywords.
+
+Multiple-choice responses from the Introductory Survey are tabulated. Product usage data collected from logs was visualized in several ways. For one, users' approximate locations were mapped on the maps of the Netherlands, Europe, and the world. Other data such as popular languages, browsers, and operating system was quantitatively tabulated. Time-series data such as number of API requests, number of emails sent to the assistant, and the website's response time was graphed. Lastly, heatmaps were manually generated using coordinate data from mouse clicks. The sample mean, median, and mode of rating scale responses from the User Experience Survey are calculated and tabulated.
 
 \newpage
 
@@ -879,7 +901,7 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \end{minipage}%
   }%
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
   \makebox[\textwidth]{%
     \begin{minipage}[t]{0.8\textwidth}
       \centering
@@ -894,7 +916,7 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \end{minipage}%
   }%
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
   \makebox[\textwidth]{%
     \begin{minipage}[t]{0.8\textwidth}
       \centering
@@ -909,7 +931,7 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \end{minipage}%
   }%
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
   \makebox[\textwidth]{%
     \begin{minipage}[t]{0.8\textwidth}
       \centering
