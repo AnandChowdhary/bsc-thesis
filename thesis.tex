@@ -13,6 +13,7 @@
 \usepackage{array,multirow,graphicx}
 \usepackage{enumitem}
 \usepackage{float}
+\usepackage{ifoddpage}
 \usepackage{multicol}
 \usepackage{alltt,xcolor}
 \usepackage[hidelinks]{hyperref}
@@ -231,7 +232,9 @@ The above example generates an API endpoint of \texttt{/v1/example} (with versio
 
 \subsubsection{Frontend}
 
-Vue.js is used \cite{deng_development_2020}.
+When it comes to choosing a frontend framework for JavaScript web apps, the main options are React, Angular, Ember, Vue.js, and most recently, Svelte []. Although Svelte is a relative newcomer (released in 2016, compared to Vue.js in 2014 and React in 2013), it has been adopted rapidly by the community. However, it is still not production-ready and therefore risky to use when developing the EIVA frontend app []. Furthermore, in the State of JavaScript 2019, only 75\% of all developers were aware of Svelte, where all 100\% were aware of React, Angular, and Vue.js [].
+
+In terms of developer interest, Vue.js and React were rated 64\% and 61\% respectively, whereas Angular and Ember were much lower at 23\% and 18\% respectively. However, React is developed by Facebook, while Vue.js is built by a community of open-source developers, and both have near-universal support in the frontend ecosystem. Therefore, Vue.js is selected as frontend framework for EIVA; it offers an easy way to use HTML-based template syntax and single-file components \cite{deng_development_2020}.
 
 \subsubsection{Email Interfacing}
 
@@ -319,7 +322,7 @@ Therefore, although it's important to consider the inputs of each stakeholder, i
 	      \end{enumerate}
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{power-interest.jpg}
 	\caption{Power-Interest Grid}
@@ -822,36 +825,92 @@ When the webhook is triggered, the API starts with trying to understand the inco
 
 \begin{wrapfigure}{l}{0.5\textwidth}\centering
 	\includegraphics[scale=0.4]{schedule-process.png}
-	\caption{Appointment setup process}
+	\caption{New Appointment Process}
 \end{wrapfigure}
 
 After the email is classified as requesting a new appointment, the process described in Figure 13 is triggered to schedule a new appointment for the user and their guests. First, the entire email text is modified for consistent date formats; then, a Google API is used to detect the language of the email (Dutch or English); then, all the guests are detected, and Clearbit is used to find additional information about them, if enabled. Then, dates and times are found using Chrono (Section 6.1.2), and 3 time slots are recommended along with the location and an email is sent.
+
+\begin{figure}
+	\center
+	\includegraphics[width=10cm]{screenshot-dates.png}
+	\caption{Screenshot of Time Recommendation Email}
+\end{figure}
 
 After receiving the list of time recommendations from the assistants, guests can click on their preferred option for confirmation (Section 6.2.4), and an email with a calendar invitation is sent to both the host and the guests.
 
 \subsection{Frontend Web App}
 
-...text...
+The frontend web app is built with web development best practices, ease of use, and accessibility in mind.
+
+For example, the EIVA homepage receives a 100\% score in the Accessibility audit part of Webkit Developer Tools. Using Lighthouse, an automated performance auditing tool, its score is 61/100 for performance, 93/100 for accessibility, 100/100 for best practices, and 92/100 for SEO. Oswald Labs' web accessibility plugin is also implemented on every page, which helps people with dyslexia read more easily, amongst other features [].
 
 \subsubsection{Vue.js and Nuxt.js}
 
-...text...
+As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developper experience to prototype blazing fast modern web application" [].
 
-\subsubsection{Fetch Requests}
+Custom middleware and plugins were created and added to Nuxt.js for features like click tracking (Section 7.2.3), unauthenticated redirects, and persisted state (Section 6.2.3).
 
-...text...authentication...refresh token...
+\paragraph{Fetch Requests}
 
-\subsubsection{State Management}
+The authentication process grants an access and a refresh token on successful login (Section 6.1.4), which is stored centrally in the web app. HTTP requests to the API have the \texttt{Authorization} header consisting of the access token when the user is logged in. Requests are sent using Axios, a Promise-based HTTP client built on top of  \texttt{XMLHTTPRequest}.
 
-...text...
+\paragraph{State Management}
+
+A central store was used for authentication, consisting of both tokens and details about the logged in user, such as their memberships. \emph{Vuex}, Vue.js's state management pattern and library, is used with types and rulesets ensuring that the state can only be mutated in a predictable fashion. The store is also persisted locally in the browser's local storage as a JSON object, so that authentication details are not lost if the user closes and returns to the web app at a later time.
 
 \subsubsection{User Interface}
 
-...text...
+The web app UI was wireframed, prototyped, and mocked up extensively before implementation (Section 4.3). It consists of simple branding and a color scheme focusing on desired actions. Figures 15 to 20 show the screenshots of important webpages.
+
+\begin{figure}[h]
+  \makebox[\textwidth]{%
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-login.png}
+      \caption{Screenshot of Login}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-meetings.png}
+      \caption{Screenshot of Meetings}
+    \end{minipage}%
+  }%
+\end{figure}
+\begin{figure}[h]
+  \makebox[\textwidth]{%
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-locations.png}
+      \caption{Screenshot of Locations}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-assistant.png}
+      \caption{Screenshot of Assistant Settings}
+    \end{minipage}%
+  }%
+\end{figure}
+\begin{figure}[h]
+  \makebox[\textwidth]{%
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-scheduling.png}
+      \caption{Screenshot of Scheduling Settings}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-how-to-use.png}
+      \caption{Screenshot of How to Use Page}
+    \end{minipage}%
+  }%
+\end{figure}
 
 \subsection{Product Development Cycle}
 
-A simplified version of the Software Development Life Cycle and the New Product Development Process were adopted for this project, with the following steps:
+During development, a simplified version of the Software Development Life Cycle and the New Product Development Process were adopted for this project, with the following steps:
 
 \begin{enumerate}
 	\item Idea
@@ -861,7 +920,7 @@ A simplified version of the Software Development Life Cycle and the New Product 
 	\item Analysis
 \end{enumerate}
 
-The first step (Idea) builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step (Research), the technical literature research present in ``State of the Art" is studied to architect the module's technology. In the third step (Development), the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step (External testing), a test is conducted with the client or research participants. In the last step (Analysis), the feedback from the test is evaluated for the next cycle.
+The first step builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step, the technical literature research present in Section 2 is studied to architect the module's technology. In the third step, the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step, a test is conducted with the client or research participants. In the last step, the feedback from the test is evaluated for the next cycle.
 
 \begin{figure}
 	\centering
@@ -880,27 +939,47 @@ The first step (Idea) builds on top of the ideation phase with methodological ex
 	\end{minipage}
 \end{figure}
 
-\subsubsection{Cycle 1}
+\subsubsection{Cycle 1: Assistant Email Address}
 
-The first cycle was internal with both the initial development and several refactors. This was the only cycle that did not undergo an external test.
+The first cycle was internal with both the initial development and several refactors. One of the specified conditions in Section 3 was to ensure unique email addresses for each organization using the assistant service, because teams may have similar names of assistants. For example, the default name of the assistant, \emph{Ara Isaacson (AI)}, may generate the email address \texttt{ara@example.com}, which does not share any information about who the assistant works for. Since unique email addresses for each team is mandatory, the team's slug was incorporated in the address, i.e., \texttt{username@example.com}, for example \texttt{florian@example.com}. 
 
-\paragraph{Assistant Email Address}
+This has two advantages: firstly, it tells the guests receiving emails from the assistant who the true host is; and secondly, the email receiving architecture can relate the unique email address to the owner's details. However, this might be mistaken as the email address of the user themselves (for example, Florian) rather than their assistant. Therefore, the last change was to add the suffix, \texttt{meet-} to each email, e.g., \texttt{meet-florian@example.com}.
 
-One of the specification conditions was to ensure unique email addresses for each organization using the assistant service, because teams may have similar names of assistants. For example, the default name of the assistant, ``Ara Isaacson", may generate the email address ``ara@araassistant.com", which does not share any information about who the assistant works for. Since unique email addresses for each team is mandatory, the team's slug was incorporated in the address, i.e., ``username@araassistant.com", for example ``florian@araassistant.com". This has two advantages: firstly, it tells the guests receiving emails from the assistant who the true host is; and secondly, the email receiving architecture can relate the unique email address to the owner's details.
+\subsubsection{Cycle 2: Onboarding Interface}
 
-However, in the first cycle itself, the assistant's default email was changed from ``username@domain" to ``meet-username@domain" where ``username" is the organization slug and the domain is the assistant's service domain. This was done to prevent confusion based on the email address; for example, ``florian@araassistant.com" may be mistaken as the email address of Florian himself (the user), whereas ``meet-florian@araassistant.com" implies that the email address is of the assistant, using which you can schedule an appointment with Florian.
+In the second cycle, the client's feedback was that users should have a simpler experience when signing up for the EIVA service. Although sensible defaults have been implemented, users may get overwhelmed with several privacy settings, so this should be simplified in an onboarding experience.
 
-\subsubsection{Cycle 2}
+Therefore, an onboarding experience was designed where users could easily set their basic information, and select one of three privacy options. Figure 23 and 24 show the updated onboarding interface for user and privacy settings respectively.
 
-Privacy features, privacy onboarding
+\begin{figure}[h]
+  \makebox[\textwidth]{%
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-onboarding-1.png}
+      \caption{Screenshot of Scheduling Settings}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-onboarding-2.png}
+      \caption{Screenshot of How to Use Page}
+    \end{minipage}%
+  }%
+\end{figure}
 
-\subsubsection{Cycle 3}
+A slider interface was implemented for privacy settings, with `Most open', `Balanced', and `Most secure' options. Selecting one of these three options would configure several settings, such as whether to verify logins based on location, whether to receive promotional emails, etc.
 
-Support for non-Google Calendar with iCal
+\subsubsection{Cycle 3: iCalendar Support}
 
-\subsubsection{Cycle 4}
+The assumption that most users would use Google Calendar ensured that development time was spent on easy connectivity with Google accounts. The official Google Calendar API was used to fetch events when recommending time slots using the open source package \texttt{calendar-slots} (Section 6.4). However, this meant that non-Google users could not connect their calendars, and the client themselves uses a self-hosted calendar system. It was therefore recommended to support other calendars that support the iCalendar specification.
 
-NLP in multiple languages rather than translation \thesubsubsection
+Most calendar services are compliant with iCalendar, therefore adding first-class support for iCalendar URLs meant that users using almost any digital calendar could have event conflict resolution features. ICS support was implemented and Google's API was also replaced with the new system. In Figure 19, users are asked to enter an iCalendar URL rather than connecting their Google accounts.
+
+\subsubsection{Cycle 4: Dutch Training Data}
+
+EIVA only worked in English until Cycle 4, and it was recommended by the client to add natural-language capabilities in multiple languages, especially Dutch. The initial idea was to use a translation API such as Google Translate to first translate incoming emails to English, and then continue processing the email. However, this was troublesome, because imperfect translations did not receive high classification scores in the NLP engine trained with English data.
+
+It was decided to have first-class support for both English and Dutch, and therefore a new Dutch training dataset was added. The process also added a language detection step, so incoming emails in English or Dutch would use their own respective NLP classifiers before continuing with the scheduling process. This ensures equally high accuracy in both languages.
 
 \subsubsection{Cycle 5}
 
