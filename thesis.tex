@@ -995,25 +995,25 @@ A grammatical error was also found in the outbound email sent by the assistant, 
 
 \subsection{Open Source Development}
 
-Although the preceding project Ara was licensed under the permissive MIT license, EIVA's source code is made available under the Server Side Public License (SSPL). SSPL makes sure that any further implementations or paid services built around EIVA also have their source code made public, and helps the future business use case of EIVA, since companies will not be able to sell competing services using EIVA's publicly-available source code.
+Although the preceding project Ara was licensed under the permissive MIT license, EIVA's source code is made available under the Server Side Public License (SSPL). SSPL makes sure that any further implementations or paid services built around EIVA also have their source code made public, meaning that companies will not be able to sell competing services using EIVA's publicly-available source code. This was selected to help the future business case.
 
-However, several open source projects were built in order to support key EIVA features, which were all licensed under the MIT license. This encourages wide community adoption and contributes back to the open source ecosystem. MIT is the most popular open source license and it allows commercial usage of all code.
+Nevertheless, several open source projects were built in order to support key EIVA features, and were all licensed under the MIT license. This encourages wide community adoption and contributes back to the open source ecosystem. MIT is the most popular open source license and it allows commercial usage of all code, so competing services are also free to use this package in the future.
 
 \paragraph{Calendar Link}
 
 For example, the open source project \texttt{calendar-link} was built in order to generate event links to popular calendar services like Google Calendar, Microsoft Outlook, and Yahoo! Calendar. This project is now used by many others, receiving over 1,000 downloads every week and contributed to by 5 additional developers. Developers can use the package to programmatically generate that users can click on to add a specific event to their calendar, with an easy-to-use API.
 
-\begin{verbatim}
-import { google, outlook, ics } from "calendar-link";
-const event = {
-  title: "My birthday party",
-  start: "2020-12-29 18:00:00 +0100",
-  duration: [3, "hour"]
-};
-google(event); // https://calendar.google.com/calendar/render...
-outlook(event); // https://outlook.live.com/owa/...
-ics(event); // standard ICS file based on https://icalendar.org
-\end{verbatim}
+\begin{alltt}
+\textcolor{keyword}{import} \{ google, outlook, ics \} \textcolor{keyword}{from} \textcolor{string}{"calendar-link"};
+\textcolor{keyword}{const} event = \{
+  \textcolor{symbol}{title}: \textcolor{string}{"My birthday party"},
+  \textcolor{symbol}{start}: \textcolor{string}{"2020-12-29 18:00:00 +0100"},
+  \textcolor{symbol}{duration}: [\textcolor{literal}{3}, \textcolor{string}{"hour"}]
+\};
+\textcolor{variable}{google}(event); \textcolor{comment}{// https://calendar.google.com/calendar/...}
+\textcolor{variable}{outlook}(event); \textcolor{comment}{// https://outlook.live.com/owa/...}
+\textcolor{variable}{ics}(event); \textcolor{comment}{// BEGIN:VCALENDAR VERSION:2.0...}
+\end{alltt}
 
 \paragraph{Calendar Slots}
 
@@ -1137,56 +1137,49 @@ Lastly, initialization tests are used after deploying the app to ensure that all
 
 \subsection{Deployment}
 
-AWS is used \cite{shokeen_deploying_2019}. AWS is secure \cite{narula_cloud_2015}.
+Amazon Web Services (AWS) resources are used for deploying the backend project. AWS is highly scalable and has an easy-to-use admin portal to manage resources and billing \cite{shokeen_deploying_2019}. AWS is also one of the most secure cloud computing platforms \cite{narula_cloud_2015}. For minimal latency and data storage compliance, the Frankfurt AWS Infrastructure Region was selected. Therefore, no data ever leaves the European Union.
 
-For minimal latency and data storage compliance, the Frankfurt AWS Infrastructure Region was selected. Therefore, no data ever leaves the European Union.
+\subsubsection{Infrastructure Cost}
 
-\subsubsection{Infrastructure}
-
-The total infrastructure cost between May and July 2020 was approximately US\$320. However, much of this was subsidized in the form of AWS credits, generously provided by Oswald Labs, the researcher's company \cite{noauthor_oswald_nodate}.
-
-\paragraph{Domain}
-
-The myeiva.com domain was purchased through Hover and costed US\$12.99.
+The total infrastructure cost between May and July 2020 was approximately US\$300. However, the entire cost was subsidized in the form of AWS credits, generously provided by Oswald Labs, the researcher's company, with the exception of the domain name \cite{noauthor_oswald_nodate}. The \texttt{myeiva.com} domain was purchased through Hover and costed US\$12.99. All AWS services were billed from May 21, 2020 to July 21, 2020.
 
 \paragraph{Server}
 
-A dedicated server is used for deploying the EIVA service. This uses AWS Lightsail which provides an easy-to-use interface for AWS EC2, with the following instance details. The total cost of this server was US\$40:
+A dedicated server is used for deploying the EIVA backend. This uses AWS Lightsail which provides an easy-to-use interface for AWS EC2, with the following instance details. The cost of this server was US\$20 per month:
 
 \begin{itemize}
-	\item Region: Frankfurt (eu-central-1)
 	\item RAM: 4 GB
 	\item Processor: 2 vCPUs
 	\item Storage: 80 GB SSD
-	\item Public IP address: 18.195.203.61
-	\item Pricing: US\$20 per month
-	\item Billing period: May 21, 2020--July 21, 2020
 \end{itemize}
 
 \paragraph{ElasticSearch}
 
-A dedicated ElasticSearch instance is used to store server logs and track usage events, with the following instance details. The total cost of this instance was US\$272:
+A dedicated ElasticSearch instance is used to store server logs and track usage events, with the following instance details. The total cost of this instance was US\$272, billed as US\$0.186 per hour:
 
 \begin{itemize}
 	\item Elasticsearch version: 7.4
 	\item Instance type: r5.large.elasticsearch
-	\item Number of nodes: 1
-	\item Data nodes storage type: EBS
-	\item EBS volume type: General Purpose (SSD)
 	\item EBS volume size: 10 GiB
-	\item Pricing: US\$0.186 per hour
-	\item Billing period: May 21, 2020--July 21, 2020
 \end{itemize}
 
 \subsubsection{Backend APIs}
 
-Info about deployment, server, etc. There is a script ``update.sh" with the following lines.
+To deploy the backend APIs, a custom shell script was written that fetches code from the git repository, installs dependencies, and runs the project. The \texttt{update.sh} file consists of the following lines:
 
-Each line does this respectively… in the future, load balancers, etc.
+\begin{alltt}
+git pull --force \textcolor{comment}{# Pull code from GitHub}
+npm install \textcolor{comment}{# Install npm dependencies}
+npx prisma generate \textcolor{comment}{# Generate database schema}
+npm run build \textcolor{comment}{# Compile TypeScript project}
+pm2 flush \textcolor{comment}{# Clear current deployment's logs}
+pm2 restart all \textcolor{comment}{# Restart all services}
+pm2 logs \textcolor{comment}{# Show the logs of this deployment}
+\end{alltt}
 
 \subsubsection{Frontend Web App}
 
-...Netlify...CloudFlare
+Deploying the frontend web app is much easier because of the CI process. The frontend is hosted on the static site hosting platform \emph{Netlify}, which automatically build and deploys the app on push. This service is also free.
 
 \subsubsection{Server Monitoring}
 
@@ -1200,7 +1193,7 @@ Over the course of testing weeks, no downtime was recorded for the backend, but 
 
 \paragraph{Resource Monitoring}
 
-\emph{Netdata} is used \cite{noauthor_netdata_nodate}. NetData is open source \cite{noauthor_netdata/netdata_2020}.
+To make sure the service is not over used and to prevent crashes, \emph{Netdata} is used to monitor all aspects of the server. Netdata can visualize and monitor real-time metrics, optimized to accumulate all types of data, such as CPU usage, RAM usage, and disk activity \cite{noauthor_netdata_nodate}. NetData is also open source and consists of a daemon that collects collecting and an interface to visualize that data \cite{noauthor_netdata/netdata_2020}.
 
 \paragraph{Error Tracking}
 
