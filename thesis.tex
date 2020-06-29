@@ -1956,25 +1956,25 @@ All but one participants said that the EIVA met their expectations, and 25 out o
 
 \section{Future Work}
 
-\subsection{Features}
+\subsection{Features and Improvements}
 
-...text...
+In Section 7.3.4, participants shared their frustrations which included enhancements and bugs, which should be fixed. For example, Dutch grammar should be improved with the help of a native speaker, onboarding time should be reduced, documentation should be improved, and time recommendations should be smarter and context-aware.
 
-\subsection{Technical Updates}
+Users also shared feature recommendations which should be implemented in the future. New features such as setting up appointment without sending emails and support for other forms of communication like instant messages and SMS should also be added. Users can also currently not able to manually select recommended slots, or cancel or reschedule meetings. Furthermore, support for multiple guests also needs several improvements.
 
-...text...Prisma JSON type...bloom filter for JWT invalidation...
+In terms of technical updates, a bloom filter may be used when searching for invalidated tokens, which will make the search faster and more efficient on scale. Prisma, the database toolkit used by the backend, also recently added support for native JSON data types, so the dependencies and source code should be updated with the new syntax. The NLP training data can also be increased to add support for more languages.
 
 \subsection{Business Case}
 
-In the literature research for this paper, it is highlighted that professionals currently either schedule appointments themselves or hire assistants to help with the task. However, regardless of whether the professional or their assistant schedules appointments, the time wasted is not insignificant. According to the European Commission, the average Dutch small or medium-sized enterprise (SME) employs 3.2 people \cite{noauthor_2019_2019}. If each employee attends 7 meetings per week (which is the average for professionals), 26 otherwise productive hours are wasted every month in scheduling meetings \cite{kincaid_electronic_1985}. This costs the company over €450 in lost time, based on the average wage of €17.6 per hour \cite{wedia_salary_nodate} This adds up to almost €2.25 billion per year for the SME industry as a whole, and the numbers are even higher for larger enterprises. University of Twente, for example, employs 3,150 professionals, adding up to over €400,000 in lost time per year.
+In Section 2, it is highlighted that professionals currently either schedule appointments themselves or hire assistants to help with the task. However, regardless of whether the professional or their assistant schedules appointments, the time wasted is not insignificant. According to the European Commission, the average Dutch small or medium-sized enterprise (SME) employs 3.2 people \cite{noauthor_2019_2019}. If each employee attends 7 meetings per week (which is the average for professionals), 26 otherwise productive hours are wasted every month in scheduling meetings \cite{kincaid_electronic_1985}. This costs the company over €450 in lost time, based on the average wage of €17.6 per hour \cite{wedia_salary_nodate} This adds up to almost €2.25 billion per year for the SME industry as a whole, and the numbers are even higher for larger enterprises. University of Twente, for example, employs 3,150 professionals, adding up to over €400,000 in lost time per year.
 
-Therefore, a strong business case can be built around launching EIVA as a service. Since the assistant can save around €150 in lost time per month for professionals, a service that costs as high as €100 per month per person has a return on investment (ROI) of 50\%. In my personal opinion, a pricing point of less than €50 per month can be achieved because of the low cloud infrastructure costs. The proposed pricing plans are:
+Therefore, a strong business case can be built around launching EIVA as a service. Since the assistant can save around €150 in lost time per month for professionals, a service that costs as high as €100 per month per person has a return on investment (ROI) of 50\%. That being said, a pricing point of less than €50 per month can be achieved because of the low cloud infrastructure costs. The proposed pricing plans are:
 
 \begin{enumerate}
-	\item Basic plan for €10 per month, targeted towards students, self-employed young professionals, and early-stage entrepreneurs with no support for custom domain, but including unlimited scheduling and assistant usage
-	\item Pro plan for €25 per month with support for custom domain
-	\item Team plan for €30 per user per month, targeted towards businesses or institutions who want to onboard their entire team to EIVA for a collaborative experience
-	\item Custom plan with custom billing for large enterprises with features like dedicated support, on-premise hosting, and uptime service-level agreements (SLA)
+	\item Basic plan for €10 per month, targeted towards students, self-employed young professionals, and early-stage entrepreneurs. This plan will have no support for custom domain names, but will include unlimited scheduling and assistant usage.
+	\item Pro plan for €25 per month. This will include all features of the Basic plan with support for custom domain names.
+	\item Team plan for €30 per user per month, targeted towards businesses or institutions who want to onboard their entire team to EIVA for a collaborative experience.
+	\item Custom plan with custom billing for large enterprises with features like dedicated support, on-premise hosting, and uptime service-level agreements (SLA).
 \end{enumerate}
 
 \subsection{Impact Assessment}
