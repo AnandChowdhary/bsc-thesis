@@ -99,11 +99,9 @@
 
 Manually setting up appointments by email wastes tens of hours every month for professionals, because several email exchanges are required before receiving confirmation. Since not everyone can afford to hire full-time assistants, Email-based Intelligent Virtual Assistants (EIVA) can help by automating this task.
 
-In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings.
+In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings. They code is open source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with focus on data privacy and user personalization.
 
-They code is open source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with focus on data privacy and user personalization.
-
-A user experience evaluation of both the EIVA and its app with 30 participants was conducted that found positive reception, with the average rating of the overall assistant and app experience of 4.4 and 4.5 out of 5 respectively. Users from over 10 countries participated.
+A user experience evaluation of both the EIVA and its app with 30 participants was conducted that found positive reception, with the average rating of the overall assistant and app experience of 4.4 and 4.5 out of 5 respectively. All but one participants said that the EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month. Participants also shared their frustrations and recommendations for future work.
 
 \newpage
 
@@ -117,6 +115,8 @@ I would also like to thank the client, Speakup B.V., for their generous support 
 
 Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, who has been working hard for so many years. I wouldn't be able to sustain building a startup while graduating CreaTe without him. Oswald Labs also sponsored the cloud credits required for this project.
 
+I also want to thank to my girlfriend, Sukriti Kapoor, for sharing the survey with her colleagues, and for proof-reading this thesis.
+
 Finally, I would like to thank the Creative Technology faculty and staff --- Dr. Dennis Reidsma, Dr. Katarzyna Zalewska, Dr. Erik Faber, Dr. Khiet Truong, Chris Vermaas, Richard Bults, and Alfred de Vries --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Peter Langela, Emiel Pegge, Thomas Mensink, Gilles Meijer, Rick Sulman, and Amy de Lange --- for helping shape my entrepreneurial spirit.
 
 \newpage
@@ -126,6 +126,8 @@ Finally, I would like to thank the Creative Technology faculty and staff --- Dr.
 \newpage
 
 \listoftables
+
+\newpage
 
 \listoffigures
 
@@ -217,16 +219,16 @@ To execute JavaScript on the server, a runtime environment is required. Node.js 
 
 TypeScript features like interfaces and decorators are extensively used in the codebase. For example, the \texttt{@Controller} decorator is used to describe the route of a controller, which is then injected in the Express application.
 
-\begin{verbatim}
-import { Controller, Post } from "@staart/server";
-@Controller("example")
-export class ExampleController {
+\begin{alltt}
+\textcolor{keyword}{import} \{ Controller, Post \} \textcolor{keyword}{from} \textcolor{string}{"@staart/server"};
+@Controller(\textcolor{string}{"example"})
+\textcolor{keyword}{export class} ExampleController \{
   @Post()
-  function postExample() {
-    return { success: true };
-  }
-}
-\end{verbatim}
+  \textcolor{variable}{postExample}() \{
+    \textcolor{keyword}{return} \{ \textcolor{symbol}{success}: \textcolor{literal}{true} \};
+  \}
+\}
+\end{alltt}
 
 The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.10) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understand the source code much clearer.
 
@@ -576,23 +578,23 @@ The Twelve-Factor App methodology recommends storing configuration in the enviro
 
 For example, the \texttt{PORT} constant defines the port the app should listen on, and defaults to port 80:
 
-\begin{verbatim}
-import { config } from "dotenv";
-config();
-export const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
-\end{verbatim}
+\begin{alltt}
+\textcolor{keyword}{import} \{ config \} \textcolor{keyword}{from} \textcolor{string}{"dotenv"};
+\textcolor{variable}{config}();
+\textcolor{keyword}{export const} \textcolor{symbol}{PORT} = process.\textcolor{variable}{env}.\textcolor{symbol}{PORT} ? parseInt(process.\textcolor{variable}{env}.\textcolor{symbol}{PORT}) : \textcolor{literal}{80};
+\end{alltt}
 
 Then, when initializing the app, this value is imported:
 
-\begin{verbatim}
-import { PORT } from "./constants";
-import { Server } from "@staart/server";
-export class Staart extends Server {
-  public start(port: number = PORT): void {
-    this.app.listen(port, () => success(`Listening on ${port}`));
-  }
-}
-\end{verbatim}
+\begin{alltt}
+\textcolor{keyword}{import} \{ PORT \} \textcolor{keyword}{from} \textcolor{string}{"./constants"};
+\textcolor{keyword}{import} \{ Server \} \textcolor{keyword}{from} \textcolor{string}{"@staart/server"};
+\textcolor{keyword}{export class} Staart \textcolor{keyword}{extends} Server \{
+  \textcolor{keyword}{public} start(port: number = \textcolor{symbol}{PORT}): \textcolor{keyword}{void} \{
+    this.\textcolor{variable}{app}.\textcolor{variable}{listen}(port, () => console.\textcolor{variable}{log}(\textcolor{string}{`Listening on} \$\{port\}\textcolor{string}{`}));
+  \}
+\}
+\end{alltt}
 
 This central management makes it very easy to update defaults (like port 80), and the \texttt{.env} file contains environment-specific values, like port 7000 for development and 443 for production. A \texttt{.env.example} file is available in the repository for reproduction. A total of 68 exported members configure various parts of the application, from database connection URLs to secret keys for signing JSON Web Tokens (Section 6.1.7).
 
@@ -612,37 +614,37 @@ Naive Bayes classifiers are probabilistic classifiers, meaning that they calcula
 
 The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. Training data consisting of common phrases to perform the aforementioned actions is used, for example:
 
-\begin{verbatim}
-import { BayesClassifier } from "natural";
-const classifier = new BayesClassifier();
+\begin{alltt}
+\textcolor{keyword}{import} \{ BayesClassifier \} \textcolor{keyword}{from} \textcolor{string}{"natural"};
+\textcolor{keyword}{const} classifier = new \textcolor{variable}{BayesClassifier}();
 
-classifier.addDocument(
+classifier.\textcolor{variable}{addDocument}(
   [
-    "set up an appointment",
-    "schedule a call",
-    "meet me for dinner",
+    \textcolor{string}{"set up an appointment"},
+    \textcolor{string}{"schedule a call"},
+    \textcolor{string}{"meet me for dinner"},
   ],
-  "setupNewAppointment"
+  \textcolor{string}{"setupNewAppointment"}
 );
-classifier.addDocument(
+classifier.\textcolor{variable}{addDocument}(
   [
-    "i can't make it",
-    "reschedule this call",
-    "find another time",
+    \textcolor{string}{"i can't make it"},
+    \textcolor{string}{"reschedule this call"},
+    \textcolor{string}{"find another time"},
   ],
-  "rescheduleAppointment"
+  \textcolor{string}{"rescheduleAppointment"}
 );
 
-classifier.train();
-\end{verbatim}
+classifier.\textcolor{variable}{train}();
+\end{alltt}
 
 In the above example, when the classifier receives a new string, such as ``I don't think I'll be able to make it to this time", it will return a higher probability for \texttt{rescheduleAppointment} than \texttt{setupNewAppointment}, as the following example shows:
 
-\begin{verbatim}
-classifier.getClassifications(
-  "i don't think I'll be able to make it to this time"
+\begin{alltt}
+classifier.\textcolor{variable}{getClassifications}(
+  \textcolor{string}{"i don't think I'll be able to make it to this time"}
 );
-\end{verbatim}
+\end{alltt}
 
 Here, the value of rescheduling is 0.333... and that of setting up a new appointment is 0.1666..., which shows that the naive Bayes classifier works at a decent accuracy, even with an extremely small training dataset. In EIVA, the training dataset is larger and there are four categories of classifications.
 
@@ -660,17 +662,17 @@ Email templates are defined in Markdown, and rendered with variables using Musta
 
 The author's \texttt{@staart/mustache-markdown} package makes rendering easy by exposing a single interface for both Mustache and Markdown \cite{noauthor_staart/mustache-markdown_nodate}. For example, an email verification email template may contain:
 
-\begin{verbatim}
-Hello, {{name}}! Please click on this link to verify your email:
-![{{link}}](Verify my email).
-\end{verbatim}
+\begin{alltt}
+Hello, \textcolor{variable}{\{\{name\}\}}! Please click on this link to verify your email:
+![\textcolor{variable}{\{\{link\}\}}](Verify my email).
+\end{alltt}
 
 When an object containing data is provided (say, the name `Florian' and an example link), the following HTML is generated:
 
-\begin{verbatim}
-<p>Hello, Florian! Please click on this link to verify your email:
-<a href="https://example.com">Verify my email</a>.</p>
-\end{verbatim}
+\begin{alltt}
+\textcolor{variable}{<p>}Hello, Florian! Please click on this link to verify your email:
+\textcolor{variable}{<a href=}\textcolor{string}{"https://example.com"}\textcolor{variable}{>}Verify my email\textcolor{variable}{</a>}.\textcolor{variable}{</p>}
+\end{alltt}
 
 Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP \cite{noauthor_nodemailer_nodate}. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
 
@@ -867,13 +869,13 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-login.png}
-      \caption{Screenshot of Login}
+      \caption{Screenshot of Login Page}
     \end{minipage}%
     \hfill
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-meetings.png}
-      \caption{Screenshot of Meetings}
+      \caption{Screenshot of Meetings Page}
     \end{minipage}%
   }%
 \end{figure}
@@ -882,13 +884,28 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-locations.png}
-      \caption{Screenshot of Locations}
+      \caption{Screenshot of Locations Page}
     \end{minipage}%
     \hfill
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-assistant.png}
       \caption{Screenshot of Assistant Settings}
+    \end{minipage}%
+  }%
+\end{figure}
+\begin{figure}[h]
+  \makebox[\textwidth]{%
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-confirm.png}
+      \caption{Screenshot of Confirmation Page}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{screenshot-logs.png}
+      \caption{Screenshot of Incoming Email Logs Page}
     \end{minipage}%
   }%
 \end{figure}
@@ -2139,7 +2156,7 @@ All code written for this project is open source, available on GitHub:
 
 \newpage
 
-\section*{Appendix 4: Open Source Licenses}
+\section*{Appendix 5: Open Source Licenses}
 
 This project is standing on the shoulder of giants; it wouldn't be possible without the open source projects listed below. Only direct npm dependencies are listed below (not development dependencies or subdependencies).
 
@@ -2159,7 +2176,7 @@ This project is standing on the shoulder of giants; it wouldn't be possible with
 
 \newpage
 
-\section*{Appendix 5: Prisma Database Schema}
+\section*{Appendix 6: Prisma Database Schema}
 
 \subsection*{Enumerated types}
 
@@ -2225,6 +2242,15 @@ enum EmailType {
 \subsubsection*{Entire Schema}
 
 The full schema was omitted from this appendix because it is 357 lines. It is available in the `prisma' directory part of the backend source code, on \url{https://github.com/o15y/eiva/blob/master/prisma/schema.prisma}.
+
+\newpage
+
+\section*{Appendix 7: Database Relationships}
+
+\begin{figure}[!hb]
+  \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{database-schema.png}}%
+  \caption{Database Entity Relationship Diagram}
+\end{figure}
 
 \newpage
 
