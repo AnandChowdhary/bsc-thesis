@@ -464,8 +464,8 @@ Once basic stakeholders are identified, user personas are used to personify them
 
 For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers. The \emph{Random User Generator} service has been used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson \cite{noauthor_random_nodate}. For profile pictures, the \emph{This Person Does Not Exist} website is used, which is a collection of AI-generated photos \cite{noauthor_this_nodate}.
 
-\begin{wrapfigure}{l}{0.28\textwidth}
-	\includegraphics[scale=0.1]{persona-tanya.jpg}
+\begin{wrapfigure}{l}{0.2\textwidth}
+	\includegraphics[scale=0.08]{persona-tanya.jpg}
 \end{wrapfigure}
 
 \paragraph{Tanya Gonzalez}
@@ -474,8 +474,8 @@ Tanya is a 24-year-old MSc student at a 4TU university in the Netherlands and wo
 
 She has several professors that she wants to schedule appointments with for classes and her assistantship. Her end goal is to have a simple way to view her professors' calendars and find available time slots for meetings. Currently, this takes several email exchanges with each person and wastes a lot of time.
 
-\begin{wrapfigure}{l}{0.28\textwidth}
-	\includegraphics[scale=0.1]{persona-julia.jpg}
+\begin{wrapfigure}{l}{0.2\textwidth}
+	\includegraphics[scale=0.08]{persona-julia.jpg}
 \end{wrapfigure}
 
 \paragraph{Julia Morris}
@@ -484,18 +484,16 @@ Julia is a 33-year-old freelance makeup artist based in Sydney, Australia. She i
 
 To keep track of appointments, she uses the default calendar application installed on her iPad. She currently uses WhatsApp to communicate with clients, but her end end goal is to allow them to automatically add bookings to her calendar based on her availability.
 
-\begin{wrapfigure}{l}{0.28\textwidth}
-	\includegraphics[scale=0.1]{persona-joy.jpg}
+\begin{wrapfigure}{l}{0.2\textwidth}
+	\includegraphics[scale=0.08]{persona-joy.jpg}
 \end{wrapfigure}
 
 \paragraph{Joy Fields}
 
-Joy is a 47-year-old C-level business executive at a Chicago-based multinational corporation in the financial space. She is in a very high income bracket and earns over US\$1MM per year. At work, she mostly uses a MacBook Pro, but also has email and presentation setup on her iPhone because she extensively travels as part of her job. She cares about gender equality, climate change, and data privacy.
+Joy is a 47-year-old C-level business executive at a Chicago-based multinational corporation in the financial space. She is in a very high income bracket and earns over US\$1MM per year. At work, she mostly uses a MacBook Pro, but also has email and presentation setup on her iPhone because she extensively travels as part of her job. She cares about gender equality, climate change, and data privacy. Most of her time is spent on answering emails and in meetings, for which she uses her company-provided exchange server. She has a full-time assistant, but thinks that his time would be best spent on more productive tasks.
 
-Most of her time is spent on answering emails and in meetings, for which she uses her company-provided exchange server calendar and email account. She has a full-time assistant, but thinks that his time would be best used on more productive tasks, not scheduling appointments.
-
-\begin{wrapfigure}{l}{0.28\textwidth}
-	\includegraphics[scale=0.1]{persona-lee.jpg}
+\begin{wrapfigure}{l}{0.2\textwidth}
+	\includegraphics[scale=0.08]{persona-lee.jpg}
 \end{wrapfigure}
 
 \paragraph{Lee Henderson}
@@ -530,16 +528,16 @@ Though the use cases for each persona are different, they all fall under the umb
 
 A pen-and-paper exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted. In Figure X, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
 
-Here, the processof receiving an email, saving the contents, and invoking a serverless function is visualized. The diagram also showcases the connection of the API with other services like a database and payment gateway.
+Here, the process of receiving an email, saving the contents, and invoking a serverless function is visualized. The diagram also showcases the connection of the API with other services like a database and payment gateway.
 
 The API then finds the owner of the team the email was addressed to and whether or not the owner themselves sent the email. After classification, one of several processes are queued.
+
+In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform action when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
 
 \begin{wrapfigure}{r}{0.5\textwidth}\centering
 	\includegraphics[scale=0.092]{drawing-rules-ui.jpg}
 	\caption{Rule-based Process Ideation}
 \end{wrapfigure}
-
-In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform action when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
 
 In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{and} its \emph{subject} \emph{contains} the text (input), \emph{and} its \emph{body length} \emph{is greater than or equal to} (length), \emph{and} the \emph{day} \emph{is not} one of the days \emph{Sat, Sun}, automatically reply with \emph{template} \emph{Vacation responder} and also email \emph{me} with the (text). Complicated rules such as these can be generated by the proposed UI, allowing users to automate several different types of repetitive email tasks.
 
@@ -547,18 +545,12 @@ In the example UI, the rule is "When you get an email from \emph{anyone}, \emph{
 
 For setting preferences and managing scheduled appointments, a functional and easy-to-use companion web application must be developed. In Figure 4, early wireframes of the web app are designed, using both desktop and smartphone form factors. After creating an account and verifying their email, users can log in and will be taken to the onboarding interface to set up their assistant. Then, users are taken to the Dashboard page with an overview of their meetings, and can choose to go to the Settings page to configure their preferences.
 
-Figure 4 also shows a two-column layout for desktop pages, with the left sidebar for the primary navigation and a card for the main content. On mobile, a hamburger menu is used with the same design. An accessibility options floating button is also shown on the bottom-right corner of each design. In Figure 5 and 6, more detailed wireframes are drawn using a mobile stencil on paper.
-
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{drawing-ui.jpg}
 	\caption{Webpage Wireframes on Paper}
 \end{figure}
 
-\begin{figure}
-	\center
-	\includegraphics[width=7cm]{ideation-wall.jpg}
-	\caption{Mobile Wireframes Exploration}
-\end{figure}
+Figure 4 also shows a two-column layout for desktop pages, with the left sidebar for the primary navigation and a card for the main content. On mobile, a hamburger menu is used with the same design. An accessibility options floating button is also shown on the bottom-right corner of each design. In Figure 5 and 6, more detailed wireframes are drawn using a mobile stencil on paper.
  
  \begin{figure}
 	\centering
@@ -595,16 +587,21 @@ Figure 4 also shows a two-column layout for desktop pages, with the left sidebar
 	\item Locations: List of saves locations with map interface
 \end{enumerate}
 
+\begin{wrapfigure}{l}{0.4\textwidth}\centering
+	\includegraphics[scale=0.035]{ideation-wall.jpg}
+	\caption{Mobile Wireframes Exploration}
+\end{wrapfigure}
+
 Lastly, both low- and high-fidelity mockups of the desktop interface were designed using Figma, a web-based vector graphics editor and prototyping tool \cite{noauthor_23-year-olds_nodate}. Figure 7 shows a comparison of a selection of these mockups. The low-fidelity mockups are used for layouting and positioning, while the high-fidelity mockups add detail such as colors, shadows, and detailed UI elements like form controls.
 
-\begin{figure}
+\vspace{15mm}
+
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{mockup-1.png}
 	\caption{Comparison of low- and high-fidelity mockups}
 \end{figure}
 
-...text...
-
-\newpage
+\clearpage
 
 \section{Specification}
 
@@ -806,7 +803,7 @@ For authentication, the industry-standard access/refresh token combination is us
 
 Both tokens are JWTs and contain all required information; the access token includes details about the user (such as their name and role) whereas the refresh token only includes the user ID. Furthermore, the web app also allows users to see a list of their logged in sessions and invalidate refresh tokens, which are then blacklisted in Redis (Section 6.1.7).
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{minipage}{.47\textwidth}
 		\centering
@@ -837,7 +834,7 @@ MariaDB is used as the primary database management system for the backend. Maria
 
 Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 10 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{database-basic.png}
 	\caption{Simplified Database Schema with Relations}
 \end{figure}
@@ -858,7 +855,7 @@ Although there are no binary files, the API still deals with large text files li
 
 \subsubsection{API Endpoints}
 
-The backend API endpoints are versioned with a \texttt{/v1} prefix and categorized, for example the login endpoint is \texttt{POST /v1/auth/login}.  Since there are tens of total endpoints, it's useful to categorize them for development and management, and each API category is defined in Table 3.
+The backend API endpoints are versioned with a \texttt{/v1} prefix and categorized, for example the login endpoint is \texttt{POST /v1/auth/login}.  Since there are tens of total endpoints, it's useful to categorize them for development and management, and each API category is defined in Table 3. Each endpoint category prefix is automatically generated from the \texttt{controllers} directory in Staart API's build process, based on the subdirectory it is located in. For example, the user emails controller file \texttt{controllers/users/\_id/emails.ts} generates the endpoint \texttt{/v1/users/:id/emails} where \texttt{:id} is a user ID.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -878,8 +875,6 @@ The backend API endpoints are versioned with a \texttt{/v1} prefix and categoriz
 		\end{tabular}
 	\end{minipage}%
 \end{table}
-
-Each endpoint category prefix is automatically generated from the \texttt{controllers} directory in Staart API's build process, based on the subdirectory it is located in. For example, the user emails controller file \texttt{controllers/users/\_id/emails.ts} generates the endpoint \texttt{/v1/users/:id/emails} where \texttt{:id} is a user ID.
 
 \paragraph{Public API}
 
@@ -933,26 +928,27 @@ Other third-party APIs are used for specific utilities, such as \emph{Clearbit} 
 
 To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.4). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which is turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{ses-process.png}
 	\caption{Email Received to Webhook Process}
 \end{figure}
 
 When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 12 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant email, setting up the database record, and tokenizing and classifying the email contents.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{webhook-process.png}
 	\caption{Webhook to Classification Process}
 \end{figure}
 
-\begin{wrapfigure}{l}{0.5\textwidth}\centering
-	\includegraphics[scale=0.4]{schedule-process.png}
-	\caption{New Appointment Process}
-\end{wrapfigure}
+\begin{figure}[h]
+	\center
+	\includegraphics[width=7cm]{schedule-process.png}
+	\caption{Scheduling Process}
+\end{figure}
 
-After the email is classified as requesting a new appointment, the process described in Figure 13 is triggered to schedule a new appointment for the user and their guests. First, the entire email text is modified for consistent date formats; then, a Google API is used to detect the language of the email (Dutch or English); then, all the guests are detected, and Clearbit is used to find additional information about them, if enabled. Then, dates and times are found using Chrono (Section 6.1.2), and 3 time slots are recommended along with the location and an email is sent.
+After the email is classified as requesting a new appointment, the process described in Figure 13 is triggered to schedule a new appointment for the user and their guests. First, the entire email text is modified for consistent date formats; then, a Google API is used to detect the language of the email (Dutch or English); then, all the guests are detected, and Clearbit is used to find additional information about them, if enabled. Then, dates and times are found using Chrono (Section 6.1.2), and 3 time slots are recommended along with the location and an email is sent. An example email is visible in Figure 14.
 
-\begin{figure}
+\begin{figure}[h]
 	\center
 	\includegraphics[width=10cm]{screenshot-dates.png}
 	\caption{Screenshot of Time Recommendation Email}
@@ -999,7 +995,7 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \end{minipage}%
   }%
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}[h!]
   \makebox[\textwidth]{%
     \begin{minipage}[t]{0.8\textwidth}
       \centering
@@ -1029,7 +1025,7 @@ The web app UI was wireframed, prototyped, and mocked up extensively before impl
     \end{minipage}%
   }%
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}[h!]
   \makebox[\textwidth]{%
     \begin{minipage}[t]{0.8\textwidth}
       \centering
@@ -1213,7 +1209,7 @@ GitHub Actions is used as the API for CI, and is free for public repositories. A
 
 When there is an error in the build such as if a unit test fails or there is a TypeScript compilation error, the pipeline fails and developers get a notification for error mitigation. On average this CI process takes 2 minutes to complete, and Figure 11 shows the duration of each workflow run.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{minipage}{.47\textwidth}
 		\begin{tikzpicture}
@@ -1266,7 +1262,7 @@ When there is an error in the build such as if a unit test fails or there is a T
 
 Lastly, initialization tests are used after deploying the app to ensure that all services are functioning. The \texttt{init-test.ts} file has 6 tests that run as soon as the app is launched. If there is an error with any of these services, it is immediately logged in the console. The output of a successful initialization is shown in Figure 16. After the server is ready, the connection to self-hosted services like Redis and MariaDB are tested; then, a test email is sent to ensure outbound emails are delivered; finally, the connection to third-party services like Stripe and ElasticSearch is tested.
 
-\begin{figure}
+\begin{figure}[h]
 	\center
 	\includegraphics[width=10cm]{init-tests.png}
 	\caption{Successful Initialization Tests}
@@ -1346,7 +1342,7 @@ Over the course of testing weeks, 3 errors were tracked for the frontend project
 
 \section{Evaluation}
 
-The goal of this user experience evaluation was to allow 30 users to create their own assistants using the EIVA service and use the companion app before hearing their feedback. The form opened on June 1, 2020, and was closed on June 24, 2020, when 30 responses were recorded.
+The goal of this user experience evaluation was to allow 30 users to create their own assistants using the EIVA service and use the companion app before hearing their feedback. The form opened on June 1, 2020, and was closed on June 24, 2020, when 30 responses had been recorded.
 
 \subsection{Introductory Survey}
 
@@ -1388,11 +1384,7 @@ User were also asked their preferred modes of scheduling. In Table 2, `Work chat
 
 \subsubsection{Email and Calendar Usage}
 
-To further validate whether email is the ideal use case, participants were asked about their frequency of sending emails (Table 3) and checking their email (Table 4).
-
-More than half of all participants send multiple emails per day, whereas almost one third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively.
-
-Almost two thirds of all participants check their email multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively.
+To ensure that email is the ideal use case for scheduling, participants were asked about their frequency of sending emails (Table 3) and checking their email (Table 4). More than half of all participants send multiple emails per day, whereas almost one third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively. Almost two thirds of all participants check their email multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively. Therefore, large a majority of all participants both frequently send and check for emails.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1485,7 +1477,7 @@ Apart from scheduling, there are also several other reasons to use email. Partic
 	\end{minipage}%
 \end{table}
 
-Although EIVA connects with any calendar application that follows the iCalendar standard, which all major services do, it also directly integrates with Google Calendar. This was chosen with the hypothesis that it's the most popular calendar service, which was proved to be true based on the participants' responses. Almost two-thirds of all participants (19) selected Google Calendar as their primary calendar service, 9 out of 30 participants use Microsoft Outlook, and another 8 use Apple Calendar. 3 participants used other calendar services. Lastly, 1 respondent each uses a self-hosted calendar or no calendar.
+Although EIVA connects with any calendar application that follows the iCalendar standard, which all major services do, it also directly integrates with Google Calendar using the official API (iCalendar support was added in Cycle 3, Section 6.3.3). This was chosen with the hypothesis that it's the most popular calendar service, which was proved to be true based on the participants' responses. Almost two-thirds of all participants (19) selected Google Calendar as their primary calendar service, 9 out of 30 participants use Microsoft Outlook, and another 8 use Apple Calendar. 3 participants used other calendar services. Lastly, 1 respondent each uses a self-hosted calendar or no calendar.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1562,9 +1554,9 @@ As described in Section 6.5.3, a JavaScript snippet was used to send information
 
 Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands.
 
-Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, with the maximum usage coming from Flevoland, followered in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
+Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, with the maximum usage coming from Flevoland, followed in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{location-world.png}
 	\caption{Usage by Country (Worldwide)}
 \end{figure}
@@ -1632,7 +1624,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 province, wit
 
 \paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
 
-Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-releated' is a sum of pageviews from headless Chrome, Chorome webviews, and Chromium.
+Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-releated' is a sum of pageviews from headless Chrome, Chrome webviews, and Chromium.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1676,7 +1668,7 @@ In terms of the user's browser language, English was the overwhelming majority, 
 
 Similarly, over 99\% of all pageviews were done on URLs on the secure HTTPS protocol, with only 4 requests using HTTP. This was due to the secure protocol redirection described in Section 6.2.5.
 
-Most users used the web app a large screen, not a smartphone. In fact, over 30 unique screen resolution combinations were tracked. The most common absolute screen resolution was the high definition 1920x1080 (35\%), followed by 1440x900 at almost a quarter of all pageviews. Interestingly, 2\% of all pageviews still used the outdated 800x600 resolution.
+Most users used the web app on a large screen, not a smartphone. In fact, over 30 unique screen resolution combinations were tracked. The most common absolute screen resolution was the high definition 1920x1080 (35\%), followed by 1440x900 at almost a quarter of all pageviews. Interestingly, 2\% of all pageviews still used the outdated 800x600 resolution.
 
 \subsubsection{API usage}
 
@@ -1684,7 +1676,7 @@ Whenever a participant uses the web app, requests to the API are made. An averag
 
 An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.2. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{minipage}{.47\textwidth}
 		\begin{tikzpicture}
@@ -1747,7 +1739,7 @@ Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020
 
 In Figure 11, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15).
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{heatmap-locations.png}
 	\caption{Heatmap for Locations Page}
 \end{figure}
