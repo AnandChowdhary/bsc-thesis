@@ -981,13 +981,17 @@ EIVA only worked in English until Cycle 4, and it was recommended by the client 
 
 It was decided to have first-class support for both English and Dutch, and therefore a new Dutch training dataset was added. The process also added a language detection step, so incoming emails in English or Dutch would use their own respective NLP classifiers before continuing with the scheduling process. This ensures equally high accuracy in both languages.
 
-\subsubsection{Cycle 5}
+\subsubsection{Cycle 5: Bugs and New Domain}
 
-Slack, email from Florian
+In Cycle 5, the client was able to extensively use EIVA and found several bugs and enhancement recommendation. First, an error was found where deleting the default location (an auto-generated Jitsi Meet link) would throw an error. This was fixed by adding support for custom default meeting locations and automatically changing the default location in case the current default is deleted by the user. Secondly, the client recommended removing HTTP access and redirecting all requests to the secure HTTPS protocol, which was implemented. Several other bugs were also fixed during this feedback cycle.
+
+Also, the website was migrated to the new domain \texttt{myeiva.com} (a different domain was used during development), but this had an email deliverability error. Since the domain was purchased on June 1, 2020, email clients were marking emails from EIVA under `Spam' because the domain was too new. Therefore, the website remained hosted on the new domain, but the assistant emails were moved for the testing period from \texttt{@myeiva.com} to \texttt{@eiva.o15y.com}. \texttt{o15y.com} was purchased over two years ago and therefore had more credibility.
 
 \subsubsection{Cycle 6}
 
-External feedback from Rohit, Maurits, Alex
+In the final feedback stage, three experienced web developers --- Alex Imbrea, Maurits van der Vijgh , Rohit Bhatia --- were asked to use the EIVA webapp and assistant and provide additional feedback. Their suggestions included adding input validation on the client side for the minimum password length of 6 characters, which was only imposed on the server side. They also thought that the intro tour was too long, described as ``hand holding", though they agreed that it was necessary for users without a technical background.
+
+A grammatical error was also found in the outbound email sent by the assistant, and another error that prevented cache invalidation. They were both fixed and deployed before testing with users (Section 7).
 
 \subsection{Open Source Development}
 
