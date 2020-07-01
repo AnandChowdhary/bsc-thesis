@@ -31,7 +31,7 @@ jobs:
           asset_name: thesis.pdf
           asset_content_type: application/pdf
       - name: Setup website
-        run: mkdir public && echo '<!doctype html><html><head><title>Email-based Intelligent Virtual Assistants (EIVA) by Anand Chowdhary</title><meta http-equiv="refresh" content="0;url=thesis.pdf"></head><body style="margin:0"><iframe style="display:block;border:none;height:100vh;width:100vw" src="thesis.pdf"></iframe></body></html>' > public/index.html && cp thesis.pdf public/thesis.pdf
+        run: mkdir public && echo '<!doctype html><html><head><title>Email-based Intelligent Virtual Assistants (EIVA) by Anand Chowdhary</title><meta http-equiv="refresh" content="0;url=thesis.pdf"></head><body style="margin:0"><iframe style="display:block;border:none;height:100vh;width:100vw" src="thesis.pdf"></iframe></body></html>' > public/index.html && cp thesis.pdf public/thesis.pdf && cp presentation.html public/presentation.html
       - name: Deploy to GitHub Pages
         uses: maxheld83/ghpages@v0.2.1
         env:
