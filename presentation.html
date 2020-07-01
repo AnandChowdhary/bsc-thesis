@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="refresh" content="0;url=REDIRECT_URL" /> -->
+    <title>Anand Chowdhary&rsquo;s Graduation Project Presentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        max-width: 500px;
+        margin: 10vh auto;
+        padding: 0 5vw;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      p {
+        line-height: 1.4;
+        font-size: 120%;
+      }
+      .counter {
+        text-align: center;
+        font-size: 300%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Anand Chowdhary&rsquo;s Graduation Project Presentation</h1>
+    <p>
+      Thanks for tuning into Anand Chowdhary&rsquo;s graduation presentation on
+      <strong>
+        Email-based Intelligent Virtual Assistants for Scheduling (EIVA)</strong
+      >!
+    </p>
+    <div class="counter"></div>
+    <p>
+      This presentation will start at
+      <strong class="time">7/2/2020, 15:40</strong>. You should open this page 5
+      minutes before the starting time.
+    </p>
+    <p>
+      This page will automatically redirect you to the conference link at most
+      10 minutes before it starts.
+    </p>
+    <h2>Joining Instructions</h2>
+    <p>
+      To join the conference, ensure that you select the "Listen only" mode and
+      ask your questions in the chat.
+    </p>
+    <p>
+      If you have any questions, please get in touch with the researcher at
+      <a href="mailto:a.chowdhary@student.utwente.nl">
+        a.chowdhary@student.utwente.nl</a
+      >.
+    </p>
+    <script>
+      var redirectLink = null;
+      if (redirectLink) {
+        window.location.href = redirectLink;
+      }
+      var time = document.querySelector(".time");
+      var counter = document.querySelector(".counter");
+      var scheduledTime = new Date("Thu Jul 02 2020 15:40:00 GMT+0200 (CEST)");
+      if (time) {
+        time.innerHTML = scheduledTime.toLocaleString();
+      }
+      var scheduledMs = scheduledTime.getTime();
+      function runCountdown() {
+        var now = new Date().getTime();
+        var distance = scheduledMs - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (counter) {
+          counter.innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+          if (distance < 0) {
+            clearInterval(countdown);
+            counter.innerHTML = "EXPIRED";
+          }
+        }
+      }
+      var countdown = setInterval(runCountdown, 1000);
+      runCountdown();
+      setInterval(function () {
+        window.location.reload();
+      }, 10000);
+    </script>
+  </body>
+</html>
