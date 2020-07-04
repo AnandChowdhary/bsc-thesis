@@ -6,8 +6,32 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: thesis.tex
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Beta ${{ github.run_number }}
+          draft: false
+          prerelease: true
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./thesis.pdf
+          asset_name: thesis.pdf
+          asset_content_type: application/pdf
       - name: Setup website
-        run: mkdir public && cp presentation.html public/presentation.html
+        run: mkdir public && echo '<!doctype html><html><head><title>Email-based Intelligent Virtual Assistants (EIVA) by Anand Chowdhary</title><meta http-equiv="refresh" content="0;url=thesis.pdf"></head><body style="margin:0"><iframe style="display:block;border:none;height:100vh;width:100vw" src="thesis.pdf"></iframe></body></html>' > public/index.html && cp thesis.pdf public/thesis.pdf
       - name: Deploy to GitHub Pages
         uses: maxheld83/ghpages@v0.2.1
         env:
