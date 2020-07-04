@@ -685,7 +685,14 @@ EIVA consists of a frontend web app that users directly interact with, and a bac
 
 \subsection{Backend APIs}
 
-EIVA's backend project is based on Staart API, an open source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub.
+EIVA's backend project is based on Staart API, an open source framework to build Software as a Service (SaaS) products with TypeScript. With Staart API, several features that typical web apps require, such as user management, organizations, authentication, API gateway, etc., are built-in and do not require significant effort for setup. Staart API is also built by the author of this graduation project and has over 200 stars on GitHub. Figure 8 shows the eight services that the EIVA API requires, including third-party services like Clearbit and Stripe, AWS services like SES and S3, and self-hosted services like Redis.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.75\textwidth]{services.png}
+	\caption{EIVA API Connections}
+	\label{fig:checkbox}
+\end{figure}
 
 \subsubsection{Configuration Management}
 
