@@ -12,6 +12,7 @@
 \usepackage{tipa}
 \usepackage{array,multirow,graphicx}
 \usepackage{enumitem}
+\usepackage{adjustbox}
 \usepackage{float}
 \usepackage{ifoddpage}
 \usepackage{multicol}
@@ -1779,18 +1780,18 @@ Users were asked to rate the web app on different parameters, from 0 to 5. All p
 	\begin{minipage}{1\linewidth}
 		\caption{Webapp Experience Ratings}
 		\centering
-		\begin{tabular}{llcc}
+		\begin{tabular}{llccc}
 			\hline
-			\textbf{Parameter} & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
+			\textbf{Parameter} & \textbf{Average}   & \textbf{Median} & \textbf{Mode} & \textbf{Std. Dev.} \\
 			\hline
-			Overall experience & \score{4.4}{5} 4.4 & 5               & 5             \\
-			Design             & \score{4.6}{5} 4.6 & 5               & 5             \\
-			Functionality      & \score{4.5}{5} 4.5 & 5               & 5             \\
-			Ease of use        & \score{4.4}{5} 4.4 & 4.5             & 5             \\
-			Privacy features   & \score{4.7}{5} 4.7 & 5               & 5             \\
-			Onboarding flow    & \score{4.5}{5} 4.5 & 5               & 5             \\
-			Introductory tour  & \score{4.2}{5} 4.2 & 4               & 5             \\
-			\hline
+Overall experience & \score{4.4}{5} 4.4 & 5 & 5 & 0.7 \\
+Design & \score{4.6}{5} 4.6 & 5 & 5 & 0.7 \\
+Functionality & \score{4.5}{5} 4.5 & 5 & 5 & 0.6 \\
+Ease of use & \score{4.4}{5} 4.4 & 4.5 & 5 & 0.7 \\
+Privacy features & \score{4.7}{5} 4.7 & 5 & 5 & 0.5 \\
+Onboarding flow & \score{4.5}{5} 4.5 & 5 & 5 & 0.7 \\
+Introductory tour & \score{4.2}{5} 4.2 & 4 & 5 & 1.0 \\
+\hline
 		\end{tabular}
 	\end{minipage}%
 \end{table}
@@ -1803,16 +1804,16 @@ Similarly, users were asked to rate the assistant on different parameters, from 
 	\begin{minipage}{1\linewidth}
 		\caption{Assistant Experience Ratings}
 		\centering
-		\begin{tabular}{llcc}
+		\begin{tabular}{llccc}
 			\hline
-			\textbf{Parameter}                    & \textbf{Average}   & \textbf{Median} & \textbf{Mode} \\
+			\textbf{Parameter}                    & \textbf{Average}   & \textbf{Median} & \textbf{Mode} & \textbf{Std. Dev.} \\
 			\hline
-			Overall experience                    & \score{4.5}{5} 4.5 & 5               & 5             \\
-			Customizability                       & \score{4.4}{5} 4.4 & 5               & 5             \\
-			Flexibility in understanding language & \score{4.4}{5} 4.4 & 5               & 5             \\
-			Sounding human-like over email        & \score{4.1}{5} 4.1 & 4               & 5             \\
-			Trust to not make mistakes            & \score{3.6}{5} 3.6 & 4               & 4             \\
-			Time recommendation accuracy          & \score{3.9}{5} 3.9 & 4               & 4             \\
+Overall experience & \score{4.5}{5} 4.5 & 5 & 5 & 0.9 \\
+Customizability & \score{4.4}{5} 4.4 & 5 & 5 & 0.8 \\
+Flexibility in understanding language & \score{4.4}{5} 4.4 & 5 & 5 & 0.9 \\
+Sounding human-like over email & \score{4.1}{5} 4.1 & 4 & 5 & 0.9 \\
+Trust to not make mistakes & \score{3.6}{5} 3.6 & 4 & 4 & 1.2 \\
+Time recommendation accuracy & \score{3.9}{5} 3.9 & 4 & 4 & 1.0 \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
@@ -2115,53 +2116,52 @@ This section ensures that we have your permission to conduct this research. Plea
 
 All raw responses from the survey are available in CSV format on the GitHub project: \url{https://github.com/AnandChowdhary/bsc-thesis} in \texttt{responses.csv}.
 
-The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, and $Mo$ is the mode.
+The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, $Mo$ is the mode, and $\sigma$ is the standard deviation.
 
-\begin{table}[!htb]
-	\begin{minipage}{1\linewidth}
-		\caption{All Raw Responses to Rating Questions}
-		\centering
-		\begin{tabular}{|*{13}{p{0.5cm}|}}
-			\hline
-			            & \textbf{1}   & \textbf{2}   & \textbf{3}   & \textbf{4}   & \textbf{5}   & \textbf{6}   & \textbf{7}   & \textbf{8}   & \textbf{9}   & \textbf{10}  & \textbf{11}  & \textbf{12}  \\
-			\hline
-			\textbf{1}  & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{2}  & 4            & 4            & 4            & 3            & 5            & 5            & 3            & 4            & 3            & 3            & 4            & 3            \\
-			\textbf{3}  & 4            & 4            & 4            & 4            & 5            & 4            & 1            & 4            & 4            & 2            & 3            & 4            \\
-			\textbf{4}  & 5            & 5            & 5            & 4            & 5            & 5            & 3            & 5            & 5            & 5            & 3            & 4            \\
-			\textbf{5}  & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 3            & 1            \\
-			\textbf{6}  & 3            & 5            & 4            & 4            & 4            & 4            & 4            & 4            & 4            & 4            & 4            & 4            \\
-			\textbf{7}  & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{8}  & 5            & 5            & 5            & 5            & 5            & 5            & 4            & 5            & 5            & 5            & 5            & 4            \\
-			\textbf{9}  & 4            & 4            & 4            & 3            & 4            & 3            & 4            & 4            & 5            & 4            & 4            & 3            \\
-			\textbf{10} & 3            & 4            & 3            & 3            & 3            & 3            & 3            & 1            & 2            & 2            & 2            & 2            \\
-			\textbf{11} & 5            & 5            & 5            & 4            & 5            & 4            & 4            & 5            & 5            & 4            & 4            & 4            \\
-			\textbf{12} & 4            & 5            & 4            & 3            & 4            & 4            & 5            & 5            & 4            & 4            & 4            & 3            \\
-			\textbf{13} & 4            & 5            & 4            & 4            & 4            & 4            & 4            & 4            & 3            & 3            & 3            & 2            \\
-			\textbf{14} & 5            & 5            & 5            & 5            & 5            & 4            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{15} & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{16} & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{17} & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            \\
-			\textbf{18} & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 3            & 1            \\
-			\textbf{19} & 5            & 4            & 5            & 5            & 4            & 5            & 5            & 5            & 4            & 5            & 5            & 3            \\
-			\textbf{20} & 4            & 5            & 4            & 4            & 4            & 5            & 4            & 5            & 4            & 5            & 4            & 4            \\
-			\textbf{21} & 4            & 5            & 4            & 5            & 5            & 5            & 5            & 4            & 5            & 5            & 5            & 3            \\
-			\textbf{22} & 5            & 5            & 4            & 5            & 5            & 5            & 5            & 5            & 4            & 5            & 4            & 3            \\
-			\textbf{23} & 3            & 2            & 4            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 4            \\
-			\textbf{24} & 4            & 4            & 4            & 4            & 4            & 3            & 4            & 4            & 3            & 4            & 4            & 3            \\
-			\textbf{25} & 5            & 5            & 5            & 4            & 5            & 5            & 3            & 5            & 4            & 4            & 3            & 5            \\
-			\textbf{26} & 3            & 4            & 4            & 4            & 4            & 4            & 3            & 4            & 4            & 4            & 4            & 4            \\
-			\textbf{27} & 4            & 4            & 5            & 5            & 5            & 5            & 4            & 5            & 5            & 4            & 4            & 3            \\
-			\textbf{28} & 4            & 5            & 4            & 4            & 5            & 5            & 4            & 4            & 4            & 4            & 4            & 4            \\
-			\textbf{29} & 5            & 5            & 5            & 4            & 5            & 4            & 3            & 5            & 5            & 5            & 5            & 4            \\
-			\textbf{30} & 5            & 4            & 5            & 5            & 5            & 5            & 5            & 3            & 5            & 5            & 3            & 2            \\
-			$\bar{x}$   & \textbf{4.4} & \textbf{4.6} & \textbf{4.5} & \textbf{4.4} & \textbf{4.7} & \textbf{4.5} & \textbf{4.2} & \textbf{4.5} & \textbf{4.4} & \textbf{4.4} & \textbf{4.1} & \textbf{3.6} \\
-			$\tilde{x}$ & 5            & 5            & 5            & 4.5          & 5            & 5            & 4            & 5            & 5            & 5            & 4            & 4            \\
-			$Mo$        & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 5            & 4            \\
-			\hline
-		\end{tabular}
-	\end{minipage}%
-\end{table}
+\vspace{10mm}
+
+\begin{adjustbox}{tabular=|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|,center}
+\hline
+& \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\
+\hline
+\textbf{1} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{2} & 4 & 4 & 4 & 3 & 5 & 5 & 3 & 4 & 3 & 3 & 4 & 3 & 3 \\
+\textbf{3} & 4 & 4 & 4 & 4 & 5 & 4 & 1 & 4 & 4 & 2 & 3 & 4 & 3 \\
+\textbf{4} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 5 & 5 & 3 & 4 & 4 \\
+\textbf{5} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 5 \\
+\textbf{6} & 3 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+\textbf{7} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{8} & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 4 & 4 \\
+\textbf{9} & 4 & 4 & 4 & 3 & 4 & 3 & 4 & 4 & 5 & 4 & 4 & 3 & 4 \\
+\textbf{10} & 3 & 4 & 3 & 3 & 3 & 3 & 3 & 1 & 2 & 2 & 2 & 2 & 2 \\
+\textbf{11} & 5 & 5 & 5 & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 2 \\
+\textbf{12} & 4 & 5 & 4 & 3 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 3 & 5 \\
+\textbf{13} & 4 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 3 & 3 & 3 & 2 & 2 \\
+\textbf{14} & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{15} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{16} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{17} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+\textbf{18} & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 3 & 1 & 5 \\
+\textbf{19} & 5 & 4 & 5 & 5 & 4 & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 3 \\
+\textbf{20} & 4 & 5 & 4 & 4 & 4 & 5 & 4 & 5 & 4 & 5 & 4 & 4 & 3 \\
+\textbf{21} & 4 & 5 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 5 & 3 & 3 \\
+\textbf{22} & 5 & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 4 & 5 & 4 & 3 & 3 \\
+\textbf{23} & 3 & 2 & 4 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 5 \\
+\textbf{24} & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 3 & 4 & 4 & 3 & 4 \\
+\textbf{25} & 5 & 5 & 5 & 4 & 5 & 5 & 3 & 5 & 4 & 4 & 3 & 5 & 4 \\
+\textbf{26} & 3 & 4 & 4 & 4 & 4 & 4 & 3 & 4 & 4 & 4 & 4 & 4 & 4 \\
+\textbf{27} & 4 & 4 & 5 & 5 & 5 & 5 & 4 & 5 & 5 & 4 & 4 & 3 & 3 \\
+\textbf{28} & 4 & 5 & 4 & 4 & 5 & 5 & 4 & 4 & 4 & 4 & 4 & 4 & 3 \\
+\textbf{29} & 5 & 5 & 5 & 4 & 5 & 4 & 3 & 5 & 5 & 5 & 5 & 4 & 5 \\
+\textbf{30} & 5 & 4 & 5 & 5 & 5 & 5 & 5 & 3 & 5 & 5 & 3 & 2 & 4 \\
+\hline
+$\bar{x}$ & \textbf{4.4} & \textbf{4.6} & \textbf{4.5} & \textbf{4.4} & \textbf{4.7} & \textbf{4.5} & \textbf{4.2} & \textbf{4.5} & \textbf{4.4} & \textbf{4.4} & \textbf{4.1} & \textbf{3.6} & \textbf{3.9} \\
+\hline
+$\tilde{x}$ & 5 & 5 & 5 & 4.5 & 5 & 5 & 4 & 5 & 5 & 5 & 4 & 4 & 4 \\
+$Mo$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 5 & 4 & 5 \\
+$\sigma$ & 0.7 & 0.7 & 0.6 & 0.7 & 0.5 & 0.7 & 1.0 & 0.9 & 0.8 & 0.9 & 0.9 & 1.2 & 1.0 \\
+\hline
+\end{adjustbox}
 
 \newpage
 
