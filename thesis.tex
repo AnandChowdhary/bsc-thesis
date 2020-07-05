@@ -299,20 +299,20 @@ After building the assistant service and companion web app, a user experience ev
 After building and deploying a functional virtual agent and its companion web application, a user experience research is conducted with participants with diverse backgrounds. The survey is divided in three parts:
 
 \begin{enumerate}
-	\item Introductory Survey
-	\item Product Usage
-	\item User Experience Evaluation
+	\item Introductory survey
+	\item Product usage
+	\item User experience evaluation
 \end{enumerate}
 
 \paragraph{Sampling}
 
-For participant selection, Voluntary Response Sampling was used with participants in the close network of the researcher and client. A link to an online survey was sent in the internal communication systems of Speakup B.V. and Oswald Labs, and was also posted on social media. Since the link was posted to social media, it is hard to calculate a response rate since potentially thousands of users could have seen it.
+For participant selection, voluntary response sampling was used with participants in the close network of the researcher and client. A link to an online survey was sent in the internal communication systems of Speakup B.V. and Oswald Labs, and was also posted on social media. Since the link was posted to social media, it is hard to calculate a response rate since potentially thousands of users could have seen it.
 
 \paragraph{Question Design}
 
-In the Introductory Survey, questions were designed as multiple-choice questions that are quick to answer. The questions were divided into three categories: general information about the participants such as their profession, their email usage, and assistant and scheduling-related. In the User Experience Evaluation, a combination of long text answers, rating scales, and multiple-choice questions was presented.
+In the introductory survey, questions were designed as multiple-choice questions that are quick to answer. The questions were divided into three categories: (i) general information about the participants such as their profession and their email usage; (ii) assistants; and (iii) scheduling preferences. In the user experience evaluation, a combination of long text answers, rating scales, and multiple-choice questions was presented.
 
-Questions are specifically written in a first-person form, as the assistant also interacts, and additional information has been included when asking for potentially personal details. Options in multiple choice questions are randomized to eliminate order bias.
+Questions are specifically written in a first-person form, similar to the way the assistant interacts, and additional information has been included when asking for potentially personal details. Options in multiple choice questions are randomized to eliminate order bias.
 
 \paragraph{Surveying Method}
 
@@ -326,7 +326,7 @@ Participants were ``observed" when they used the web app using automated trackin
 
 \subsubsection{Introductory Survey}
 
-After reading the Information Brochure (Appendix 1) signing the Consent Form (Appendix 2), participants answer 16 questions about their prior experience with scheduling appointments, email usage, and personal assistants. This information helps with understanding how users currently set appointments, and with setting the default values for settings (Section 6.2).
+After reading the Information Brochure (Appendix 1) and signing the Consent Form (Appendix 2), participants answer 16 questions about their prior experience with scheduling appointments, email usage, and personal assistants. This information helps with understanding how users currently set appointments, and with determining the default values for user preferences (Section 6.2).
 
 Appendix 3 lists all the options for each question. The Introductory Survey is divided into two parts; the first part is focused on scheduling preferences and email usage:
 
@@ -357,9 +357,9 @@ The second part asks participants about using personal assistants for scheduling
 
 After finishing the Introductory Survey, participants start using the assistant service with the help of virtual guides consisting of several screenshots, an onboarding wizard, and an introductory tour.
 
-The participants open the web application on \url{https://myeiva.com} and create an account. After creating their account, the verify their email and log into their accounts. They then complete the onboarding flow, setting up basic information such as their name, timezone, gender, security preferences, and name of their assistant.
+The participants open the web application on \url{https://myeiva.com} and create an account. After creating their account, they verify their email and log into their accounts. They then complete the onboarding flow, setting up basic information such as their name, timezone, gender, security preferences, and name of their assistant.
 
-Then, they follow an introductory tour which helps them customize their assistant's settings, add additional meeting locations, etc., before sending an email to their assistants. After sending an email to schedule an appointments, participants go back to the survey for the UX evaluation.
+Then, they follow an introductory tour which helps them customize their assistant's settings, add additional meeting locations, etc., before sending an email to their assistants. After sending an email to schedule an appointment, participants go back to the survey for the UX evaluation.
 
 \subsubsection{User Experience Evaluation}
 
@@ -386,7 +386,7 @@ In the last part, participants answer questions about the experience of both the
 	      	\item How much do you trust the assistant to not make mistakes? 1 is the least trust and 5 is the most.
 	      	\item How accurate, practical, and logical were the time recommendations made by the assistant?
 	      \end{enumerate}
-	\item How many emails did you sent with the assistant in CC?
+	\item How many emails did you send with the assistant in CC?
 	\item Did the assistant understand your email(s) correctly?
 	\item Did the assistant respond to your email in a reasonable amount of time?
 	\item Did the assistant recommend the correct location for the appointment?
@@ -404,15 +404,15 @@ In the last part, participants answer questions about the experience of both the
 
 \subsection{Methods of Analysis}
 
-First, the data gathered was prepared for analysis. After closing participation, data received in Google Forms is duplicated in a spreadsheet for analysis. Similarly, Kibana, an open source data visualization dashboard for Elasticsearch, is used to analyze logs for pageviews, API requests, and clicks. For qualitative answers such as long text responses, content analysis was conducted by finding common keywords.
+First, the data gathered was prepared for analysis. After closing participation, data received in Google Forms was duplicated in a spreadsheet for analysis. Similarly, Kibana, an open source data visualization dashboard for Elasticsearch, was used to analyze logs for pageviews, API requests, and clicks. For qualitative answers such as long text responses, content analysis was conducted by finding common keywords.
 
-Multiple-choice responses from the Introductory Survey are tabulated. Product usage data collected from logs was visualized in several ways. For one, users' approximate locations were mapped on the maps of the Netherlands, Europe, and the world. Other data such as popular languages, browsers, and operating system was quantitatively tabulated. Time-series data such as number of API requests, number of emails sent to the assistant, and the website's response time was graphed. Lastly, heatmaps were manually generated using coordinate data from mouse clicks. The sample mean, median, and mode of rating scale responses from the User Experience Survey are calculated and tabulated.
+Multiple-choice responses from the Introductory Survey were tabulated. Product usage data collected from logs was visualized in several ways. For one, users' approximate locations were mapped on the maps of the Netherlands, Europe, and the world. Other data such as popular languages, browsers, and operating systems was quantitatively tabulated. Time-series data such as number of API requests, number of emails sent to the assistant, and the website's response time was graphed. Lastly, heatmaps were manually generated using coordinate data from mouse clicks. The sample mean, median, and mode of rating scale responses from the User Experience Survey were calculated and tabulated.
 
 \newpage
 
 \section{Ideation}
 
-The Ideation phase is divided into three parts --- Requirements Capture, Assistant Architecture, and Web App Interface. In the first part, a stakeholder analysis is conducted and user personas are used to better understand the usage context for users. In the second part, an early architectural exploration of the email process is conducted. In the last part, mockups and prototypes of the user interface (UI) of the web app are designed and evaluated.
+The Ideation phase is divided into three parts --- Requirements Capture, Assistant Architecture, and Web App Interface. In the first part, a stakeholder analysis is conducted and user personas are used to better understand the usage context of users. In the second part, an early architectural exploration of the email process is conducted. In the last part, mockups and prototypes of the user interface (UI) of the web app are designed and evaluated.
 
 \subsection{Requirements Capture}
 
@@ -420,7 +420,7 @@ The Ideation phase is divided into three parts --- Requirements Capture, Assista
 
 The basic stakeholders are the users who will interact with EIVA --- the consumers of the assistant service, and the recipients of emails sent by the assistant. However, both these highly interested people have largely different powers; one controls the behavior of the assistant and the other merely interacts with it.
 
-Therefore, although it's important to consider the inputs of each stakeholder, it can be useful to prioritize stakeholders based on how much interest they have in the product, and how much power they have over the designers and engineering building the product. The Power-Interest Grid can be a useful tool to prioritize your tasks based on four categories \cite{noauthor_stakeholder_nodate}.
+Therefore, although it's important to consider the inputs of each stakeholder, it can be useful to prioritize stakeholders based on how much interest they have in the product, and how much power they have over the designers and engineers building the product. The Power-Interest Grid can be a useful tool to prioritize your tasks based on four categories \cite{noauthor_stakeholder_nodate}.
 
 \begin{enumerate}
 	\item \textbf{High power, highly interested people} (Manage Closely): we must fully engage these people, and make the greatest efforts to satisfy them:
@@ -453,7 +453,7 @@ Therefore, although it's important to consider the inputs of each stakeholder, i
 
 \subsubsection{User Personas}
 
-Once basic stakeholders are identified, user personas are used to personify them and study their cases. User personas are used in user experience (UX) design and help with building empathy for target users. In the Ideation phase, personas are used to better understand:
+Once basic stakeholders are identified, user personas are used to personify them and study their cases. User personas are used in user experience (UX) design and help with building empathy for target users. In the ideation phase, personas are used to better understand:
 
 \begin{enumerate}
 	\item Who is the ideal consumer for EIVA?
@@ -526,13 +526,13 @@ Though the use cases for each persona are different, they all fall under the umb
 	\caption{Email Process Ideation}
 \end{wrapfigure}
 
-A pen-and-paper exploration of the the entire process from receiving a new email, understanding it, and performing an action, was conducted. In Figure X, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
+A pen-and-paper exploration of the entire process, from receiving a new email, understanding it, and performing an action, was conducted. In Figure X, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
 
 Here, the process of receiving an email, saving the contents, and invoking a serverless function is visualized. The diagram also showcases the connection of the API with other services like a database and payment gateway.
 
 The API then finds the owner of the team the email was addressed to and whether or not the owner themselves sent the email. After classification, one of several processes are queued.
 
-In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform action when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
+In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform actions when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
 
 \begin{wrapfigure}{r}{0.5\textwidth}\centering
 	\includegraphics[scale=0.092]{drawing-rules-ui.jpg}
@@ -584,7 +584,7 @@ Figure 4 also shows a two-column layout for desktop pages, with the left sidebar
 	\item Calendar: Connections with various calendaring services
 	\item Calendar: List-view for upcoming appointments
 	\item Payments: Invoices and credit card details for SaaS payments
-	\item Locations: List of saves locations with map interface
+	\item Locations: List of saved locations with map interface
 \end{enumerate}
 
 \begin{wrapfigure}{l}{0.4\textwidth}\centering
@@ -615,7 +615,7 @@ Today, most users prefer to use email for scheduling rather than currently avail
 
 Communication with devices using natural language is commonplace for many people today, especially with the advent of affordable smart voice assistants, such as Alexa, available on Amazon Echo; and Google Assistant, available on Google Home \cite{de_barcelos_silva_intelligent_2020}. Their interface, which translates a human's intention into a device's control commands using speech recognition and natural language interpretation, is known as a Natural Language Interface (NLI). Some NLIs are extremely useful not only because of the dialogue-style nature of interactions, but also the ability to preserve context across different queries \cite{kiseleva_predicting_2016}. Therefore, the EIVA must remember a user's preferences from previous meetings. 
 
-Personification of the scheduling process using natural language has the additional benefit of increased likeliness of error forgiveness by end users. In a study, over 80\% of the participants who encountered errors in NLIs understanding them said that either their attitude was unaffected or the users themselves ``must have typed in something wrong" \cite{kelley_iterative_1984}. Furthermore, NLIs allow people to use their existing calendaring tools and idiosyncrasies by adopting email as the user interface and natural language conversations as the interaction mode. For example, a message such as ``Please schedule an appointment with Florian for next week" should be enough for the EIVA to take over the remainder of the process.
+Personification of the scheduling process using natural language has the additional benefit of increased likeliness of error forgiveness by end users. In a study, over 80\% of the participants who encountered errors in NLIs understanding them said that either their attitude was unaffected or the users themselves ``must have typed in something wrong" \cite{kelley_iterative_1984}. Furthermore, NLIs allow people to use their existing calendaring tools and idiosyncrasies by adopting email as the user interface and natural language conversations as the interaction mode. For example, a message such as ``Please schedule an appointment with Florian for next week" should be enough for EIVA to take over the remainder of the process.
 
 \subsubsection{Parameter recommendations}
 
@@ -625,13 +625,13 @@ Scheduling a single appointment requires agreement on several parameters, such a
 
 \subsubsection{Negotiation}
 
-Since not all guests may be available at the initially proposed time, the next major task required by the EIVA is negotiation. The negotiation mechanism allows it to be flexible about constraints imposed by the preferences of other users. Zunino and Campo (2009) note that the negotiation mechanism ``starts when two [users] do not agree on some parameter of a meeting," such as the date, time, or location of the meeting \cite{zunino_chronos:_2009}. Then, the guest may propose a new set of parameters for the meeting, for example by modifying its time. The EIVA will evaluate whether the proposal is convenient or not by comparing the ``likeliness of reaching a consensus using the previous meeting parameters with the proposed parameters." In this step, it can also make a judgement call by choosing to ignore part of the user's preferred parameters in order to agree with the guests. This back-and-forth negotiation process needs to occur asynchronously, ``sometimes requiring several days for the parties to reach consensus" \cite{cranshaw_calendar.help:_2017}.
+Since not all guests may be available at the initially proposed time, the next major task required by EIVA is negotiation. The negotiation mechanism allows it to be flexible about constraints imposed by the preferences of other users. Zunino and Campo (2009) note that the negotiation mechanism ``starts when two [users] do not agree on some parameter of a meeting," such as the date, time, or location of the meeting \cite{zunino_chronos:_2009}. Then, the guest may propose a new set of parameters for the meeting, for example by modifying its time. EIVA will evaluate whether the proposal is convenient or not by comparing the ``likeliness of reaching a consensus using the previous meeting parameters with the proposed parameters." In this step, it can also make a judgement call by choosing to ignore part of the user's preferred parameters in order to agree with the guests. This back-and-forth negotiation process needs to occur asynchronously, ``sometimes requiring several days for the parties to reach consensus" \cite{cranshaw_calendar.help:_2017}.
 
 \subsubsection{Renegotiation and confirmation invitations}
 
 In the dynamic environment that is the modern workplace, changing appointment parameters is commonplace. A study found that 66\% of all scheduled meetings by a CEO underwent a parameter change \cite{dennis_how_2018}. Inevitably, once a meeting is scheduled, it requires ``continuous maintenance, as new events often prompt meeting updates and reschedules" \cite{cranshaw_calendar.help:_2017}. To finalize the meeting parameters, the EIVA should take into account the parameter preferences of both the user and all guests.
 
-To make sure that all guests have the most recent parameters, confirmations and reminders may be sent by the EIVA. However, not all users use the same calendaring software, with some professionals using no digital calendar at all. Kincaid (1985) reported that approximately one half of all meetings scheduled by professionals were with users using a different calendaring system than their own \cite{kincaid_electronic_1985}. Therefore, the EIVA will be required to send these emails using industry standards supported by most software. The primary standard to store and exchange calendaring and scheduling information is the Internet Calendaring and Scheduling Core Object Specification (iCalendar) \cite{desruisseaux_internet_2009}.
+To make sure that all guests have the most recent parameters, confirmations and reminders may be sent by the EIVA. However, not all users use the same calendaring software, with some professionals using no digital calendar at all. Kincaid reported that approximately one half of all meetings scheduled by professionals were with users using a different calendaring system than their own \cite{kincaid_electronic_1985}. Therefore, the EIVA will be required to send these emails using industry standards supported by most software. The primary standard to store and exchange calendaring and scheduling information is the Internet Calendaring and Scheduling Core Object Specification (iCalendar) \cite{desruisseaux_internet_2009}.
 
 \subsection{User Configuration}
 
@@ -643,7 +643,7 @@ The key reason why authorship is important is credibility. If you know the name 
 
 \paragraph{Authorship Clarity}
 
-In news articles written by virtual agents, there is ``no visible indicator for readers to verify whether an article was written by a robot or human", which raises issues of transparency \cite{dorr_ethical_2017}. In the case of EIVA, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human. Some users may be completely fine with deceiving recipients on such a ``trivial" authorship question, while for others this sets a powerful and potentially harmful precedent for AI authorship and will choose to make that information clear.
+In news articles written by virtual agents, there is ``no visible indicator for readers to verify whether an article was written by a robot or human", which raises issues of transparency \cite{dorr_ethical_2017}. In the case of EIVA, if an AI assistant is impersonating a human assistant to send emails on the professional's behalf, it raises the same ethical question of whether the end user receiving the email should know that it was not written by a human. Some users may not wish to disclose this information and consider authorship a ``trivial" aspect. While for others, this sets a powerful and potentially harmful precedent for AI authorship and will choose to make that information clear.
 
 Therefore, it is recommended to keep such decisions customizable. Using the EIVA website's settings page, consumers should be able to set preferences about whether they want their assistant to inform end users about the fact that they are virtual agents, not human assistants. By default, this is preselected for all users, and is a simple checkbox user interface with the message ``Inform recipients that your assistant is a virtual assistant". This clarity highlights the commitment to personalization that such a product should bring.
 
@@ -655,7 +655,7 @@ It has been estimated that 95\% of all users stick to the default settings in an
 
 \subsubsection{Privacy-first}
 
-The privacy precedent that most virtual assistants have set is not highly positive. Personal assistants in the form of smart speakers like Amazon Echo (running Alexa) and Google Home (running Assistant) have ``begun to significantly alter people’s everyday experiences with technology" \cite{pridmore_personal_2020}. These virtual assistants can continually improve with increased usage using deep learning \cite{kepuska_next-generation_2018}. Although this makes the assistants more useful over time, they also ``amplify the overall debate about privacy issues" \cite{zeng_end_2017}.
+The privacy precedent that most virtual assistants have set is not highly positive. Personal assistants in the form of smart speakers like Amazon Echo (running Alexa) and Google Home (running Google Assistant) have ``begun to significantly alter people’s everyday experiences with technology" \cite{pridmore_personal_2020}. These virtual assistants can continually improve with increased usage using deep learning \cite{kepuska_next-generation_2018}. Although this makes the assistants more useful over time, they also ``amplify the overall debate about privacy issues" \cite{zeng_end_2017}.
 
 For example, an Echo device unintentionally recorded a Portland family's private conversations and shared it with a random person from their contact list \cite{noauthor_this_nodate-1}. For EIVA, the learning is simple: make sure no personal information is recorded if it is not strictly necessary, and users should be able to configure what they want to share.
 
@@ -666,22 +666,22 @@ There is often visible gender bias when it comes to personal assistants or secre
 Apple's Siri and Google Assistant offer the option of changing the voice to male, but Alexa and Cortana don't have male counterparts. The first United Nations' examination of gendering of AI technology found that ``gender imbalances in the digital sector can be `hard-coded' into technology products" \cite{noauthor_id_nodate}. In that report, the following problems are highlighted:
 
 \begin{itemize}
-	\item Digital assistants reflect, reinforce and spread gender bias
+	\item Digital assistants reflect, reinforce, and spread gender bias
 	\item They model acceptance and tolerance of sexual harassment and verbal abuse
 	\item They send explicit and implicit messages about how women and girls should respond to requests and express themselves
-	\item They make women the ‘face’ of glitches and errors that result from the limitations of hardware and software designed predominately by men
-	\item They force synthetic ‘female’ voices and personality to defer questions and commands to higher (and often male) authorities
+	\item They make women the ‘face’ of glitches and errors that result from the limitations of hardware and software designed predominantly by men
+	\item They force synthetic ‘female’ voices and personalities to defer questions and commands to higher (and often male) authorities
 \end{itemize}
 
 The UN report makes 15 recommendations, including ``[ending] the practice of making digital assistants female by default." For EIVA, this is an important lesson because with the intention of sounding friendly, the original name for EIVA was \emph{Ara}. However, the gender role that accompanies this is a big problem, therefore the name was changed to EIVA, which is an acronym for Email-based Intelligent Virtual Assistant, and yet sounds friendly and human-like.
 
-However, though the name of the service is EIVA, as discussed in the previous section, customizability is a key part of the user experience, and users should be able to pick custom names for their assistants via the interface. Unisex names like \emph{Alex} and \emph{Jesse} can be used by end users; the idea is to make the assistant completely customizable. To make this easy, the first setting in the user interface is to select the assistant's name and signature, which users can freely pick.
+However, though the name of the service is EIVA, as discussed in the previous section, customizability is a key part of the user experience, and users should be able to pick custom names for their assistants via the interface. Unisex names like \emph{Alex}, \emph{Jesse}, \emph{Urooj}, and \emph{Daya} can be used by end users; the idea is to make the assistant completely customizable. Furthermore, users can set culture-specific names, giving EIVA a wider cultural appear. To make this easy, the first setting in the user interface is to select the assistant's name and signature, which users can freely pick.
 
 \newpage
 
 \section{Realization}
 
-EIVA consists of a frontend web app that users directly interact with, and a backend API that powers it.
+The EIVA service consists of a frontend web app that users directly interact with and a backend API that powers it.
 
 \subsection{Backend APIs}
 
@@ -734,9 +734,9 @@ To identify the language of an incoming email, Google Cloud's Natural Language A
 
 A Naive Bayes classifier is used to identify the intent of an incoming email from one of four categories --- setting up a new appointment, rescheduling an existing appointment, canceling an appointment, or sending a summary of the appointments for the day.
 
-Naive Bayes classifiers are probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, are are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness \cite{noauthor_lecture_nodate}.
+Naive Bayes classifiers are probabilistic classifiers, meaning that they calculate a probability distribution over a set of classes, and are based on applying Bayes' theorem with strong independence assumptions between the features. Features are independent if the realization of one does not affect the probability distribution of the other; for example, a fruit can be considered an apple if it is round and red, and the naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color or roundness \cite{noauthor_lecture_nodate}.
 
-The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. Training data consisting of common phrases to perform the aforementioned actions is used, for example:
+The \texttt{BayesClassifier} class of Natural, a general natural language facility for Node.js, is used for the naive Bayes classification. The training data consists of common phrases, for example:
 
 \begin{alltt}
 \textcolor{keyword}{import} \{ BayesClassifier \} \textcolor{keyword}{from} \textcolor{string}{"natural"};
@@ -762,11 +762,11 @@ classifier.\textcolor{variable}{addDocument}(
 classifier.\textcolor{variable}{train}();
 \end{alltt}
 
-In the above example, when the classifier receives a new string, such as ``I don't think I'll be able to make it to this time", it will return a higher probability for \texttt{rescheduleAppointment} than \texttt{setupNewAppointment}, as the following example shows:
+In the above example, when the classifier receives a new string, such as ``I don't think I'll be able to make it this time", it will return a higher probability for \texttt{rescheduleAppointment} than \texttt{setupNewAppointment}, as the following example shows:
 
 \begin{alltt}
 classifier.\textcolor{variable}{getClassifications}(
-  \textcolor{string}{"i don't think I'll be able to make it to this time"}
+  \textcolor{string}{"i don't think I'll be able to make it this time"}
 );
 \end{alltt}
 
@@ -774,9 +774,9 @@ Here, the value of rescheduling is 0.333... and that of setting up a new appoint
 
 \paragraph{Date Parsing}
 
-Lastly, Chrono, a date parsing library, is used to understand natural language dates and times. Chrono can understand specific days like ``today" and ``tomorrow", relative dates and times like ``this Friday at 13:00" and ``two weeks from now", and absolute values like "Aug 17, 2020".
+Lastly, Chrono, a date parsing library, is used to understand natural language dates and times. Chrono can understand specific days like ``today" and ``tomorrow", relative dates and times like ``this Friday at 13:00" and ``two weeks from now", and absolute values like ``Aug 17, 2020".
 
-In the Netherlands, a convention is to write times in 24-hour format with a period as the hour-minute separator (e.g., 14.30 instead of 2:30 pm) \cite{noauthor_8h30_nodate}. Since Chrono is not optimized for understanding this format, a regular expression (regex)-based replacement from period to colon is done on the entire text string before parsing. Other special cases, such as no separator, are also handled.
+In the Netherlands, the convention is to write times in 24-hour format with a period as the hour-minute separator (e.g., 14.30 instead of 2:30 pm) \cite{noauthor_8h30_nodate}. Since Chrono is not optimized for understanding this format, a regular expression (regex)-based replacement from period to colon is done on the entire text string before parsing. Other special cases, such as no separator, are also handled.
 
 \subsubsection{Transactional Emails}
 
@@ -800,7 +800,7 @@ When an object containing data is provided (say, the name `Florian' and an examp
 
 Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP \cite{noauthor_nodemailer_nodate}. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
 
-For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JTWs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.7). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
+For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JWTs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.7). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
 
 \subsubsection{Authentication}
 
@@ -831,7 +831,7 @@ Since many professionals prefer using multiple emails (perhaps a personal and a 
 
 Rate limits are used to control the rate of requests to the API and is also used to prevent DDoS attacks \cite{noauthor_rate_nodate}. An HTTP 429 (Too Many Requests) error is thrown if a client makes too many requests within a given time frame. By default, 60 requests per minute are permitted per IP address.
 
-For programatic access to the service, users can generate API keys or access token to control their assistant or accounts respectively. The frontend web app also uses such an API key for an increased rate limit of 1,000 requests per minute. An in-memory key-value store is used to track these limits.
+For programmatic access to the service, users can generate API keys or access tokens to control their assistant or accounts respectively. The frontend web app also uses such an API key for an increased rate limit of 1,000 requests per minute. An in-memory key-value store is used to track these limits.
 
 Lastly, brute force and speed limits are also imposed. To prevent brute force attacks on authentication endpoints like login and register, more than 5 requests in a period of 5 minutes results in a delay of 250 milliseconds per request. Similarly, all other endpoints also add a 100 millisecond per request delay after 1,000 requests within ten minutes.
 
@@ -862,7 +862,7 @@ Although there are no binary files, the API still deals with large text files li
 
 \subsubsection{API Endpoints}
 
-The backend API endpoints are versioned with a \texttt{/v1} prefix and categorized, for example the login endpoint is \texttt{POST /v1/auth/login}.  Since there are tens of total endpoints, it's useful to categorize them for development and management, and each API category is defined in Table 3. Each endpoint category prefix is automatically generated from the \texttt{controllers} directory in Staart API's build process, based on the subdirectory it is located in. For example, the user emails controller file \texttt{controllers/users/\_id/emails.ts} generates the endpoint \texttt{/v1/users/:id/emails} where \texttt{:id} is a user ID.
+The backend API endpoints are versioned with a \texttt{/v1} prefix, and categorized. For example, the login endpoint is \texttt{POST /v1/auth/login}.  Since there are tens of total endpoints, it's useful to categorize them for development and management; each API category is defined in Table 3. Each endpoint category prefix is automatically generated from the \texttt{controllers} directory in Staart API's build process, based on the subdirectory it is located in. For example, the user emails controller file \texttt{controllers/users/\_id/emails.ts} generates the endpoint \texttt{/v1/users/:id/emails} where \texttt{:id} is a user ID.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -898,7 +898,6 @@ The internal process that EIVA uses to schedule appointments (Section 6.1.9) has
 			\texttt{POST} & \texttt{/classify} & Classify text using NLP \\
 			\texttt{POST} & \texttt{/parse-email} & Parse a raw email \\
 			\texttt{POST} & \texttt{/smart-tokenize} & Intelligently tokenize text \\
-			\texttt{POST} & \texttt{/parse-email} & Parse a raw email \\
 			\hline
 		\end{tabular}
 	\end{minipage}%
