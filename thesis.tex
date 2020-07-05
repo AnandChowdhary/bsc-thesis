@@ -72,19 +72,15 @@
 	\titlefont{Email-based Intelligent Virtual}\\
 	\vspace{3mm}
 	\titlefont{Assistant for Scheduling}\\
-	\vspace{30mm}
-	\coverfontsmall{Submitted by}\\
+	\vspace{40mm}
+	\coverfontsmall{Written by}\\
 	\vspace{3mm}
 	\coverfont{Anand Chowdhary}\\
-	\vspace{30mm}
+	\vspace{40mm}
 	\coverfontsmall{Supervised by}\\
 	\vspace{3mm}
 	\coverfont{Dr. Job Zwiers}\\
-	\vspace{30mm}
-	\coverfontsmall{Version}\\
-	\vspace{3mm}
-	\coverfont{\today}\\
-	\vspace{30mm}
+	\vspace{40mm}
 	\coverfontsmall{Creative Technology BSc}\\
 	\vspace{3mm}
 	\coverfontsmall{University of Twente, Enschede, the Netherlands}\\
@@ -100,9 +96,9 @@
 
 Manually setting up appointments by email wastes tens of hours every month for professionals, because several email exchanges are required before receiving confirmation. Since not everyone can afford to hire full-time assistants, Email-based Intelligent Virtual Assistants (EIVA) can help by automating this task.
 
-In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (determined using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings. The code is open source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with a focus on data privacy and user personalization.
+In the research described in this paper, a functional EIVA was developed based on research and industry best-practices. Users could simply add their assistant's address as `CC' in an email, and EIVA would share the recommended location and time slots with guests automatically, based on the user's availability (determined using their calendar) and scheduling preferences. A companion web application was also developed to manage meetings and settings. The code is open source and was written in TypeScript with Node.js for the backend and Vue.js for the frontend, and deployed on Amazon Web Services architecture in Europe. The product was built with a focus on data privacy and user personalization, through a series of feedback cycles with the external client.
 
-A user experience evaluation of EIVA was conducted with 30 participants that found positive reception. The average rating of the overall assistant was calculated to be 4.4 out of 5, and that of the web app was 4.5 out of 5. Users' behavior was also understood with the help of heatmaps and visualizations using pageview and mouse clicks tracking. All but one participants said that EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month. Participants also shared their frustrations and recommendations for future work. In the future, NLP classification should be improved and user recommendations should be implemented before launching EIVA service for consumers.
+A user experience evaluation of EIVA was conducted with 30 participants that found positive reception. The average rating of the overall assistant was calculated to be 4.4 out of 5, and that of the web app was 4.5 out of 5. Users' behavior was also understood with the help of heatmaps and visualizations using pageview and mouse clicks tracking. All but one participants said that EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month. Participants also shared their frustrations and feature recommendations. In the future, natural language processing-based classification should be improved and user recommendations can be implemented before launching EIVA as a service for consumers.
 
 \newpage
 
@@ -114,11 +110,11 @@ I would like to thank Dr. Job Zwiers, my thesis supervisor, without whom this pr
 
 I would also like to thank the client, Speakup B.V., for their generous support of this project. I am particularly grateful to Florian Overkamp, who has been with me every step of the way --- from helping foster the original idea in 2017, to funding multiple projects over the years, and finally helping shape this graduation project and service.
 
-Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, who has been working hard for so many years. I wouldn't be able to sustain building a startup while graduating CreaTe without him. Oswald Labs also sponsored the cloud credits required for this project.
+Thanks to my team at Oswald Labs, especially my cofounder Mahendra Singh Raghuwanshi, without whom I wouldn't be able to sustain building a startup while graduating CreaTe. As part of our accelerator program, Oswald Labs also sponsored the cloud credits required for this project.
 
-I am extremely grateful to my family and friends, especially my parents and my brother and sisters, for their continued support. I also want to thank my girlfriend, Sukriti Kapoor, for sharing the survey with her colleagues, and for proof-reading this thesis.
+I am extremely grateful to my family and friends, especially my parents, my brother, and my sisters, for their continued support. I also want to thank my girlfriend, Sukriti Kapoor, for sharing the survey with her colleagues, and for proofreading this thesis.
 
-Finally, I would like to thank the Creative Technology faculty and staff --- Dr. Dennis Reidsma, Dr. Katarzyna Zalewska, Dr. Erik Faber, Dr. Khiet Truong, Dr. Jefferey White, Chris Vermaas, Richard Bults, and Alfred de Vries --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Peter Langela, Emiel Pegge, Thomas Mensink, Gilles Meijer, Rick Sulman, and Amy de Lange --- for helping shape my entrepreneurial spirit.
+Finally, I would like to thank the Creative Technology faculty and staff --- Dr. Dennis Reidsma, Dr. Katarzyna Zalewska, Dr. Erik Faber, Dr. Khiet Truong, Dr. Jefferey White, Dr. Edwin Dertien, Chris Vermaas, Richard Bults, and Alfred de Vries --- and the Twente startup ecosystem --- Michael Angelo Groeneveld, Mike Verkouter, Peter Langela, Emiel Pegge, Thomas Mensink, Gilles Meijer, Rick Sulman, and Amy de Lange --- for helping shape my entrepreneurial spirit.
 
 \newpage
 
@@ -141,11 +137,11 @@ Finally, I would like to thank the Creative Technology faculty and staff --- Dr.
 
 \section{Introduction}
 
-Setting up appointments by email is a non-trivial waste of time. Last year, 110 billion consumer emails were sent per day, with a very common use case being setting up appointments \cite{noauthor_email_2019}. Several email exchanges are required in order to find a suitable time and place where all parties are available, and almost 1 in 5 users struggle with finding sufficient available time slots \cite{blaszkiewicz_research_2018}. This back-and-forth calendar conflict resolution waste 17 minutes per meeting on average \cite{dennis_4_2017}. Moreover, over 3 in 5 meetings end up getting rescheduled for a different time or place \cite{dennis_how_2018}, which wastes additional time in confirmations. This adds up to about 9 hours wasted every month per person.
+Setting up appointments by email is a non-trivial waste of time. Last year, 110 billion consumer emails were sent per day, with a very common use case being setting up appointments \cite{noauthor_email_2019}. Several email exchanges are required in order to find a suitable time and place where all parties are available, and almost 1 in 5 users struggle with finding sufficient available time slots \cite{blaszkiewicz_research_2018}. This back-and-forth calendar conflict resolution on average waste 17 minutes per meeting \cite{dennis_4_2017}. Moreover, over 3 in 5 meetings end up getting rescheduled for a different time or place, which wastes additional time in confirmations \cite{dennis_how_2018}. This adds up to about 9 hours wasted every month per person.
 
 For some professionals, scheduling these meetings manually can feel like a ``frustrating distraction from the things that matter," so much so that they hire assistants to help with the task \cite{cranshaw_calendar.help:_2017}. However, not everyone can afford full-time assistants and will therefore turn to software solutions.
 
-An intelligent virtual assistant that can schedule appointments over email can be a faster and more affordable alternative to manually scheduling appointments. In this paper, such an assistant is proposed --- Email-based Intelligent Virtual Assistant (EIVA \textipa{/i:vA/}). EIVA can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf, and the user can directly interact with EIVA over email.
+An intelligent virtual assistant that can schedule appointments over email can be a faster and more affordable alternative to manually scheduling appointments. In this paper, such an assistant is proposed --- Email-based Intelligent Virtual Assistant (EIVA \textipa{/i:vA/}). EIVA\footnote{In this paper, the term `EIVA' is not only used as an acronym, but also as a proper noun for the personification of the virtual assistant.} can access a user's calendar and find empty meeting slots based on their location and scheduling preferences. It can then send and respond to emails regarding scheduling meetings on the user's behalf, and the user can directly interact with EIVA over email.
 
 The goal of the research described in this paper is to:
 
@@ -184,7 +180,7 @@ Although digital calendars have been the standard office tool for professionals,
 
 \subsubsection{Smart Scheduling Tools}
 
-The previous section highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants and therefore, lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
+Section 2.1.1 highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants and therefore, lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
 
 \paragraph{Scheduling Interfaces}
 
@@ -231,7 +227,7 @@ TypeScript features such as interfaces and decorators are extensively used in th
 \}
 \end{alltt}
 
-The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.10) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understanding the source code much clearer.
+The above example generates an API endpoint of \texttt{/v1/example} (with versioning enabled, Section 6.1.6) which accepts \texttt{POST} requests and responds with a JSON object. This generator makes development and understanding the source code much clearer.
 
 \subsubsection{Frontend}
 
@@ -243,7 +239,7 @@ In terms of developer interest, Vue.js and React were rated 64\% and 61\% respec
 
 Sending emails may seem like a trivial task, but requires many steps to ensure delivery. For example, outbound emails must be authenticated with a Domain-based Message Authentication, Reporting and Conformance (DMARC) policy to indicate that they are protected by Sender Policy Framework (SPF) and DomainKeys Identified Mail (DKIM). If not signed, emails are often rejected or marked as `Spam' in most clients. Typically, a transactional email service such as the Simple Email Service (SES) from Amazon Web Services (AWS) is used, which provides a simple API and handles the signing and sending of emails.
 
-On the other side, for receiving emails on a domain, Email Exchange (MX) records are added to the DNS server. In this case, AWS SES can also receive emails and store them in a specific location. Both of these processes are essential for email-based scheduling, and their implementation is described in Section 6.1.
+On the other side, for receiving emails on a domain, Email Exchange (MX) records are added to the DNS server. In this case, AWS SES can also receive emails and store them in a specific location. Both of these processes are essential for email-based scheduling, and their implementation is described in Section 6.1.9.
 
 \subsection{Author's Previous Work}
 
@@ -321,13 +317,13 @@ A link to an online form was shared with participants; there were no in-person m
 
 \paragraph{Participant Observation}
 
-Participants were ``observed" when they used the web app using automated tracking systems. For example, all pageviews, API requests, and clicks were anonymously logged with users' consent, which helped understand how users used the app. The results are visualized in Section 7.2.
+Participants were ``observed" when they used the web app using automated tracking systems. For example, all pageviews, API requests, and clicks were anonymously logged with users' consent, which helped understand how users used the app. The results are visualized in Section 7.2.3.
 
 \subsection{User Experience Research}
 
 \subsubsection{Introductory Survey}
 
-After reading the Information Brochure (Appendix 1) and signing the Consent Form (Appendix 2), participants answer 16 questions about their prior experience with scheduling appointments, email usage, and personal assistants. This information helps with understanding how users currently set appointments, and with determining the default values for user preferences (Section 6.2).
+After reading the Information Brochure (Appendix 1) and signing the Consent Form (Appendix 2), participants answer 16 questions about their prior experience with scheduling appointments, email usage, and personal assistants. This information helps with understanding how users currently set appointments, and with determining the default values for user preferences (Section 5.2.2).
 
 Appendix 3 lists all the options for each question. The Introductory Survey is divided into two parts; the first part is focused on scheduling preferences and email usage:
 
@@ -407,7 +403,7 @@ In the last part, participants answer questions about the experience of both the
 
 First, the data gathered was prepared for analysis. After closing participation, data received in Google Forms was duplicated in a spreadsheet for analysis. Similarly, Kibana, an open source data visualization dashboard for Elasticsearch, was used to analyze logs for pageviews, API requests, and clicks. For qualitative answers such as long text responses, content analysis was conducted by finding common keywords.
 
-Multiple-choice responses from the Introductory Survey were tabulated. Product usage data collected from logs was visualized in several ways. For one, users' approximate locations were mapped on the maps of the Netherlands, Europe, and the world. Other data such as popular languages, browsers, and operating systems was quantitatively tabulated. Time-series data such as number of API requests, number of emails sent to the assistant, and the website's response time was graphed. Lastly, heatmaps were manually generated using coordinate data from mouse clicks. The sample mean, median, and mode of rating scale responses from the User Experience Survey were calculated and tabulated.
+Multiple-choice responses from the Introductory Survey were tabulated. Product usage data collected from logs was visualized in several ways. For one, users' approximate locations were mapped on the maps of the Netherlands, Europe, and the world. Other data such as popular languages, browsers, and operating systems was quantitatively tabulated. Time-series data such as number of API requests, number of emails sent to the assistant, and the website's response time was graphed. Lastly, heatmaps were manually generated using coordinate data from mouse clicks. The mean, median, mode, and standard deviation of rating scale responses from the User Experience Survey were calculated and tabulated.
 
 \newpage
 
@@ -424,16 +420,16 @@ The basic stakeholders are the users who will interact with EIVA --- the consume
 Therefore, although it's important to consider the inputs of each stakeholder, it can be useful to prioritize stakeholders based on how much interest they have in the product, and how much power they have over the designers and engineers building the product. The Power-Interest Grid can be a useful tool to prioritize your tasks based on four categories \cite{noauthor_stakeholder_nodate}.
 
 \begin{enumerate}
-	\item \textbf{High power, highly interested people} (Manage Closely): we must fully engage these people, and make the greatest efforts to satisfy them:
+	\item \textbf{High power, highly interested people} (Manage Closely): fully engage these people and make the greatest efforts to satisfy them:
 	      \begin{enumerate}
 	      	\item Users who are using EIVA and have their own assistant that schedules appointments
 	      	\item External client who is funding and invested in this research project
 	      \end{enumerate}
-	\item \textbf{High power, less interested people} (Keep Satisfied): put enough work in with these people to keep them satisfied, but not so much that they become bored with your message
+	\item \textbf{High power, less interested people} (Keep Satisfied): put enough work in with these people to keep them satisfied, but not so much that they become bored with the message
 	      \begin{enumerate}
-	      	\item Companies who might not directly care about EIVA, but the difference in employable assistants when compared to EIVA
+	      	\item Human resources staff at companies who notice a difference in the work of human assistants
 	      \end{enumerate}
-	\item \textbf{Low power, highly interested people} (Keep Informed): adequately inform these people, and talk to them to ensure that no major issues are arising. People in this category can often be very helpful with the detail of your project
+	\item \textbf{Low power, highly interested people} (Keep Informed): adequately inform these people, and talk to them to ensure that no major issues arise
 	      \begin{enumerate}
 	      	\item Users who are recipients in emails sent by EIVA; they don't have the power to control or customize the assistant, but are directly communicating with it
 	      	\item Human personal assistants whose employment may feel threatened
@@ -447,14 +443,14 @@ Therefore, although it's important to consider the inputs of each stakeholder, i
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{power-interest.jpg}
+	\includegraphics[width=0.6\textwidth]{power-interest.jpg}
 	\caption{Power-Interest Grid}
 	\label{fig:checkbox}
 \end{figure}
 
 \subsubsection{User Personas}
 
-Once basic stakeholders are identified, user personas are used to personify them and study their cases. User personas are used in user experience (UX) design and help with building empathy for target users. In the ideation phase, personas are used to better understand:
+Once basic stakeholders are identified, user personas are used to personify different types of users and study their use cases. User personas are used in user experience (UX) research and help with building empathy for target users. In the ideation phase, personas are used to answer the following questions:
 
 \begin{enumerate}
 	\item Who is the ideal consumer for EIVA?
@@ -463,7 +459,7 @@ Once basic stakeholders are identified, user personas are used to personify them
 	\item What are the pain-points that they currently experience?
 \end{enumerate}
 
-For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers. The Random User Generator service has been used to programmatically generate names --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson \cite{noauthor_random_nodate}. For profile pictures, the This Person Does Not Exist website is used, which is a collection of AI-generated photos \cite{noauthor_this_nodate}.
+For this research, four kinds of users are explored in different contexts based on conversations with a diverse group of consumers. To avoid any bias, the Random User Generator service has been used to programmatically generate names of each persona --- Tanya Gonzalez, Julia Morris, Joy Fields, and Lee Henderson \cite{noauthor_random_nodate}. For the personas' profile pictures, another online service, This Person Does Not Exist, is used that provides a collection of AI-generated photos from various publicly available research papers and media sources \cite{noauthor_this_nodate}.
 
 \begin{wrapfigure}{l}{0.2\textwidth}
 	\includegraphics[scale=0.08]{persona-tanya.jpg}
@@ -721,11 +717,11 @@ Then, when initializing the app, this value is imported:
 \}
 \end{alltt}
 
-This central management makes it very easy to update defaults (like port 80), and the \texttt{.env} file contains environment-specific values, like port 7000 for development and 443 for production. A \texttt{.env.example} file is available in the repository for reproduction. A total of 68 exported members configure various parts of the application, from database connection URLs to secret keys for signing JSON Web Tokens (Section 6.1.7).
+This central management makes it very easy to update defaults (like port 80), and the \texttt{.env} file contains environment-specific values, like port 7000 for development and 443 for production. A \texttt{.env.example} file is available in the repository for reproduction. A total of 68 exported members configure various parts of the application, from database connection URLs to secret keys for signing JSON Web Tokens (Section 6.1.3).
 
 \subsubsection{Natural Language Processing}
 
-There are three Natural Language Processing (NLP) systems implemented in EIVA's backend --- language detection and variable extraction, intent classification, and date parsing. These systems work together during the scheduling process (Section 6.1.11) and use various libraries.
+There are three Natural Language Processing (NLP) systems implemented in EIVA's backend --- language detection and variable extraction, intent classification, and date parsing. These systems work together during the scheduling process (Section 6.1.9) and use various libraries.
 
 \paragraph{Language Detection and Variable Extraction}
 
@@ -801,15 +797,15 @@ When an object containing data is provided (say, the name `Florian' and an examp
 
 Emails are sent using Amazon Web Services' Simple Email Service (SES) using Nodemailer, a library that provides a simple API to send email using Node.js and supports both SES and SMTP \cite{noauthor_nodemailer_nodate}. Each email is sent with both the plain text and HTML versions, with DKIM and SPF verification.
 
-For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JWTs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.7). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
+For ``magic links" for email verification, password reset, or appointment confirmation, JSON Web Tokens (JWT) are used. JWTs are URL-safe and have encrypted data, and can be verified server-side without additional database queries. A queue is used to send emails sequentially, implemented using Redis (Section 6.1.5). This ensures that the rate limits imposed by SES are respected, and that undelivered emails can be sent again (up to 3 tries).
 
 \subsubsection{Authentication}
 
 Users can create an account using the web app by entering their name, email, and password. Passwords are hashed using \texttt{bcrypt} before storage, which introduces a work factor and is therefore much safer than general-purpose hash functions \cite{provos_future-adaptive_1999}. It also has built-in salting to prevent rainbow table attacks \cite{noauthor_how_2010}.
 
-For authentication, the industry-standard access/refresh token combination is used. When logging in, both tokens are generated and stored on the client (Section 6.2.3), with the access token expiring after 15 minutes and the refresh token after 30 days. The expired access token can be exchanged for a new one using the refresh token.
+For authentication, the industry-standard access/refresh token combination is used. When logging in, both tokens are generated and stored on the client (Section 6.2.1), with the access token expiring after 15 minutes and the refresh token after 30 days. The expired access token can be exchanged for a new one using the refresh token.
 
-Both tokens are JWTs and contain all required information; the access token includes details about the user (such as their name and role) whereas the refresh token only includes the user ID. Furthermore, the web app also allows users to see a list of their logged in sessions and invalidate refresh tokens, which are then blacklisted in Redis (Section 6.1.7).
+Both tokens are JWTs and contain all required information; the access token includes details about the user (such as their name and role) whereas the refresh token only includes the user ID. Furthermore, the web app also allows users to see a list of their logged in sessions and invalidate refresh tokens, which are then blacklisted in Redis.
 
 \begin{figure}[h]
 	\centering
@@ -933,7 +929,7 @@ Other third-party APIs are used for specific utilities, such as Clearbit to fetc
 
 \subsubsection{Scheduling Process}
 
-To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.4). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which in turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
+To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.3). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which in turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{ses-process.png}
@@ -961,7 +957,7 @@ After the email is classified as requesting a new appointment, the process descr
 	\caption{Screenshot of Time Recommendation Email}
 \end{figure}
 
-After receiving the list of time recommendations from the assistants, guests can click on their preferred option for confirmation (Section 6.2.4), and an email with a calendar invitation is sent to both the host and the guests.
+After receiving the list of time recommendations from the assistants, guests can click on their preferred option for confirmation (Figure 20), and an email with a calendar invitation is sent to both the host and the guests.
 
 \subsection{Frontend Web App}
 
@@ -973,7 +969,7 @@ For example, the EIVA homepage receives a 100\% score in the Accessibility audit
 
 As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developer experience to prototype blazing fast modern web application" \cite{alexchopin_announcing_nodate}.
 
-Custom middleware and plugins were created and added to Nuxt.js for features like click tracking (Section 7.2.3), unauthenticated redirects, and persisted state (Section 6.2.3).
+Custom middleware and plugins were created and added to Nuxt.js for features like click tracking (Section 7.2.3), unauthenticated redirects, and persisted state (Section 6.2.1).
 
 \paragraph{Fetch Requests}
 
@@ -1127,11 +1123,11 @@ In Cycle 5, the client was able to extensively use EIVA and found several bugs a
 
 Also, the website was migrated to the new domain \texttt{myeiva.com} (a different domain was used during development), but this had an email deliverability error. Since the domain was purchased on June 1, 2020, email clients were marking emails from EIVA under `Spam' because the domain was too new. Therefore, the website remained hosted on the new domain, but the assistant emails were moved for the testing period from \texttt{@myeiva.com} to \texttt{@eiva.o15y.com}. \texttt{o15y.com} was purchased over two years ago and therefore had more credibility.
 
-\subsubsection{Cycle 6}
+\subsubsection{Cycle 6: External Feedback}
 
 In the final feedback stage, three experienced web developers --- Alex Imbrea, Maurits van der Vijgh , Rohit Bhatia --- were asked to use the EIVA webapp and assistant and provide additional feedback. Their suggestions included adding input validation on the client side for the minimum password length of 6 characters, which was only imposed on the server side. They also thought that the intro tour was too long, described as ``hand holding", though they agreed that it was necessary for users without a technical background.
 
-A grammatical error was also found in the outbound email sent by the assistant, and another error that prevented cache invalidation. They were both fixed and deployed before testing with users (Section 7).
+A grammatical error was also found in the outbound email sent by the assistant, and another error that prevented cache invalidation. They were both fixed and deployed before testing with users.
 
 \subsection{Open Source Development}
 
@@ -1555,7 +1551,7 @@ Data stored in ElasticSearch between June 1 and June 24 is analyzed, in which 30
 
 \subsubsection{Web App Traffic Analysis}
 
-As described in Section 6.5.3, a JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as parsing the user agent. Data from the 2,244 pageviews is analyzed in this section.
+A JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as parsing the user agent. Data from the 2,244 pageviews is analyzed in this section.
 
 \paragraph{Location}
 
@@ -1629,7 +1625,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, wi
 	\end{minipage} 
 \end{table}
 
-\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.5.1). 
+\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.6.4). 
 
 Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it was placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-related' is a sum of pageviews from headless Chrome, Chrome webviews, and Chromium.
 
@@ -1681,7 +1677,7 @@ Most users used the web app on a large screen, not a smartphone. In fact, over 3
 
 Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 9, totaling to 19,177.
 
-An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.2. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
+An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.1.9. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
 
 \begin{figure}[h]
 	\centering
@@ -1887,7 +1883,7 @@ They were also directly asked whether EIVA met their expectations in terms of sc
 	\end{minipage} 
 \end{table}
 
-To test the hypothesis proposed in Section 4.2.1, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. Table 23 shows that 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer.
+To test the hypothesis that EIVA is indistinguishable from a human assistant, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. Table 23 shows that 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer.
 
 \subsubsection{Business Case}
 
@@ -2116,7 +2112,7 @@ This section ensures that we have your permission to conduct this research. Plea
 
 All raw responses from the survey are available in CSV format on the GitHub project: \url{https://github.com/AnandChowdhary/bsc-thesis} in \texttt{responses.csv}.
 
-The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the sample mean, $\tilde{x}$ is the median, $Mo$ is the mode, and $\sigma$ is the standard deviation.
+The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the mean, $\tilde{x}$ is the median, $Mo$ is the mode, and $\sigma$ is the standard deviation.
 
 \vspace{10mm}
 
@@ -2284,6 +2280,8 @@ The full schema was omitted from this appendix because it is 357 lines. It is av
 
 \bibliography{citations}
 
-\paragraph{License} This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0). The source code of this research paper is available on \url{https://github.com/AnandChowdhary/bsc-thesis}.
+\paragraph{License}
+
+\textcopyright \enspace 2020 Anand Chowdhary. This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0). The source code of this research paper is available on \url{https://github.com/AnandChowdhary/bsc-thesis}. For more information, visit \url{https://anandchowdhary.com}.
 
 \end{document}
