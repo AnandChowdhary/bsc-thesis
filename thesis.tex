@@ -928,18 +928,18 @@ To automate common tasks, specific jobs are scheduled using \texttt{cron}, a Nod
 
 \subsubsection{Third-party APIs}
 
-Other third-party APIs are used for specific utilities, such as \emph{Clearbit} to fetch details about a person from their email address. Clearbit's Enrichment API uses over 250 public and private sources and provides several datapoints, such as name, professional, company, and timezone. This is used to better understand the context of guests in meetings. Other APIs used in EIVA include \emph{Stripe} to accept end-user payments \cite{wittern_web_2018}.
+Other third-party APIs are used for specific utilities, such as \emph{Clearbit} to fetch details about a person from their email address. Clearbit's Enrichment API uses over 250 public and private sources and provides several datapoints, such as name, profession, company, and timezone. This is used to better understand the context of guests in meetings. Other APIs used in EIVA include \emph{Stripe} to accept end-user payments \cite{wittern_web_2018}.
 
 \subsubsection{Scheduling Process}
 
-To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.4). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which is turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
+To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.4). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which in turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{ses-process.png}
 	\caption{Email Received to Webhook Process}
 \end{figure}
 
-When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 12 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant email, setting up the database record, and tokenizing and classifying the email contents.
+When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 12 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant's email, setting up the database record, and tokenizing and classifying the email contents.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{webhook-process.png}
@@ -966,11 +966,11 @@ After receiving the list of time recommendations from the assistants, guests can
 
 The frontend web app is built with web development best practices, ease of use, and accessibility in mind.
 
-For example, the EIVA homepage receives a 100\% score in the Accessibility audit part of Webkit Developer Tools. Using Lighthouse, an automated performance auditing tool, its score is 61/100 for performance, 93/100 for accessibility, 100/100 for best practices, and 92/100 for SEO. Oswald Labs' web accessibility plugin is also implemented on every page, which helps people with dyslexia read more easily, amongst other features \cite{gupta_improving_2019}.
+For example, the EIVA homepage receives a 100\% score in the Accessibility audit part of Webkit Developer Tools. On Lighthouse, an automated performance auditing tool, its score is 61/100 for performance, 93/100 for accessibility, 100/100 for best practices, and 92/100 for SEO. Oswald Labs' web accessibility plugin is also implemented on every page, which helps people with dyslexia read more easily, amongst other features \cite{gupta_improving_2019}.
 
 \subsubsection{Vue.js and Nuxt.js}
 
-As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developper experience to prototype blazing fast modern web application" \cite{alexchopin_announcing_nodate}.
+As described in Section 2.2.2, Vue.js is the frontend development framework of choice for developing the EIVA web app. However, when building large-scale apps, setting up processes for routing, state management, and deploying can take up a lot of time. Therefore, Nuxt.js, an open source framework built on top of Vue.js is used which has these features built-in. For example, Nuxt.js can automatically generate routes based on file names, and also supports TypeScript; it ``provides a simple and intuitive developer experience to prototype blazing fast modern web application" \cite{alexchopin_announcing_nodate}.
 
 Custom middleware and plugins were created and added to Nuxt.js for features like click tracking (Section 7.2.3), unauthenticated redirects, and persisted state (Section 6.2.3).
 
@@ -984,7 +984,7 @@ A central store was used for authentication, consisting of both tokens and detai
 
 \subsubsection{User Interface}
 
-The web app UI was wireframed, prototyped, and mocked up extensively before implementation (Section 4.3). It consists of simple branding and a color scheme focusing on desired actions. Figures 15 to 20 show the screenshots of important webpages.
+The web app UI was wireframed, prototyped, and mocked up extensively before implementation (Section 4.3). It consists of simple branding and a color scheme focusing on desired actions. Figures 15 to 20 are screenshots of important webpages.
 
 \begin{figure}[h]
   \makebox[\textwidth]{%
@@ -1059,7 +1059,7 @@ During development, a simplified version of the Software Development Life Cycle 
 	\item Analysis
 \end{enumerate}
 
-The first step builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step, the technical literature research present in Section 2 is studied to architect the module's technology. In the third step, the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step, a test is conducted with the client or research participants. In the last step, the feedback from the test is evaluated for the next cycle.
+The first step builds on top of the ideation phase with methodological exploration of the idea and specifying the required feature as a module. In the second step, the technical literature research presented in Section 2 is studied to architect the module's technology. In the third step, the idea is materialized by writing code and testing the module by writing unit tests and conducting end-to-end tests with the platform. In the fourth step, a test is conducted with the client or research participants. In the last step, the feedback from the test is evaluated for the next cycle.
 
 \begin{figure}
 	\centering
@@ -1080,7 +1080,7 @@ The first step builds on top of the ideation phase with methodological explorati
 
 \subsubsection{Cycle 1: Assistant Email Address}
 
-The first cycle was internal with both the initial development and several refactors. One of the specified conditions in Section 3 was to ensure unique email addresses for each organization using the assistant service, because teams may have similar names of assistants. For example, the default name of the assistant, \emph{Ara Isaacson (AI)}, may generate the email address \texttt{ara@example.com}, which does not share any information about who the assistant works for. Since unique email addresses for each team is mandatory, the team's slug was incorporated in the address, i.e., \texttt{username@example.com}, for example \texttt{florian@example.com}. 
+The first cycle was internal with both the initial development and several refactors. One of the specified conditions in Section 3 was to ensure unique email addresses for each organization using the assistant service, because teams may have similar-named assistants. For example, the default name of the assistant, \emph{Ara Isaacson (AI)}, may generate the email address \texttt{ara@example.com}, which does not share any information about who the assistant works for. Since unique email addresses for each team is mandatory, the team's slug was incorporated in the address, i.e., \texttt{username@example.com}, for example \texttt{florian@example.com}. 
 
 This has two advantages: firstly, it tells the guests receiving emails from the assistant who the true host is; and secondly, the email receiving architecture can relate the unique email address to the owner's details. However, this might be mistaken as the email address of the user themselves (for example, Florian) rather than their assistant. Therefore, the last change was to add the suffix, \texttt{meet-} to each email, e.g., \texttt{meet-florian@example.com}.
 
@@ -1095,13 +1095,13 @@ Therefore, an onboarding experience was designed where users could easily set th
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-onboarding-1.png}
-      \caption{Screenshot of Scheduling Settings}
+      \caption{Screenshot of Settings Onboarding Page}
     \end{minipage}%
     \hfill
     \begin{minipage}[t]{0.8\textwidth}
       \centering
       \includegraphics[width=\textwidth]{screenshot-onboarding-2.png}
-      \caption{Screenshot of How to Use Page}
+      \caption{Screenshot of Security Onboarding Page}
     \end{minipage}%
   }%
 \end{figure}
@@ -1110,7 +1110,7 @@ A slider interface was implemented for privacy settings, with `Most open', `Bala
 
 \subsubsection{Cycle 3: iCalendar Support}
 
-The assumption that most users would use Google Calendar ensured that development time was spent on easy connectivity with Google accounts. The official Google Calendar API was used to fetch events when recommending time slots using the open source package \texttt{calendar-slots} (Section 6.4). However, this meant that non-Google users could not connect their calendars, and the client themselves uses a self-hosted calendar system. It was therefore recommended to support other calendars that support the iCalendar specification.
+The assumption that most users would use Google Calendar ensured that development time was spent on easy connectivity with Google accounts. The official Google Calendar API was used to fetch events when recommending time slots using the open source package \texttt{calendar-slots} (Section 6.4). However, this meant that non-Google users could not connect their calendars, and the external client itself uses a self-hosted calendar system. It was therefore recommended to support other calendars that support the iCalendar specification.
 
 Most calendar services are compliant with iCalendar, therefore adding first-class support for iCalendar URLs meant that users using almost any digital calendar could have event conflict resolution features. ICS support was implemented and Google's API was also replaced with the new system. In Figure 19, users are asked to enter an iCalendar URL rather than connecting their Google accounts.
 
@@ -1122,7 +1122,7 @@ It was decided to have first-class support for both English and Dutch, and there
 
 \subsubsection{Cycle 5: Bugs and New Domain}
 
-In Cycle 5, the client was able to extensively use EIVA and found several bugs and enhancement recommendation. First, an error was found where deleting the default location (an auto-generated Jitsi Meet link) would throw an error. This was fixed by adding support for custom default meeting locations and automatically changing the default location in case the current default is deleted by the user. Secondly, the client recommended removing HTTP access and redirecting all requests to the secure HTTPS protocol, which was implemented. Several other bugs were also fixed during this feedback cycle.
+In Cycle 5, the client was able to extensively use EIVA and found several bugs and enhancement recommendations. First, it was discovered that deleting the default location (an auto-generated Jitsi Meet link) would throw an error. This was fixed by adding support for custom default meeting locations and automatically changing the default location in case the current default is deleted by the user. Secondly, the client recommended removing HTTP access and redirecting all requests to the secure HTTPS protocol, which was implemented. Several other bugs were also fixed during this feedback cycle.
 
 Also, the website was migrated to the new domain \texttt{myeiva.com} (a different domain was used during development), but this had an email deliverability error. Since the domain was purchased on June 1, 2020, email clients were marking emails from EIVA under `Spam' because the domain was too new. Therefore, the website remained hosted on the new domain, but the assistant emails were moved for the testing period from \texttt{@myeiva.com} to \texttt{@eiva.o15y.com}. \texttt{o15y.com} was purchased over two years ago and therefore had more credibility.
 
@@ -1140,7 +1140,7 @@ Nevertheless, several open source projects were built in order to support key EI
 
 \paragraph{Calendar Link}
 
-For example, the open source project \texttt{calendar-link} was built in order to generate event links to popular calendar services like Google Calendar, Microsoft Outlook, and Yahoo! Calendar. This project is now used by many others, receiving over 1,000 downloads every week and contributed to by 5 additional developers. Developers can use the package to programmatically generate that users can click on to add a specific event to their calendar, with an easy-to-use API.
+For example, the open source project \texttt{calendar-link} was built in order to generate event links to popular calendar services like Google Calendar, Microsoft Outlook, and Yahoo! Calendar. This project is now used by many others, receiving over 1,000 downloads every week and contributed to by 5 additional developers. Developers can use the package to programmatically generate links that users can click on to add a specific event to their calendar, with an easy-to-use API.
 
 \begin{alltt}
 \textcolor{keyword}{import} \{ google, outlook, ics \} \textcolor{keyword}{from} \textcolor{string}{"calendar-link"};
@@ -1201,7 +1201,7 @@ During development, such methods are used extensively to test the natural langua
 
 \subsubsection{Continuous Integration}
 
-A Continuous Integration (CI) process consisting of unit tests and a build test has been set up to ensure that no bad code gets deployed to users \cite{li_extensive_2020}. Whenever a new commit is pushed to the central repository on GitHub, the code is only deployed to the production app when there is a successful build \cite{noauthor_what_2019}.
+A Continuous Integration (CI) process consisting of unit tests and a build test has been set up to ensure that no bad code gets deployed to users \cite{li_extensive_2020}. Whenever a new commit is pushed to the central repository on GitHub, the code is only deployed to the production app if there is a successful build \cite{noauthor_what_2019}.
 
 GitHub Actions is used as the API for CI, and is free for public repositories. A workflow consisting of 5 steps is triggered on every push, using Ubuntu  18.04 LTS, a popular Linux distribution:
 
@@ -1318,7 +1318,7 @@ pm2 logs \textcolor{comment}{# Show the logs of this deployment}
 
 \subsubsection{Frontend Web App}
 
-Deploying the frontend web app is much easier because of the CI process. The frontend is hosted on the static site hosting platform \emph{Netlify}, which automatically build and deploys the app on push. This service is also free.
+Deploying the frontend web app is much easier because of the CI process. The frontend is hosted on the static site hosting platform \emph{Netlify}, which automatically builds and deploys the app on push. This service is also free.
 
 \subsubsection{Server Monitoring}
 
@@ -1328,21 +1328,21 @@ Although measures have been taken to make sure EIVA services don't go down, such
 
 To monitor the uptime of the services and get real-time notifications in case of downtime, \emph{Uptime Robot} is installed \cite{noauthor_about_nodate}. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
 
-Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due of a Netlify deploying error because of renamed repositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.98\% overall uptime.
+Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due to a Netlify deploying error because of renamed repositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.98\% overall uptime.
 
 \paragraph{Resource Monitoring}
 
-To make sure the service is not over used and to prevent crashes, \emph{Netdata} is used to monitor all aspects of the server. Netdata can visualize and monitor real-time metrics, optimized to accumulate all types of data, such as CPU usage, RAM usage, and disk activity \cite{noauthor_netdata_nodate}. NetData is also open source and consists of a daemon that collects collecting and an interface to visualize that data \cite{noauthor_netdata/netdata_2020}.
+To make sure the service is not overused and to prevent crashes, \emph{Netdata} is used to monitor all aspects of the server. Netdata can visualize and monitor real-time metrics, optimized to accumulate all types of data, such as CPU usage, RAM usage, and disk activity \cite{noauthor_netdata_nodate}. NetData is also open source and consists of a daemon that collects data and an interface to visualize that data \cite{noauthor_netdata/netdata_2020}.
 
 \paragraph{Error Tracking}
 
 To catch errors in production, \emph{Sentry} is deployed in both the frontend and backend applications. Sentry is an open source error tracking system \cite{noauthor_sentry_nodate} that automatically reports errors as soon as they occur. ``In addition to sending developers alerts, Sentry also gives them context for potential root cause analysis to help them identify the source of the error" \cite{noauthor_sentry_nodate-1}.
 
-Although the backend project collects server logs, they are frequently intentional debugging information. Logging provides a trail of events, but Sentry only focuses on exceptions, i.e., catching application crashes or HTTP request errors. Furthermore, Sentry helps list a trail of usage events like mouse clicks and network requests to discover the context of an error \cite{noauthor_sentry_nodate-2}.
+Although the backend project already collects server logs, they are frequently intentional debugging data. Logging provides a trail of events, but Sentry only focuses on exceptions, i.e., catching application crashes or HTTP request errors. Furthermore, Sentry helps list a trail of usage events like mouse clicks and network requests to discover the context of an error \cite{noauthor_sentry_nodate-2}.
 
 Licensed under Apache 2, Sentry is open source but offers a hosted service with a generous free plan, which is used for this project. The @sentry/browser package is used to track errors originating in client-side web applications running in browsers, and @sentry/node is used for the Node.js package.
 
-Over the course of testing weeks, 3 errors were tracked for the frontend project, but no errors were found in the backend project.
+Over the course of the month of June 2020, 3 errors were tracked for the frontend project, but no errors were found in the backend project.
 
 \newpage
 
