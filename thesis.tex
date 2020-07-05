@@ -102,7 +102,7 @@ Manually setting up appointments by email wastes tens of hours every month for p
 
 In this paper, a functional EIVA is developed based on research and industry best-practices. Users can simply add their assistant's address as `CC' in an email, and EIVA will share the recommended location and time slots with guests, based on the user's availability (determined using their calendar) and scheduling preferences. A companion web application is also developed to manage meetings and settings. The code is open source and written in TypeScript with Node.js and Vue.js and deployed on Amazon Web Services architecture in Europe. The product is built with a focus on data privacy and user personalization.
 
-A user experience evaluation of EIVA was conducted with 30 participants that found positive reception. The average rating of the overall assistant was calculated to be 4.4 out of 5, and that of the web app was 4.5 out of 5. Users' behavior was also understood with the help of heatmaps and visualizations using pageview and mouse clicks tracking. All but one participants said that the EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month. Participants also shared their frustrations and recommendations for future work. In the future, NLP classification should be improved and user recommendations should be implemented before launching the EIVA service for consumers.
+A user experience evaluation of EIVA was conducted with 30 participants that found positive reception. The average rating of the overall assistant was calculated to be 4.4 out of 5, and that of the web app was 4.5 out of 5. Users' behavior was also understood with the help of heatmaps and visualizations using pageview and mouse clicks tracking. All but one participants said that EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month. Participants also shared their frustrations and recommendations for future work. In the future, NLP classification should be improved and user recommendations should be implemented before launching EIVA service for consumers.
 
 \newpage
 
@@ -184,7 +184,7 @@ Although digital calendars have been the standard office tool for professionals,
 
 \subsubsection{Smart Scheduling Tools}
 
-The previous section highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants and therefore, lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of an EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
+The previous section highlights that although there is a multitude of scheduling softwares available, they are not email-based intelligent virtual assistants and therefore, lack the potential benefit that personalized AI technology could bring. Today, there are early products available in the market that have some features of EIVA, like automatically responding to emails and recommending meeting times based on multiple calendars.
 
 \paragraph{Scheduling Interfaces}
 
@@ -608,13 +608,13 @@ Lastly, both low- and high-fidelity mockups of the desktop interface were design
 
 Based on the literature research in Section 2, this chapter focuses on specifying the key requirements for building EIVA. In the first part, the tasks required while scheduling an appointment are understood; and in the second part, personalization and customization aspects are specified.
 
-\subsection{Tasks Required in Scheduling by an EIVA}
+\subsection{Tasks Required in Scheduling by EIVA}
 
 Today, most users prefer to use email for scheduling rather than currently available specialized software. A survey of workers in the field of information management found that over 80\% of the respondents use email for scheduling and organization \cite{ducheneaut_e-mail_2001}. However, this wastes a lot of time because the process of scheduling online appointments is non-trivial and requires several rounds of communication, coordination, and negotiation. This section specifies the required actions for scheduling such appointments.
 
 \subsubsection{Understanding natural language over email}
 
-Communication with devices using natural language is commonplace for many people today, especially with the advent of affordable smart voice assistants, such as Alexa, available on Amazon Echo; and Google Assistant, available on Google Home \cite{de_barcelos_silva_intelligent_2020}. Their interface, which translates a human's intention into a device's control commands using speech recognition and natural language interpretation, is known as a Natural Language Interface (NLI). Some NLIs are extremely useful not only because of the dialogue-style nature of interactions, but also the ability to preserve context across different queries \cite{kiseleva_predicting_2016}. Therefore, the EIVA must remember a user's preferences from previous meetings. 
+Communication with devices using natural language is commonplace for many people today, especially with the advent of affordable smart voice assistants, such as Alexa, available on Amazon Echo; and Google Assistant, available on Google Home \cite{de_barcelos_silva_intelligent_2020}. Their interface, which translates a human's intention into a device's control commands using speech recognition and natural language interpretation, is known as a Natural Language Interface (NLI). Some NLIs are extremely useful not only because of the dialogue-style nature of interactions, but also the ability to preserve context across different queries \cite{kiseleva_predicting_2016}. Therefore, EIVA must remember a user's preferences from previous meetings. 
 
 Personification of the scheduling process using natural language has the additional benefit of increased likeliness of error forgiveness by end users. In a study, over 80\% of the participants who encountered errors in NLIs understanding them said that either their attitude was unaffected or the users themselves ``must have typed in something wrong" \cite{kelley_iterative_1984}. Furthermore, NLIs allow people to use their existing calendaring tools and idiosyncrasies by adopting email as the user interface and natural language conversations as the interaction mode. For example, a message such as ``Please schedule an appointment with Florian for next week" should be enough for EIVA to take over the remainder of the process.
 
@@ -630,9 +630,9 @@ Since not all guests may be available at the initially proposed time, the next m
 
 \subsubsection{Renegotiation and confirmation invitations}
 
-In the dynamic environment that is the modern workplace, changing appointment parameters is commonplace. A study found that 66\% of all scheduled meetings by a CEO underwent a parameter change \cite{dennis_how_2018}. Inevitably, once a meeting is scheduled, it requires ``continuous maintenance, as new events often prompt meeting updates and reschedules" \cite{cranshaw_calendar.help:_2017}. To finalize the meeting parameters, the EIVA should take into account the parameter preferences of both the user and all guests.
+In the dynamic environment that is the modern workplace, changing appointment parameters is commonplace. A study found that 66\% of all scheduled meetings by a CEO underwent a parameter change \cite{dennis_how_2018}. Inevitably, once a meeting is scheduled, it requires ``continuous maintenance, as new events often prompt meeting updates and reschedules" \cite{cranshaw_calendar.help:_2017}. To finalize the meeting parameters, EIVA should take into account the parameter preferences of both the user and all guests.
 
-To make sure that all guests have the most recent parameters, confirmations and reminders may be sent by the EIVA. However, not all users use the same calendaring software, with some professionals using no digital calendar at all. Kincaid reported that approximately one half of all meetings scheduled by professionals were with users using a different calendaring system than their own \cite{kincaid_electronic_1985}. Therefore, the EIVA will be required to send these emails using industry standards supported by most software. The primary standard to store and exchange calendaring and scheduling information is the Internet Calendaring and Scheduling Core Object Specification (iCalendar) \cite{desruisseaux_internet_2009}.
+To make sure that all guests have the most recent parameters, confirmations and reminders may be sent by EIVA. However, not all users use the same calendaring software, with some professionals using no digital calendar at all. Kincaid reported that approximately one half of all meetings scheduled by professionals were with users using a different calendaring system than their own \cite{kincaid_electronic_1985}. Therefore, EIVA will be required to send these emails using industry standards supported by most software. The primary standard to store and exchange calendaring and scheduling information is the Internet Calendaring and Scheduling Core Object Specification (iCalendar) \cite{desruisseaux_internet_2009}.
 
 \subsection{User Configuration}
 
@@ -1819,9 +1819,9 @@ Time recommendation accuracy & \score{3.9}{5} 3.9 & 4 & 4 & 1.0 \\
 	\end{minipage}%
 \end{table}
 
-To participate in the research, users were required to send at least one email to the EIVA for scheduling an appointment. They were free to send multiple emails, and were asked about the number of emails they sent. 10 out of 30 participants sent between 2 and 5 emails, while the other 20 only sent the one.
+To participate in the research, users were required to send at least one email to EIVA for scheduling an appointment. They were free to send multiple emails, and were asked about the number of emails they sent. 10 out of 30 participants sent between 2 and 5 emails, while the other 20 only sent the one.
 
-To find out whether the assistant understood the overall meaning of their email in natural language, participants were asked \emph{Did the assistant understand your email(s) correctly?}. 24 out of 30 participants responded in the affirmative and 5 out of 10 responded with `Partially', while only one participant responded in the negative. This suggests that the EIVA did a well-enough job understanding incoming emails most of the time.
+To find out whether the assistant understood the overall meaning of their email in natural language, participants were asked \emph{Did the assistant understand your email(s) correctly?}. 24 out of 30 participants responded in the affirmative and 5 out of 10 responded with `Partially', while only one participant responded in the negative. This suggests that EIVA did a well-enough job understanding incoming emails most of the time.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1853,11 +1853,11 @@ To find out whether the assistant understood the overall meaning of their email 
 	\end{minipage} 
 \end{table}
 
-Apart from understanding the meaning of an email, participants were asked whether the EIVA recommended the correct location for the meeting. The location recommendation was correct for 24 out of 30 participants and incorrect for 5 participants. 1 participant chose to not answer this question.
+Apart from understanding the meaning of an email, participants were asked whether EIVA recommended the correct location for the meeting. The location recommendation was correct for 24 out of 30 participants and incorrect for 5 participants. 1 participant chose to not answer this question.
 
 Because of the API webhook, EIVA responds to emails almost instantly. When asked about whether the assistant responded to emails in a reasonable amount of time, all 30 participants responded with `Yes'.
 
-They were also directly asked whether the EIVA met their expectations in terms of scheduling an appointment. All but one participants responded positively.
+They were also directly asked whether EIVA met their expectations in terms of scheduling an appointment. All but one participants responded positively.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1996,7 +1996,7 @@ A functional Email-based Intelligent Virtual Assistant (EIVA) was developed alon
 
 Participants responded very positively after using the assistant and the web app, with overall experience ratings of 4.5 and 4.4 out of 5 respectively. The privacy features were most highly rated (4.7), and users also enjoyed the design of the interface (4.6), the onboarding flow (4.5), and the ease-of-use (4.4). Flexibility in understanding natural language was rated 4.4 and sounding human-like over email was rated 4.1. The lowest ratings were for time recommendation accuracy (3.9) and trust not to make mistakes (3.6).  This suggests that users are excited about the product, but there is still work to be done to increase the assistant's utility. Respondents also shared their frustrations and recommendations, which were analyzed for future work.
 
-All but one participants said that the EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month.
+All but one participants said that EIVA met their expectations, and 25 out of 30 would use it in the future if it launches as a service. Most would also be willing to pay for it, with an average amount up to €6.16 per month.
 
 \newpage
 
