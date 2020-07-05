@@ -523,13 +523,13 @@ Though the use cases for each persona are different, they all fall under the umb
 	\caption{Email Process Ideation}
 \end{wrapfigure}
 
-A pen-and-paper exploration of the entire process, from receiving a new email, understanding it, and performing an action, was conducted. In Figure X, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
+A pen-and-paper exploration of the entire process, from receiving a new email, understanding it, and performing an action, was conducted. In Figure 2, each intent (such as scheduling an appointment, forwarding an email, etc.), is performed based on the classification of the incoming email.
 
 Here, the process of receiving an email, saving the contents, and invoking a serverless function is visualized. The diagram also showcases the connection of the API with other services like a database and payment gateway.
 
 The API then finds the owner of the team the email was addressed to and whether or not the owner themselves sent the email. After classification, one of several processes are queued.
 
-In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 2, a user interface was mocked up wherein consumers could set custom rules to perform actions when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
+In a separate exploration, a rule-based approach was chosen instead of intent-based classification to understand an incoming email. In Figure 3, a user interface was mocked up wherein consumers could set custom rules to perform actions when new emails are received. In the example, there are three types of UI elements --- select dropdowns, text inputs, and buttons.
 
 \begin{wrapfigure}{r}{0.5\textwidth}\centering
 	\includegraphics[scale=0.092]{drawing-rules-ui.jpg}
@@ -564,7 +564,7 @@ Figure 4 also shows a two-column layout for desktop pages, with the left sidebar
 	\caption{Mobile Wireframes on Paper}
 \end{figure}
 
- A basic version of each required interface is shown in Figure 6, with the following interfaces from left to right and top to bottom:
+ A basic version of each required interface is shown in Figure 5, with the following interfaces from left to right and top to bottom:
 \begin{enumerate}
 	\item How to Use: Help new users understand how to communicate with their assistant over email
 	\item Scheduling: Set scheduling preferences like active days and working hours
@@ -836,7 +836,7 @@ Lastly, brute force and speed limits are also imposed. To prevent brute force at
 
 MariaDB is used as the primary database management system for the backend. MariaDB is a drop-in replacement for and a community-developed fork of MySQL, intended to remain free and open source software under the GNU General Public License \cite{noauthor_mariadb/server_2020}. For communication with the database, the open source database toolkit Prisma is used. Prisma replaces object-relational mapping with a query builder and TypeScript schema generator. It also allows for database migrations and versioned schema stored in the repository \cite{noauthor_prisma/prisma_2020}.
 
-Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 10 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
+Relations are used extensively in the database; for example, the \texttt{users} table has a reference to nearly all other tables. Figure 11 visualizes a simplified version of the database schema, and Appendix 5 contains the entire schema.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{database-basic.png}
@@ -929,14 +929,14 @@ Other third-party APIs are used for specific utilities, such as Clearbit to fetc
 
 \subsubsection{Scheduling Process}
 
-To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.3). Figure 11 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which in turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
+To schedule a new appointment, users have to send an email to their guests with their assistant in CC. Every assistant has an auto-generated but customizable \texttt{@myeiva.com} email address that is shown on the \emph{How to Use} page (Section 6.2.3). Figure 12 shows that every time a new email is received by AWS SES, the raw email is stored in AWS S3 and a Lambda serverless function is triggered, which in turn triggers an API webhook. The API webhook is triggered with an HMAC-SHA256 token consisting of the object ID of the S3 email signed with a shared secret to ensure that the webhook is not publicly usable.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{ses-process.png}
 	\caption{Email Received to Webhook Process}
 \end{figure}
 
-When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 12 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant's email, setting up the database record, and tokenizing and classifying the email contents.
+When the webhook is triggered, the API starts with trying to understand the incoming email. Figure 13 graphs the process from trigger to classification, consisting of fetching the raw email from AWS S3, parsing the raw email, finding the team and user based on the assistant's email, setting up the database record, and tokenizing and classifying the email contents.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{webhook-process.png}
@@ -981,7 +981,7 @@ A central store was used for authentication, consisting of both tokens and detai
 
 \subsubsection{User Interface}
 
-The web app UI was wireframed, prototyped, and mocked up extensively before implementation (Section 4.3). It consists of simple branding and a color scheme focusing on desired actions. Figures 15 to 20 are screenshots of important webpages.
+The web app UI was wireframed, prototyped, and mocked up extensively before implementation (Section 4.3). It consists of simple branding and a color scheme focusing on desired actions. Figures 16 to 23 are screenshots of important webpages.
 
 \begin{figure}[h]
   \makebox[\textwidth]{%
@@ -1085,7 +1085,7 @@ This has two advantages: firstly, it tells the guests receiving emails from the 
 
 In the second cycle, the client's feedback was that users should have a simpler experience when signing up for the EIVA service. Although sensible defaults have been implemented, users may get overwhelmed with several privacy settings, so this should be simplified in an onboarding experience.
 
-Therefore, an onboarding experience was designed where users could easily set their basic information, and select one of three privacy options. Figure 23 and 24 show the updated onboarding interface for user and privacy settings respectively.
+Therefore, an onboarding experience was designed where users could easily set their basic information, and select one of three privacy options. Figures 26 and 27 show the updated onboarding interface for user and privacy settings respectively.
 
 \begin{figure}[h]
   \makebox[\textwidth]{%
@@ -1109,7 +1109,7 @@ A slider interface was implemented for privacy settings, with `Most open', `Bala
 
 The assumption that most users would use Google Calendar ensured that development time was spent on easy connectivity with Google accounts. The official Google Calendar API was used to fetch events when recommending time slots using the open source package \texttt{calendar-slots} (Section 6.4). However, this meant that non-Google users could not connect their calendars, and the external client itself uses a self-hosted calendar system. It was therefore recommended to support other calendars that support the iCalendar specification.
 
-Most calendar services are compliant with iCalendar, therefore adding first-class support for iCalendar URLs meant that users using almost any digital calendar could have event conflict resolution features. ICS support was implemented and Google's API was also replaced with the new system. In Figure 19, users are asked to enter an iCalendar URL rather than connecting their Google accounts.
+Most calendar services are compliant with iCalendar, therefore adding first-class support for iCalendar URLs meant that users using almost any digital calendar could have event conflict resolution features. ICS support was implemented and Google's API was also replaced with the new system. In Figure 22, users are asked to enter an iCalendar URL rather than connecting their Google accounts.
 
 \subsubsection{Cycle 4: Dutch Training Data}
 
@@ -1210,7 +1210,7 @@ GitHub Actions is used as the API for CI, and is free for public repositories. A
 	\item Compile the TypeScript project (\texttt{npm run build})
 \end{enumerate}
 
-When there is an error in the build such as if a unit test fails or there is a TypeScript compilation error, the pipeline fails and developers get a notification for error mitigation. On average this CI process takes 2 minutes to complete, and Figure 11 shows the duration of each workflow run.
+When there is an error in the build such as if a unit test fails or there is a TypeScript compilation error, the pipeline fails and developers get a notification for error mitigation. On average this CI process takes 2 minutes to complete, and Figure 28 shows the duration of each workflow run.
 
 \begin{figure}[h]
 	\centering
@@ -1263,7 +1263,7 @@ When there is an error in the build such as if a unit test fails or there is a T
 
 \subsubsection{Initialization Tests}
 
-Lastly, initialization tests are used after deploying the app to ensure that all services are functioning. The \texttt{init-test.ts} file has 6 tests that run as soon as the app is launched. If there is an error with any of these services, it is immediately logged in the console. The output of a successful initialization is shown in Figure 16. After the server is ready, the connection to self-hosted services like Redis and MariaDB are tested; then, a test email is sent to ensure outbound emails are delivered; finally, the connection to third-party services like Stripe and ElasticSearch is tested.
+Lastly, initialization tests are used after deploying the app to ensure that all services are functioning. The \texttt{init-test.ts} file has 6 tests that run as soon as the app is launched. If there is an error with any of these services, it is immediately logged in the console. The output of a successful initialization is shown in Figure 30. After the server is ready, the connection to self-hosted services like Redis and MariaDB are tested; then, a test email is sent to ensure outbound emails are delivered; finally, the connection to third-party services like Stripe and ElasticSearch is tested.
 
 \begin{figure}[h]
 	\center
@@ -1323,7 +1323,7 @@ Deploying the frontend web app is much easier because of the CI process. The fro
 
 Although measures have been taken to make sure EIVA services don't go down, such as installing Cloudflare' Always Online which serves a static version of a webpage if it is not available from the origin server \cite{noauthor_keep_nodate}, there is sometimes nothing one can do to prevent a website from going down. ``Traffic spikes, malware attacks, data center problems, etc." can cause server downtime \cite{noauthor_what_2018}.
 
-To monitor the uptime of the services and get real-time notifications in case of downtime, Uptime Robot is installed \cite{noauthor_about_nodate}. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure), and sends an email and Slack notification in case any URL is unavailable.
+To monitor the uptime of the services and get real-time notifications in case of downtime, Uptime Robot is installed \cite{noauthor_about_nodate}. In intervals of 5 minutes, Uptime Robot makes network requests to the frontend and backend URLs, logs the response time (Figure 29), and sends an email and Slack notification in case any URL is unavailable.
 
 Over the course of testing weeks, no downtime was recorded for the backend, but the frontend was unavailable twice for a period of 2 minutes and 57 seconds and 2 minutes and 44 seconds on June 7 and June 9 2020 respectively. This was due to a Netlify deploying error because of renamed repositories. Both times, this error was immediately fixed because of the real-time notifications feature, and resulted in a $>$ 99.98\% overall uptime.
 
@@ -1349,7 +1349,7 @@ The goal of this user experience evaluation was to allow 30 users to create thei
 
 \subsection{Introductory Survey}
 
-A diverse group of users participated in the survey, both working professionals and students. 18 out of 30 respondents were professionals employed full-time by a company or organization, another 9 were students, and 3 out of 30 were freelancers or self-employed individuals (Table 1).
+A diverse group of users participated in the survey, both working professionals and students. 18 out of 30 respondents were professionals employed full-time by a company or organization, another 9 were students, and 3 out of 30 were freelancers or self-employed individuals (Table 6).
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1383,11 +1383,11 @@ A diverse group of users participated in the survey, both working professionals 
 	\end{minipage}
 \end{table}
 
-Users were also asked their preferred modes of scheduling. In Table 2, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. The results show a preference for emails, as noted in Section 2. Apart from email, work chat services or physically reaching out are popular too, whereas phone calls and consumer chat services are used least frequently.
+Users were also asked their preferred modes of scheduling. In Table 7, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. The results show a preference for emails, as noted in Section 2. Apart from email, work chat services or physically reaching out are popular too, whereas phone calls and consumer chat services are used least frequently.
 
 \subsubsection{Email and Calendar Usage}
 
-To ensure that email is the ideal use case for scheduling, participants were asked about their frequency of sending emails (Table 3) and checking their email (Table 4). More than half of all participants send multiple emails per day, whereas almost one third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively. Almost two thirds of all participants check their email multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively. Therefore, a large majority of all participants both frequently send and check emails.
+To ensure that email is the ideal use case for scheduling, participants were asked about their frequency of sending emails (Table 8) and checking their email (Table 9). More than half of all participants send multiple emails per day, whereas almost one third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively. Almost two thirds of all participants check their email multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively. Therefore, a large majority of all participants both frequently send and check emails.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1503,7 +1503,7 @@ Although EIVA connects with any calendar application that follows the iCalendar 
 
 \subsubsection{Personal Assistant for Scheduling}
 
-In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 9.
+In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 14.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1526,7 +1526,7 @@ In the second part of the Introductory Survey, participants were asked hypotheti
 
 Currently, EIVA only sets appointments but the big picture goal of EIVA is to automate several other workflows, like automatically responding to emails or sending outbound marketing emails. Participants were also asked what other features they would like to see.
 
-Table 10 summarizes the most-requested additional features that participants want EIVA to have. 22 out of 30 respondents requested reminders, 17 out of 30 selected email follow-ups to team members, 15 out of 30 selected automatic frequent email responses, and 6 participants requested sending marketing emails. Two participants also added custom requests ``Send me my schedule at the start of my day" and ``Sort relevant emails, make summaries of long emails, and create a quick overview to-do list".
+Table 15 summarizes the most-requested additional features that participants want EIVA to have. 22 out of 30 respondents requested reminders, 17 out of 30 selected email follow-ups to team members, 15 out of 30 selected automatic frequent email responses, and 6 participants requested sending marketing emails. Two participants also added custom requests ``Send me my schedule at the start of my day" and ``Sort relevant emails, make summaries of long emails, and create a quick overview to-do list".
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1555,9 +1555,9 @@ A JavaScript snippet was used to send information about each pageview to the Ela
 
 \paragraph{Location}
 
-Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 8 and Table 11 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands.
+Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 31 and Table 16 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands.
 
-Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, with the maximum usage coming from Flevoland, followed in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 12 and Figure 10 show the usage distribution in Dutch provinces, and Figure 9 shows an overview of usage coming from the continent of Europe.
+Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, with the maximum usage coming from Flevoland, followed in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 17 and Figure 33 show the usage distribution in Dutch provinces, and Figure 32 shows an overview of usage coming from the continent of Europe.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{location-world.png}
@@ -1625,7 +1625,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, wi
 	\end{minipage} 
 \end{table}
 
-\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 12 and 13, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.6.4). 
+\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 18 and 19, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.6.4). 
 
 Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it was placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-related' is a sum of pageviews from headless Chrome, Chrome webviews, and Chromium.
 
@@ -1675,9 +1675,9 @@ Most users used the web app on a large screen, not a smartphone. In fact, over 3
 
 \subsubsection{API usage}
 
-Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 9, totaling to 19,177.
+Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 34, totaling to 19,177.
 
-An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.1.9. Unless an error occurs, the assistant responds to each email as well. Figure 10 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
+An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.1.9. Unless an error occurs, the assistant responds to each email as well. Figure 35 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
 
 \begin{figure}[h]
 	\centering
@@ -1731,7 +1731,7 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 
 To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
 
-Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020}. A total of 4,940 clicks were tracked and the figures below are presented by superimposing the heatmap over the screenshot of the respective component.
+Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020}. A total of 4,940 clicks were tracked and the Figures 36 and 37 are presented by superimposing the heatmap over the screenshot of the respective component.
 
 \begin{wrapfigure}{l}{0.45\textwidth}\centering
 	\includegraphics[scale=0.5]{heatmap-sidebar.png}
@@ -1740,7 +1740,7 @@ Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020
 
 \paragraph{Navigation}
 
-In Figure 11, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15).
+In Figure 36, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15).
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{heatmap-locations.png}
@@ -1749,7 +1749,7 @@ In Figure 11, the distribution of clicks on the sidebar navigation is showcased.
 
 \paragraph{Webpage}
 
-The Locations page is an ideal example to measure clicks because it has several controls and links. Figure 12, generated with 237 datapoints, shows.
+The Locations page is an ideal example to measure clicks because it has several controls and links. Figure 37, generated with 237 datapoints, shows.
 
 The sidebar navigation on the Locations page has the most frequently clicked item of Settings (19 clicks), which is expected since it is the next link after Locations itself. Users also clicked on the table containing the list of saved locations and the Delete button for each item.
 
@@ -1883,7 +1883,7 @@ They were also directly asked whether EIVA met their expectations in terms of sc
 	\end{minipage} 
 \end{table}
 
-To test the hypothesis that EIVA is indistinguishable from a human assistant, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. Table 23 shows that 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer.
+To test the hypothesis that EIVA is indistinguishable from a human assistant, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer.
 
 \subsubsection{Business Case}
 
@@ -1932,7 +1932,7 @@ When asked \emph{What do you like the most about EIVA?}, 5 users mentioned the e
 
 On the contrary, responses to the question \emph{What do you like the least about EIVA?} included ``pretending to be human", the ``lengthy and slightly technical" onboarding process, and the mobile interface. One user also said that ``[EIVA] doesn't fully seem to know/understand my reasoning behind picking or proposing certain meeting times, where maintaining focus during my work day plays an important role." This suggests that more fine-grained control over recommended time slots should be allowed in the web app interface.
 
-Tables 24 and 25 analyze responses to questions \emph{Did you find anything frustrating that you wish was easier or different?} and \emph{Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?} respectively.
+Tables 28 and 29 analyze responses to questions \emph{Did you find anything frustrating that you wish was easier or different?} and \emph{Is there anything that you wish the assistant could do, in terms of scheduling, that it doesn't currently?} respectively.
 
 Lastly, users had the option of adding any additional feedback, suggestions, or comments, which almost half of all respondents chose to add. One user said ``I really like EIVA, and I think that we need such kind of smart applications in today's world that do not only save time, but also help us act more efficiently in other work as well." Users also stated that EIVA is ``great and extremely easy to use" and has ``great potential".
 
