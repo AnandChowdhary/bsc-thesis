@@ -233,7 +233,7 @@ The above example generates an API endpoint of \texttt{/v1/example} (with versio
 
 When it comes to choosing a frontend framework for JavaScript web apps, the main options are React, Angular, Ember, Vue.js, and most recently, Svelte \cite{delcev_modern_2018}. Although Svelte is a relative newcomer (released in 2016, compared to Vue.js in 2014 and React in 2013), it has been adopted rapidly by the community. However, it is still not production-ready and therefore risky to use when developing the EIVA frontend app \cite{noauthor_svelte:_2019}. Furthermore, in the State of JavaScript 2019, only 75\% of all developers were aware of Svelte, whereas all 100\% were aware of React, Angular, and Vue.js \cite{noauthor_state_nodate}.
 
-In terms of developer interest, Vue.js and React were rated 64\% and 61\% respectively, whereas Angular and Ember were much lower at 23\% and 18\% respectively. However, React is developed by Facebook, while Vue.js is built by a community of open-source developers, and both have near-universal support in the frontend ecosystem. Therefore, Vue.js was selected as the frontend framework for EIVA; it offers an easy way to use HTML-based template syntax and single-file components \cite{deng_development_2020}.
+In terms of developer interest, Vue.js and React were rated 64\% and 61\% respectively, whereas Angular and Ember were much lower at 23\% and 18\% respectively. However, React is developed by Facebook, while Vue.js is built by a community of open source developers, and both have near-universal support in the frontend ecosystem. Therefore, Vue.js was selected as the frontend framework for EIVA; it offers an easy way to use HTML-based template syntax and single-file components \cite{deng_development_2020}.
 
 \subsubsection{Email Interfacing}
 
@@ -1345,11 +1345,11 @@ Over the course of the month of June 2020, 3 errors were tracked for the fronten
 
 \section{Evaluation}
 
-The goal of this user experience evaluation was to allow 30 users to create their own assistants using the EIVA service and use the companion app before hearing their feedback. The form opened on June 1, 2020, and was closed on June 24, 2020, when 30 responses had been recorded.
+The goal of this user experience evaluation was to allow 30 users to create their own assistants using the EIVA service and use the companion app, interact with their assistants by scheduling an appointment, and then hearing their feedback. The form opened on June 1, 2020, and was closed on June 24, 2020, when 30 responses had been recorded.
 
 \subsection{Introductory Survey}
 
-A diverse group of users participated in the survey, both working professionals and students. 18 out of 30 respondents were professionals employed full-time by a company or organization, another 9 were students, and 3 out of 30 were freelancers or self-employed individuals (Table 6).
+A diverse group of users participated in the survey, both working professionals and students. 18 out of 30 respondents were professionals employed full-time by a company or organization, another 9 were students, and 3 out of 30 were freelancers or self-employed individuals (Table 6). This healthy diversity of professions helped understand how different categories of users use EIVA.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1383,11 +1383,11 @@ A diverse group of users participated in the survey, both working professionals 
 	\end{minipage}
 \end{table}
 
-Users were also asked their preferred modes of scheduling. In Table 7, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. The results show a preference for emails, as noted in Section 2. Apart from email, work chat services or physically reaching out are popular too, whereas phone calls and consumer chat services are used least frequently.
+Users were also asked their preferred modes of scheduling. The results show a preference for emails, as noted in Section 2. In Table 7, `Work chat' refers to instant messaging services like Slack and Microsoft Teams whereas `Consumer chat' refers to services like WhatsApp and Facebook Messenger, and participants could choose multiple options. Apart from email, work chat services or physically reaching out were popular as well, whereas phone calls and consumer chat services are used least frequently. It is clear that email is the preferred form-factor for scheduling appointments, although services like Slack that aim to replace traditional email are also catching up quickly.
 
 \subsubsection{Email and Calendar Usage}
 
-To ensure that email is the ideal use case for scheduling, participants were asked about their frequency of sending emails (Table 8) and checking their email (Table 9). More than half of all participants send multiple emails per day, whereas almost one third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively. Almost two thirds of all participants check their email multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively. Therefore, a large majority of all participants both frequently send and check emails.
+To further validate that email is the ideal use case for scheduling, participants were asked about their frequency of sending emails (Table 8). More than half of all participants send multiple emails per day, whereas almost one-third send an email once every few days. Only 3 and 2 respondents send an email once every few weeks or per month respectively. Similarly, they were asked about their frequency of checking their email account (Table 9). Almost two-thirds of all participants check their emails multiple times per day, and 7 out of 30 said that they check it at least once per day. 4 and 1 participant(s) check their email at least weekly and monthly respectively. Therefore, a large majority of all participants both send and check emails often.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1421,11 +1421,11 @@ To ensure that email is the ideal use case for scheduling, participants were ask
 	\end{minipage} 
 \end{table}
 
-Since EIVA supports both English and Dutch, participants were asked their preferred languages for email communication. All 30 participants selected English, 9 participants also chose Dutch, and 1 participant also selected German and Polish each.
+Since EIVA supports both English and Dutch, participants were asked their preferred languages for email communication. All 30 participants selected English, 9 participants also chose Dutch, and 1 participant also chose German. 1 participant manually entered Polish as well. This suggests that building an English-only service would work for most use cases, but since almost one-third of all users also want to use Dutch, it should be treated as a first-class language. In the future, support for other popular languages can be added as well.
 
-For better integration with large email providers, participants were also asked about their primary email service provider. Over half of all participants use Google's Gmail or G Suite (17), 8 in 30 use a Microsoft service (like Hotmail or Live), 2 each use a custom hosted SMTP or others, and 1 respondent uses Yahoo!.
+For better integration with large email providers, participants were also asked about their primary email service provider. Over half of all participants use Google's Gmail or G Suite (17), 8 use a Microsoft service (like Outlook, Hotmail, or Live), 2 use a custom-hosted SMTP service, 1 uses Yahoo! Mail, and 2 respondents selected `Other'. This is consistent with other research, for example Gmail and Outlook were placed first and second in Statista's list of most-popular email services in 2019 respectively.
 
-Furthermore, they were asked whether they have email notifications enabled on their smartphones, to which all but three participants responded in the affirmative. This shows that an overwhelming majority of users check their emails frequently and receive email notifications.
+Furthermore, participants were asked whether they have email notifications enabled on their smartphones, to which all but three participants responded in the affirmative. This shows that an overwhelming majority of users not only check their emails frequently, but also receive real-time email notifications.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1460,7 +1460,7 @@ Furthermore, they were asked whether they have email notifications enabled on th
 	\end{minipage} 
 \end{table}
 
-Apart from scheduling, there are also several other reasons to use email. Participants were asked \emph{What do you use email for?}, and 29 out of 30 participants selected work-related communication. 16 participants also chose scheduling appointments, while 5 in 30 use email to connect with friends and family. 3 out of 30 participants use email for outbound marketing, whereas 1 also uses it for customer support.
+Apart from scheduling, there are also several other reasons people use email. Participants were asked \emph{What do you use email for?}, and 29 out of 30 participants selected work-related communication. 16 participants also chose scheduling appointments, while 5 use email to connect with friends and family. 3 participants use email for outbound marketing, whereas 1 also uses it for customer support. Therefore, scheduling appointments is only one of the many use cases for email, and the feature set of EIVA can be increased to support them. For example, automated outbound marketing or followups can be implemented.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1480,7 +1480,7 @@ Apart from scheduling, there are also several other reasons to use email. Partic
 	\end{minipage}%
 \end{table}
 
-Although EIVA connects with any calendar application that follows the iCalendar standard, which all major services do, it also directly integrates with Google Calendar using the official API (iCalendar support was added in Cycle 3, Section 6.3.3). This was chosen with the hypothesis that it's the most popular calendar service, which was proved to be true based on the participants' responses. Almost two-thirds of all participants (19) selected Google Calendar as their primary calendar service, 9 out of 30 participants use Microsoft Outlook, and another 8 use Apple Calendar. 3 participants used other calendar services. Lastly, 1 respondent each uses a self-hosted calendar or no calendar.
+Although EIVA connects with any calendar application that follows the iCalendar specification (which all major services do), it also directly integrates with Google Calendar using the official API. iCalendar support was added in Cycle 3, Section 6.3.3, until when only Google Calendar was supported. This was chosen with the hypothesis that it is the most popular calendar service, which was proved to be true based on the participants' responses. Almost two-thirds of all participants (19) selected Google Calendar as their primary calendar service, 9 out of 30 participants use Microsoft Outlook, and another 8 use Apple Calendar. 3 participants used other calendar services. Lastly, 1 respondent each uses a self-hosted calendar or no calendar.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1503,7 +1503,7 @@ Although EIVA connects with any calendar application that follows the iCalendar 
 
 \subsubsection{Personal Assistant for Scheduling}
 
-In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 14.
+In the second part of the Introductory Survey, participants were asked hypotheticals about using an assistant for scheduling meetings. The results of the six polar questions (yes/no) are tabulated in Table 14. When asked whether they would ask their human assistants to schedule appointments, all but three responded in the affirmative; and when asked whether they'd ask their AI-powered virtual assistant to do the same, all but six said `Yes'. The most splitting question was whether EIVA should inform recipients that it is not a human assistant, to which 19 users said `Yes' and 11 users said `No'.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1524,9 +1524,7 @@ In the second part of the Introductory Survey, participants were asked hypotheti
 	\end{minipage}%
 \end{table}
 
-Currently, EIVA only sets appointments but the big picture goal of EIVA is to automate several other workflows, like automatically responding to emails or sending outbound marketing emails. Participants were also asked what other features they would like to see.
-
-Table 15 summarizes the most-requested additional features that participants want EIVA to have. 22 out of 30 respondents requested reminders, 17 out of 30 selected email follow-ups to team members, 15 out of 30 selected automatic frequent email responses, and 6 participants requested sending marketing emails. Two participants also added custom requests ``Send me my schedule at the start of my day" and ``Sort relevant emails, make summaries of long emails, and create a quick overview to-do list".
+Currently, EIVA only sets appointments but the big picture goal of EIVA is to automate several other workflows, like automatically responding to emails or sending outbound marketing emails. Participants were also asked what other features they would like to see. Table 15 summarizes the most-requested additional features that participants want EIVA to have. 22 out of 30 respondents requested reminders, 17 out of 30 selected email follow-ups to team members, 15 out of 30 selected automatic frequent email responses, and 6 participants requested sending marketing emails. Two participants also added custom requests ``Send me my schedule at the start of my day" and ``Sort relevant emails, make summaries of long emails, and create a quick overview to-do list".
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1551,13 +1549,15 @@ Data stored in ElasticSearch between June 1 and June 24 is analyzed, in which 30
 
 \subsubsection{Web App Traffic Analysis}
 
-A JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as parsing the user agent. Data from the 2,244 pageviews is analyzed in this section.
+A JavaScript snippet was used to send information about each pageview to the ElasticSearch engine via the API, and most data was computed on the client, such as by parsing the user agent. Data from the 2,244 pageviews is analyzed in this section.
 
 \paragraph{Location}
 
-Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 31 and Table 16 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands.
+Users from four continents used the web application --- Asia, Europe, Africa, and North America. The approximate location of users is determined based on their IP address using Maxmind's GeoIP2. Figure 31 and Table 16 highlight the twelve countries users visited from, with the highest participation from India and the Netherlands, followed by Kenya, Poland, the United States, and the United Kingdom. This shows that a truly global participation was observed during this research. A small number of pageviews ($<$20) were also recorded from Iran, Indonesia, Germany, Finland, France, and Russia.
 
-Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, with the maximum usage coming from Flevoland, followed in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland. Table 17 and Figure 33 show the usage distribution in Dutch provinces, and Figure 32 shows an overview of usage coming from the continent of Europe.
+Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, with the maximum usage coming from Flevoland, followed in order by Overijssel, Gelderland, Utrecht, South Holland, North Holland, and Friesland.
+
+This was unexpected because both the researcher and the client are located in Overijssel, but participation from Almere Stad was the highest in the Netherlands, responsible for all of Flevoland's pageviews. Almere Stad was followed by other popular cities --- Enschede (99), Deventer (48), Nijmegen (39), and Woudenberg (33). Interestingly, Almere Stad was the second most-popular city during the research, after Gurgaon (418) and before Noida (226), both in the National Capital Region of Delhi, India. Table 17 and Figure 33 show the usage distribution in Dutch provinces, and Figure 32 shows an overview of usage coming from the continent of Europe.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{location-world.png}
@@ -1625,9 +1625,7 @@ Furthermore, in the Netherlands, usage was observed in 7 out of 12 provinces, wi
 	\end{minipage} 
 \end{table}
 
-\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 18 and 19, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.6.4). 
-
-Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it was placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-related' is a sum of pageviews from headless Chrome, Chrome webviews, and Chromium.
+\paragraph{Browsers and Devices} The User-Agent request header is a characteristic string that provides insight into user' browsers and devices, depending on their privacy settings. In Tables 18 and 19, usage by device type and web browser is displayed respectively, with the exception of requests due to uptime monitoring (Section 6.6.4). Although Google Chrome is the most popular web browser as reported by Wikimedia in November 2019 \cite{noauthor_dashiki:_nodate}, it was placed behind Mozilla Firefox in usage by participants in this research. After Chrome followed Safari, Safari for mobile, and others. `Chrome-related' is a sum of pageviews from headless Chrome, Chrome webviews, and the open source Chromium.
 
 \begin{table}[!htb]
 	\begin{minipage}{.5\linewidth}
@@ -1675,9 +1673,9 @@ Most users used the web app on a large screen, not a smartphone. In fact, over 3
 
 \subsubsection{API usage}
 
-Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 34, totaling to 19,177.
+Whenever a participant uses the web app, requests to the API are made. An average of 799 API requests were made on each day. The number of requests on each day is graphed in Figure 34. An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.1.9. Unless an error occurs, the assistant responds to each email as well.
 
-An API endpoint is triggered when a user sends a new email to their assistant, as described in Section 6.1.9. Unless an error occurs, the assistant responds to each email as well. Figure 35 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails.
+Figure 35 shows the number of new emails processed every day. The average number of daily emails processed per day was 7.5 with a total of 98 emails. It is visible that participation was greatest in the beginning, gradually slowed down, and then increased again at the end. This is because invitations to participate were sent both in the beginning (June 1) and later in the research (June 21).
 
 \begin{figure}[h]
 	\centering
@@ -1729,9 +1727,9 @@ An API endpoint is triggered when a user sends a new email to their assistant, a
 
 \subsubsection{Heatmaps}
 
-To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID.
+To better measure how participants used the web app, each mouse click was also tracked. This tracking was completely anonymous, collecting only the details of the component clicked on apart from the datapoints described above, without linking the clicks to a particular user ID. Therefore, this approach is both privacy-conscious and useful to understand whether users interact with the interface in the intended way.
 
-Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020}. A total of 4,940 clicks were tracked and the Figures 36 and 37 are presented by superimposing the heatmap over the screenshot of the respective component.
+Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020}. A total of 4,940 clicks were tracked and the Figures 36 and 37 are presented by superimposing the heatmap over the screenshot of the respective component. A greater green color on a point refers to an increasing number of clicks.
 
 \begin{wrapfigure}{l}{0.45\textwidth}\centering
 	\includegraphics[scale=0.5]{heatmap-sidebar.png}
@@ -1740,22 +1738,18 @@ Heatmaps convey the distribution of attention on a page \cite{gu_predicting_2020
 
 \paragraph{Navigation}
 
-In Figure 36, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15).
+In Figure 36, the distribution of clicks on the sidebar navigation is showcased. This heatmap was generated using 403 datapoints and shows that Settings was clicked on most frequently (106 times), followed in order by Meetings (105), Locations (71), How to use (58), Team members (13), Developers (20), and Data and security (15). This is consistent with the introductory guide, that led users to the first four links. It also shows that some users chose to go to other pages that were not part of the tour as well.
 
-\begin{figure}[h]
+\paragraph{Webpage}
+
+The Locations page is an ideal example to measure clicks because it has several controls and links. Figure 37, generated with 237 datapoints, shows that the sidebar navigation on the Locations page has the most frequently clicked item of Settings (19 clicks), which is expected since it is the next link after Locations itself. Users also clicked on the table containing the list of saved locations and the Delete button for each item.
+
+\begin{figure}[ht]
 	\includegraphics[width=\textwidth]{heatmap-locations.png}
 	\caption{Heatmap for Locations Page}
 \end{figure}
 
-\paragraph{Webpage}
-
-The Locations page is an ideal example to measure clicks because it has several controls and links. Figure 37, generated with 237 datapoints, shows.
-
-The sidebar navigation on the Locations page has the most frequently clicked item of Settings (19 clicks), which is expected since it is the next link after Locations itself. Users also clicked on the table containing the list of saved locations and the Delete button for each item.
-
-In the Add Locations selector, both Video call and Phone call were selected 6 times, whereas In-person meeting was selected 5 times. The Service dropdown selector was clicked on 24 times. The Add Location button was clicked on 14 times. In this example, the Update default location button is unused because it was added after June 10, 2020.
-
-Overall, it is clear that users interacted with all controls on the webpage --- the sidebar navigation, locations table, buttons, and input fields.
+In the Add Locations selector, both Video call and Phone call were selected 6 times, whereas In-person meeting was selected 5 times. The Service dropdown selector was clicked on 24 times. The Add Location button was clicked on 14 times. In this example, the Update default location button is unused because it was added after June 10, 2020. Users also clicked in the sidebar below the navigation a few times. Overall, it is clear that users interacted with all controls on the webpage --- the sidebar navigation, locations table, buttons, and input fields. The `Default location' section was added after testing, so it has no clicks, as expected.
 
 \subsection{User Experience Evaluation}
 
@@ -1770,7 +1764,7 @@ The first question, \emph{What comes to mind when you think about EIVA; how woul
 
 \subsubsection{Webapp Experience}
 
-Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.7.
+Users were asked to rate the web app on different parameters, from 0 to 5. All parameters scored over 4 out of 5, with privacy features rated with the highest average of 4.7, and the introductory tour rated the lowest average of 4.2. The interface design was rated 4.6, its functionality was rated 4.5, and its ease of use was rated 4.4. Apart from the average, the median, mode, and standard deviation of each rating was also computed. The results overwhelmingly suggest that users enjoyed web app.
 
 \begin{table}[!htb]
 	\begin{minipage}{1\linewidth}
@@ -1849,9 +1843,7 @@ To find out whether the assistant understood the overall meaning of their email 
 	\end{minipage} 
 \end{table}
 
-Apart from understanding the meaning of an email, participants were asked whether EIVA recommended the correct location for the meeting. The location recommendation was correct for 24 out of 30 participants and incorrect for 5 participants. 1 participant chose to not answer this question.
-
-Because of the API webhook, EIVA responds to emails almost instantly. When asked about whether the assistant responded to emails in a reasonable amount of time, all 30 participants responded with `Yes'.
+Apart from understanding the meaning of an email, participants were asked whether EIVA recommended the correct location for the meeting. The location recommendation was correct for 24 out of 30 participants and incorrect for 5 participants. 1 participant chose to not answer this question. Because of the API webhook, EIVA responds to emails almost instantly. When asked about whether the assistant responded to emails in a reasonable amount of time, all 30 participants responded with `Yes'.
 
 They were also directly asked whether EIVA met their expectations in terms of scheduling an appointment. All but one participants responded positively.
 
@@ -1883,7 +1875,7 @@ They were also directly asked whether EIVA met their expectations in terms of sc
 	\end{minipage} 
 \end{table}
 
-To test the hypothesis that EIVA is indistinguishable from a human assistant, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer.
+To test the hypothesis that EIVA is indistinguishable from a human assistant, users were asked \emph{If you were the recipient of an email from EIVA, would you be able to tell whether it's an email from an AI or human assistant, if you didn't already know?}. 11 out of 30 participants said that they would be able to tell, while 18 out of 30 said that they wouldn't. 1 participant chose not to answer. This shows that for most users, EIVA would essentially act as a human assistant.
 
 \subsubsection{Business Case}
 
@@ -2113,8 +2105,6 @@ This section ensures that we have your permission to conduct this research. Plea
 All raw responses from the survey are available in CSV format on the GitHub project: \url{https://github.com/AnandChowdhary/bsc-thesis} in \texttt{responses.csv}.
 
 The following table shows all collected responses for rating questions. Columns refer to question number while rows are randomized responses. In the last three rows, $\bar{x}$ refers to the mean, $\tilde{x}$ is the median, $Mo$ is the mode, and $\sigma$ is the standard deviation.
-
-\vspace{10mm}
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
